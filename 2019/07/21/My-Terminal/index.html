@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="讲道理，Mac下的shell,嗯就是那个bash真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用iTerm2这个玩意代替他了，并且使用zsh代替了bash…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="折腾---美观Mac下的终端">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;21&#x2F;My-Terminal&#x2F;index.html">
+<meta property="og:site_name" content="ZhangFan&#39;s Blog">
+<meta property="og:description" content="讲道理，Mac下的shell,嗯就是那个bash真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用iTerm2这个玩意代替他了，并且使用zsh代替了bash…">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;21&#x2F;My-Terminal&#x2F;change_background.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;21&#x2F;My-Terminal&#x2F;terminal.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;21&#x2F;My-Terminal&#x2F;terminal_now.png">
+<meta property="og:updated_time" content="2019-07-23T04:32:36.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;21&#x2F;My-Terminal&#x2F;change_background.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/07/21/My-Terminal/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>折腾---美观Mac下的终端 | ZhangFan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangFan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/My-Terminal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="流岚">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangFan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          折腾---美观Mac下的终端
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-21 23:09:48" itemprop="dateCreated datePublished" datetime="2019-07-21T23:09:48+08:00">2019-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-23 12:32:36" itemprop="dateModified" datetime="2019-07-23T12:32:36+08:00">2019-07-23</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<a id="more"></a>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<strong><em>oh-my-zsh</em></strong>的开源项目…</p>
+<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><strong><em>oh-my-zsh</em></strong>了。</p>
+<hr>
+<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><ol>
+<li><p><strong>官方下载地址：</strong><a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></p>
+<p>安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>替换背景图片</strong></p>
+<p>Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
+<p><img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
+</li>
+</ol>
+<hr>
+<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><ol>
+<li><p><strong>命令 2种方式：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>用第二种方式需要wget，如果没有wget请安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure>
+
+<p>如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
+<p>接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
+</li>
+</ol>
+<hr>
+<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
+<p>我选择的主题是<code>ys</code></p>
+<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
+<p><del>请忽视我正在安装的东西…</del></p>
+<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>找到ZSH_THEME，将此变量值改为”ys”</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"ys"</span></span><br></pre></td></tr></table></figure>
+
+<p>最后更新修改后的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！</p>
+<p>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></table></figure>
+
+<p>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…</p>
+<p>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion</p>
+<p>首先切换目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></table></figure>
+
+<p>下载插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
+<p>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>在最后添加一行，也就是把刚刚下载的插件的路径添加进去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></table></figure>
+
+<p>保存后执行更新配置文件命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！</p>
+<hr>
+<p>最后贴一张现在的终端界面吧哈哈！</p>
+<p><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"></p>
+<p>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/06/29/ipv6/" rel="next" title="如何使用ipv6进行校园网免流">
+                  <i class="fa fa-chevron-left"></i> 如何使用ipv6进行校园网免流
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/07/23/sublime-run/" rel="prev" title="Sublime中按ctrl+B调用python3运行">
+                  Sublime中按ctrl+B调用python3运行 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装iTerm2代替shell"><span class="nav-number">1.</span> <span class="nav-text">一、安装iTerm2代替shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装oh-my-zsh"><span class="nav-number">2.</span> <span class="nav-text">二、安装oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、主题选择"><span class="nav-number">3.</span> <span class="nav-text">三、主题选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、自动补全插件"><span class="nav-number">4.</span> <span class="nav-text">四、自动补全插件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="流岚"
+    src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">流岚</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aestheticisma" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;aestheticisma" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5975330626" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5975330626" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">流岚</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- 背景动画 -->
+<script type="text/javascript" src="/js/particle.js"></script>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click_love.js"></script>
+  <!--页面崩溃-->
+<script type="text/javascript" src="/js/crash_cheat.js"></script>
+</body>
+
+</html>

