@@ -58,7 +58,7 @@
 <meta property="og:description" content="前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;23&#x2F;sublime-run&#x2F;sublime_run1.png">
-<meta property="og:updated_time" content="2019-07-23T04:31:22.000Z">
+<meta property="og:updated_time" content="2019-10-24T05:46:01.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;07&#x2F;23&#x2F;sublime-run&#x2F;sublime_run1.png">
 
@@ -200,10 +200,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-07-23 12:11:02 / 修改时间：12:31:22" itemprop="dateCreated datePublished" datetime="2019-07-23T12:11:02+08:00">2019-07-23</time>
+              <time title="创建时间：2019-07-23 12:11:02" itemprop="dateCreated datePublished" datetime="2019-07-23T12:11:02+08:00">2019-07-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-24 13:46:01" itemprop="dateModified" datetime="2019-10-24T13:46:01+08:00">2019-10-24</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -225,24 +231,18 @@
       
         <p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
 <p>解决办法如下：</p>
-<ol>
-<li><p>首先新建一个sublime build system</p>
-<p>Tools-&gt;Build System-&gt;New Build System…</p>
-<p><img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
-</li>
-<li><p>在里面输入以下内容：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"env"</span>: &#123;<span class="attr">"PYTHONIOENCODING"</span>: <span class="string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="string">"-u"</span>, <span class="string">"$file"</span>],</span><br><span class="line">    <span class="attr">"file_regex"</span>: <span class="string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
+<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
+<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5>   <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"env"</span>: &#123;<span class="attr">"PYTHONIOENCODING"</span>: <span class="string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="string">"-u"</span>, <span class="string">"$file"</span>],</span><br><span class="line">    <span class="attr">"file_regex"</span>: <span class="string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
-<p><code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
-<p>如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> python3</span><br></pre></td></tr></table></figure>
+<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
+<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
+<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> python3</span><br></pre></td></tr></table></figure>
 
-<p>比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
-<p>然后保存文件名为<strong>python3.sublime-build</strong></p>
-<p>最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
-</li>
-</ol>
+<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
+<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
+<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 
     </div>
 
@@ -305,6 +305,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-首先新建一个sublime-build-system"><span class="nav-text">1. 首先新建一个sublime build system</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-在里面输入以下内容："><span class="nav-text">2. 在里面输入以下内容：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

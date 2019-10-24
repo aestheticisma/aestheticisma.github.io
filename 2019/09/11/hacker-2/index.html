@@ -71,7 +71,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;12.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;13.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;14.png">
-<meta property="og:updated_time" content="2019-09-11T14:41:51.838Z">
+<meta property="og:updated_time" content="2019-10-24T05:43:32.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;11&#x2F;hacker-2&#x2F;1.png">
 
@@ -213,10 +213,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-09-11 18:03:21 / 修改时间：22:41:51" itemprop="dateCreated datePublished" datetime="2019-09-11T18:03:21+08:00">2019-09-11</time>
+              <time title="创建时间：2019-09-11 18:03:21" itemprop="dateCreated datePublished" datetime="2019-09-11T18:03:21+08:00">2019-09-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-24 13:43:32" itemprop="dateModified" datetime="2019-10-24T13:43:32+08:00">2019-10-24</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -237,18 +243,17 @@
 
       
         <p>软件综合训练第二天….<a id="more"></a></p>
-<p>1.<strong>扫描被攻击主机ip地址</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure>
+<h3 id="1-扫描被攻击主机ip地址："><a href="#1-扫描被攻击主机ip地址：" class="headerlink" title="1. 扫描被攻击主机ip地址："></a>1. <strong>扫描被攻击主机ip地址</strong>：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2019/09/11/hacker-2/1.png" alt="1.png"></p>
 <p>从结果发现，共有五台在线主机，IP末尾为.1、.2和.254位虚拟机VMware自带，而kali_linux的IP为192.168.73.131，因此我们要攻击的主机的ip为192.168.73.130。</p>
-<p>2.<strong>获取更多信息</strong>：</p>
+<p>###2. <strong>获取更多信息</strong>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn -sSV -A  -p- -T5 192.168.73.130</span><br></pre></td></tr></table></figure>
 
 <p>-Pn为了不同ping，因为知道主机已启动，-p-扫描所有端口，-sC用默认脚本，-sSV发现开放端口然后尝试使用bannergrabbing服务名称和版本信息，-A运行大量nmap脚本来识别操作系统并收集更多信息，比较激进，-T5用于扫描更快。-T3是nmap默认值，在此下可用于避免网络上的IDS（他们会延迟扫描）。ip地址段为kali_linxu所属网段。</p>
 <p><img src="/2019/09/11/hacker-2/2.png" alt="2.png"></p>
 <p>可以从结果看出，该服务器是一个web服务器，因为它开放了80端口，并且使用了Drupal的CMS进行搭建的网站。因此我们可以考虑利用Drupal的漏洞进行攻击，但是利用nmap仅仅只能得到其版本为7，不能更加精确，因此我们需要确定他更加具体的版本号。</p>
-<p>3.<strong>进一步扫描，确定drupal版本：</strong></p>
+<p>###3. <strong>进一步扫描，确定drupal版本：</strong></p>
 <p>安装并使用droopescan对drupal 进行扫描：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/droope/droopescan.git</span><br><span class="line"><span class="built_in">cd</span> droopescan</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
 
@@ -262,8 +267,7 @@
 <p><img src="/2019/09/11/hacker-2/3.png" alt="3.png"></p>
 <p>由结果我们发现，该网站所使用的drupal版本可能为7.22～7.26，因此存在Drupageddon漏洞</p>
 <p>（Drupageddon是Drupal版本7.32中暴露的漏洞。它允许远程代码执行和shell访问）</p>
-<p>4.<strong>利用Drupageddon</strong></p>
-<p>msf中已经内置该漏洞脚本，可以直接在msf中查找</p>
+<h3 id="4-利用Drupageddon"><a href="#4-利用Drupageddon" class="headerlink" title="4. 利用Drupageddon"></a>4. <strong>利用Drupageddon</strong></h3><p>msf中已经内置该漏洞脚本，可以直接在msf中查找</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">msf &gt; search Drupal</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2019/09/11/hacker-2/4.png" alt="4.png"></p>
@@ -277,8 +281,7 @@
 
 <p><img src="/2019/09/11/hacker-2/6.png" alt="6.png"></p>
 <p>我们可以看到通过<code>whoami</code>命令得到的并不是root用户。</p>
-<p>5.<strong>Get Flag1 !</strong></p>
-<p>当我们获取到了被攻击主机的网站控制权后，我们可以试一试<code>ls</code>命令，发现该目录下有一个flag1.txt，我们找到了一个旗子！让我们打开来看看里面有什么提示呢！</p>
+<h3 id="5-Get-Flag1"><a href="#5-Get-Flag1" class="headerlink" title="5. Get Flag1 !"></a>5. <strong>Get Flag1 !</strong></h3><p>当我们获取到了被攻击主机的网站控制权后，我们可以试一试<code>ls</code>命令，发现该目录下有一个flag1.txt，我们找到了一个旗子！让我们打开来看看里面有什么提示呢！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; cat flag1.txt</span><br></pre></td></tr></table></figure>
 
 <p>注意：一定要在meterpreter &gt; 提示符下，如果你跟着我的上一步输入了<code>shell</code>，那请先输入exit退出到<code>meterpreter &gt;</code></p>
@@ -302,15 +305,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure>
 
 <p>这样就得到了加密后的admin密码，下面我们需要把数据库dump下来。</p>
-<p>6.<strong>把数据库dump下来：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u dbuser -p drupaldb &gt; 1.sql</span><br></pre></td></tr></table></figure>
+<h3 id="6-把数据库dump下来："><a href="#6-把数据库dump下来：" class="headerlink" title="6. 把数据库dump下来："></a>6. <strong>把数据库dump下来：</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u dbuser -p drupaldb &gt; 1.sql</span><br></pre></td></tr></table></figure>
 
 <p>使用ls命令可以看到当前目录下存在1.sql文件。</p>
 <p><img src="/2019/09/11/hacker-2/9.png" alt="9.png"></p>
 <p>使用cat命令打开1.sql查找flag3，可以发现存在提示：search_dataset:flag3 special perms will help find the passwd but you ll need to exec that command to work out how to get what s in the shadow</p>
 <p>两个提示：一个find，一个passwd</p>
-<p>7.<strong>根据提示，寻找其余flag</strong></p>
-<p>因为passwd为配置文件，位于/etc/passwd，因此我们cd到/etc目录下查看passwd文件内容：</p>
+<h3 id="7-根据提示，寻找其余flag"><a href="#7-根据提示，寻找其余flag" class="headerlink" title="7. 根据提示，寻找其余flag"></a>7. <strong>根据提示，寻找其余flag</strong></h3><p>因为passwd为配置文件，位于/etc/passwd，因此我们cd到/etc目录下查看passwd文件内容：</p>
 <p><img src="/2019/09/11/hacker-2/10.png" alt="10.png"></p>
 <p>我们可以发现passwd文件内容最后一行存在一个用户名为flag4，我们于是cd到flag4的用户目录/home/flag4下查看。</p>
 <p><img src="/2019/09/11/hacker-2/11.png" alt="11.png"></p>
@@ -388,6 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-扫描被攻击主机ip地址："><span class="nav-text">1. 扫描被攻击主机ip地址：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-利用Drupageddon"><span class="nav-text">4. 利用Drupageddon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Get-Flag1"><span class="nav-text">5. Get Flag1 !</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-把数据库dump下来："><span class="nav-text">6. 把数据库dump下来：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-根据提示，寻找其余flag"><span class="nav-text">7. 根据提示，寻找其余flag</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -77,7 +77,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;18&#x2F;hacker-4&#x2F;18.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;18&#x2F;hacker-4&#x2F;19.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;18&#x2F;hacker-4&#x2F;20.png">
-<meta property="og:updated_time" content="2019-09-18T08:44:49.960Z">
+<meta property="og:updated_time" content="2019-10-24T05:41:10.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;18&#x2F;hacker-4&#x2F;1.png">
 
@@ -219,10 +219,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-09-18 15:07:20 / 修改时间：16:44:49" itemprop="dateCreated datePublished" datetime="2019-09-18T15:07:20+08:00">2019-09-18</time>
+              <time title="创建时间：2019-09-18 15:07:20" itemprop="dateCreated datePublished" datetime="2019-09-18T15:07:20+08:00">2019-09-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-24 13:41:10" itemprop="dateModified" datetime="2019-10-24T13:41:10+08:00">2019-10-24</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -245,8 +251,7 @@
         <p>软件综合训练-终结篇<a id="more"></a></p>
 <p>不说废话了，直接切入正题……</p>
 <p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
-<p>1.<strong>kali上的配置</strong></p>
-<p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
+<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
 <p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
 <p>你会看到弹出一个终端如下：</p>
 <p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
@@ -256,8 +261,7 @@
 <p>我们输入用户名密码之后会显示如下页面：</p>
 <p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
 <p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
-<p>2.<strong>win7上的配置</strong></p>
-<p>开启win7虚拟机，打开下图的这个软件：</p>
+<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
 <p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
 <p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
 <p>之后点击启动，如下所示：</p>
@@ -265,8 +269,7 @@
 <p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
 <p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
 <p>如图所示，我的win7的ip地址为192.168.73.129</p>
-<p>3.<strong>继续回到我们kali上</strong></p>
-<p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
+<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
 <p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
 <p>用户名为admin，密码为password。登陆之后显示如下：</p>
 <p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
@@ -368,6 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-kali上的配置"><span class="nav-text">1. kali上的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-win7上的配置"><span class="nav-text">2. win7上的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-继续回到我们kali上"><span class="nav-text">3. 继续回到我们kali上</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

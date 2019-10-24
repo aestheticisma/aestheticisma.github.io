@@ -80,7 +80,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;17&#x2F;hacker-3&#x2F;21.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;17&#x2F;hacker-3&#x2F;22.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;17&#x2F;hacker-3&#x2F;23.png">
-<meta property="og:updated_time" content="2019-09-17T10:37:55.739Z">
+<meta property="og:updated_time" content="2019-10-24T05:42:33.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;17&#x2F;hacker-3&#x2F;1.png">
 
@@ -222,10 +222,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-09-17 14:15:19 / 修改时间：18:37:55" itemprop="dateCreated datePublished" datetime="2019-09-17T14:15:19+08:00">2019-09-17</time>
+              <time title="创建时间：2019-09-17 14:15:19" itemprop="dateCreated datePublished" datetime="2019-09-17T14:15:19+08:00">2019-09-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-24 13:42:33" itemprop="dateModified" datetime="2019-10-24T13:42:33+08:00">2019-10-24</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -252,19 +258,16 @@
 <p>启动kali和DC4，已知我的kali的ip地址为<strong>192.168.73.134</strong></p>
 <p>如果不知道请先通过ifconfig查看ip地址，为了便于执行命令，首先直接ssh到kali。</p>
 <p><img src="/2019/09/17/hacker-3/1.png" alt="1.png"></p>
-<p>1.<strong>扫描局域网上的在线主机</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure>
+<h3 id="1-扫描局域网上的在线主机"><a href="#1-扫描局域网上的在线主机" class="headerlink" title="1. 扫描局域网上的在线主机"></a>1. <strong>扫描局域网上的在线主机</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2019/09/17/hacker-3/2.png" alt="2.png"></p>
 <p>同样的，ip为.1、.2、.254的为vmware私有，由于本机为.134，则所要攻击主机为<strong>192.168.73.133</strong></p>
-<p>2.<strong>对目的主机进行详细扫描：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- -A 192.168.73.133</span><br></pre></td></tr></table></figure>
+<h3 id="2-对目的主机进行详细扫描："><a href="#2-对目的主机进行详细扫描：" class="headerlink" title="2. 对目的主机进行详细扫描："></a>2. <strong>对目的主机进行详细扫描：</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- -A 192.168.73.133</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2019/09/17/hacker-3/3.png" alt="3.png"></p>
 <p>可以由扫描结果看出，该主机开放了22和80端口，他很可能是个web服务器，让我们通过目的主机的ip地址访问一下它的80端口看看是什么样子！</p>
 <p><img src="/2019/09/17/hacker-3/4.png" alt="4.png"></p>
-<p>3.<strong>爆破登陆密码</strong></p>
-<p>发现竟然是个登陆页面，让我们通过hydra爆破一下，字典用<code>/usr/share/wordlists/rockyou</code>，由于rockyou没有解压，我们先cd到该目录将其解压</p>
+<h3 id="3-爆破登陆密码"><a href="#3-爆破登陆密码" class="headerlink" title="3. 爆破登陆密码"></a>3. <strong>爆破登陆密码</strong></h3><p>发现竟然是个登陆页面，让我们通过hydra爆破一下，字典用<code>/usr/share/wordlists/rockyou</code>，由于rockyou没有解压，我们先cd到该目录将其解压</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/wordlists/</span><br><span class="line">gzip -d  压缩文件名</span><br></pre></td></tr></table></figure>
 
 <p>之后进行密码爆破：</p>
@@ -280,8 +283,7 @@
 <p>点击Run，会发现相当于对目的主机发送了ls -l的命令，如下图所示：</p>
 <p><img src="/2019/09/17/hacker-3/8.png" alt="8.png"></p>
 <p>这就给了我们渗透进入目的主机的机会！我们可以抓取点击Run后发给目的主机的包，修改这个命令，从而渗透入目的主机，让我们开始愉快的抓包吧！</p>
-<p>4.<strong>抓包、改包、发包</strong></p>
-<p>既然要抓包，就要用到kali内置的Burp Suite了，打开之后显示如下：</p>
+<h3 id="4-抓包、改包、发包"><a href="#4-抓包、改包、发包" class="headerlink" title="4. 抓包、改包、发包"></a>4. <strong>抓包、改包、发包</strong></h3><p>既然要抓包，就要用到kali内置的Burp Suite了，打开之后显示如下：</p>
 <p><img src="/2019/09/17/hacker-3/9.png" alt="9.png"></p>
 <p>首先设置一下Burp和火狐浏览器的代理设置：</p>
 <ul>
@@ -315,8 +317,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">'import pty; pty.spawn("/bin/bash")'</span></span><br></pre></td></tr></table></figure>
 
 <p>是不是成功返回了目的主机的bash shell。</p>
-<p>5.<strong>获取密码</strong></p>
-<p>去到/home目录下，会看到有三个用户：charles  jim  sam</p>
+<h3 id="5-获取密码"><a href="#5-获取密码" class="headerlink" title="5. 获取密码"></a>5. <strong>获取密码</strong></h3><p>去到/home目录下，会看到有三个用户：charles  jim  sam</p>
 <p><img src="/2019/09/17/hacker-3/15.png" alt="15.png"></p>
 <p>浏览一下这几个用户目录，发现在/home/jim/backups下有一个密码字典：old-passwords.bak，既然有密码字典，我们又可以进行密码爆破啦！</p>
 <p>再开一个ssh连接我们的Kali，将三个用户名保存为一个users.txt，将这个密码字典的内容复制下来保存为一个passwd.txt，这两个txt文件都是要保存在kali上的哦。</p>
@@ -330,8 +331,7 @@
 <p><img src="/2019/09/17/hacker-3/18.png" alt="18.png"></p>
 <p>通过爆破得到 <strong>login: jim    password: jibril04</strong></p>
 <p>让我们回到渗透那个ssh上，继续下面的工作。</p>
-<p>6.<strong>切换到jim用户</strong></p>
-<p>因为我们已经知道了jim的密码，所以让我们切换到jim用户浏览一下吧！</p>
+<h3 id="6-切换到jim用户"><a href="#6-切换到jim用户" class="headerlink" title="6. 切换到jim用户"></a>6. <strong>切换到jim用户</strong></h3><p>因为我们已经知道了jim的密码，所以让我们切换到jim用户浏览一下吧！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su jim</span><br></pre></td></tr></table></figure>
 
 <p>会提示输入密码，输入之后便以jim用户权限访问目的主机。</p>
@@ -344,8 +344,7 @@
 <p><img src="/2019/09/17/hacker-3/20.png" alt="20.png"></p>
 <p>发现是charles给jim发送的邮件，并向他告诉了密码：^xHhA&amp;hvim0y</p>
 <p>有了charles的密码，接下来让我们切换到他的用户权限下看一看。</p>
-<p>7.<strong>切换到charles用户</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su charles</span><br></pre></td></tr></table></figure>
+<h3 id="7-切换到charles用户"><a href="#7-切换到charles用户" class="headerlink" title="7. 切换到charles用户"></a>7. <strong>切换到charles用户</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su charles</span><br></pre></td></tr></table></figure>
 
 <p>看一下charles的用户权限：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
@@ -429,6 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-扫描局域网上的在线主机"><span class="nav-text">1. 扫描局域网上的在线主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对目的主机进行详细扫描："><span class="nav-text">2. 对目的主机进行详细扫描：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-爆破登陆密码"><span class="nav-text">3. 爆破登陆密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-抓包、改包、发包"><span class="nav-text">4. 抓包、改包、发包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-获取密码"><span class="nav-text">5. 获取密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-切换到jim用户"><span class="nav-text">6. 切换到jim用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-切换到charles用户"><span class="nav-text">7. 切换到charles用户</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
