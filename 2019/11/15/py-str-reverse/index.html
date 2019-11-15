@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="你能想到几种？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python实现字符串反转的几种方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;15&#x2F;py-str-reverse&#x2F;index.html">
+<meta property="og:site_name" content="ZhangFan&#39;s Blog">
+<meta property="og:description" content="你能想到几种？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-15T09:07:42.675Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://fansblog.club/2019/11/15/py-str-reverse/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python实现字符串反转的几种方法 | ZhangFan's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a href="https://github.com/aestheticisma" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZhangFan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fansblog.club/2019/11/15/py-str-reverse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="流岚">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangFan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python实现字符串反转的几种方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-15 16:23:41 / 修改时间：17:07:42" itemprop="dateCreated datePublished" datetime="2019-11-15T16:23:41+08:00">2019-11-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Daily-Essays/" itemprop="url" rel="index">
+                    <span itemprop="name">Daily Essays</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>你能想到几种？<a id="more"></a></p>
+<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = s[::<span class="number">-1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'g'</span>, <span class="string">'f'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<p>同理，可以用<code>&#39;&#39;.join(l[::-1]</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">-1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = reduce(<span class="keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<p>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
+<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(s) == <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> s</span><br><span class="line">	<span class="keyword">return</span> func(s[<span class="number">1</span>:]) + s[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	<span class="keyword">while</span> len(l)&gt;<span class="number">0</span>:</span><br><span class="line">		<span class="comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	max_index = len(s) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<p>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(l):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="number">2</span>, <span class="number">3</span></span><br><span class="line"><span class="number">3</span>, <span class="number">4</span></span><br><span class="line"><span class="number">4</span>, <span class="number">5</span></span><br><span class="line"><span class="number">5</span>, <span class="number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>流岚
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fansblog.club/2019/11/15/py-str-reverse/" title="Python实现字符串反转的几种方法">https://fansblog.club/2019/11/15/py-str-reverse/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/14/leetcode-day2/" rel="next" title="LeetCode DAY 2 (4)">
+                  <i class="fa fa-chevron-left"></i> LeetCode DAY 2 (4)
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用字符串切片"><span class="nav-text">1. 使用字符串切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用列表的reverse方法"><span class="nav-text">2. 使用列表的reverse方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用reduce"><span class="nav-text">3. 使用reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用递归函数"><span class="nav-text">4. 使用递归函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用栈"><span class="nav-text">5. 使用栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-for循环"><span class="nav-text">6. for循环</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="流岚"
+    src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">流岚</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aestheticisma" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;aestheticisma" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5975330626" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5975330626" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">流岚</span>
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- 背景动画 -->
+<script type="text/javascript" src="/js/particle.js"></script>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click_love.js"></script>
+  <!--页面崩溃-->
+<script type="text/javascript" src="/js/crash_cheat.js"></script>
+</body>
+
+</html>
