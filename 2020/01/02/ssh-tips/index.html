@@ -61,7 +61,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;02&#x2F;ssh-tips&#x2F;1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;02&#x2F;ssh-tips&#x2F;2.png">
-<meta property="og:updated_time" content="2020-01-02T08:43:47.515Z">
+<meta property="og:updated_time" content="2020-01-03T02:06:26.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;02&#x2F;ssh-tips&#x2F;1.png">
 
@@ -211,10 +211,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-02 13:06:47 / 修改时间：16:43:47" itemprop="dateCreated datePublished" datetime="2020-01-02T13:06:47+08:00">2020-01-02</time>
+              <time title="创建时间：2020-01-02 13:06:47" itemprop="dateCreated datePublished" datetime="2020-01-02T13:06:47+08:00">2020-01-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-03 10:06:26" itemprop="dateModified" datetime="2020-01-03T10:06:26+08:00">2020-01-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -261,7 +267,7 @@
 <h3 id="四、实战——如何用SSH解决在家访问学校内网的服务器的jupyter服务"><a href="#四、实战——如何用SSH解决在家访问学校内网的服务器的jupyter服务" class="headerlink" title="四、实战——如何用SSH解决在家访问学校内网的服务器的jupyter服务"></a>四、实战——如何用SSH解决在家访问学校内网的服务器的jupyter服务</h3><p>前提：现在有一台能正常使用的笔记本，一台有公网ip的阿里云服务器，一台学校实验室的内网服务器。<br>为了方便描述，分别简称为<code>host1, host2, host3</code><br>首先我们捋一下思路：host2具备公网ip，因此host1和host3都可以连接，但反向不行。因此我们先对host3和host2之间建立SSH隧道，再对host1和host2建立对应端口的隧道，这样host1与host3之间就相当于打通了一条通路。<br>假设host3的jupyter运行在本地的8888端口上。因为只能是host3单向能连接到host2，因此我们只能在host3上对host2建立SSH隧道。那这样一来，host3就是SSH客户端，而host2就是SSH服务端，但host3本身是作为jupyter的服务提供者，因此应用和SSH连接的方向是相反的，所以我们要用的是远程端口转发命令。<br>首先连接到实验室的服务器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh host3</span><br></pre></td></tr></table></figure>
 <p>为了防止关掉terminal导致SSH链接断掉，因此使用screen命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">screen -S SSH_jupyter</span><br><span class="line">ssh -g -R 12345:localhost:8888 host2 <span class="comment">#这里用-R是远程端口转发</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">screen -S SSH_jupyter</span><br><span class="line"><span class="comment"># ssh -g -R 12345:localhost:8888 host2 #这里用-R是远程端口转发</span></span><br><span class="line"><span class="comment"># 1.3日更新 今早发现ssh连接自动断了 加-o参数可保持持续连接</span></span><br><span class="line">ssh -g -R 12345:localhost:8888 -o ServerAliveInterval=60 host2</span><br></pre></td></tr></table></figure>
 <p>必须加上-g参数，以保证host1能使用host3建立的远程端口转发，加上-g参数就代表可以共享这个连接的意思。<br>按下ctrl+A+D可以从screen命令返回。<br>之后在自己的笔记本上，也就是host1上（可以用手机开热点模拟在家的情况）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 1234:localhost:12345 host2</span><br></pre></td></tr></table></figure>
 <p>好了最后笔记本上的terminal不要关掉哦，不然这个SSH隧道就断了哦。<br>现在我们在笔记本上的浏览器中输入：localhost:1234<br>是不是打开了在实验室的服务器上开启的jupyter服务呢。</p>
