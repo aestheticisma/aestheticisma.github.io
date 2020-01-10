@@ -199,7 +199,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/10/DB-1/" class="post-title-link" itemprop="url">DB-1</a>
+            <a href="/2020/01/10/DB-1/" class="post-title-link" itemprop="url">数据库复习--第1章</a>
         </h1>
 
         <div class="post-meta">
@@ -210,7 +210,18 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-10 20:30:22 / 修改时间：22:59:36" itemprop="dateCreated datePublished" datetime="2020-01-10T20:30:22+08:00">2020-01-10</time>
+              <time title="创建时间：2020-01-10 23:00:45 / 修改时间：23:07:48" itemprop="dateCreated datePublished" datetime="2020-01-10T23:00:45+08:00">2020-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库系统概论</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -225,14 +236,12 @@
 
       
           <h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h3><h4 id="1-1-数据库系统概述"><a href="#1-1-数据库系统概述" class="headerlink" title="1.1 数据库系统概述"></a>1.1 数据库系统概述</h4><h5 id="1-1-1-四个基本概念"><a href="#1-1-1-四个基本概念" class="headerlink" title="1.1.1 四个基本概念"></a>1.1.1 四个基本概念</h5><ul>
-<li><p>数据：是数据库中存储的基本对象</p>
-<ul>
+<li>数据：是数据库中存储的基本对象<ul>
 <li>定义：描述事物的符号记录</li>
 <li>特点：数据与其语义是不可分的</li>
 </ul>
 </li>
-<li><p>数据库(DB)：是长期存储在计算机内、有组织的、可共享的大量数据的集合</p>
-<ul>
+<li>数据库(DB)：是长期存储在计算机内、有组织的、可共享的大量数据的集合<ul>
 <li>基本特征：<ul>
 <li>数据按一定的数据模型组织、描述和储存</li>
 <li>可为各种用户共享</li>
@@ -243,25 +252,19 @@
 </li>
 </ul>
 </li>
-<li><p>数据库管理系统(DBMS):</p>
-<ul>
-<li><p>什么是DBMS：</p>
-<ul>
-<li><p>位于用户与操作系统之间的一层数据管理软件</p>
-</li>
-<li><p>是基础软件，是一个大型复杂的软件系统</p>
-</li>
+<li>数据库管理系统(DBMS):<ul>
+<li>什么是DBMS：<ul>
+<li>位于用户与操作系统之间的一层数据管理软件</li>
+<li>是基础软件，是一个大型复杂的软件系统</li>
 </ul>
 </li>
-<li><p>DBMS的用途</p>
-<ul>
+<li>DBMS的用途<ul>
 <li>科学地组织和存储数、高效地获取和维护数据</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>数据库系统</p>
-<ul>
+<li>数据库系统<ul>
 <li>什么是？：在计算机系统中引入数据库后的系统构成</li>
 <li>组成：数据库、DBMS、应用系统、数据库管理员</li>
 </ul>
@@ -453,28 +456,13 @@
 </li>
 <li><p>数据结构</p>
 <ul>
-<li><p>关系</p>
-<p>一个关系对应通常说的一张表</p>
-</li>
-<li><p>元组</p>
-<p>表中的一行即为一个元组</p>
-</li>
-<li><p>属性</p>
-<p>表中的一列即为一个属性，给每一个属性起一个名称即属性名</p>
-</li>
-<li><p>主码</p>
-<p>表中的某个属性组，它可以唯一确定一个元组</p>
-</li>
-<li><p>域</p>
-<p>属性的取值范围</p>
-</li>
-<li><p>分量</p>
-<p>元组中的一个属性值</p>
-</li>
-<li><p>关系模式</p>
-<p>对关系的描述</p>
-<p>关系名（属性1，属性2，……，属性n）</p>
-</li>
+<li>关系：一个关系对应通常说的一张表</li>
+<li>元组：表中的一行即为一个元组</li>
+<li>属性：表中的一列即为一个属性，给每一个属性起一个名称即属性名</li>
+<li>主码：表中的某个属性组，它可以唯一确定一个元组</li>
+<li>域：属性的取值范围</li>
+<li>分量：元组中的一个属性值</li>
+<li>关系模式：对关系的描述<br>关系名（属性1，属性2，……，属性n）</li>
 </ul>
 </li>
 <li><p>关系必须是规范化的，满足一定的规范条件</p>
@@ -511,8 +499,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="1-3-数据库系统结构"><a href="#1-3-数据库系统结构" class="headerlink" title="1.3 数据库系统结构"></a>1.3 数据库系统结构</h4><p>从数据库管理系统角度看，通常采用三级模式结构，是数据库内部的系统结构</p>
-<p>从数据库最终用户角度看，数据库系统的结构分为：单用户结构、主从式结构、分布式结构、客户/服务器、浏览器/应用服务器/数据库服务器多层结构等</p>
+<h4 id="1-3-数据库系统结构"><a href="#1-3-数据库系统结构" class="headerlink" title="1.3 数据库系统结构"></a>1.3 数据库系统结构</h4><p>从数据库管理系统角度看，通常采用三级模式结构，是数据库内部的系统结构<br>从数据库最终用户角度看，数据库系统的结构分为：单用户结构、主从式结构、分布式结构、客户/服务器、浏览器/应用服务器/数据库服务器多层结构等</p>
 <h5 id="1-3-1-数据库系统的三级模式结构"><a href="#1-3-1-数据库系统的三级模式结构" class="headerlink" title="1.3.1 数据库系统的三级模式结构"></a>1.3.1 数据库系统的三级模式结构</h5><ul>
 <li>模式（也成逻辑模式）<ul>
 <li>数据库中全体数据的逻辑结构和特征的描述</li>
@@ -1364,7 +1351,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
