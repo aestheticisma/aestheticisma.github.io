@@ -231,6 +231,8 @@
 		clientID: 'a89cdd2e1f1fd1b6ff3a',
 		clientSecret: '925aaec8da19bbc777b5df4b240f58a367800486',
 		admin: '流岚',
+		id: (location.pathname).split("/").pop().substring(0, 49),
+		distractionFreeMode: true,
 	})
 	gitalk.render('comment-container')
 </script>
