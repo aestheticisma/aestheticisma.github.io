@@ -111,25 +111,25 @@
                     
                     
                     
-                    <a class="navbar-item" href="#DUT">1&nbsp;&nbsp;<b>DUT</b></a>
+                    <a class="navbar-item" href="#DUT">&nbsp;&nbsp;<b>DUT</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#常用网站">2&nbsp;&nbsp;<b>常用网站</b></a>
+                    <a class="navbar-item" href="#常用网站">&nbsp;&nbsp;<b>常用网站</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#学习博客">3&nbsp;&nbsp;<b>学习博客</b></a>
+                    <a class="navbar-item" href="#学习博客">&nbsp;&nbsp;<b>学习博客</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#重点关注">4&nbsp;&nbsp;<b>重点关注</b></a>
+                    <a class="navbar-item" href="#重点关注">&nbsp;&nbsp;<b>重点关注</b></a>
                     
                 </div>
             </div>
@@ -182,6 +182,27 @@
 
 
 
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script>
+	var gitalk = new Gitalk({
+		id: 'friendly-link/index.html',
+		owner: 'aestheticisma',
+		repo: 'Blog_Comment',
+		oauth: {
+			client_id: '64c89988378e4ab80849',
+			client_secret: 'af74a7406e9c55ec63fe58f177d5d87d3ade9d2a',
+		},
+	})
+	gitalk.render('comment-container')
+</script>
+
+</div>
 
     </div>
 </section>
