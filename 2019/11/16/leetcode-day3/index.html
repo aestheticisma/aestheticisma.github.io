@@ -1,64 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
-  <link rel="mask-icon" href="/images/favicon-16x16.ico" color="#222">
+    <meta charset="utf-8">
+<title>LeetCode DAY 3 (5) - 生如逆旅 一苇以航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '7.4.2',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":null},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
 
-  <meta name="description" content="这些题都好难啊…越来越觉得自己是个铁fw了…呜呜呜">
+
+
+
+
+    <meta name="description" content="这些题都好难啊…越来越觉得自己是个铁fw了…呜呜呜">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode DAY 3 (5)">
 <meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;16&#x2F;leetcode-day3&#x2F;index.html">
 <meta property="og:site_name" content="生如逆旅 一苇以航">
 <meta property="og:description" content="这些题都好难啊…越来越觉得自己是个铁fw了…呜呜呜">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;16&#x2F;leetcode-day3&#x2F;1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;16&#x2F;leetcode-day3&#x2F;2.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;16&#x2F;leetcode-day3&#x2F;3.png">
@@ -70,472 +34,449 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;16&#x2F;leetcode-day3&#x2F;1.png">
 
-<link rel="canonical" href="https://fansblog.club/2019/11/16/leetcode-day3/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>LeetCode DAY 3 (5) | 生如逆旅 一苇以航</title>
-  
 
 
 
 
+<link rel="icon" href="/favicon-32x32.ico">
 
 
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <a href="https://github.com/aestheticisma" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">生如逆旅 一苇以航</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">人生总有许多偶然和巧合，两条平行线，也可能会有交汇的一天。</p>
-  </div>
-
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-friendly-link">
-
-    <a href="/friendly-link/" rel="section"><i class="fa fa-fw fa-address-book"></i>友情链接</a>
-
-  </li>
-  </ul>
-
-</nav>
-</div>
-    </header>
-
+<body>
     
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fansblog.club/2019/11/16/leetcode-day3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang_n.jpeg">
-      <meta itemprop="name" content="流岚">
-      <meta itemprop="description" content="🤣废宅｜穷🤩｜想变胖💪">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="生如逆旅 一苇以航">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          LeetCode DAY 3 (5)
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-16 15:56:43" itemprop="dateCreated datePublished" datetime="2019-11-16T15:56:43+08:00">2019-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-20 11:19:52" itemprop="dateModified" datetime="2019-11-20T11:19:52+08:00">2019-11-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode%E7%B3%BB%E5%88%97/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode系列</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </header>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/404">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#5-最长回文子串（中等）">1&nbsp;&nbsp;<b>5. 最长回文子串（中等）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述">1.1&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1">1.1.1&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2">1.1.2&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码">1.2&nbsp;&nbsp;代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法1：暴力解法">1.2.1&nbsp;&nbsp;解法1：暴力解法</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法2：最长公共子串">1.2.2&nbsp;&nbsp;解法2：最长公共子串</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法3：暴力破解优化">1.2.3&nbsp;&nbsp;解法3：暴力破解优化</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法4：扩展中心">1.2.4&nbsp;&nbsp;解法4：扩展中心</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法5：Manacher’s-Algorithm-马拉车算法">1.2.5&nbsp;&nbsp;解法5：Manacher’s Algorithm 马拉车算法</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
 
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            LeetCode DAY 3 (5)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-11-16T07:56:43.000Z" itemprop="datePublished">11月 16 2019</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            21 分钟 读完 (约 3155 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
         <p>这些题都好难啊…越来越觉得自己是个铁fw了…呜呜呜<a id="more"></a></p>
 <h3 id="5-最长回文子串（中等）"><a href="#5-最长回文子串（中等）" class="headerlink" title="5. 最长回文子串（中等）"></a>5. 最长回文子串（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个字符串<code>s</code>，找到<code>s</code>中最长的回文子串。你可以假设<code>s</code>的最大长度为<code>1000</code>。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"babad"</span></span><br><span class="line">输出: <span class="string">"bab"</span></span><br><span class="line">注意: <span class="string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"cbbd"</span></span><br><span class="line">输出: <span class="string">"bb"</span></span><br></pre></td></tr></table></figure>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力解法"><a href="#解法1：暴力解法" class="headerlink" title="解法1：暴力解法"></a>解法1：暴力解法</h5><p>作为一个铁fw第一个想到的办法肯定是暴力解决了，lz遍历你所有的子串还不能找出答案？具体做法就是两个for循环遍历所有子串，然后在最内循环里进行判断该子串是不是回文串。<br>因此我们需要定义一个判断是否为回文串的函数，该函数也很暴力，就直接遍历该子串看对应位置的字符是否相同。因此该算法的时间复杂度为$O(n^{3})$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#暴力解法，时间复杂度O(n^3) 空间复杂度O(1)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        max = <span class="number">0</span></span><br><span class="line">        s_tmp = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(s)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, len(s)+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> self.isPalindrome(s[i:j]) <span class="keyword">and</span> (j-i) &gt; max :</span><br><span class="line">                    s_tmp = s[i:j]</span><br><span class="line">                    max = j-i</span><br><span class="line">        <span class="keyword">return</span> s_tmp</span><br><span class="line">    <span class="comment">#判断是否为回文串</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(s)/<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span>(s[i] != s[len(s)-i<span class="number">-1</span>]):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="hljs-string">"babad"</span></span><br><span class="line">输出: <span class="hljs-string">"bab"</span></span><br><span class="line">注意: <span class="hljs-string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="hljs-string">"cbbd"</span></span><br><span class="line">输出: <span class="hljs-string">"bb"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力解法"><a href="#解法1：暴力解法" class="headerlink" title="解法1：暴力解法"></a>解法1：暴力解法</h5><p>作为一个铁fw第一个想到的办法肯定是暴力解决了，lz遍历你所有的子串还不能找出答案？具体做法就是两个for循环遍历所有子串，然后在最内循环里进行判断该子串是不是回文串。<br>因此我们需要定义一个判断是否为回文串的函数，该函数也很暴力，就直接遍历该子串看对应位置的字符是否相同。因此该算法的时间复杂度为$O(n^{3})$<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#暴力解法，时间复杂度O(n^3) 空间复杂度O(1)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        max = <span class="hljs-number">0</span></span><br><span class="line">        s_tmp = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(s)):</span><br><span class="line">            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>, len(s)+<span class="hljs-number">1</span>):</span><br><span class="line">                <span class="hljs-keyword">if</span> self.isPalindrome(s[i:j]) <span class="hljs-keyword">and</span> (j-i) &gt; max :</span><br><span class="line">                    s_tmp = s[i:j]</span><br><span class="line">                    max = j-i</span><br><span class="line">        <span class="hljs-keyword">return</span> s_tmp</span><br><span class="line">    <span class="hljs-comment">#判断是否为回文串</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(s)/<span class="hljs-number">2</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span>(s[i] != s[len(s)-i<span class="hljs-number">-1</span>]):</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span><br></pre></td></tr></table></figure></p>
 <h5 id="解法2：最长公共子串"><a href="#解法2：最长公共子串" class="headerlink" title="解法2：最长公共子串"></a>解法2：最长公共子串</h5><p>还有一种办法就是求最长公共子串，具体做法就是将字符串反转，找出反转前后的公共子串，就是回文串（除一种情况外），比如<code>&#39;abad&#39;</code>，反转之后为<code>&#39;daba&#39;</code>，最长公共子串就是<code>&#39;aba&#39;</code>。<br>但是有一种情况除外，比如<code>&#39;abcdefgdcba&#39;</code>，反转之后为<code>&#39;abcdgfeabcd&#39;</code>，可以看到反转前后的最长公共子串为<code>&#39;abcd&#39;</code>，但它明显不是回文串，这种情况的特征是反转前后字符下标并不一致，因此求出反转前后的最长公共子串后我们需要判断下标是否对应。<br>但现在还有最后两个问题，怎么求最大公共子串以及下标是否对应如何判断。<br>看了大佬们的解析的我恍然大悟……奈何自己太菜…</p>
 <ul>
 <li><strong>求最长公共子串：</strong><br>我们可以定义一个<strong>二维数组</strong>，可以想象成一个表格，横向代表原字符串序列，纵向代表反转后字符串序列，假设横向坐标用<code>i</code>表示，纵向坐标用<code>j</code>表示。数组用<code>a</code>表示。<br>当<code>s[i] == s_r[j]</code>时，就表示它是<strong>公共</strong>的一个字符，而此时对应的数组元素<code>a[i][j] == a[i-1][j-1] + 1</code>，因为<code>a[i-1][j-1]</code>的位置就是前一个<strong>连续</strong>的公共字符，因此<code>a[i][j]</code>的值就代表最长公共子串的<strong>长度</strong>，而此时的<code>i</code>代表该子串的<strong>结束位置</strong>，有了结束位置我们也就知道了<strong>开始位置</strong>，因此就可以取出该子串。<br>对于上面的计算公式<code>a[i][j] == a[i-1][j-1] + 1</code>，为了保证所有值有意义，我们需要分情况讨论，即当<code>i == 0 or j == 0</code>时进行赋值。该数组可参考下图所示：<br><img src="/2019/11/16/leetcode-day3/1.png" alt="1.png"></li>
 <li><strong>判断下标是否对应：</strong><br>我们没有必要将公共子串的下标全部进行判断是否对应，我们只需要判断最后一个字符的下标。比如上图所示，我们将<code>i</code>和<code>j</code>对应公共子串的最后一个字符，现在<code>s_re[j]</code>的位置对应着<code>a</code>，那反转之前这个<code>a</code>的下标为<code>before = len(s)-j-1</code>，之后我们还需要加上公共子串的长度才是末尾字符的下标，因此判断<code>before + a[i][j] - 1 == i</code>，如果相等则为公共子串。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#时间复杂度O(n^2) 空间复杂度O(n^2)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        s_reverse = s[::<span class="number">-1</span>]</span><br><span class="line">        max_len = <span class="number">0</span> <span class="comment">#最大公共子串长度</span></span><br><span class="line">        max_end = <span class="number">0</span> <span class="comment">#最大公共子串结束位置</span></span><br><span class="line">        index = &#123;&#125; <span class="comment">#构建二维数组 python中只好先定义一个字典</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">            index[i] = &#123;&#125; <span class="comment">#通过循环构建二维数组</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(s)):</span><br><span class="line">                index[i][j] = <span class="number">0</span> <span class="comment">#初始化二维数组</span></span><br><span class="line">                <span class="keyword">if</span> s[i] == s_reverse[j]: </span><br><span class="line">                    <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> j==<span class="number">0</span>:</span><br><span class="line">                        index[i][j] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        index[i][j] = index[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> index[i][j] &gt; max_len: </span><br><span class="line">                    before_num = len(s) - <span class="number">1</span> - j</span><br><span class="line">                    <span class="comment">#判断是否真的是回文串</span></span><br><span class="line">                    <span class="keyword">if</span> before_num + index[i][j] - <span class="number">1</span> == i:</span><br><span class="line">                        max_len = index[i][j]</span><br><span class="line">                        max_end = i</span><br><span class="line">        <span class="keyword">return</span> s[max_end-max_len+<span class="number">1</span>:max_end+<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-<p>但即使这个复杂度的代码提交还是时间超出限制我哭了，更低复杂度的代码等明天看懂再更……</p>
-<h5 id="解法3：暴力破解优化"><a href="#解法3：暴力破解优化" class="headerlink" title="解法3：暴力破解优化"></a>解法3：暴力破解优化</h5><p>在解法一中，我们对每一个子串都进行了判断是不是回文串，但每一次判断都会有$O(n)$的时间复杂度，如果我们能优化掉判断带来的时间复杂度，就可以将总的时间复杂度降为$O(n^{3})$，根据回文串的特点，在$P(i,j)$是回文串的基础上，如果<code>s[i-1] == s[j+1]</code>，那么$P(i-1,j+1)$也是回文串，因此我们将暴力解法中的判断函数改为这种判断方式。但有两种情况需要特殊对待，当子串的个数是1或者2时，此时的<code>i-1</code>和<code>j+1</code>将会将<code>i</code>和<code>j</code>的顺序颠倒产生错误，因此这两种情况需要额外判断。此外，我们需要定义一个数组，用来存储$P(i,j)$是否为回文串的结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#时间复杂度O(n^2) 空间复杂度O(n^2)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        arra = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s))] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s))]</span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        max_str = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> length <span class="keyword">in</span> range(<span class="number">1</span>, len(s)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> start <span class="keyword">in</span> range(<span class="number">0</span>, len(s)):</span><br><span class="line">                end = start + length - <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span>(end&gt;=len(s)):</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">if</span> (length==<span class="number">1</span> <span class="keyword">or</span> length==<span class="number">2</span> <span class="keyword">or</span> arra[start+<span class="number">1</span>][end<span class="number">-1</span>]==<span class="number">1</span>) <span class="keyword">and</span> s[start] == s[end]:</span><br><span class="line">                    arra[start][end] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> length &gt; max_len:</span><br><span class="line">                        max_str = s[start:end+<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    arra[start][end] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> max_str</span><br></pre></td></tr></table></figure>
-<h5 id="解法4：扩展中心"><a href="#解法4：扩展中心" class="headerlink" title="解法4：扩展中心"></a>解法4：扩展中心</h5><p>我们在解法3中提到，假设一个子串$P(i,j)$为回文串，如果<code>s[i-1] == s[j+1]</code>，那$P(i-1,j+1)$也是回文串，因此我们可以在已是回文串的子串的基础上进行中心扩展，那最初的中心怎么找呢？我们可以发现，最初的子串只有长度为1和长度为2两种情况，而长度为1的子串共有<code>len(s)</code>种，长度为2的子串共有<code>len(s)-1</code>种，因此我们应该循环<code>2*len(s)-1</code>次，在循环中判断此时中心是单个字符还是两个字符，之后进行中心扩展。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#时间复杂度O(n^2) 空间复杂度O(1)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        max_str = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>*len(s) - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                start = (i<span class="number">-1</span>) // <span class="number">2</span></span><br><span class="line">                end = start + <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span>(s[start] == s[end]):</span><br><span class="line">                    <span class="keyword">while</span> start &gt; <span class="number">0</span> <span class="keyword">and</span> end &lt; len(s)<span class="number">-1</span> <span class="keyword">and</span> s[start<span class="number">-1</span>] == s[end+<span class="number">1</span>]:</span><br><span class="line">                        start -= <span class="number">1</span></span><br><span class="line">                        end += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = end = i // <span class="number">2</span></span><br><span class="line">                <span class="keyword">while</span> start &gt; <span class="number">0</span> <span class="keyword">and</span> end &lt; len(s)<span class="number">-1</span> <span class="keyword">and</span> s[start<span class="number">-1</span>] == s[end+<span class="number">1</span>]:</span><br><span class="line">                    start -= <span class="number">1</span></span><br><span class="line">                    end +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> (end-start+<span class="number">1</span>) &gt; max_len <span class="keyword">and</span> s[start]==s[end]:</span><br><span class="line">                max_len = end-start+<span class="number">1</span></span><br><span class="line">                max_str = s[start:end+<span class="number">1</span>] </span><br><span class="line">        <span class="keyword">return</span> max_str</span><br></pre></td></tr></table></figure>
+<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#时间复杂度O(n^2) 空间复杂度O(n^2)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        s_reverse = s[::<span class="hljs-number">-1</span>]</span><br><span class="line">        max_len = <span class="hljs-number">0</span> <span class="hljs-comment">#最大公共子串长度</span></span><br><span class="line">        max_end = <span class="hljs-number">0</span> <span class="hljs-comment">#最大公共子串结束位置</span></span><br><span class="line">        index = &#123;&#125; <span class="hljs-comment">#构建二维数组 python中只好先定义一个字典</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,len(s)):</span><br><span class="line">            index[i] = &#123;&#125; <span class="hljs-comment">#通过循环构建二维数组</span></span><br><span class="line">            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(s)):</span><br><span class="line">                index[i][j] = <span class="hljs-number">0</span> <span class="hljs-comment">#初始化二维数组</span></span><br><span class="line">                <span class="hljs-keyword">if</span> s[i] == s_reverse[j]: </span><br><span class="line">                    <span class="hljs-keyword">if</span> i==<span class="hljs-number">0</span> <span class="hljs-keyword">or</span> j==<span class="hljs-number">0</span>:</span><br><span class="line">                        index[i][j] = <span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">else</span>:</span><br><span class="line">                        index[i][j] = index[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span></span><br><span class="line">                <span class="hljs-keyword">if</span> index[i][j] &gt; max_len: </span><br><span class="line">                    before_num = len(s) - <span class="hljs-number">1</span> - j</span><br><span class="line">                    <span class="hljs-comment">#判断是否真的是回文串</span></span><br><span class="line">                    <span class="hljs-keyword">if</span> before_num + index[i][j] - <span class="hljs-number">1</span> == i:</span><br><span class="line">                        max_len = index[i][j]</span><br><span class="line">                        max_end = i</span><br><span class="line">        <span class="hljs-keyword">return</span> s[max_end-max_len+<span class="hljs-number">1</span>:max_end+<span class="hljs-number">1</span>]</span><br></pre></td></tr></table></figure><br>但即使这个复杂度的代码提交还是时间超出限制我哭了，更低复杂度的代码等明天看懂再更……</p>
+<h5 id="解法3：暴力破解优化"><a href="#解法3：暴力破解优化" class="headerlink" title="解法3：暴力破解优化"></a>解法3：暴力破解优化</h5><p>在解法一中，我们对每一个子串都进行了判断是不是回文串，但每一次判断都会有$O(n)$的时间复杂度，如果我们能优化掉判断带来的时间复杂度，就可以将总的时间复杂度降为$O(n^{3})$，根据回文串的特点，在$P(i,j)$是回文串的基础上，如果<code>s[i-1] == s[j+1]</code>，那么$P(i-1,j+1)$也是回文串，因此我们将暴力解法中的判断函数改为这种判断方式。但有两种情况需要特殊对待，当子串的个数是1或者2时，此时的<code>i-1</code>和<code>j+1</code>将会将<code>i</code>和<code>j</code>的顺序颠倒产生错误，因此这两种情况需要额外判断。此外，我们需要定义一个数组，用来存储$P(i,j)$是否为回文串的结果。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#时间复杂度O(n^2) 空间复杂度O(n^2)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        arra = [[<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(s))] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(s))]</span><br><span class="line">        max_len = <span class="hljs-number">0</span></span><br><span class="line">        max_str = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> length <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(s)+<span class="hljs-number">1</span>):</span><br><span class="line">            <span class="hljs-keyword">for</span> start <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(s)):</span><br><span class="line">                end = start + length - <span class="hljs-number">1</span></span><br><span class="line">                <span class="hljs-keyword">if</span>(end&gt;=len(s)):</span><br><span class="line">                    <span class="hljs-keyword">break</span></span><br><span class="line">                <span class="hljs-keyword">if</span> (length==<span class="hljs-number">1</span> <span class="hljs-keyword">or</span> length==<span class="hljs-number">2</span> <span class="hljs-keyword">or</span> arra[start+<span class="hljs-number">1</span>][end<span class="hljs-number">-1</span>]==<span class="hljs-number">1</span>) <span class="hljs-keyword">and</span> s[start] == s[end]:</span><br><span class="line">                    arra[start][end] = <span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">if</span> length &gt; max_len:</span><br><span class="line">                        max_str = s[start:end+<span class="hljs-number">1</span>]</span><br><span class="line">                <span class="hljs-keyword">else</span>:</span><br><span class="line">                    arra[start][end] = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> max_str</span><br></pre></td></tr></table></figure></p>
+<h5 id="解法4：扩展中心"><a href="#解法4：扩展中心" class="headerlink" title="解法4：扩展中心"></a>解法4：扩展中心</h5><p>我们在解法3中提到，假设一个子串$P(i,j)$为回文串，如果<code>s[i-1] == s[j+1]</code>，那$P(i-1,j+1)$也是回文串，因此我们可以在已是回文串的子串的基础上进行中心扩展，那最初的中心怎么找呢？我们可以发现，最初的子串只有长度为1和长度为2两种情况，而长度为1的子串共有<code>len(s)</code>种，长度为2的子串共有<code>len(s)-1</code>种，因此我们应该循环<code>2*len(s)-1</code>次，在循环中判断此时中心是单个字符还是两个字符，之后进行中心扩展。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#时间复杂度O(n^2) 空间复杂度O(1)</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        max_len = <span class="hljs-number">0</span></span><br><span class="line">        max_str = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>*len(s) - <span class="hljs-number">1</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:</span><br><span class="line">                start = (i<span class="hljs-number">-1</span>) // <span class="hljs-number">2</span></span><br><span class="line">                end = start + <span class="hljs-number">1</span></span><br><span class="line">                <span class="hljs-keyword">if</span>(s[start] == s[end]):</span><br><span class="line">                    <span class="hljs-keyword">while</span> start &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> end &lt; len(s)<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> s[start<span class="hljs-number">-1</span>] == s[end+<span class="hljs-number">1</span>]:</span><br><span class="line">                        start -= <span class="hljs-number">1</span></span><br><span class="line">                        end += <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                start = end = i // <span class="hljs-number">2</span></span><br><span class="line">                <span class="hljs-keyword">while</span> start &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> end &lt; len(s)<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> s[start<span class="hljs-number">-1</span>] == s[end+<span class="hljs-number">1</span>]:</span><br><span class="line">                    start -= <span class="hljs-number">1</span></span><br><span class="line">                    end +=<span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (end-start+<span class="hljs-number">1</span>) &gt; max_len <span class="hljs-keyword">and</span> s[start]==s[end]:</span><br><span class="line">                max_len = end-start+<span class="hljs-number">1</span></span><br><span class="line">                max_str = s[start:end+<span class="hljs-number">1</span>] </span><br><span class="line">        <span class="hljs-keyword">return</span> max_str</span><br></pre></td></tr></table></figure></p>
 <h5 id="解法5：Manacher’s-Algorithm-马拉车算法"><a href="#解法5：Manacher’s-Algorithm-马拉车算法" class="headerlink" title="解法5：Manacher’s Algorithm 马拉车算法"></a>解法5：Manacher’s Algorithm 马拉车算法</h5><pre><code>解法5 转自 LeetCode 用户 windliang 的题解。</code></pre><p>马拉车算法<strong>Manacher‘s Algorithm</strong>是用来查找一个字符串的最长回文子串的线性方法，由一个叫 Manacher 的人在 1975 年发明的，这个方法的最大贡献是在于将时间复杂度提升到了线性。</p>
 <h6 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h6><p>首先我们解决下奇数和偶数的问题，在每个字符间插入”#”，并且为了使得扩展的过程中，到边界后自动结束，在两端分别插入”^”和 “$”，两个不可能在字符串中出现的字符，这样中心扩展的时候，判断两端字符是否相等的时候，如果到了边界就一定会不相等，从而出了循环。经过处理，字符串的长度永远都是奇数了。<br><img src="/2019/11/16/leetcode-day3/2.jpg" alt="2.jpg"></p>
 <p>我们用一个数组P保存从中心扩展的最大个数，而它刚好也是去掉”#”的<strong>原字符串的总长度</strong>。例如下图中下标是6的地方，可以看到<code>P[6]</code>等于5，所以它是从左边扩展5个字符，相应的右边也是扩展5个字符，也就是<code>#c#b#c#b#c#</code>。而去掉#恢复到原来的字符串，变成<code>cbcbc</code>，它的长度刚好也就是5。<br><img src="/2019/11/16/leetcode-day3/3.png" alt="3.jpg"></p>
 <h6 id="求原字符串下标"><a href="#求原字符串下标" class="headerlink" title="求原字符串下标"></a>求原字符串下标</h6><p>用P的下标减去<code>P[i]</code>，再模2，就是原字符串的开头字符下标了。<br>例如我们找到<code>P[i]</code>的最大值为5，也就是回文串的最大长度是5，对应的下标是6，所以原字符串的开头下标是<code>(6 - 5)/ 2 = 0</code>。所以我们只需要返回原字符串的<code>s[0:5]</code>就可以了。</p>
 <h6 id="求每个P-i"><a href="#求每个P-i" class="headerlink" title="求每个P[i]"></a>求每个<code>P[i]</code></h6><pre><code>接下来是算法的关键了，它充分了利用了回文串的对称性。</code></pre><p>我们用<code>C</code>表示回文串的中心，用<code>R</code>表示回文串的右边半径。所以<code>R = C + P[i]</code>。<code>C</code>和<code>R</code>所对应的回文串是当前循环中<code>R</code>最靠右的回文串。</p>
 <p><img src="/2019/11/16/leetcode-day3/4.png" alt="4.jpg"><br>我们考虑求<code>P[i]</code>的时候，用<code>i_mirror</code>表示当前需要求的第<code>i</code>个字符关于<code>C</code>对应的下标。<br>现在要求<code>P[i]</code>，如果是用中心扩展法，那就向两边扩展比对就行了。但是我们其实可以利用回文串<code>C</code>的对称性。<code>i</code>关于<code>C</code>的对称点是<code>i_mirror</code>，<code>P[i_mirror] = 3</code>，所以<code>P[i]</code> 也等于3。<br>但是有三种情况将会造成直接赋值为<code>P[i_mirror]</code>是不正确的，下边一一讨论。<br><strong>1. 超出了<code>R</code></strong><br><img src="/2019/11/16/leetcode-day3/5.png" alt="5.jpg"><br>当我们要求<code>P[i]</code>的时候，<code>P[mirror] = 7</code>，而此时<code>P[i]</code>并不等于7，为什么呢，因为我们从<code>i</code>开始往后数7个，等于22，已经超过了最右的<code>R</code>，此时不能利用对称性了，但我们一定可以扩展到<code>R</code>的，所以<code>P[i]</code>至少等于<code>R - i = 20 - 15 = 5</code>，会不会更大呢，我们只需要比较<code>T[R+1]</code>和<code>T[R+1]关于 i 的对称点</code>就行了，就像中心扩展法一样一个个扩展。<br><strong>2. <code>P[i_mirror]</code>遇到了原字符串的左边界</strong><br><img src="/2019/11/16/leetcode-day3/6.png" alt="6.jpg"><br>此时<code>P[i_mirror] = 1</code>，但是<code>P[i]</code>赋值成1是不正确的，出现这种情况的原因是<code>P[i_mirror]</code>在扩展的时候首先是<code>&#39;#&#39; == &#39;#&#39;</code>，之后遇到了 <code>&#39;^&#39;</code> 和另一个字符比较，也就是到了边界，才终止循环的。而<code>P[i]</code>并没有遇到边界，所以我们可以继续通过中心扩展法一步一步向两边扩展就行了。<br><strong>2. <code>i == R</code></strong><br>此时我们先把<code>P[i]</code>赋值为0，然后通过中心扩展法一步一步扩展就行了。</p>
-<h6 id="考虑C和R的更新"><a href="#考虑C和R的更新" class="headerlink" title="考虑C和R的更新"></a>考虑<code>C</code>和<code>R</code>的更新</h6><p>就这样一步一步的求出每个<code>P[i]</code>，当求出的<code>P[i]</code>的右边界大于当前的<code>R</code>时，我们就需要更新<code>C</code>和<code>R</code>为当前的回文串了。因为我们必须保证<code>i</code>在<code>R</code>里面，所以一旦有更右边的<code>R</code>就要更新<code>R</code>。<br><img src="/2019/11/16/leetcode-day3/7.jpg" alt="7.jpg"><br>此时的<code>P[i]</code>求出来将会是3，<code>P[i]</code>对应的右边界将是<code>10 + 3 = 13</code>，所以大于当前的<code>R</code>，我们需要把<code>C</code>更新成<code>i</code>的值，也就是10，<code>R</code>更新成13。继续下边的循环。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment">#字符串预处理</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">preprocess</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(s) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'$'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ret = <span class="string">'^'</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">                ret += <span class="string">'#'</span>+s[i]</span><br><span class="line">            <span class="keyword">return</span> ret + <span class="string">'#$'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="comment">#预处理</span></span><br><span class="line">        t = self.preprocess(s)</span><br><span class="line">        P, C, R = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(t))], <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(t)<span class="number">-1</span>):</span><br><span class="line">            i_mirror = <span class="number">2</span>*C-i</span><br><span class="line">            <span class="keyword">if</span>(R&gt;i): <span class="comment">#保证i在R内</span></span><br><span class="line">                P[i] = min(R-i, P[i_mirror])</span><br><span class="line">            <span class="keyword">else</span>: <span class="comment">#i&lt;=R的时候</span></span><br><span class="line">                P[i] = <span class="number">0</span></span><br><span class="line">            <span class="comment">#上面说的三种情况</span></span><br><span class="line">            <span class="comment">#因为其余情况下P[i]已确定，因此不会进入循环</span></span><br><span class="line">            <span class="keyword">while</span> t[i+<span class="number">1</span>+P[i]] == t[i<span class="number">-1</span>-P[i]]:</span><br><span class="line">                P[i]+=<span class="number">1</span></span><br><span class="line">            <span class="comment">#更新C和R</span></span><br><span class="line">            <span class="keyword">if</span> i + P[i] &gt; R:</span><br><span class="line">                C = i</span><br><span class="line">                R = i + P[i]</span><br><span class="line">        len_max = <span class="number">0</span></span><br><span class="line">        centerIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(t)<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> P[i] &gt; len_max:</span><br><span class="line">                len_max = P[i]</span><br><span class="line">                centerIndex = i</span><br><span class="line">        <span class="comment">#根据公式计算start</span></span><br><span class="line">        start = (centerIndex - len_max)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> s[start:start+len_max]</span><br></pre></td></tr></table></figure>
+<h6 id="考虑C和R的更新"><a href="#考虑C和R的更新" class="headerlink" title="考虑C和R的更新"></a>考虑<code>C</code>和<code>R</code>的更新</h6><p>就这样一步一步的求出每个<code>P[i]</code>，当求出的<code>P[i]</code>的右边界大于当前的<code>R</code>时，我们就需要更新<code>C</code>和<code>R</code>为当前的回文串了。因为我们必须保证<code>i</code>在<code>R</code>里面，所以一旦有更右边的<code>R</code>就要更新<code>R</code>。<br><img src="/2019/11/16/leetcode-day3/7.jpg" alt="7.jpg"><br>此时的<code>P[i]</code>求出来将会是3，<code>P[i]</code>对应的右边界将是<code>10 + 3 = 13</code>，所以大于当前的<code>R</code>，我们需要把<code>C</code>更新成<code>i</code>的值，也就是10，<code>R</code>更新成13。继续下边的循环。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#字符串预处理</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">preprocess</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(s) == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-string">'$'</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            ret = <span class="hljs-string">'^'</span></span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(s)):</span><br><span class="line">                ret += <span class="hljs-string">'#'</span>+s[i]</span><br><span class="line">            <span class="hljs-keyword">return</span> ret + <span class="hljs-string">'#$'</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        <span class="hljs-comment">#预处理</span></span><br><span class="line">        t = self.preprocess(s)</span><br><span class="line">        P, C, R = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(t))], <span class="hljs-number">0</span>, <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,len(t)<span class="hljs-number">-1</span>):</span><br><span class="line">            i_mirror = <span class="hljs-number">2</span>*C-i</span><br><span class="line">            <span class="hljs-keyword">if</span>(R&gt;i): <span class="hljs-comment">#保证i在R内</span></span><br><span class="line">                P[i] = min(R-i, P[i_mirror])</span><br><span class="line">            <span class="hljs-keyword">else</span>: <span class="hljs-comment">#i&lt;=R的时候</span></span><br><span class="line">                P[i] = <span class="hljs-number">0</span></span><br><span class="line">            <span class="hljs-comment">#上面说的三种情况</span></span><br><span class="line">            <span class="hljs-comment">#因为其余情况下P[i]已确定，因此不会进入循环</span></span><br><span class="line">            <span class="hljs-keyword">while</span> t[i+<span class="hljs-number">1</span>+P[i]] == t[i<span class="hljs-number">-1</span>-P[i]]:</span><br><span class="line">                P[i]+=<span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-comment">#更新C和R</span></span><br><span class="line">            <span class="hljs-keyword">if</span> i + P[i] &gt; R:</span><br><span class="line">                C = i</span><br><span class="line">                R = i + P[i]</span><br><span class="line">        len_max = <span class="hljs-number">0</span></span><br><span class="line">        centerIndex = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(t)<span class="hljs-number">-1</span>):</span><br><span class="line">            <span class="hljs-keyword">if</span> P[i] &gt; len_max:</span><br><span class="line">                len_max = P[i]</span><br><span class="line">                centerIndex = i</span><br><span class="line">        <span class="hljs-comment">#根据公式计算start</span></span><br><span class="line">        start = (centerIndex - len_max)/<span class="hljs-number">2</span></span><br><span class="line">        <span class="hljs-keyword">return</span> s[start:start+len_max]</span><br></pre></td></tr></table></figure></p>
 
+    
     </div>
-
     
     
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>流岚
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://fansblog.club/2019/11/16/leetcode-day3/" title="LeetCode DAY 3 (5)">https://fansblog.club/2019/11/16/leetcode-day3/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/15/py-str-reverse/" rel="next" title="Python实现字符串反转的几种方法">
-                  <i class="fa fa-chevron-left"></i> Python实现字符串反转的几种方法
-                </a>
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/17/py-cre-douarr/" rel="prev" title="Python中如何定义二维数组">
-                  Python中如何定义二维数组 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
-          </div>
-          
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-最长回文子串（中等）"><span class="nav-text">5. 最长回文子串（中等）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例1"><span class="nav-text">示例1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例2"><span class="nav-text">示例2:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解法1：暴力解法"><span class="nav-text">解法1：暴力解法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法2：最长公共子串"><span class="nav-text">解法2：最长公共子串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法3：暴力破解优化"><span class="nav-text">解法3：暴力破解优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法4：扩展中心"><span class="nav-text">解法4：扩展中心</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法5：Manacher’s-Algorithm-马拉车算法"><span class="nav-text">解法5：Manacher’s Algorithm 马拉车算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#预处理"><span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#求原字符串下标"><span class="nav-text">求原字符串下标</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#求每个P-i"><span class="nav-text">求每个P[i]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#考虑C和R的更新"><span class="nav-text">考虑C和R的更新</span></a></li></ol></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="流岚"
-    src="/images/touxiang_n.jpeg">
-  <p class="site-author-name" itemprop="name">流岚</p>
-  <div class="site-description" itemprop="description">🤣废宅｜穷🤩｜想变胖💪</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">20</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/aestheticisma" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;aestheticisma" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/u/5975330626" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5975330626" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2019/11/17/py-cre-douarr/">Python中如何定义二维数组</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/11/15/py-str-reverse/">Python实现字符串反转的几种方法</a>
+            
+        </span>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+    
+</article>
 
 
-      </div>
-    </main>
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e1998593eb4bc0012cc4ab0&amp;product=sticky-share-buttons' async='async'></script>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-
-<div class="copyright">
-  
-  &copy; 2019 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">流岚</span>
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.2
-  </div>
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-<script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
+	var gitment = new Gitment({
+		id: '2019/11/16/leetcode-day3/',
+		owner: 'aestheticisma',
+		repo: 'Blog_Comment',
+		oauth: {
+			client_id: '64c89988378e4ab80849',
+			client_secret: 'af74a7406e9c55ec63fe58f177d5d87d3ade9d2a',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2020 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
 </script>
 
     
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
 
-  
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
 
-  
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
 
-  <!-- 背景动画 -->
-<script type="text/javascript" src="/js/particle.js"></script>
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/click_love.js"></script>
-  <!--页面崩溃-->
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
 </body>
-
 </html>
