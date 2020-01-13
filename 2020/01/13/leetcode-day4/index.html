@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>LeetCode DAY 4 (6) - 生如逆旅 一苇以航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="嘿！大家好，懒狗又要开始更新Leetcode咯！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode DAY 4 (6)">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;13&#x2F;leetcode-day4&#x2F;index.html">
+<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:description" content="嘿！大家好，懒狗又要开始更新Leetcode咯！">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-01-13T09:10:54.155Z">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon-32x32.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#6-Z字形变换（中等）">&nbsp;&nbsp;<b>6. Z字形变换（中等）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述">&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1">&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2">&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码">&nbsp;&nbsp;代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法1：按行取值（就叫找规律吧…）">&nbsp;&nbsp;解法1：按行取值（就叫找规律吧…）</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）">&nbsp;&nbsp;解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            LeetCode DAY 4 (6)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-01-13T08:42:27.000Z" itemprop="datePublished">1月 13 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分钟 读完 (约 662 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>嘿！大家好，懒狗又要开始更新Leetcode咯！<a id="more"></a></p>
+<h3 id="6-Z字形变换（中等）"><a href="#6-Z字形变换（中等）" class="headerlink" title="6. Z字形变换（中等）"></a>6. Z字形变换（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。<br>比如输入字符串为<code>&quot;LEETCODEISHIRING&quot;</code>行数为3时，排列如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure><br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：<code>&quot;LCIRETOESIIGEDHN&quot;</code>。<br>请你实现这个将字符串进行指定行数变换的函数：<br><code>string convert(string s, int numRows);</code></p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 3</span><br><span class="line">输出: <span class="hljs-string">"LCIRETOESIIGEDHN"</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 4</span><br><span class="line">输出: <span class="hljs-string">"LDREOEIIECIHNTSG"</span></span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：按行取值（就叫找规律吧…）"><a href="#解法1：按行取值（就叫找规律吧…）" class="headerlink" title="解法1：按行取值（就叫找规律吧…）"></a>解法1：按行取值（就叫找规律吧…）</h5><p>我们可以从这个Z字形（大哥这明明就是N字形啊）的排列上找出些规律，比如如果<code>numRows = 3</code>，那么第一行的两个元素相差的距离为4，也就是<code>d = 2*numRows-2</code>，最后一行亦如此，而从示例2我们可以看出，中间各行的元素间隔虽然不相等，但是只有两种分布，一种比第一行的<code>d</code>要少一部分，而这一部分就是<code>2*距离第一行的行数差</code>，那另一种元素间隔就是<code>d-刚刚那种元素间隔</code>，就这么简单？还真就这么被找规律找出来了hhh，我都想笑了。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> numRows &gt;= len(s):</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            ans = []</span><br><span class="line">            i = <span class="hljs-number">0</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            <span class="hljs-comment"># 第一行</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-comment"># 中间各行</span></span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,numRows):</span><br><span class="line">                n = n - <span class="hljs-number">2</span></span><br><span class="line">                <span class="hljs-keyword">while</span> i<span class="hljs-number">-1</span> &lt; len(s):</span><br><span class="line">                    ans.append(s[i<span class="hljs-number">-1</span>])</span><br><span class="line">                    i += n</span><br><span class="line">            <span class="hljs-comment"># 最后一行</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            i = numRows<span class="hljs-number">-1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure><br>但是看完评论区另一种解法我气的够呛，卧槽我怎么能这么傻，害，这么明显的规律我都没发现…</p>
+<h5 id="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"><a href="#解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）" class="headerlink" title="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"></a>解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）</h5><p>上一种方法是从<code>s</code>中按最终答案的顺序取值，那我们能不能换个思考方式，按照<code>s</code>的存储顺序取值呢。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows &gt;= len(s) <span class="hljs-keyword">or</span> numRows == <span class="hljs-number">1</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        ans, count, d = [<span class="hljs-string">''</span>]*numRows, <span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> s:</span><br><span class="line">            ans[count] += i</span><br><span class="line">            count += d</span><br><span class="line">            <span class="hljs-comment"># 当到第一行和最后一行的时候d需要反转</span></span><br><span class="line">            <span class="hljs-keyword">if</span> count==<span class="hljs-number">0</span> <span class="hljs-keyword">or</span> count==numRows<span class="hljs-number">-1</span>:</span><br><span class="line">                d = -d</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure></p>
+
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/01/10/DB-1/">数据库复习--第1章</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+<script>
+	var gitalk = new Gitalk({
+		owner: 'aestheticisma',
+		repo: 'Blog_Comment',
+		clientID: 'a89cdd2e1f1fd1b6ff3a',
+		clientSecret: '925aaec8da19bbc777b5df4b240f58a367800486',
+		admin: 'aestheticisma',
+		id: location.pathname,
+	})
+	gitalk.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2020 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+</body>
+</html>
