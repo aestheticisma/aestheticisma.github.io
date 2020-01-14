@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>LeetCode DAY 5 (7-8) - 生如逆旅 一苇以航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="虽然打了一下午的游戏，但懒狗不会忘记刷题的！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode DAY 5 (7-8)">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;14&#x2F;leetcode-day5&#x2F;index.html">
+<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:description" content="虽然打了一下午的游戏，但懒狗不会忘记刷题的！">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-01-14T11:09:53.477Z">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon-32x32.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#7-整数反转（简单）">&nbsp;&nbsp;<b>7. 整数反转（简单）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述">&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1">&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2">&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例3">&nbsp;&nbsp;示例3:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码">&nbsp;&nbsp;代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法1：弹出和推入数字-amp-溢出前进行检查">&nbsp;&nbsp;解法1：弹出和推入数字 &amp;amp;amp; 溢出前进行检查</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法2-转化为字符串">&nbsp;&nbsp;解法2: 转化为字符串</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#8-字符串转换整数-atoi-（中等）">&nbsp;&nbsp;<b>8. 字符串转换整数(atoi)（中等）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述-1">&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1-1">&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2-1">&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例3-1">&nbsp;&nbsp;示例3:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例4">&nbsp;&nbsp;示例4:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例5">&nbsp;&nbsp;示例5:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码-1">&nbsp;&nbsp;代码</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            LeetCode DAY 5 (7-8)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-01-14T10:49:39.000Z" itemprop="datePublished">1月 14 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 读完 (约 849 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>虽然打了一下午的游戏，但懒狗不会忘记刷题的！<a id="more"></a></p>
+<h3 id="7-整数反转（简单）"><a href="#7-整数反转（简单）" class="headerlink" title="7. 整数反转（简单）"></a>7. 整数反转（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出一个32位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 123</span><br><span class="line">输出: 321</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: -123</span><br><span class="line">输出: -321</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 120</span><br><span class="line">输出: 21</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：弹出和推入数字-amp-溢出前进行检查"><a href="#解法1：弹出和推入数字-amp-溢出前进行检查" class="headerlink" title="解法1：弹出和推入数字 &amp; 溢出前进行检查"></a>解法1：弹出和推入数字 &amp; 溢出前进行检查</h5><p>取出一位数字很显然用到<code>%</code>，之后需要用<code>//</code>将取出的一位数字从原数值中删去。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        y, ans = abs(x), <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-comment"># 边界</span></span><br><span class="line">        boundry = (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span>) <span class="hljs-keyword">if</span> x&lt;<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span>) - <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> y!=<span class="hljs-number">0</span>:</span><br><span class="line">            ans = ans*<span class="hljs-number">10</span> + y%<span class="hljs-number">10</span></span><br><span class="line">            <span class="hljs-keyword">if</span> ans &gt; boundry:</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">            y //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">return</span> ans <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> -ans</span><br></pre></td></tr></table></figure><br>另外利用移位可以很容易表示一个很大的边界值。</p>
+<h5 id="解法2-转化为字符串"><a href="#解法2-转化为字符串" class="headerlink" title="解法2: 转化为字符串"></a>解法2: 转化为字符串</h5><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reverse</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> <span class="hljs-number">-10</span>&lt;x&lt;<span class="hljs-number">10</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> x</span><br><span class="line">        str_x = str(x)</span><br><span class="line">        boundry = <span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span> <span class="hljs-keyword">if</span> x&lt;<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span>)<span class="hljs-number">-1</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">0</span>:</span><br><span class="line">            temp = str_x[::<span class="hljs-number">-1</span>]</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            temp = str_x[:<span class="hljs-number">0</span>:<span class="hljs-number">-1</span>]</span><br><span class="line">        ans = int(temp)</span><br><span class="line">        <span class="hljs-keyword">if</span> ans&gt;boundry:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> ans <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> -ans</span><br></pre></td></tr></table></figure><br>在这里再次提醒自己熟悉一下python字符串的切片功能。</p>
+<hr>
+<h3 id="8-字符串转换整数-atoi-（中等）"><a href="#8-字符串转换整数-atoi-（中等）" class="headerlink" title="8. 字符串转换整数(atoi)（中等）"></a>8. 字符串转换整数(atoi)（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。<br>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。<br>在任何情况下，若函数不能进行有效的转换时，请返回0。</p>
+<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;42&quot;</span><br><span class="line">输出: 42</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;   -42&quot;</span><br><span class="line">输出: -42</span><br><span class="line">解释: 第一个非空白字符为 &apos;-&apos;, 它是一个负号。</span><br><span class="line">     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;4193 with words&quot;</span><br><span class="line">输出: 4193</span><br><span class="line">解释: 转换截止于数字 &apos;3&apos; ，因为它的下一个字符不为数字。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;words and 987&quot;</span><br><span class="line">输出: 0</span><br><span class="line">解释: 第一个非空字符是 &apos;w&apos;, 但它不是数字或正、负号。</span><br><span class="line">     因此无法执行有效的转换。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;-91283472332&quot;</span><br><span class="line">输出: -2147483648</span><br><span class="line">解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。 </span><br><span class="line">     因此返回 INT_MIN (−231) 。</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>这道题可以利用正则表达式，一行代码就可以解决。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myAtoi</span><span class="hljs-params">(self, str)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type str: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">return</span> max(min(int(*re.findall(<span class="hljs-string">r'^[\+\-]?\d+'</span>, str.lstrip())), (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>), -(<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">31</span>))</span><br></pre></td></tr></table></figure><br>这里需要注意的是，因为<code>re.findall()</code>返回的是个列表，因此调用<code>int()</code>方法转化为整数的时候需要前面加一个<code>*</code>。<br>这道题也提醒我该去好好看看正则表达式了…</p>
+
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/01/13/leetcode-day4/">LeetCode DAY 4 (6)</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+<script>
+	var gitalk = new Gitalk({
+		owner: 'aestheticisma',
+		repo: 'Blog_Comment',
+		clientID: 'a89cdd2e1f1fd1b6ff3a',
+		clientSecret: '925aaec8da19bbc777b5df4b240f58a367800486',
+		admin: 'aestheticisma',
+		id: location.pathname,
+	})
+	gitalk.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2020 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+</body>
+</html>
