@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>LeetCode DAY 6 (9-10) - 生如逆旅 一苇以航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="日常更新冒泡…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode DAY 6 (9-10)">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;01&#x2F;15&#x2F;leetcode-day6&#x2F;index.html">
+<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:description" content="日常更新冒泡…">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2020-01-15T09:31:37.485Z">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon-32x32.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#9-回文数（简单）">&nbsp;&nbsp;<b>9. 回文数（简单）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述">&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1">&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2">&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例3">&nbsp;&nbsp;示例3:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码">&nbsp;&nbsp;代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法1：转为字符串处理">&nbsp;&nbsp;解法1：转为字符串处理</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法2：不利用字符串">&nbsp;&nbsp;解法2：不利用字符串</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#10-正则表达式匹配（困难）">&nbsp;&nbsp;<b>10. 正则表达式匹配（困难）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#题目描述-1">&nbsp;&nbsp;题目描述</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例1-1">&nbsp;&nbsp;示例1:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例2-1">&nbsp;&nbsp;示例2:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例3-1">&nbsp;&nbsp;示例3:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例4">&nbsp;&nbsp;示例4:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#示例5">&nbsp;&nbsp;示例5:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#代码-1">&nbsp;&nbsp;代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法1：暴力递归">&nbsp;&nbsp;解法1：暴力递归</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#解法2-递归优化">&nbsp;&nbsp;解法2: 递归优化</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            LeetCode DAY 6 (9-10)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-01-15T09:05:22.000Z" itemprop="datePublished">1月 15 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 读完 (约 929 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>日常更新冒泡…<a id="more"></a></p>
+<h3 id="9-回文数（简单）"><a href="#9-回文数（简单）" class="headerlink" title="9. 回文数（简单）"></a>9. 回文数（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 121</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：转为字符串处理"><a href="#解法1：转为字符串处理" class="headerlink" title="解法1：转为字符串处理"></a>解法1：转为字符串处理</h5><p>利用python的切片功能一行代码即可解决。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">return</span> str(x) == str(x)[::<span class="hljs-number">-1</span>]</span><br></pre></td></tr></table></figure></p>
+<h5 id="解法2：不利用字符串"><a href="#解法2：不利用字符串" class="headerlink" title="解法2：不利用字符串"></a>解法2：不利用字符串</h5><p>翻转整个数值，官方题解有说反转一半，以防溢出，但是溢出不就不是回文数了，因此我觉得不需要考虑溢出。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x &lt; <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br><span class="line">        ans = <span class="hljs-number">0</span></span><br><span class="line">        pri = x</span><br><span class="line">        <span class="hljs-keyword">while</span> x != <span class="hljs-number">0</span>:</span><br><span class="line">            ans = x%<span class="hljs-number">10</span> + ans*<span class="hljs-number">10</span></span><br><span class="line">            x //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">if</span> ans == pri:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="10-正则表达式匹配（困难）"><a href="#10-正则表达式匹配（困难）" class="headerlink" title="10. 正则表达式匹配（困难）"></a>10. 正则表达式匹配（困难）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>给你一个字符串<code>s</code>和一个字符规律<code>p</code>，请你来实现一个支持<code>&#39;.&#39;</code>和<code>&#39;*&#39;</code>的正则表达式匹配。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;.&apos; 匹配任意单个字符</span><br><span class="line">&apos;*&apos; 匹配零个或多个前面的那一个元素</span><br></pre></td></tr></table></figure><br>所谓匹配，是要涵盖整个字符串<code>s</code>的，而不是部分字符串。</p>
+<ul>
+<li><code>s</code>可能为空，且只包含从<code>a-z</code>的小写字母。</li>
+<li><code>p</code>可能为空，且只包含从<code>a-z</code>的小写字母，以及字符<code>.</code>和<code>*</code>。</li>
+</ul>
+<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a&quot;</span><br><span class="line">输出: false</span><br><span class="line">解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &apos;a&apos;。因此，字符串 &quot;aa&quot; 可被视为 &apos;a&apos; 重复了一次。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;ab&quot;</span><br><span class="line">p = &quot;.*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: &quot;.*&quot; 表示可匹配零个或多个（&apos;*&apos;）任意字符（&apos;.&apos;）。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aab&quot;</span><br><span class="line">p = &quot;c*a*b&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 表示零个或多个，这里 &apos;c&apos; 为 0 个, &apos;a&apos; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;mississippi&quot;</span><br><span class="line">p = &quot;mis*is*p*.&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力递归"><a href="#解法1：暴力递归" class="headerlink" title="解法1：暴力递归"></a>解法1：暴力递归</h5><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p) == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> s</span><br><span class="line">        <span class="hljs-comment"># 出现'.'的情况</span></span><br><span class="line">        first = bool(s) <span class="hljs-keyword">and</span> p[<span class="hljs-number">0</span>] <span class="hljs-keyword">in</span> (s[<span class="hljs-number">0</span>], <span class="hljs-string">'.'</span>)</span><br><span class="line">        <span class="hljs-comment"># 出现'*'的情况</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p)&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> p[<span class="hljs-number">1</span>]==<span class="hljs-string">'*'</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> self.isMatch(s, p[<span class="hljs-number">2</span>:]) <span class="hljs-keyword">or</span> (first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p))</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p[<span class="hljs-number">1</span>:])</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>当出现<code>&#39;.&#39;</code>的时候，因为它匹配任意字符，因此只要额外判断<code>p[i]</code>是否等于<code>&#39;.&#39;</code>即可；</li>
+<li>对于出现<code>&#39;*&#39;</code>时，因为它匹配0个到任意个星号前面的字符，所以我们需要对它进行不同的处理，虽然他能匹配0～n个字符，但是对于递归而言，只有两种情况：0个和1个。</li>
+</ul>
+<h5 id="解法2-递归优化"><a href="#解法2-递归优化" class="headerlink" title="解法2: 递归优化"></a>解法2: 递归优化</h5><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-comment"># 定义一个字典作为备忘录</span></span><br><span class="line">        memo = dict()</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dp</span><span class="hljs-params">(i, j)</span>:</span></span><br><span class="line">        	<span class="hljs-comment"># 避免重复计算</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (i,j) <span class="hljs-keyword">in</span> memo: <span class="hljs-keyword">return</span> memo[(i,j)] </span><br><span class="line">            <span class="hljs-keyword">if</span> j==len(p): <span class="hljs-keyword">return</span> i==len(s)</span><br><span class="line">            first = i&lt;len(s) <span class="hljs-keyword">and</span> p[j] <span class="hljs-keyword">in</span> (s[i], <span class="hljs-string">'.'</span>)</span><br><span class="line">            <span class="hljs-keyword">if</span> j&lt;len(p)<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> p[j+<span class="hljs-number">1</span>] == <span class="hljs-string">'*'</span>:</span><br><span class="line">                ans = dp(i,j+<span class="hljs-number">2</span>) <span class="hljs-keyword">or</span> first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                ans = first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j+<span class="hljs-number">1</span>)</span><br><span class="line">            memo[(i,j)] = ans</span><br><span class="line">            <span class="hljs-keyword">return</span> ans</span><br><span class="line">        <span class="hljs-keyword">return</span> dp(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)</span><br></pre></td></tr></table></figure><br>使用两个变量<code>i</code>,<code>j</code>记录当前匹配到的位置，从而避免使用子字符串切片，并且将<code>i</code>,<code>j</code>存入备忘录，避免重复计算。</p>
+
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/01/14/leetcode-day5/">LeetCode DAY 5 (7-8)</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<div id="comment-container"></div>
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+<script>
+	var gitalk = new Gitalk({
+		owner: 'aestheticisma',
+		repo: 'Blog_Comment',
+		clientID: 'a89cdd2e1f1fd1b6ff3a',
+		clientSecret: '925aaec8da19bbc777b5df4b240f58a367800486',
+		admin: 'aestheticisma',
+		id: location.pathname,
+	})
+	gitalk.render('comment-container')
+</script>
+
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2020 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+</body>
+</html>
