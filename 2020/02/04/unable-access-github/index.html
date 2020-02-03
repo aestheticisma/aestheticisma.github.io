@@ -24,7 +24,7 @@
 <meta property="og:description" content="前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;02&#x2F;04&#x2F;unable-access-github&#x2F;1.jpg">
-<meta property="og:updated_time" content="2020-02-03T16:31:07.145Z">
+<meta property="og:updated_time" content="2020-02-03T16:35:35.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;02&#x2F;04&#x2F;unable-access-github&#x2F;1.jpg">
 
@@ -120,13 +120,13 @@
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#修改Hosts文件">&nbsp;&nbsp;<b>修改Hosts文件</b></a>
+                    <a class="navbar-item" href="#二、修改Hosts文件">&nbsp;&nbsp;<b>二、修改Hosts文件</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#刷新DNS缓存">&nbsp;&nbsp;<b>刷新DNS缓存</b></a>
+                    <a class="navbar-item" href="#三、刷新DNS缓存">&nbsp;&nbsp;<b>三、刷新DNS缓存</b></a>
                     
                 </div>
             </div>
@@ -165,7 +165,7 @@
         <span class="column is-narrow">
             
             
-            1 分钟 读完 (约 152 字)
+            1 分钟 读完 (约 156 字)
         </span>
         
     </div>
@@ -173,14 +173,14 @@
     
         <p>前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。<a id="more"></a></p>
 <h3 id="一、访问github-IP查询网址"><a href="#一、访问github-IP查询网址" class="headerlink" title="一、访问github IP查询网址"></a>一、访问github IP查询网址</h3><p><a href="http://www.github.com.ipaddress.com/" target="_blank" rel="noopener">Click Here</a><br>你会看到如下界面<br><img src="/2020/02/04/unable-access-github/1.jpg" alt="1.jpg"></p>
-<h3 id="修改Hosts文件"><a href="#修改Hosts文件" class="headerlink" title="修改Hosts文件"></a>修改Hosts文件</h3><ul>
+<h3 id="二、修改Hosts文件"><a href="#二、修改Hosts文件" class="headerlink" title="二、修改Hosts文件"></a>二、修改Hosts文件</h3><ul>
 <li><p>Mac<br>位置：<code>/etc/hosts</code></p>
 </li>
 <li><p>Win<br>位置：<code>C:\Windows\system32\drivers\etc</code></p>
 </li>
 </ul>
 <p>添加在IP查询页面看到的IP地址：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.30.253.113	github.com</span><br></pre></td></tr></table></figure></p>
-<h3 id="刷新DNS缓存"><a href="#刷新DNS缓存" class="headerlink" title="刷新DNS缓存"></a>刷新DNS缓存</h3><ul>
+<h3 id="三、刷新DNS缓存"><a href="#三、刷新DNS缓存" class="headerlink" title="三、刷新DNS缓存"></a>三、刷新DNS缓存</h3><ul>
 <li><p>Mac<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p>
 </li>
 <li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p>
