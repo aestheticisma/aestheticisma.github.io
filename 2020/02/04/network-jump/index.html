@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;02&#x2F;04&#x2F;network-jump&#x2F;3.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;02&#x2F;04&#x2F;network-jump&#x2F;4.jpg">
-<meta property="og:updated_time" content="2020-02-04T11:51:26.260Z">
+<meta property="og:updated_time" content="2020-02-04T11:58:24.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;02&#x2F;04&#x2F;network-jump&#x2F;3.jpg">
 
@@ -199,7 +199,7 @@
 <li>一台国内服务器，如阿里云腾讯云等，我这里以阿里云为例，系统为Ubuntu 16.04。</li>
 <li>一台用于代理的服务器，我这里以Digitalocean为例，系统为Ubuntu 18.04.</li>
 </ul>
-<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>通过国内服务器转发流量看起来是多此一举，从“国内-&gt;境外VPS“变成了”国内-&gt;国内服务器-&gt;境外VPS“，但国内大厂的服务器出入境走的都是高级路线，国内服务器与我们的延迟大概在50ms以内，这样算起来延迟是降低了。<br><img src="/2020/02/04/network-jump/3.jpg" alt="左边为自己网络ping境外VPS和阿里云，右边为阿里云ping境外VPS">!<br>从上图我们可以明显看到右边加上ping阿里云的延迟明显要比直接ping境外vps的延迟要小很多。<br>该方法属于<code>硬件加速</code>，代价是要多出额外的成本租一台国内服务器，优点是更稳定，可以有效防止境外IP或者端口被封。<br>而国内服务器在这里充当的作用就是流量转发。<br>该方法共分为三个步骤：</p>
+<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>通过国内服务器转发流量看起来是多此一举，从“国内-&gt;境外VPS“变成了”国内-&gt;国内服务器-&gt;境外VPS“，但国内大厂的服务器出入境走的都是高级路线，国内服务器与我们的延迟大概在50ms以内，这样算起来延迟是降低了。<br><img src="/2020/02/04/network-jump/3.jpg" alt="左边为自己网络ping境外VPS和阿里云，右边为阿里云ping境外VPS"><br>从上图我们可以明显看到右边加上ping阿里云的延迟明显要比直接ping境外vps的延迟要小很多。<br>该方法属于<code>硬件加速</code>，代价是要多出额外的成本租一台国内服务器，优点是更稳定，可以有效防止境外IP或者端口被封。<br>而国内服务器在这里充当的作用就是流量转发。<br>该方法共分为三个步骤：</p>
 <ul>
 <li>国内服务器配置流量转发程序</li>
 <li>境外VPS配置代理程序</li>
