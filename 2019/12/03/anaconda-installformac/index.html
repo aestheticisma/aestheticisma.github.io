@@ -24,7 +24,7 @@
 <meta property="og:description" content="简单记录一下在Mac下Anaconda安装的过程">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;03&#x2F;anaconda-installformac&#x2F;1.png">
-<meta property="og:updated_time" content="2020-02-23T09:46:51.085Z">
+<meta property="og:updated_time" content="2020-02-23T09:52:07.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;03&#x2F;anaconda-installformac&#x2F;1.png">
 
@@ -149,6 +149,10 @@
                     
                     
                     
+                    <a class="navbar-item" href="#0-conda修改源">&nbsp;&nbsp;0. conda修改源</a>
+                    
+                    
+                    
                     <a class="navbar-item" href="#1-查看当前系统下的环境">&nbsp;&nbsp;1. 查看当前系统下的环境</a>
                     
                     
@@ -260,7 +264,7 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 655 字)
+            5 分钟 读完 (约 747 字)
         </span>
         
     </div>
@@ -274,7 +278,8 @@
 <hr>
 <p>我们输入<code>python</code>即可进入<code>anaconda</code><br><img src="/2019/12/03/anaconda-installformac/1.png" alt="1.png"></p>
 <h3 id="4-关于卸载"><a href="#4-关于卸载" class="headerlink" title="4.关于卸载"></a>4.关于卸载</h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/anaconda3</span><br><span class="line">open ~/.bash_profile</span><br><span class="line"><span class="hljs-comment"># 删除路径</span></span><br><span class="line"></span><br><span class="line">rm -rf ~/.condarc ~/.conda ~/.continuum</span><br></pre></td></tr></table></figure></p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h4><h5 id="1-查看当前系统下的环境"><a href="#1-查看当前系统下的环境" class="headerlink" title="1. 查看当前系统下的环境"></a>1. 查看当前系统下的环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info -e</span><br></pre></td></tr></table></figure></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h4><h5 id="0-conda修改源"><a href="#0-conda修改源" class="headerlink" title="0. conda修改源"></a>0. conda修改源</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">conda config --<span class="hljs-built_in">set</span> show_channel_urls yes</span><br></pre></td></tr></table></figure><br>换回默认源<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --remove-key channels</span><br></pre></td></tr></table></figure><br>在执行conda config 命令的时候会在当前用户目录下创建 .condarc  文件，可以查看更换源前后该文件内容的变化。</p>
+<h5 id="1-查看当前系统下的环境"><a href="#1-查看当前系统下的环境" class="headerlink" title="1. 查看当前系统下的环境"></a>1. 查看当前系统下的环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info -e</span><br></pre></td></tr></table></figure></p>
 <h5 id="2-查看环境管理的全部命令操作"><a href="#2-查看环境管理的全部命令操作" class="headerlink" title="2. 查看环境管理的全部命令操作"></a>2. 查看环境管理的全部命令操作</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env -h</span><br></pre></td></tr></table></figure></p>
 <h5 id="3-创建环境"><a href="#3-创建环境" class="headerlink" title="3. 创建环境"></a>3. 创建环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 创建新环境</span></span><br><span class="line">conda create env_name</span><br><span class="line"><span class="hljs-comment">#创建制定python版本的环境</span></span><br><span class="line">conda create env_name python=3.6</span><br><span class="line"><span class="hljs-comment">#创建包含某些包的环境</span></span><br><span class="line">conda create env_name numpy scipy</span><br><span class="line"><span class="hljs-comment">#创建指定python版本下包含某些包的环境</span></span><br><span class="line">conda create env_name python=3.6  numpy scipy</span><br></pre></td></tr></table></figure></p>
 <h5 id="4-激活进入某个环境"><a href="#4-激活进入某个环境" class="headerlink" title="4. 激活进入某个环境"></a>4. 激活进入某个环境</h5><ul>
