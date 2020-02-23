@@ -24,7 +24,7 @@
 <meta property="og:description" content="简单记录一下在Mac下Anaconda安装的过程">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;03&#x2F;anaconda-installformac&#x2F;1.png">
-<meta property="og:updated_time" content="2020-01-11T13:43:32.401Z">
+<meta property="og:updated_time" content="2020-02-23T09:46:51.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;03&#x2F;anaconda-installformac&#x2F;1.png">
 
@@ -181,7 +181,7 @@
                     
                     
                     
-                    <a class="navbar-item" href="#1-查看已安装的包">&nbsp;&nbsp;1. 查看已安装的包</a>
+                    <a class="navbar-item" href="#1-查看当前环境下已安装的包">&nbsp;&nbsp;1. 查看当前环境下已安装的包</a>
                     
                     
                     
@@ -260,7 +260,7 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 646 字)
+            4 分钟 读完 (约 655 字)
         </span>
         
     </div>
@@ -278,13 +278,13 @@
 <h5 id="2-查看环境管理的全部命令操作"><a href="#2-查看环境管理的全部命令操作" class="headerlink" title="2. 查看环境管理的全部命令操作"></a>2. 查看环境管理的全部命令操作</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env -h</span><br></pre></td></tr></table></figure></p>
 <h5 id="3-创建环境"><a href="#3-创建环境" class="headerlink" title="3. 创建环境"></a>3. 创建环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 创建新环境</span></span><br><span class="line">conda create env_name</span><br><span class="line"><span class="hljs-comment">#创建制定python版本的环境</span></span><br><span class="line">conda create env_name python=3.6</span><br><span class="line"><span class="hljs-comment">#创建包含某些包的环境</span></span><br><span class="line">conda create env_name numpy scipy</span><br><span class="line"><span class="hljs-comment">#创建指定python版本下包含某些包的环境</span></span><br><span class="line">conda create env_name python=3.6  numpy scipy</span><br></pre></td></tr></table></figure></p>
 <h5 id="4-激活进入某个环境"><a href="#4-激活进入某个环境" class="headerlink" title="4. 激活进入某个环境"></a>4. 激活进入某个环境</h5><ul>
-<li>win<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate env_name</span><br></pre></td></tr></table></figure></li>
+<li>win<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate env_name</span><br></pre></td></tr></table></figure></li>
 <li>mac<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> activate env_name</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h5 id="5-退出某个环境"><a href="#5-退出某个环境" class="headerlink" title="5. 退出某个环境"></a>5. 退出某个环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate env_name</span><br></pre></td></tr></table></figure></p>
+<h5 id="5-退出某个环境"><a href="#5-退出某个环境" class="headerlink" title="5. 退出某个环境"></a>5. 退出某个环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate env_name</span><br></pre></td></tr></table></figure></p>
 <h5 id="6-复制某个环境"><a href="#6-复制某个环境" class="headerlink" title="6. 复制某个环境"></a>6. 复制某个环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create new_env_name old_env_name</span><br></pre></td></tr></table></figure></p>
-<h5 id="7-删除某个环境"><a href="#7-删除某个环境" class="headerlink" title="7. 删除某个环境"></a>7. 删除某个环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove env_name</span><br></pre></td></tr></table></figure></p>
-<h4 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h4><h5 id="1-查看已安装的包"><a href="#1-查看已安装的包" class="headerlink" title="1. 查看已安装的包"></a>1. 查看已安装的包</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
+<h5 id="7-删除某个环境"><a href="#7-删除某个环境" class="headerlink" title="7. 删除某个环境"></a>7. 删除某个环境</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env remove -n env_name</span><br></pre></td></tr></table></figure></p>
+<h4 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h4><h5 id="1-查看当前环境下已安装的包"><a href="#1-查看当前环境下已安装的包" class="headerlink" title="1. 查看当前环境下已安装的包"></a>1. 查看当前环境下已安装的包</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
 <h5 id="2-查看指定环境下的包"><a href="#2-查看指定环境下的包" class="headerlink" title="2. 查看指定环境下的包"></a>2. 查看指定环境下的包</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list -n xxx</span><br></pre></td></tr></table></figure></p>
 <h5 id="3-查找包"><a href="#3-查找包" class="headerlink" title="3. 查找包"></a>3. 查找包</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda search xxx</span><br></pre></td></tr></table></figure></p>
 <h5 id="4-更新包"><a href="#4-更新包" class="headerlink" title="4. 更新包"></a>4. 更新包</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update xxx</span><br></pre></td></tr></table></figure></p>
