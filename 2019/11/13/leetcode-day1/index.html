@@ -1,470 +1,587 @@
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+
+
+<html lang="zh-cn" >
+
+
 <head>
-    <meta charset="utf-8">
-<title>LeetCode DAY 1 (1-3) - 生如逆旅 一苇以航</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
-
-
-
-
-<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
-
-
-
-
-
-    <meta name="description" content="LeetCode系列 争取每日更新3题 —— 一个为了有工作的fw会坚持下去的！">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode DAY 1 (1-3)">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;11&#x2F;13&#x2F;leetcode-day1&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
-<meta property="og:description" content="LeetCode系列 争取每日更新3题 —— 一个为了有工作的fw会坚持下去的！">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2020-01-12T03:52:02.790Z">
-<meta name="twitter:card" content="summary">
-
-
-
-
-
-<link rel="icon" href="/favicon-32x32.ico">
-
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
-
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
-
-<link rel="stylesheet" href="/css/style.css">
-
-<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-
-
+  <meta charset="utf-8" />
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  <meta name="description" content="🤣废宅｜穷🤩｜想变胖💪" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    LeetCode DAY 1 (1-3) |  生如逆旅 一苇以航
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
 
-    
-
+  
 
 <link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
 </head>
-<body>
-    
-<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item navbar-logo" href="/">
-                
-                    
-                    流岚
-                    
-                
-            </a>
-            <div class="navbar-burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        
-        <div class="navbar-menu navbar-start">
-            
-            <a class="navbar-item "
-               href="/archives">Archives</a>
-            
-            <a class="navbar-item "
-               href="/categories">Categories</a>
-            
-            <a class="navbar-item "
-               href="/friendly-link">FriendlyLink</a>
-            
-            <a class="navbar-item "
-               href="/aboutme">About</a>
-            
-        </div>
-        
-        <div class="navbar-menu navbar-end">
-            
-            <a class="navbar-item search" title="搜索" href="javascript:;">
-                <i class="fas fa-search"></i>
-            </a>
-            
-            
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="目录">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#1-两数之和（简单）">&nbsp;&nbsp;<b>1. 两数之和（简单）</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#题目描述">&nbsp;&nbsp;题目描述</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#示例">&nbsp;&nbsp;示例</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#代码">&nbsp;&nbsp;代码</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#2-两数相加（中等）">&nbsp;&nbsp;<b>2. 两数相加（中等）</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#题目描述-1">&nbsp;&nbsp;题目描述</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#示例-1">&nbsp;&nbsp;示例</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#代码-1">&nbsp;&nbsp;代码</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#3-无重复字符的最长子串（中等）">&nbsp;&nbsp;<b>3. 无重复字符的最长子串（中等）</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#题目描述-2">&nbsp;&nbsp;题目描述</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#示例1">&nbsp;&nbsp;示例1</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#示例2">&nbsp;&nbsp;示例2</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#示例3">&nbsp;&nbsp;示例3</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#代码-2">&nbsp;&nbsp;代码</a>
-                    
-                </div>
-            </div>
-            
-            
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-               
-            
-        </div>
-    </div>
-</nav>
 
-    <section class="section">
-    <div class="container">
-    <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            LeetCode DAY 1 (1-3)
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2019-11-13T01:11:10.000Z" itemprop="datePublished">11月 13 2019</time>
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            10 分钟 读完 (约 1558 字)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-leetcode-day1" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
     
-        <p>LeetCode系列 争取每日更新3题 —— 一个为了有工作的fw会坚持下去的！<a id="more"></a><br>（自从昨天尝试着做了几道leetcode才发现我的代码能力<del>几乎</del>等于0…照这样下去我怕是要找不到工作了…因此从现在开始每天督促自己刷3道leetcode…并且第二天将前一天的解题过程上传到这里就当作是巩固复习吧…）</p>
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  LeetCode DAY 1 (1-3)
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/11/13/leetcode-day1/" class="article-date">
+  <time datetime="2019-11-13T01:11:10.000Z" itemprop="datePublished">2019-11-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode%E7%B3%BB%E5%88%97/">LeetCode系列</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.5k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>LeetCode系列 争取每日更新3题 —— 一个为了有工作的fw会坚持下去的！<a id="more"></a><br>（自从昨天尝试着做了几道leetcode才发现我的代码能力<del>几乎</del>等于0…照这样下去我怕是要找不到工作了…因此从现在开始每天督促自己刷3道leetcode…并且第二天将前一天的解题过程上传到这里就当作是巩固复习吧…）</p>
 <h3 id="1-两数之和（简单）"><a href="#1-两数之和（简单）" class="headerlink" title="1. 两数之和（简单）"></a>1. 两数之和（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>刚开始看到这道题的时候觉得很简单，<del>虽然题目本来就标的就是简单…..</del><br>于是一开始就这样胡乱一写…<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(nums)):</span><br><span class="line">            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>, len(nums)):</span><br><span class="line">                <span class="hljs-keyword">if</span> nums[i]+nums[j]==target:</span><br><span class="line">                    <span class="hljs-keyword">return</span> [i, j]</span><br></pre></td></tr></table></figure><br>这样写虽然可以做到题目要求，但是时间复杂度太高了$O(n^{2})$，因此提交的时候有时候可以通过，有时候就是时间超过限制，看了评论区各位大佬的提示，讲到可以利用哈希表查找以空间换取时间的做法降低时间复杂度。于是改写代码如下：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">twoSum</span><span class="hljs-params">(self, nums, target)</span>:</span></span><br><span class="line">        dict1 = &#123;&#125;</span><br><span class="line">        <span class="hljs-keyword">if</span> len(nums)&lt;<span class="hljs-number">2</span>:</span><br><span class="line">        	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,len(nums)):</span><br><span class="line">            num = target - nums[i]</span><br><span class="line">            <span class="hljs-keyword">if</span> num <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> dict1:</span><br><span class="line">                dict1[nums[i]] = i</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span>[dict1[num],i]</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br></pre></td></tr></table></figure><br>在python里，字典就对应着哈希查找表，于是我们相当于多定义了一个字典，最开始字典为空，按<code>nums</code>数组中的顺序取数，首先计算这个数字需要与什么数字相加才能等于<code>target</code>，然后就去字典里查找有没有这个数字，如果没有，那就将当前读的数字添加到字典中，key为数字的值，value为标号，所以最后总会在字典中查找到答案，这样时间复杂度就降低到了$O(n)$<br>第一题就到这里吧，其实DS里的哈希表我也忘记了，emmmm正好趁现在去复习下吧!</p>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>刚开始看到这道题的时候觉得很简单，<del>虽然题目本来就标的就是简单…..</del><br>于是一开始就这样胡乱一写…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, len(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i]+nums[j]==target:</span><br><span class="line">                    <span class="keyword">return</span> [i, j]</span><br></pre></td></tr></table></figure>
+<p>这样写虽然可以做到题目要求，但是时间复杂度太高了$O(n^{2})$，因此提交的时候有时候可以通过，有时候就是时间超过限制，看了评论区各位大佬的提示，讲到可以利用哈希表查找以空间换取时间的做法降低时间复杂度。于是改写代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        dict1 = &#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> len(nums)&lt;<span class="number">2</span>:</span><br><span class="line">        	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(nums)):</span><br><span class="line">            num = target - nums[i]</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> dict1:</span><br><span class="line">                dict1[nums[i]] = i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span>[dict1[num],i]</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>在python里，字典就对应着哈希查找表，于是我们相当于多定义了一个字典，最开始字典为空，按<code>nums</code>数组中的顺序取数，首先计算这个数字需要与什么数字相加才能等于<code>target</code>，然后就去字典里查找有没有这个数字，如果没有，那就将当前读的数字添加到字典中，key为数字的值，value为标号，所以最后总会在字典中查找到答案，这样时间复杂度就降低到了$O(n)$<br>第一题就到这里吧，其实DS里的哈希表我也忘记了，emmmm正好趁现在去复习下吧!</p>
 <hr>
 <h3 id="2-两数相加（中等）"><a href="#2-两数相加（中等）" class="headerlink" title="2. 两数相加（中等）"></a>2. 两数相加（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出两个非空的链表用来表示两个非负的整数。其中，它们各自的位数是按照逆序的方式存储的，并且它们的每个节点只能存储一位数字。<br>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。<br>您可以假设除了数字0之外，这两个数都不会以0开头。</p>
-<h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 = 807</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>这道题明显是提醒我去复习链表操作了，而且最重要的是我好像从来没有在python中使用过链表…没办法只能硬着头皮瞎jb敲了，最开始还是失败了，原因有两个：1.因为要返回结果所以要留一个头指针 2.next指针要熟练。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="hljs-comment"># class ListNode:</span></span><br><span class="line"><span class="hljs-comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="hljs-comment">#         self.val = x</span></span><br><span class="line"><span class="hljs-comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addTwoNumbers</span><span class="hljs-params">(self, l1, l2)</span>:</span></span><br><span class="line">        head = ListNode(<span class="hljs-number">0</span>) <span class="hljs-comment">#定义头指针用来返回结果</span></span><br><span class="line">        l3 = head <span class="hljs-comment">#l3用来进行链表操作</span></span><br><span class="line">        count = <span class="hljs-number">0</span> <span class="hljs-comment">#判断是否有进位</span></span><br><span class="line">        <span class="hljs-keyword">while</span>(l1 <span class="hljs-keyword">or</span> l2): </span><br><span class="line">            x = l1.val <span class="hljs-keyword">if</span> l1 <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></span><br><span class="line">            y = l2.val <span class="hljs-keyword">if</span> l2 <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></span><br><span class="line">            l3.next = ListNode((x+y+count)%<span class="hljs-number">10</span>) <span class="hljs-comment">#从个位数开始计算</span></span><br><span class="line">            l3 = l3.next <span class="hljs-comment">#指针移动</span></span><br><span class="line">            count = (x+y+count)//<span class="hljs-number">10</span> <span class="hljs-comment">#注意python中的整除有两个//</span></span><br><span class="line">            <span class="hljs-keyword">if</span>(l1!=<span class="hljs-literal">None</span>):</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            <span class="hljs-keyword">if</span>(l2!=<span class="hljs-literal">None</span>):</span><br><span class="line">                l2 = l2.next</span><br><span class="line">        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">1</span>): <span class="hljs-comment">#如果最后还有有进位</span></span><br><span class="line">            l3.next = ListNode(<span class="hljs-number">1</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span> head.next</span><br></pre></td></tr></table></figure><br>虽然这道题的难度标的是中等，但感觉只要链表操作熟练了，这道题还是蛮简单的。算了算了别忘了复习链表操作…一定不要忘了返回结果需要头指针哦…</p>
+<h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 = 807</span><br></pre></td></tr></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>这道题明显是提醒我去复习链表操作了，而且最重要的是我好像从来没有在python中使用过链表…没办法只能硬着头皮瞎jb敲了，最开始还是失败了，原因有两个：1.因为要返回结果所以要留一个头指针 2.next指针要熟练。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></span><br><span class="line">        head = ListNode(<span class="number">0</span>) <span class="comment">#定义头指针用来返回结果</span></span><br><span class="line">        l3 = head <span class="comment">#l3用来进行链表操作</span></span><br><span class="line">        count = <span class="number">0</span> <span class="comment">#判断是否有进位</span></span><br><span class="line">        <span class="keyword">while</span>(l1 <span class="keyword">or</span> l2): </span><br><span class="line">            x = l1.val <span class="keyword">if</span> l1 <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            y = l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            l3.next = ListNode((x+y+count)%<span class="number">10</span>) <span class="comment">#从个位数开始计算</span></span><br><span class="line">            l3 = l3.next <span class="comment">#指针移动</span></span><br><span class="line">            count = (x+y+count)//<span class="number">10</span> <span class="comment">#注意python中的整除有两个//</span></span><br><span class="line">            <span class="keyword">if</span>(l1!=<span class="literal">None</span>):</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            <span class="keyword">if</span>(l2!=<span class="literal">None</span>):</span><br><span class="line">                l2 = l2.next</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>): <span class="comment">#如果最后还有有进位</span></span><br><span class="line">            l3.next = ListNode(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
+<p>虽然这道题的难度标的是中等，但感觉只要链表操作熟练了，这道题还是蛮简单的。算了算了别忘了复习链表操作…一定不要忘了返回结果需要头指针哦…</p>
 <hr>
 <h3 id="3-无重复字符的最长子串（中等）"><a href="#3-无重复字符的最长子串（中等）" class="headerlink" title="3. 无重复字符的最长子串（中等）"></a>3. 无重复字符的最长子串（中等）</h3><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="hljs-string">"abcabcbb"</span></span><br><span class="line">输出: 3 </span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="hljs-string">"abc"</span>，所以其长度为 3。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="hljs-string">"bbbbb"</span></span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="hljs-string">"b"</span>，所以其长度为 1。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3"></a>示例3</h5><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="hljs-string">"pwwkew"</span></span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="hljs-string">"wke"</span>，所以其长度为 3。</span><br><span class="line">     请注意，你的答案必须是 子串 的长度，<span class="hljs-string">"pwke"</span> 是一个子序列，不是子串。</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>刚看完题目描述的我觉得这道题目好像很简单啊，用第一题时候一样的字典查找就可以解决了，最后题目给的三个例子倒是通过了，提交检测的几百上千个测试用例却总有通不过的，为了涵盖不同的测试用例代码被我改的又臭又长，折腾了一段时间只好打开了百度放弃了挣扎…所以说到底我的代码能力是真滴弱啊…因此直接附上大佬们的代码吧…<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(self, s)</span>:</span></span><br><span class="line">        dict1 = &#123;&#125; <span class="hljs-comment">#定义一个字典用来查找</span></span><br><span class="line">        i , ans = <span class="hljs-number">0</span>, <span class="hljs-number">0</span> <span class="hljs-comment">#i代表重复的最后的位置，ans为结果</span></span><br><span class="line">        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="hljs-keyword">if</span> s[j] <span class="hljs-keyword">in</span> dict1:</span><br><span class="line">                i = max(dict1[s[j]],i) <span class="hljs-comment">#取重复的最后面的字符位置</span></span><br><span class="line">                <span class="hljs-comment">#i = dict1[s[j]]</span></span><br><span class="line">            ans = max(ans, j-i+<span class="hljs-number">1</span>) <span class="hljs-comment">#取最大的子序列长度</span></span><br><span class="line">            dict1[s[j]] = j+<span class="hljs-number">1</span> <span class="hljs-comment">#将不在字典中的也就是不重复的字母放入字典,同时保持位置更新，使用j+1是为了直接跳到重复字符的下一个位置。</span></span><br><span class="line">        <span class="hljs-keyword">return</span> ans</span><br></pre></td></tr></table></figure><br>最后反思一下自己为什么想不到为什么想不到……</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"abcabcbb"</span></span><br><span class="line">输出: 3 </span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="string">"abc"</span>，所以其长度为 3。</span><br></pre></td></tr></table></figure>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"bbbbb"</span></span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="string">"b"</span>，所以其长度为 1。</span><br></pre></td></tr></table></figure>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3"></a>示例3</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"pwwkew"</span></span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 <span class="string">"wke"</span>，所以其长度为 3。</span><br><span class="line">     请注意，你的答案必须是 子串 的长度，<span class="string">"pwke"</span> 是一个子序列，不是子串。</span><br></pre></td></tr></table></figure>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>刚看完题目描述的我觉得这道题目好像很简单啊，用第一题时候一样的字典查找就可以解决了，最后题目给的三个例子倒是通过了，提交检测的几百上千个测试用例却总有通不过的，为了涵盖不同的测试用例代码被我改的又臭又长，折腾了一段时间只好打开了百度放弃了挣扎…所以说到底我的代码能力是真滴弱啊…因此直接附上大佬们的代码吧…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        dict1 = &#123;&#125; <span class="comment">#定义一个字典用来查找</span></span><br><span class="line">        i , ans = <span class="number">0</span>, <span class="number">0</span> <span class="comment">#i代表重复的最后的位置，ans为结果</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> s[j] <span class="keyword">in</span> dict1:</span><br><span class="line">                i = max(dict1[s[j]],i) <span class="comment">#取重复的最后面的字符位置</span></span><br><span class="line">                <span class="comment">#i = dict1[s[j]]</span></span><br><span class="line">            ans = max(ans, j-i+<span class="number">1</span>) <span class="comment">#取最大的子序列长度</span></span><br><span class="line">            dict1[s[j]] = j+<span class="number">1</span> <span class="comment">#将不在字典中的也就是不重复的字母放入字典,同时保持位置更新，使用j+1是为了直接跳到重复字符的下一个位置。</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p>最后反思一下自己为什么想不到为什么想不到……</p>
 
-    
+      
+      <!-- reward -->
+      
     </div>
     
     
-    <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
-            
-            <a href="/2019/11/14/leetcode-day2/">LeetCode DAY 2 (4)</a>
-            
-        </span>
-        <span class="column is-12-mobile is-half-desktop  article-nav-next">
-            
-            <a href="/2019/10/14/navie-bayes/">朴素贝叶斯的三个常用模型</a>
-            
-        </span>
-    </div>
-    
-</article>
-
-
-<div class="sharebox">
-    
-<div class="sharethis-inline-share-buttons"></div>
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e1998593eb4bc0012cc4ab0&amp;product=sticky-share-buttons' async='async'></script>
-
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        Share
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
 </div>
 
-
-
-
-
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fansblog.club/2019/11/13/leetcode-day1/" alt="微信分享二维码">
     </div>
-</section>
-    <footer class="footer">
-    <div class="container">
-        <div class="columns content">
-            <div class="column is-narrow has-text-centered">
-                &copy; 2019-2020 流岚&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
-            </div>
-            <div class="column is-hidden-mobile"></div>
+</div>
 
-            
-            <div class="column is-narrow">
-                <div class="columns is-mobile is-multiline is-centered">
-                
-                    
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
-                    
-                    GitHub
-                    
-                </a>
-                
+<div id="share-mask"></div>
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2019/11/14/leetcode-day2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            LeetCode DAY 2 (4)
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/10/14/navie-bayes/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">朴素贝叶斯的三个常用模型</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2020
+        流岚
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/touxiang.ico" alt="生如逆旅 一苇以航"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/aboutme">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['Work For Yourself, Do I Love', '', ''],
+      startDelay: 0,
+      typeSpeed: 300,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
         </div>
+
     </div>
-</footer>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
 
-<!-- test if the browser is outdated -->
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // plugin function, place inside DOM ready function
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        })
-    });
-</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
 
 <script>
-    window.FontAwesomeConfig = {
-        searchPseudoElements: true
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
     }
-    moment.locale("zh-CN");
+    viewer_init()
 </script>
 
 
-    
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
-    MathJax.Hub.Config({
-        "HTML-CSS": {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
+  var ayerConfig = {
+    mathjax: true
+  }
 </script>
 
-    
-    
-    
-    
-<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
-<script>
-    (function ($) {
-        $(document).ready(function () {
-            if (typeof($.fn.lightGallery) === 'function') {
-                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof($.fn.justifiedGallery) === 'function') {
-                $('.justified-gallery').justifiedGallery();
-            }
-        });
-    })(jQuery);
-</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
 
     
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-    <style>
-        .hljs {
-            position: relative;
-        }
-
-        .hljs .clipboard-btn {
-            float: right;
-            color: #9a9a9a;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .hljs .clipboard-btn:hover {
-          color: #8a8a8a;
-        }
-
-        .hljs > .clipboard-btn {
-            display: none;
-            position: absolute;
-            right: 4px;
-            top: 4px;
-        }
-
-        .hljs:hover > .clipboard-btn {
-            display: inline;
-        }
-
-        .hljs > figcaption > .clipboard-btn {
-            margin-right: 4px;
-        }
-    </style>
-    <script>
-      $(document).ready(function () {
-        $('figure.hljs').each(function(i, figure) {
-          var codeId = 'code-' + i;
-          var code = figure.querySelector('.code');
-          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
-          code.id = codeId;
-          copyButton.addClass('clipboard-btn');
-          copyButton.attr('data-clipboard-target-id', codeId);
-
-          var figcaption = figure.querySelector('figcaption');
-
-          if (figcaption) {
-            figcaption.append(copyButton[0]);
-          } else {
-            figure.prepend(copyButton[0]);
-          }
-        })
-
-        var clipboard = new ClipboardJS('.clipboard-btn', {
-          target: function(trigger) {
-            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-          }
-        });
-        clipboard.on('success', function(e) {
-          e.clearSelection();
-        })
-      })
-    </script>
-
-    
-    
-
-    
-
-
-<script src="/js/script.js"></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-mask"></div>
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
-            },
-            CONTENT_URL: '/content.json',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/js/insight.js"></script>
-    
+  </div>
 </body>
+
 </html>
