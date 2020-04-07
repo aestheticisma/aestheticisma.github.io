@@ -1,111 +1,257 @@
 <!DOCTYPE html>
-
-
-<html lang="zh-cn" >
-
-
+<html class="has-navbar-fixed-top">
 <head>
-  <meta charset="utf-8" />
-    
-  <meta name="description" content="🤣废宅｜穷🤩｜想变胖💪" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-    利用webdriver爬取知网作者知网节 |  生如逆旅 一苇以航
-  </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
-  
-  <link rel="shortcut icon" href="/images/favicon.ico" />
-  
-  <link rel="stylesheet" href="/dist/main.css">
-  <link rel="stylesheet" href="/css/custom.css">
-  
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-  
-  
+    <meta charset="utf-8">
+<title>利用webdriver爬取知网作者知网节 - 生如逆旅 一苇以航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用webdriver爬取知网作者知网节">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;index.html">
+<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:description" content="本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;6.png">
+<meta property="og:updated_time" content="2019-12-19T09:37:35.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;1.png">
+
+
+
+
+
+<link rel="icon" href="/favicon-32x32.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
 
 <link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
 </head>
-
-</html>
-
 <body>
-  <div id="app">
-    <main class="content on">
-      <section class="outer">
-  <article id="post-cnki-spider" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  利用webdriver爬取知网作者知网节
-</h1>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/12/17/cnki-spider/" class="article-date">
-  <time datetime="2019-12-17T07:33:30.000Z" itemprop="datePublished">2019-12-17</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97/">爬虫系列</a>
-  </div>
-
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.3k字</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">9分钟</span>
-        </span>
-    </span>
-</div>
-
-      
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#一、环境配置">&nbsp;&nbsp;<b>一、环境配置</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-安装selenium">&nbsp;&nbsp;1. 安装selenium</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-安装基于浏览器的webdriver">&nbsp;&nbsp;2. 安装基于浏览器的webdriver</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#二、代码编写">&nbsp;&nbsp;<b>二、代码编写</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-简单使用">&nbsp;&nbsp;1. 简单使用</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-定位问题">&nbsp;&nbsp;2. 定位问题</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-id定位">&nbsp;&nbsp;(1) id定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-name定位">&nbsp;&nbsp;(2) name定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-class定位">&nbsp;&nbsp;(3) class定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-tag定位">&nbsp;&nbsp;(4) tag定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#5-link定位">&nbsp;&nbsp;(5) link定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#6-xpath定位">&nbsp;&nbsp;(6) xpath定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#7-CSS定位">&nbsp;&nbsp;(7) CSS定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#8-通过By定位">&nbsp;&nbsp;(8) 通过By定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-出现定位不到元素的问题">&nbsp;&nbsp;3. 出现定位不到元素的问题</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#三、其他常用函数补充">&nbsp;&nbsp;<b>三、其他常用函数补充</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#切换标签页">&nbsp;&nbsp;切换标签页:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#控制浏览器前进、后退、刷新">&nbsp;&nbsp;控制浏览器前进、后退、刷新</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#关闭浏览器">&nbsp;&nbsp;关闭浏览器</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#写在最后">&nbsp;&nbsp;<b>写在最后</b></a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
     </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            利用webdriver爬取知网作者知网节
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-12-17T07:33:30.000Z" itemprop="datePublished">12月 17 2019</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97/">爬虫系列</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            17 分钟 读完 (约 2541 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-
-    
-    
-    <div class="tocbot"></div>
-
-
-
-
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。<a id="more"></a><br>上个周师姐布置任务让我爬取知网的作者知网节，本来以为看起来挺好爬的，但知网还是有些坑，之后详细介绍。下面就让我们从零开始吧。</p>
+        <p>本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。<a id="more"></a><br>上个周师姐布置任务让我爬取知网的作者知网节，本来以为看起来挺好爬的，但知网还是有些坑，之后详细介绍。下面就让我们从零开始吧。</p>
 <h3 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h3><p>我们主要用到的工具有<code>python</code>中的<code>selenium</code>和<code>chrome</code>，以及需要驱动<code>chrome</code>的插件<code>webdriver</code>。<br>下面是来自百度关于<code>selenium</code>的介绍。<br><img src="/2019/12/17/cnki-spider/1.png" alt="1.png"><br>从图中我们可以看到，利用<code>selenium</code>我们可以模拟用户的浏览器行为，从而获取到我们需要的网页内容，因为能模拟用户行为，所以利用<code>selenium</code>进行爬虫自然可以一定程度上避免被网站反爬虫拦截，但也有不好的一面，比如爬取的速度相对来说会慢一些。</p>
-<h4 id="1-安装selenium"><a href="#1-安装selenium" class="headerlink" title="1. 安装selenium"></a>1. 安装<code>selenium</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure>
-<p>当然我们也可以新建一个conda环境，再进行安装<code>selenium</code>，这里简单复习一下创建并激活conda环境的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建新环境</span></span><br><span class="line">conda create -n cnki-spider</span><br><span class="line"><span class="comment">#激活进入新环境</span></span><br><span class="line"><span class="built_in">source</span> activate cnki-spider</span><br><span class="line"><span class="comment"># 安装selenium</span></span><br><span class="line">pip install selenium</span><br></pre></td></tr></table></figure>
+<h4 id="1-安装selenium"><a href="#1-安装selenium" class="headerlink" title="1. 安装selenium"></a>1. 安装<code>selenium</code></h4><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure><br>当然我们也可以新建一个conda环境，再进行安装<code>selenium</code>，这里简单复习一下创建并激活conda环境的命令：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#创建新环境</span></span><br><span class="line">conda create -n cnki-spider</span><br><span class="line"><span class="hljs-comment">#激活进入新环境</span></span><br><span class="line"><span class="hljs-built_in">source</span> activate cnki-spider</span><br><span class="line"><span class="hljs-comment"># 安装selenium</span></span><br><span class="line">pip install selenium</span><br></pre></td></tr></table></figure></p>
 <h4 id="2-安装基于浏览器的webdriver"><a href="#2-安装基于浏览器的webdriver" class="headerlink" title="2. 安装基于浏览器的webdriver"></a>2. 安装基于浏览器的webdriver</h4><p><code>selenium</code>支持多种浏览器，比如<code>chrome</code>和<code>firefox</code>等等，这里我选用了<code>chrome</code>：<a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="noopener">下载地址</a><br>注意选择和浏览器版本对应的chromedriver。</p>
 <ul>
 <li>win<br>直接将解压后的<code>chromedriver</code>直接拖进<code>chrome</code>的安装目录，然后配置环境变量。</li>
@@ -113,23 +259,13 @@
 <li>linxu<br>将解压后的<code>chromedriver</code>拷贝进<code>/usr/bin</code>目录，之后在代码中声明路径即可。</li>
 </ul>
 <p>另外以上，默认已装好<code>Chrome</code>，如果没有，请自行百度。</p>
-<h3 id="二、代码编写"><a href="#二、代码编写" class="headerlink" title="二、代码编写"></a>二、代码编写</h3><h4 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1. 简单使用"></a>1. 简单使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 不能只用域名，要使用完整url</span></span><br><span class="line">browser.get(<span class="string">'https://www.baidu.com/'</span>)</span><br></pre></td></tr></table></figure>
-<p>接下来让我们在百度的搜索框中输入些什么进行搜索看看。<br>既然要输入，那我们首先需要找到在哪个位置进行输入，因此我们需要简单定个位，打开百度页面的源代码看一下输入框在哪。<br><img src="/2019/12/17/cnki-spider/2.png" alt="2.png"><br>我们可以发现原来这个输入框的<code>class = &quot;s_ipt&quot;</code>，那我们就先通过class来定位试试吧！</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search_input = browser.find_element_by_class_name(<span class="string">'s_ipt'</span>)</span><br><span class="line">search_input.clear()</span><br><span class="line">search_input.send_keys(<span class="string">'IR实验室'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/12/17/cnki-spider/3.png" alt="3.png"><br>可以看到我们成功的在输入框里输入了搜索内容，下面就让我们点击一下“百度一下”搜索试试吧。<br>看一下“百度一下”按键的源码是什么：<br><img src="/2019/12/17/cnki-spider/4.png" alt="4.png"><br>可以发现它的<code>id = &quot;su&quot;</code>，那我们就通过id来定位它吧！</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.find_element_by_id(<span class="string">'su'</span>).click()</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/12/17/cnki-spider/5.png" alt="5.png"><br>除了通过点击“百度一下”按钮，我们通常搜索的时候一般是直接按回车键的，那在这里可不可以模拟回车键呢？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="comment"># 将上面的click()那一行换作在搜索框中输入回车键</span></span><br><span class="line">search_input.send_keys(Keys.RETURN)</span><br></pre></td></tr></table></figure>
+<h3 id="二、代码编写"><a href="#二、代码编写" class="headerlink" title="二、代码编写"></a>二、代码编写</h3><h4 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1. 简单使用"></a>1. 简单使用</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line"><span class="hljs-comment"># 不能只用域名，要使用完整url</span></span><br><span class="line">browser.get(<span class="hljs-string">'https://www.baidu.com/'</span>)</span><br></pre></td></tr></table></figure><br>接下来让我们在百度的搜索框中输入些什么进行搜索看看。<br>既然要输入，那我们首先需要找到在哪个位置进行输入，因此我们需要简单定个位，打开百度页面的源代码看一下输入框在哪。<br><img src="/2019/12/17/cnki-spider/2.png" alt="2.png"><br>我们可以发现原来这个输入框的<code>class = &quot;s_ipt&quot;</code>，那我们就先通过class来定位试试吧！<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search_input = browser.find_element_by_class_name(<span class="hljs-string">'s_ipt'</span>)</span><br><span class="line">search_input.clear()</span><br><span class="line">search_input.send_keys(<span class="hljs-string">'IR实验室'</span>)</span><br></pre></td></tr></table></figure><br><img src="/2019/12/17/cnki-spider/3.png" alt="3.png"><br>可以看到我们成功的在输入框里输入了搜索内容，下面就让我们点击一下“百度一下”搜索试试吧。<br>看一下“百度一下”按键的源码是什么：<br><img src="/2019/12/17/cnki-spider/4.png" alt="4.png"><br>可以发现它的<code>id = &quot;su&quot;</code>，那我们就通过id来定位它吧！<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.find_element_by_id(<span class="hljs-string">'su'</span>).click()</span><br></pre></td></tr></table></figure><br><img src="/2019/12/17/cnki-spider/5.png" alt="5.png"><br>除了通过点击“百度一下”按钮，我们通常搜索的时候一般是直接按回车键的，那在这里可不可以模拟回车键呢？<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys</span><br><span class="line"><span class="hljs-comment"># 将上面的click()那一行换作在搜索框中输入回车键</span></span><br><span class="line">search_input.send_keys(Keys.RETURN)</span><br></pre></td></tr></table></figure></p>
 <h4 id="2-定位问题"><a href="#2-定位问题" class="headerlink" title="2. 定位问题"></a>2. 定位问题</h4><p>模拟浏览器行为无非就是模拟鼠标和键盘来操作html中的这些元素，那首要的任务就是元素定位问题了。<br>在<code>selenium</code>中提供了很多种方法可以进行元素定位，下面一一介绍。</p>
 <h5 id="1-id定位"><a href="#1-id定位" class="headerlink" title="(1) id定位"></a>(1) id定位</h5><p><code>find_element_by_id()</code><br>例如上面的例子我们定位了“百度一下”按钮：<code>browser.find_element_by_id(&#39;su&#39;)</code></p>
-<h5 id="2-name定位"><a href="#2-name定位" class="headerlink" title="(2) name定位"></a>(2) name定位</h5><p><code>find_element_by_name()</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"s_ipt"</span> <span class="attr">name</span>=<span class="string">"wd"</span> <span class="attr">id</span>=<span class="string">"kw"</span> <span class="attr">maxlength</span>=<span class="string">"100"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>比如这是百度搜索框的源码，我们可以通过name这样定位：<code>browser.find_element_by_name(&#39;wd&#39;)</code></p>
+<h5 id="2-name定位"><a href="#2-name定位" class="headerlink" title="(2) name定位"></a>(2) name定位</h5><p><code>find_element_by_name()</code><br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s_ipt"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"wd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"kw"</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>&gt;</span></span><br></pre></td></tr></table></figure><br>比如这是百度搜索框的源码，我们可以通过name这样定位：<code>browser.find_element_by_name(&#39;wd&#39;)</code></p>
 <h5 id="3-class定位"><a href="#3-class定位" class="headerlink" title="(3) class定位"></a>(3) class定位</h5><p><code>find_element_by_class_name()</code><br>同样地定位搜索框：<code>browser.find_element_by_class_name(&#39;s_ipt&#39;)</code></p>
 <h5 id="4-tag定位"><a href="#4-tag定位" class="headerlink" title="(4) tag定位"></a>(4) tag定位</h5><p><code>find_element_by_tag_name()</code><br>每一个元素本质就是一个tag，但是HTML页面的tag重复性很厉害，一般很少用这个定位。<br>例子：<code>browser.find_element_by_tag_name(&#39;input&#39;)</code></p>
-<h5 id="5-link定位"><a href="#5-link定位" class="headerlink" title="(5) link定位"></a>(5) link定位</h5><p><code>find_element_by_link_text()</code> 可以用来定义文本链接。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://news.baidu.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"mnav"</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.hao123.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"mnav"</span>&gt;</span>hao123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://map.baidu.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"mnav"</span>&gt;</span>地图<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://v.baidu.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"mnav"</span>&gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们可以通过这些文本内容打开链接：<code>browser.find_element_by_link_text(&#39;新闻&#39;).click()</code><br>也可以通过部分文本链接进行定位，也就是partial定位：<br><code>find_element_by_partial_link_text()</code><br>例子：<code>browser.find_element_by_partial_link_text(&#39;hao&#39;).click()</code></p>
+<h5 id="5-link定位"><a href="#5-link定位" class="headerlink" title="(5) link定位"></a>(5) link定位</h5><p><code>find_element_by_link_text()</code> 可以用来定义文本链接。<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://news.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>新闻<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.hao123.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>hao123<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://map.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>地图<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://v.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>视频<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><br>我们可以通过这些文本内容打开链接：<code>browser.find_element_by_link_text(&#39;新闻&#39;).click()</code><br>也可以通过部分文本链接进行定位，也就是partial定位：<br><code>find_element_by_partial_link_text()</code><br>例子：<code>browser.find_element_by_partial_link_text(&#39;hao&#39;).click()</code></p>
 <h5 id="6-xpath定位"><a href="#6-xpath定位" class="headerlink" title="(6) xpath定位"></a>(6) xpath定位</h5><p>它又分为绝对路径定位和相对路径定位，但我觉得没人喜欢<code>/html/*/*/</code>这样从头写路径，经常使用的也就是相对路径定位。<br><code>find_element_by_xpath(&#39;//标签[@属性名=属性值]&#39;)</code> 属性名可以是id、name、class或者其他可唯一标识该标签的元素。<br>比如上面定位百度搜索框的可以改写为：<br><code>browser.find_element_by_xpath(&#39;//input[@class=&quot;s_ipt&quot;]&#39;).send_keys(&#39;IR 实验室&#39;）</code><br><code>//</code>代表当前页面的某个路径下，<code>input</code>代表元素标签名，不指定标签可以用<code>*</code>代替。<br>既然xpath都支持路径了，那层级，也就是在某个标签之下的元素也可以通过它定位了。<br>比如，有个div标签的class=’helloworld’，然后在这个标签的里面有一个a标签，我们想要定位这个a标签就可以这么写：<br><code>browser.find_element_by_xpath(&#39;//div[@class=&quot;helloworld&quot;]/a&#39;)</code><br>更强大的是这个方法还支持通过逻辑运算符进行定位。<br>比如<code>find_element_by_xpath(&quot;//input[@id=&#39;a&#39; and @class=&#39;su&#39;]/span/input&quot;)</code></p>
 <h5 id="7-CSS定位"><a href="#7-CSS定位" class="headerlink" title="(7) CSS定位"></a>(7) CSS定位</h5><p><code>find_element_by_css_selector()</code></p>
 <h6 id="通过class定位"><a href="#通过class定位" class="headerlink" title="通过class定位"></a>通过class定位</h6><p>比如在百度搜索框输入要搜索的内容：<br><code>browser.find_element_by_css_selector(&quot;.s_ipt&quot;).send_keys(&#39;hello world&#39;)</code></p>
@@ -138,512 +274,247 @@
 <h6 id="通过标签属性定位"><a href="#通过标签属性定位" class="headerlink" title="通过标签属性定位"></a>通过标签属性定位</h6><p>例子：<br><code>browser.find_element_by_css_selector(&#39;[autocomplete=&quot;off&quot;]&#39;).send_keys(&#39;helloworld&#39;)</code><br><strong>属性值</strong>的引号可加可不加。</p>
 <h6 id="通过标签父子关系定位"><a href="#通过标签父子关系定位" class="headerlink" title="通过标签父子关系定位"></a>通过标签父子关系定位</h6><p><code>find_element_by_css_selector(&quot;parent&gt;child&quot;)</code><br>例子：<code>browser.find_element_by_css_selector(&quot;span&gt;input&quot;).send_keys(&quot;IR 实验室&quot;)</code></p>
 <h6 id="组合定位"><a href="#组合定位" class="headerlink" title="组合定位"></a>组合定位</h6><p>例子：<code>browser.find_element_by_css_selector(&quot;span&gt;input#kw&quot;).send_keys(&quot;IR 实验室&quot;)</code><br>同样的，可以将属性值、id、class、父子关系等结合起来组合定位，这样可以提高定位的准确性。</p>
-<h5 id="8-通过By定位"><a href="#8-通过By定位" class="headerlink" title="(8) 通过By定位"></a>(8) 通过By定位</h5><p>By定位元素是统一调用<code>find_element()</code>的方法。<code>find_element()</code>方法只用于定位元素，它有两个参数，第一个是定位的类型，由By提供；第二个参数是定位的具体方式。<br>使用By之前需要先导入By类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br></pre></td></tr></table></figure>
-<p>实例：<code>browser.find_element(By.ID,&#39;kw&#39;).send_keys(&quot;IR 实验室&quot;)</code><br>定位的类型包括：<br><code>By.ID, By.NAME, By.CLASS_NAME, By.TAG_NAME, By.LINK_TEXT, By.PARTIAL_LINK_TEXT, By.XPATH, By.CSS_SELECTOR</code></p>
-<h4 id="3-出现定位不到元素的问题"><a href="#3-出现定位不到元素的问题" class="headerlink" title="3. 出现定位不到元素的问题"></a>3. 出现定位不到元素的问题</h4><p>你以为掌握了以上这些定位方法就没有问题了吗，当时看完教程的我也是这么想的，不就是爬取知网作者知网节嘛，当我把一切都准备好，也打开了准备爬取的页面，准备开心的开始爬的时候呢，却报错了…找不到该元素，我明明在chrome里可以看到的啊，我定位的方法也没有错啊，怎么会定位失败呢？<br>原来现在很多页面除了页面源代码之外还有很多框架源代码，而我想要爬取的内容就存在于这些框架源代码中，那这些框架源代码都在哪呢？<br><img src="/2019/12/17/cnki-spider/6.png" alt="6.png"><br>看到这些<code>iframe</code>标签了嘛，没错它们都在这里面。<br>frame标签有frameset、frame、iframe三种，frameset跟其他普通标签没有区别，不会影响到正常的定位，而frame与iframe对selenium定位而言是一样的，selenium有一组方法对frame进行操作。<br>所以我们如果想要这里面的内容就需要切换frame，之后才能定位到这些框架里的元素，那么怎么进行切换呢？<br>我们用到的函数是<code>switch_to.frame()</code>可以传入id、name、index以及selenium的WebElement对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.switch_to.frame(<span class="number">0</span>)  <span class="comment"># 1.用frame的index来定位，第一个是0</span></span><br><span class="line"><span class="comment"># driver.switch_to.frame("frame1")  # 2.用id来定位</span></span><br><span class="line"><span class="comment"># driver.switch_to.frame("myframe")  # 3.用name来定位</span></span><br><span class="line"><span class="comment"># driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))  # 4.用WebElement对象来定位</span></span><br></pre></td></tr></table></figure>
-<p>但是我们看到知网这个作者知网节界面不只一个框架，但这些框架都是同级的，所以我们爬完一个框架之后需要切回主文档以再切入下一个框架。<br><code>driver.switch_to.default_content()</code><br>那如果碰到一个框架里面又嵌套着框架怎么办呢？比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"frame1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"frame2"</span> / &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们先从主文档一层一层的切到frame2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.frame(<span class="string">"frame1"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="string">"frame2"</span>)</span><br></pre></td></tr></table></figure>
-<p>现在我们从frame2怎么切换到frame1呢？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.parent_frame()  <span class="comment"># 如果当前已是主文档，则无效果</span></span><br></pre></td></tr></table></figure>
-<p>有了这个方法，相当于后退作用，我们就可以随意的在frame之间切换了。</p>
-<h3 id="三、其他常用函数补充"><a href="#三、其他常用函数补充" class="headerlink" title="三、其他常用函数补充"></a>三、其他常用函数补充</h3><h4 id="切换标签页"><a href="#切换标签页" class="headerlink" title="切换标签页:"></a>切换标签页:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window = self.browser.window_handles <span class="comment"># 获得当前窗口句柄集合（列表类型）</span></span><br><span class="line">browser.switch_to.window(window[<span class="number">1</span>]) <span class="comment">#切换到第二个标签</span></span><br></pre></td></tr></table></figure>
-<h4 id="控制浏览器前进、后退、刷新"><a href="#控制浏览器前进、后退、刷新" class="headerlink" title="控制浏览器前进、后退、刷新"></a>控制浏览器前进、后退、刷新</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">browser.forward()</span><br><span class="line">browser.back()</span><br><span class="line">browser.refresh()</span><br></pre></td></tr></table></figure>
-<h4 id="关闭浏览器"><a href="#关闭浏览器" class="headerlink" title="关闭浏览器"></a>关闭浏览器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.quit()</span><br></pre></td></tr></table></figure>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>如果你想获取完整的爬取知网作者知网节的代码:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/aestheticisma/spider_cnki</span><br></pre></td></tr></table></figure>
+<h5 id="8-通过By定位"><a href="#8-通过By定位" class="headerlink" title="(8) 通过By定位"></a>(8) 通过By定位</h5><p>By定位元素是统一调用<code>find_element()</code>的方法。<code>find_element()</code>方法只用于定位元素，它有两个参数，第一个是定位的类型，由By提供；第二个参数是定位的具体方式。<br>使用By之前需要先导入By类：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By</span><br></pre></td></tr></table></figure><br>实例：<code>browser.find_element(By.ID,&#39;kw&#39;).send_keys(&quot;IR 实验室&quot;)</code><br>定位的类型包括：<br><code>By.ID, By.NAME, By.CLASS_NAME, By.TAG_NAME, By.LINK_TEXT, By.PARTIAL_LINK_TEXT, By.XPATH, By.CSS_SELECTOR</code></p>
+<h4 id="3-出现定位不到元素的问题"><a href="#3-出现定位不到元素的问题" class="headerlink" title="3. 出现定位不到元素的问题"></a>3. 出现定位不到元素的问题</h4><p>你以为掌握了以上这些定位方法就没有问题了吗，当时看完教程的我也是这么想的，不就是爬取知网作者知网节嘛，当我把一切都准备好，也打开了准备爬取的页面，准备开心的开始爬的时候呢，却报错了…找不到该元素，我明明在chrome里可以看到的啊，我定位的方法也没有错啊，怎么会定位失败呢？<br>原来现在很多页面除了页面源代码之外还有很多框架源代码，而我想要爬取的内容就存在于这些框架源代码中，那这些框架源代码都在哪呢？<br><img src="/2019/12/17/cnki-spider/6.png" alt="6.png"><br>看到这些<code>iframe</code>标签了嘛，没错它们都在这里面。<br>frame标签有frameset、frame、iframe三种，frameset跟其他普通标签没有区别，不会影响到正常的定位，而frame与iframe对selenium定位而言是一样的，selenium有一组方法对frame进行操作。<br>所以我们如果想要这里面的内容就需要切换frame，之后才能定位到这些框架里的元素，那么怎么进行切换呢？<br>我们用到的函数是<code>switch_to.frame()</code>可以传入id、name、index以及selenium的WebElement对象。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.switch_to.frame(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 1.用frame的index来定位，第一个是0</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("frame1")  # 2.用id来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("myframe")  # 3.用name来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))  # 4.用WebElement对象来定位</span></span><br></pre></td></tr></table></figure><br>但是我们看到知网这个作者知网节界面不只一个框架，但这些框架都是同级的，所以我们爬完一个框架之后需要切回主文档以再切入下一个框架。<br><code>driver.switch_to.default_content()</code><br>那如果碰到一个框架里面又嵌套着框架怎么办呢？比如：<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame1"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame2"</span> / &gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><br>我们先从主文档一层一层的切到frame2<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame1"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame2"</span>)</span><br></pre></td></tr></table></figure><br>现在我们从frame2怎么切换到frame1呢？<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.parent_frame()  <span class="hljs-comment"># 如果当前已是主文档，则无效果</span></span><br></pre></td></tr></table></figure><br>有了这个方法，相当于后退作用，我们就可以随意的在frame之间切换了。</p>
+<h3 id="三、其他常用函数补充"><a href="#三、其他常用函数补充" class="headerlink" title="三、其他常用函数补充"></a>三、其他常用函数补充</h3><h4 id="切换标签页"><a href="#切换标签页" class="headerlink" title="切换标签页:"></a>切换标签页:</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window = self.browser.window_handles <span class="hljs-comment"># 获得当前窗口句柄集合（列表类型）</span></span><br><span class="line">browser.switch_to.window(window[<span class="hljs-number">1</span>]) <span class="hljs-comment">#切换到第二个标签</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="控制浏览器前进、后退、刷新"><a href="#控制浏览器前进、后退、刷新" class="headerlink" title="控制浏览器前进、后退、刷新"></a>控制浏览器前进、后退、刷新</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">browser.forward()</span><br><span class="line">browser.back()</span><br><span class="line">browser.refresh()</span><br></pre></td></tr></table></figure></p>
+<h4 id="关闭浏览器"><a href="#关闭浏览器" class="headerlink" title="关闭浏览器"></a>关闭浏览器</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.quit()</span><br></pre></td></tr></table></figure></p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>如果你想获取完整的爬取知网作者知网节的代码:<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/spider_cnki</span><br></pre></td></tr></table></figure></p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      <!-- reward -->
-      
-      <div id="reward-btn">
-        打赏
-      </div>
-      
+    
     </div>
     
     
-      <!-- copyright -->
-      
-        <div class="declare">
-          <ul class="post-copyright">
-            <li>
-              <i class="ri-copyright-line"></i>
-              <strong>版权声明： </strong s>
-              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
-                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
-            </li>
-          </ul>
-        </div>
-        
-    <footer class="article-footer">
-      
-          
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        Share
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fansblog.club/2019/12/17/cnki-spider/" alt="微信分享二维码">
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/01/02/ssh-tips/">SSH端口转发</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/12/14/remote-jupyternotebook/">服务器配置jupyter notebook实现远程访问</a>
+            
+        </span>
     </div>
-</div>
-
-<div id="share-mask"></div>
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-  
-  <nav class="article-nav">
     
-      <a href="/2020/01/02/ssh-tips/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            SSH端口转发
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2019/12/14/remote-jupyternotebook/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">服务器配置jupyter notebook实现远程访问</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-  
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
-    </div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        app_id: '',
-        app_key: '',
-        path: window.location.pathname,
-        notify: 'false',
-        verify: 'false',
-        avatar: 'mp',
-        placeholder: '给我的文章加点评论吧~',
-        recordIP: true
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
-        });
-    }
-</script>
-<style>
-    #vcomments-box {
-        padding: 5px 30px;
-    }
-
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
-    }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
-    }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
-    }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
-    }
-</style>
-
-  
-
-  
-  
-  
-
 </article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e1998593eb4bc0012cc4ab0&amp;product=sticky-share-buttons' async='async'></script>
+
+</div>
+
+
+
+
+
+    </div>
 </section>
-      <footer class="footer">
-  <div class="outer">
-    <ul class="list-inline">
-      <li>
-        &copy;
-        2019-2020
-        流岚
-      </li>
-      <li>
-        
-        Powered by
-        
-        
-        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
-        
-      </li>
-    </ul>
-    <ul class="list-inline">
-      <li>
-        
-      </li>
-      
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
-  </div>
-</footer>
-      <div class="float_btns">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2020 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
 
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
-
-      </div>
-    </main>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="/images/touxiang.ico" alt="生如逆旅 一苇以航"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/aboutme">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <script>
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.content').classList.remove('on');
-        document.querySelector('.sidebar').classList.remove('on');
-      }
-    </script>
-    <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
-
-<script>
-  try {
-    var typed = new Typed("#subtitle", {
-      strings: ['Work For Yourself, Do What I Love', '', ''],
-      startDelay: 0,
-      typeSpeed: 200,
-      loop: true,
-      backSpeed: 200,
-      showCursor: true
-    });
-  } catch (err) {
-  }
-
-</script>
-
-
-
-<script src="/js/tocbot.min.js"></script>
-<script>
-  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto'
-  });
-</script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
-<script src="/dist/main.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
                 </div>
             </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
+            
+            
         </div>
-
     </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
 
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
 <script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
         })
-    }
-    viewer_init()
+    });
 </script>
 
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
-  var ayerConfig = {
-    mathjax: true
-  }
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
 </script>
-
-
-
-
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
 
     
-  </div>
-</body>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
 
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+<script src="/js/script.js"></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+</body>
 </html>
