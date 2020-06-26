@@ -24,7 +24,7 @@
 <meta property="og:description" content="经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
-<meta property="og:updated_time" content="2020-06-26T14:25:19.391Z">
+<meta property="og:updated_time" content="2020-06-26T14:29:07.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
 
@@ -166,7 +166,7 @@
         <span class="column is-narrow">
             
             
-            10 分钟 读完 (约 1571 字)
+            11 分钟 读完 (约 1582 字)
         </span>
         
     </div>
@@ -188,7 +188,7 @@
 </li>
 <li><p>Tensor.transpose() and Tensor.permute()<br>这两个方法用于对Tensor的维度进行交换，对于矩阵来说，也就达到了转置的功能。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</span><br><span class="line"><span class="hljs-comment"># 利用transpose()对0，1维度进行交换</span></span><br><span class="line">tensor_b = tensor_a.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-comment"># 传入一组维度，将对应维度按顺序生成新的size</span></span><br><span class="line">tensor_c = tensor_a.permute(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span><br><span class="line">print(tensor_b.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([4, 3, 5])</span></span><br><span class="line">print(tensor_c.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 4, 3])</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>切片和索引<br>既然pytorch语法与Python高度相似，那Tensor一定也是支持切片与索引功能的。但注意，与列表不同，切片出的Tensor与原Tensor共享内存，也就意味着切片出的Tensor的数据修改将导致原Tensor的数据跟着修改。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)</span><br><span class="line">tensor_b = tensor_a[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>]</span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line">print(tensor_b)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 3])</span></span><br><span class="line">tensor_b[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([0, 2, 3, 4])</span></span><br></pre></td></tr></table></figure><br><code>未完待续</code><br>BTW，最近我这个废物太懒了，什么也不想干，只想躺在床上玩手机。快开学吧快开学吧！</p>
+<li><p>切片和索引<br>既然pytorch语法与Python高度相似，那Tensor一定也是支持切片与索引功能的。但注意，与列表不同，切片出的Tensor与原Tensor共享内存，也就意味着切片出的Tensor的数据修改将导致原Tensor的数据跟着修改。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)</span><br><span class="line">tensor_b = tensor_a[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>]</span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line">print(tensor_b)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 3])</span></span><br><span class="line">tensor_b[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([0, 2, 3, 4])</span></span><br></pre></td></tr></table></figure><br><code>未完待续</code><br>BTW，最近我这个废物太懒了，什么也不想干，只想躺在床上玩手机。等我调整好状态再写下去吧，所以更新随缘吧…</p>
 </li>
 </ul>
 
