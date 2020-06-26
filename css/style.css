@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body, button, input, select, textarea {
-  font-family: "Georgia", "Microsoft YaHei", "Ovo", "STZhongsong", serif; }
+  font-family: "Georgia", "Ovo", "STZhongsong", "Microsoft YaHei", serif; }
 
 a.tag.article-tag {
   font-size: 0.9rem;
