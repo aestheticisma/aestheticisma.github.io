@@ -5,9 +5,9 @@
   <subtitle>人生总有许多偶然和巧合，两条平行线，也可能会有交汇的一天。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://fansblog.club/"/>
-  <updated>2020-06-26T14:29:07.617Z</updated>
-  <id>https://fansblog.club/</id>
+  <link href="https://fansblog.me/"/>
+  <updated>2020-07-02T17:05:54.157Z</updated>
+  <id>https://fansblog.me/</id>
   
   <author>
     <name>流岚</name>
@@ -17,9 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>感知机原理及其代码实现</title>
+    <link href="https://fansblog.me/2020/07/03/perceptron/"/>
+    <id>https://fansblog.me/2020/07/03/perceptron/</id>
+    <published>2020-07-02T16:18:31.000Z</published>
+    <updated>2020-07-02T17:05:54.157Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="统计学习方法" scheme="https://fansblog.me/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>面向和我一样小白的Pytorch教程（待更新）</title>
-    <link href="https://fansblog.club/2020/05/28/pytorch-tutorial/"/>
-    <id>https://fansblog.club/2020/05/28/pytorch-tutorial/</id>
+    <link href="https://fansblog.me/2020/05/28/pytorch-tutorial/"/>
+    <id>https://fansblog.me/2020/05/28/pytorch-tutorial/</id>
     <published>2020-05-27T16:12:59.000Z</published>
     <updated>2020-06-26T14:29:07.617Z</updated>
     
@@ -30,15 +49,15 @@
     </summary>
     
     
-      <category term="Deep Learning" scheme="https://fansblog.club/categories/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://fansblog.me/categories/Deep-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>Mac使用小技巧</title>
-    <link href="https://fansblog.club/2020/03/12/mac-tips/"/>
-    <id>https://fansblog.club/2020/03/12/mac-tips/</id>
+    <link href="https://fansblog.me/2020/03/12/mac-tips/"/>
+    <id>https://fansblog.me/2020/03/12/mac-tips/</id>
     <published>2020-03-12T08:19:11.000Z</published>
     <updated>2020-03-12T08:35:40.077Z</updated>
     
@@ -49,15 +68,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>通过国内服务器转发流量科学上网</title>
-    <link href="https://fansblog.club/2020/02/04/network-jump/"/>
-    <id>https://fansblog.club/2020/02/04/network-jump/</id>
+    <link href="https://fansblog.me/2020/02/04/network-jump/"/>
+    <id>https://fansblog.me/2020/02/04/network-jump/</id>
     <published>2020-02-04T09:22:26.000Z</published>
     <updated>2020-02-04T11:58:24.048Z</updated>
     
@@ -68,15 +87,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>Solve无法访问github的问题</title>
-    <link href="https://fansblog.club/2020/02/04/unable-access-github/"/>
-    <id>https://fansblog.club/2020/02/04/unable-access-github/</id>
+    <link href="https://fansblog.me/2020/02/04/unable-access-github/"/>
+    <id>https://fansblog.me/2020/02/04/unable-access-github/</id>
     <published>2020-02-03T16:16:58.000Z</published>
     <updated>2020-02-03T16:35:35.445Z</updated>
     
@@ -87,15 +106,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 7 (11-12)</title>
-    <link href="https://fansblog.club/2020/01/19/leetcode-day7/"/>
-    <id>https://fansblog.club/2020/01/19/leetcode-day7/</id>
+    <link href="https://fansblog.me/2020/01/19/leetcode-day7/"/>
+    <id>https://fansblog.me/2020/01/19/leetcode-day7/</id>
     <published>2020-01-19T03:28:05.000Z</published>
     <updated>2020-01-19T09:37:17.678Z</updated>
     
@@ -106,15 +125,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 6 (9-10)</title>
-    <link href="https://fansblog.club/2020/01/15/leetcode-day6/"/>
-    <id>https://fansblog.club/2020/01/15/leetcode-day6/</id>
+    <link href="https://fansblog.me/2020/01/15/leetcode-day6/"/>
+    <id>https://fansblog.me/2020/01/15/leetcode-day6/</id>
     <published>2020-01-15T09:05:22.000Z</published>
     <updated>2020-01-15T09:31:37.485Z</updated>
     
@@ -125,15 +144,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 5 (7-8)</title>
-    <link href="https://fansblog.club/2020/01/14/leetcode-day5/"/>
-    <id>https://fansblog.club/2020/01/14/leetcode-day5/</id>
+    <link href="https://fansblog.me/2020/01/14/leetcode-day5/"/>
+    <id>https://fansblog.me/2020/01/14/leetcode-day5/</id>
     <published>2020-01-14T10:49:39.000Z</published>
     <updated>2020-01-14T11:09:53.477Z</updated>
     
@@ -144,15 +163,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 4 (6)</title>
-    <link href="https://fansblog.club/2020/01/13/leetcode-day4/"/>
-    <id>https://fansblog.club/2020/01/13/leetcode-day4/</id>
+    <link href="https://fansblog.me/2020/01/13/leetcode-day4/"/>
+    <id>https://fansblog.me/2020/01/13/leetcode-day4/</id>
     <published>2020-01-13T08:42:27.000Z</published>
     <updated>2020-01-13T09:10:54.155Z</updated>
     
@@ -163,15 +182,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>数据库复习--第1章</title>
-    <link href="https://fansblog.club/2020/01/10/DB-1/"/>
-    <id>https://fansblog.club/2020/01/10/DB-1/</id>
+    <link href="https://fansblog.me/2020/01/10/DB-1/"/>
+    <id>https://fansblog.me/2020/01/10/DB-1/</id>
     <published>2020-01-10T15:00:45.000Z</published>
     <updated>2020-01-11T13:33:25.998Z</updated>
     
@@ -182,15 +201,15 @@
     </summary>
     
     
-      <category term="数据库系统概论" scheme="https://fansblog.club/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/"/>
+      <category term="数据库系统概论" scheme="https://fansblog.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/"/>
     
     
   </entry>
   
   <entry>
     <title>SSH端口转发</title>
-    <link href="https://fansblog.club/2020/01/02/ssh-tips/"/>
-    <id>https://fansblog.club/2020/01/02/ssh-tips/</id>
+    <link href="https://fansblog.me/2020/01/02/ssh-tips/"/>
+    <id>https://fansblog.me/2020/01/02/ssh-tips/</id>
     <published>2020-01-02T05:06:47.000Z</published>
     <updated>2020-01-03T02:06:26.561Z</updated>
     
@@ -201,15 +220,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>利用webdriver爬取知网作者知网节</title>
-    <link href="https://fansblog.club/2019/12/17/cnki-spider/"/>
-    <id>https://fansblog.club/2019/12/17/cnki-spider/</id>
+    <link href="https://fansblog.me/2019/12/17/cnki-spider/"/>
+    <id>https://fansblog.me/2019/12/17/cnki-spider/</id>
     <published>2019-12-17T07:33:30.000Z</published>
     <updated>2019-12-19T09:37:35.281Z</updated>
     
@@ -220,15 +239,15 @@
     </summary>
     
     
-      <category term="爬虫系列" scheme="https://fansblog.club/categories/%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97/"/>
+      <category term="爬虫系列" scheme="https://fansblog.me/categories/%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>服务器配置jupyter notebook实现远程访问</title>
-    <link href="https://fansblog.club/2019/12/14/remote-jupyternotebook/"/>
-    <id>https://fansblog.club/2019/12/14/remote-jupyternotebook/</id>
+    <link href="https://fansblog.me/2019/12/14/remote-jupyternotebook/"/>
+    <id>https://fansblog.me/2019/12/14/remote-jupyternotebook/</id>
     <published>2019-12-14T08:52:40.000Z</published>
     <updated>2019-12-14T09:48:19.009Z</updated>
     
@@ -239,15 +258,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>拉格朗日乘数法</title>
-    <link href="https://fansblog.club/2019/12/09/langrange-multi-approach/"/>
-    <id>https://fansblog.club/2019/12/09/langrange-multi-approach/</id>
+    <link href="https://fansblog.me/2019/12/09/langrange-multi-approach/"/>
+    <id>https://fansblog.me/2019/12/09/langrange-multi-approach/</id>
     <published>2019-12-09T05:50:38.000Z</published>
     <updated>2019-12-09T09:05:27.589Z</updated>
     
@@ -258,15 +277,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>Mac下命令行版本的Anaconda安装及常用命令</title>
-    <link href="https://fansblog.club/2019/12/03/anaconda-installformac/"/>
-    <id>https://fansblog.club/2019/12/03/anaconda-installformac/</id>
+    <link href="https://fansblog.me/2019/12/03/anaconda-installformac/"/>
+    <id>https://fansblog.me/2019/12/03/anaconda-installformac/</id>
     <published>2019-12-03T07:59:01.000Z</published>
     <updated>2020-03-19T07:21:56.491Z</updated>
     
@@ -277,15 +296,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>Python中如何定义二维数组</title>
-    <link href="https://fansblog.club/2019/11/17/py-cre-douarr/"/>
-    <id>https://fansblog.club/2019/11/17/py-cre-douarr/</id>
+    <link href="https://fansblog.me/2019/11/17/py-cre-douarr/"/>
+    <id>https://fansblog.me/2019/11/17/py-cre-douarr/</id>
     <published>2019-11-17T06:56:50.000Z</published>
     <updated>2019-11-17T07:16:56.732Z</updated>
     
@@ -296,15 +315,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 3 (5)</title>
-    <link href="https://fansblog.club/2019/11/16/leetcode-day3/"/>
-    <id>https://fansblog.club/2019/11/16/leetcode-day3/</id>
+    <link href="https://fansblog.me/2019/11/16/leetcode-day3/"/>
+    <id>https://fansblog.me/2019/11/16/leetcode-day3/</id>
     <published>2019-11-16T07:56:43.000Z</published>
     <updated>2019-11-20T03:19:52.122Z</updated>
     
@@ -315,15 +334,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>Python实现字符串反转的几种方法</title>
-    <link href="https://fansblog.club/2019/11/15/py-str-reverse/"/>
-    <id>https://fansblog.club/2019/11/15/py-str-reverse/</id>
+    <link href="https://fansblog.me/2019/11/15/py-str-reverse/"/>
+    <id>https://fansblog.me/2019/11/15/py-str-reverse/</id>
     <published>2019-11-15T08:23:41.000Z</published>
     <updated>2019-11-15T09:16:52.256Z</updated>
     
@@ -334,15 +353,15 @@
     </summary>
     
     
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="Daily Essays" scheme="https://fansblog.me/categories/Daily-Essays/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 2 (4)</title>
-    <link href="https://fansblog.club/2019/11/14/leetcode-day2/"/>
-    <id>https://fansblog.club/2019/11/14/leetcode-day2/</id>
+    <link href="https://fansblog.me/2019/11/14/leetcode-day2/"/>
+    <id>https://fansblog.me/2019/11/14/leetcode-day2/</id>
     <published>2019-11-14T05:59:09.000Z</published>
     <updated>2020-01-08T02:21:25.631Z</updated>
     
@@ -353,15 +372,15 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>
   
   <entry>
     <title>LeetCode DAY 1 (1-3)</title>
-    <link href="https://fansblog.club/2019/11/13/leetcode-day1/"/>
-    <id>https://fansblog.club/2019/11/13/leetcode-day1/</id>
+    <link href="https://fansblog.me/2019/11/13/leetcode-day1/"/>
+    <id>https://fansblog.me/2019/11/13/leetcode-day1/</id>
     <published>2019-11-13T01:11:10.000Z</published>
     <updated>2020-01-12T03:52:02.790Z</updated>
     
@@ -372,26 +391,7 @@
     </summary>
     
     
-      <category term="LeetCode系列" scheme="https://fansblog.club/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>朴素贝叶斯的三个常用模型</title>
-    <link href="https://fansblog.club/2019/10/14/navie-bayes/"/>
-    <id>https://fansblog.club/2019/10/14/navie-bayes/</id>
-    <published>2019-10-14T08:42:05.000Z</published>
-    <updated>2019-11-15T08:18:26.363Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;高斯、多项式、伯努利&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Daily Essays" scheme="https://fansblog.club/categories/Daily-Essays/"/>
+      <category term="LeetCode系列" scheme="https://fansblog.me/categories/LeetCode%E7%B3%BB%E5%88%97/"/>
     
     
   </entry>

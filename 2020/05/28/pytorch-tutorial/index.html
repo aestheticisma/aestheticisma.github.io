@@ -19,14 +19,14 @@
     <meta name="description" content="经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向和我一样小白的Pytorch教程（待更新）">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;index.html">
 <meta property="og:site_name" content="生如逆旅 一苇以航">
 <meta property="og:description" content="经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
 <meta property="og:updated_time" content="2020-06-26T14:29:07.617Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.club&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
 
 
 
@@ -173,7 +173,7 @@
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
         <p>经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。<a id="more"></a><br>看完这个教程，你会基本学会如何使用Pytorch进行初级水平的搭积木。让我们开始吧！</p>
-<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a href="https://fansblog.club/2019/12/03/anaconda-installformac/">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
+<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a href="https://fansblog.club/2019/12/03/anaconda-installformac/" target="_blank" rel="noopener">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
 <h3 id="二、Tensor"><a href="#二、Tensor" class="headerlink" title="二、Tensor"></a>二、Tensor</h3><p>要开始介绍Pytorch之前，我们首先要知道它的计算的基本单位是什么，没错就是Tensor——张量，Tensor比较类似Numpy中的array，比如标量可以理解为0维Tensor，向量可以理解为1维Tensor，矩阵可以理解为2维Tensor，但二者又不完全相同，因为Tensor还附有更多的属性。它有哪些属性呢？让我们来看一下。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> torch</span><br><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(len(dir(tensor_a)))</span><br><span class="line"><span class="hljs-comment"># 479</span></span><br></pre></td></tr></table></figure><br>哇，它竟然有这么多的方法或属性，那我们列举几个比较常用的吧。</p>
 <h4 id="1-About-Tensor’s-Attribute"><a href="#1-About-Tensor’s-Attribute" class="headerlink" title="1. About Tensor’s Attribute"></a>1. About Tensor’s Attribute</h4><ul>
 <li><p>Tensor.requires_grad<br>首先第一个<code>requires_grad</code>，是我认为最重要的，它可是Tensor区别于Numpy的灵魂所在，没有了它，怎么知道这个这个Tensor需不需要求导数呢？当我们创建Tensor的时候，它是默认为False的，但如果我们新建一个网络的时候，它的默认值就是True了。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(tensor_a.requires_grad)</span><br><span class="line"><span class="hljs-comment"># False</span></span><br><span class="line">tensor_b = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)</span><br><span class="line">print(tensor_b.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br><span class="line">embed = torch.nn.Embedding(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)</span><br><span class="line">print(embed.weight.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br></pre></td></tr></table></figure><br>如果你看过有关Pytorch的代码，你可能会发现有个叫Variable的东西，在0.4版本之前，对Tensor，都会用Variable一裹，但现在没必要这么做了，现在的Tensor已经和Variable等价了，所以忘掉Variable吧。</p>
@@ -197,7 +197,9 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/07/03/perceptron/">感知机原理及其代码实现</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
