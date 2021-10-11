@@ -37,7 +37,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;maskAttn2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer3.png">
-<meta property="og:updated_time" content="2021-10-11T14:19:02.692Z">
+<meta property="og:updated_time" content="2021-10-11T14:22:17.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer.png">
 
@@ -219,7 +219,7 @@
         <span class="column is-narrow">
             
             
-            32 分钟 读完 (约 4804 字)
+            32 分钟 读完 (约 4819 字)
         </span>
         
     </div>
@@ -428,6 +428,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 </p>
 
 <p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Transformer</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(Transformer, self).__init__()</span><br><span class="line">        self.encoder = Encoder().cuda()</span><br><span class="line">        self.decoder = Decoder().cuda()</span><br><span class="line">        self.projection = nn.Linear(d_model, tgt_vocab_size, bias=<span class="hljs-literal">False</span>).cuda()</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, enc_inputs, dec_inputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># tensor to store decoder outputs</span></span><br><span class="line">        <span class="hljs-comment"># outputs = torch.zeros(batch_size, tgt_len, tgt_vocab_size).to(self.device)</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attns: [n_layers, batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, enc_self_attns = self.encoder(enc_inputs)</span><br><span class="line">        <span class="hljs-comment"># dec_outpus: [batch_size, tgt_len, d_model], dec_self_attns: [n_layers, batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [n_layers, batch_size, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_self_attns, dec_enc_attns = self.decoder(dec_inputs, enc_inputs, enc_outputs)</span><br><span class="line">        dec_logits = self.projection(dec_outputs) <span class="hljs-comment"># dec_logits: [batch_size, tgt_len, tgt_vocab_size]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_logits.view(<span class="hljs-number">-1</span>, dec_logits.size(<span class="hljs-number">-1</span>)), enc_self_attns, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></table></figure></p>
+<p>完整代码：<a href="https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb" target="_blank" rel="noopener">https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb</a></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
 <li><a href="https://wmathor.com/index.php/archives/1438/" target="_blank" rel="noopener">https://wmathor.com/index.php/archives/1438/</a></li>
 <li><a href="https://www.cnblogs.com/zingp/p/11696111.html" target="_blank" rel="noopener">https://www.cnblogs.com/zingp/p/11696111.html</a></li>

