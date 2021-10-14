@@ -37,7 +37,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;maskAttn2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer3.png">
-<meta property="og:updated_time" content="2021-10-11T14:22:17.293Z">
+<meta property="og:updated_time" content="2021-10-14T10:06:25.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer.png">
 
@@ -309,7 +309,7 @@ $$ PE(pos, 2i+1) = cos(pos/1000^{2i/d_{model}}) $$
 <li>c. 将 b 的结果执行了mask操作，这一步是为了防止下一步的 softmax 概率化了 Padding 等无用位置。</li>
 <li>d. 最后将 c 的结果乘以矩阵 V 即得到最后结果。</li>
 </ul>
-</p><p>总结下来，就是一个公式：$$ Attention(Q, K, V) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}}V) $$<br>而至于为什么需要 Scaled，也就是为什么要执行 b 操作，原文是这么解释的： We suspect that for large values of<br>$d_{k}$, the dot products grow large in magnitude, pushing the softmax function into regions where it has<br>extremely small gradients. 也就是说，作者认为当维度很大时，点积的结果会很大，会导致 Softmax 的梯度很小，为了减轻这个影响，对点积进行缩放。当然，假设 Q 和 K 的均值为 0，方差为 1。它们的矩阵乘积将有均值为 0，方差为 $d_{k}$，因此使用$d_{k}$的平方根用于缩放。</p>
+</p><p>总结下来，就是一个公式：$$ Attention(Q, K, V) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V $$<br>而至于为什么需要 Scaled，也就是为什么要执行 b 操作，原文是这么解释的： We suspect that for large values of<br>$d_{k}$, the dot products grow large in magnitude, pushing the softmax function into regions where it has<br>extremely small gradients. 也就是说，作者认为当维度很大时，点积的结果会很大，会导致 Softmax 的梯度很小，为了减轻这个影响，对点积进行缩放。当然，假设 Q 和 K 的均值为 0，方差为 1。它们的矩阵乘积将有均值为 0，方差为 $d_{k}$，因此使用$d_{k}$的平方根用于缩放。</p>
 <p></p>
 
 <p>关于为什么要 Scaled 的数学层面的理解请看 <a href="https://www.zhihu.com/question/339723385/answer/782509914" target="_blank" rel="noopener">这里</a></p>
@@ -404,7 +404,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 <ol>
 <li><p>字向量与位置编码<br>$$ X = Embedding(X) + Positional_Encoding $$</p>
 </li>
-<li><p>Self-Attention<br>$$ Q = Linear_{q}(X) = XW_{Q} $$<br>$$ K = Linear_{k}(X) = XW_{K} $$<br>$$ V = Linear_{v}(X) = XW_{V} $$<br>$$ X_{attention} = softmax(\frac{QK^{T}}{\sqrt{d_{k}}}V) $$</p>
+<li><p>Self-Attention<br>$$ Q = Linear_{q}(X) = XW_{Q} $$<br>$$ K = Linear_{k}(X) = XW_{K} $$<br>$$ V = Linear_{v}(X) = XW_{V} $$<br>$$ X_{attention} = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V $$</p>
 </li>
 <li><p>残差连接与LN<br>$$ X_{attention} = X + X_{attention} $$<br>$$ X_{attention} = LayerNorm(X_{attention}) $$</p>
 </li>
