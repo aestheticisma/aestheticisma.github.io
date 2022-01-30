@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Sublime中按ctrl+B调用python3运行 - 生如逆旅 一苇以航</title>
+<title>Sublime中按ctrl+B调用python3运行 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,14 +19,16 @@
     <meta name="description" content="前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sublime中按ctrl+B调用python3运行">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;07&#x2F;23&#x2F;sublime-run&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/07/23/sublime-run/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;07&#x2F;23&#x2F;sublime-run&#x2F;sublime_run1.png">
-<meta property="og:updated_time" content="2019-11-15T08:18:31.693Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/07/23/sublime-run/sublime_run1.png">
+<meta property="article:published_time" content="2019-07-23T04:11:02.000Z">
+<meta property="article:modified_time" content="2019-11-15T08:18:31.693Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;07&#x2F;23&#x2F;sublime-run&#x2F;sublime_run1.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2019/07/23/sublime-run/sublime_run1.png">
 
 
 
@@ -45,9 +47,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -64,8 +68,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -117,19 +120,19 @@
                     
                     
                     
-                    <a class="navbar-item" href="#1-首先新建一个sublime-build-system">&nbsp;&nbsp;<b>1. 首先新建一个sublime build system</b></a>
+                    <a class="navbar-item" href="#1-首先新建一个sublime-build-system">1&nbsp;&nbsp;<b>1. 首先新建一个sublime build system</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#2-在里面输入以下内容：">&nbsp;&nbsp;<b>2. 在里面输入以下内容：</b></a>
+                    <a class="navbar-item" href="#2-在里面输入以下内容：">2&nbsp;&nbsp;<b>2. 在里面输入以下内容：</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -150,7 +153,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-07-23T04:11:02.000Z" itemprop="datePublished">7月 23 2019</time>
+            
+                <time datetime="2019-07-23T04:11:02.000Z" itemprop="datePublished">7月 23 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -168,19 +173,21 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<a id="more"></a>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
+        <html><head></head><body><p>前些天用python写了一个小程序，但放在sublime里直接ctrl+B运行不了，提示没有什么什么包…思前想后，觉得sublime的ctrl+B快捷键默认使用的是电脑里的python2吧<span id="more"></span>，而我是用pip3 install的包，肯定会报错了，那现在解决办法一定是要让sublime知道我的python3放在哪里，根据python3的路径去用python3执行代码。</p>
 <p>解决办法如下：</p>
 <h5 id="1-首先新建一个sublime-build-system"><a href="#1-首先新建一个sublime-build-system" class="headerlink" title="1. 首先新建一个sublime build system"></a>1. 首先新建一个sublime build system</h5><p>   Tools-&gt;Build System-&gt;New Build System…</p>
 <p>   <img src="/2019/07/23/sublime-run/sublime_run1.png" alt="sublime_run1"></p>
-<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5><p>   <figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-attr">"env"</span>: &#123;<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>&#125;,</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>   <code>&quot;env&quot;: {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
-<p>   <code>[&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;]</code>这里的路径替换成python3的路径。</p>
+<h5 id="2-在里面输入以下内容："><a href="#2-在里面输入以下内容：" class="headerlink" title="2. 在里面输入以下内容："></a>2. 在里面输入以下内容：</h5>   <figure class="highlight json hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="hljs-attr">"env"</span>: {<span class="hljs-attr">"PYTHONIOENCODING"</span>: <span class="hljs-string">"utf8"</span>},</span><br><span class="line">    <span class="hljs-attr">"cmd"</span>: [<span class="hljs-string">"/Library/Frameworks/Python.framework/Versions/3.6/bin/python3"</span>, <span class="hljs-string">"-u"</span>, <span class="hljs-string">"$file"</span>],</span><br><span class="line">    <span class="hljs-attr">"file_regex"</span>: <span class="hljs-string">"^[ ]*File \"(...*?)\", line ([0-9]*)"</span>,</span><br><span class="line">    <span class="hljs-attr">"selector"</span>: <span class="hljs-string">"source.python"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>   <code>"env": {“PYTHONIOENCODING”: “utf8”}</code>的作用是为了避免中文报错。</p>
+<p>   <code>["/Library/Frameworks/Python.framework/Versions/3.6/bin/python3", "-u", "$file"]</code>这里的路径替换成python3的路径。</p>
 <p>   如果你不知道python3的路径在哪里，mac os请在终端输入which python3查看:</p>
-<p>   <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></table></figure></p>
+   <figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">which</span> python3</span><br></pre></td></tr></tbody></table></figure>
+
 <p>   比如我的路径是<code>/usr/local/bin/python3</code>，就将该路径复制过去。</p>
 <p>   然后保存文件名为<strong>python3.sublime-build</strong></p>
 <p>   最后，选择python3: Tools-&gt;Build System-&gt;python3</p>
-
+</body></html>
     
     </div>
     
@@ -203,8 +210,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -213,7 +218,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -222,7 +227,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -241,7 +246,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -377,7 +382,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -407,7 +414,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

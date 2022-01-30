@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>感知机原理及其代码实现 - 生如逆旅 一苇以航</title>
+<title>感知机原理及其代码实现 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,11 +19,13 @@
     <meta name="description" content="开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="感知机原理及其代码实现">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;07&#x2F;03&#x2F;perceptron&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2020/07/03/perceptron/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2020-08-10T01:33:05.360Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-02T16:18:31.000Z">
+<meta property="article:modified_time" content="2020-08-10T01:33:05.360Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
 
 
@@ -43,9 +45,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -62,8 +66,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -115,13 +118,13 @@
                     
                     
                     
-                    <a class="navbar-item" href="#1-感知机模型">&nbsp;&nbsp;<b>1. 感知机模型</b></a>
+                    <a class="navbar-item" href="#1-感知机模型">1&nbsp;&nbsp;<b>1. 感知机模型</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -142,7 +145,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-07-02T16:18:31.000Z" itemprop="datePublished">7月 3 2020</time>
+            
+                <time datetime="2020-07-02T16:18:31.000Z" itemprop="datePublished">7月 3 2020</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -160,11 +165,11 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。<a id="more"></a></p>
+        <html><head></head><body><p>开始更新《统计学习方法》的笔记理解以及代码实现系列。边学边记录吧，加油。<span id="more"></span></p>
 <p>感知机(perceptron)是二类分类的线形分类模型，其输入为实例的特征向量，输出为实例的类别，取<code>+1</code>和<code>-1</code>二值。感知机对应于输入空间（特征空间）中将实例划分为正负两类的分离超平面，属于<strong>判别模型</strong>。其旨在求出将训练数据进行线性划分的分离超平面，为此，导入基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。分为原始形式和对偶形式。感知机在1957年由Rosenblatt提出，是神经网络与支持向量机的基础。——摘自《统计学习方法》P35。</p>
 <h3 id="1-感知机模型"><a href="#1-感知机模型" class="headerlink" title="1. 感知机模型"></a>1. 感知机模型</h3><p>定义（感知机）：假设输入空间（特征空间）是 $\chi \subseteq \mathcal{R}^2$，输出空间是 $\mathcal{Y} = \lbrace+1, -1\rbrace$。输入$x \in \chi$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y \in \mathcal{Y}$表示实例的类别。由输入空间到输出空间的如下函数：<br>$$f(x) = sign(w \cdot x + b) \tag{1.1}$$<br>称为感知机。其中 $w$ 和 $b$ 为感知机模型参数，$w \in \mathcal{R}^n$ 叫作权值(weight)或权值向量(weight vector)，$b \in \mathcal{R}$ 叫作偏置(bias)，$w \cdot x + b$ 表示 $w$ 和 $x$ 的内积。$sign$ 是符号函数，即<br>$$f(x)=<br>\begin{cases}<br>0&amp; \text{x=0}\<br>1&amp; \text{x!=0}<br>\end{cases}$$</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好久之前挖的坑...找时间再填吧。</span><br></pre></td></tr></table></figure></p>
-
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">好久之前挖的坑...找时间再填吧。</span><br></pre></td></tr></tbody></table></figure>
+</body></html>
     
     </div>
     
@@ -187,8 +192,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -197,7 +200,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -206,7 +209,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -225,7 +228,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -361,7 +364,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -391,7 +396,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

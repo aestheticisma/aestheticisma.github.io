@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Python中如何定义二维数组 - 生如逆旅 一苇以航</title>
+<title>Python中如何定义二维数组 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,11 +19,13 @@
     <meta name="description" content="小知识点随手记录…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python中如何定义二维数组">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;11&#x2F;17&#x2F;py-cre-douarr&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/11/17/py-cre-douarr/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="小知识点随手记录…">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-11-17T07:16:56.732Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-17T06:56:50.000Z">
+<meta property="article:modified_time" content="2019-11-17T07:16:56.732Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
 
 
@@ -43,9 +45,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -62,8 +66,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -115,27 +118,27 @@
                     
                     
                     
-                    <a class="navbar-item" href="#Numpy">&nbsp;&nbsp;<b>Numpy</b></a>
+                    <a class="navbar-item" href="#Numpy">1&nbsp;&nbsp;<b>Numpy</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#List">&nbsp;&nbsp;<b>List</b></a>
+                    <a class="navbar-item" href="#List">2&nbsp;&nbsp;<b>List</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-错误方式">&nbsp;&nbsp;1. 错误方式</a>
+                    <a class="navbar-item" href="#1-错误方式">2.1&nbsp;&nbsp;1. 错误方式</a>
                     
                     
                     
-                    <a class="navbar-item" href="#2-正确方式">&nbsp;&nbsp;2. 正确方式</a>
+                    <a class="navbar-item" href="#2-正确方式">2.2&nbsp;&nbsp;2. 正确方式</a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -156,7 +159,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-11-17T06:56:50.000Z" itemprop="datePublished">11月 17 2019</time>
+            
+                <time datetime="2019-11-17T06:56:50.000Z" itemprop="datePublished">11月 17 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -174,12 +179,22 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>小知识点随手记录…<a id="more"></a></p>
-<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></table></figure><br>但如果不用numpy呢？</p>
+        <html><head></head><body><p>小知识点随手记录…<span id="more"></span></p>
+<h3 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h3><p>或许你会说用numpy中的数组不就可以了，想定义几维就几维，没错numpy确实方便很多。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> numpy</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = numpy.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],</span><br><span class="line">       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</span><br></pre></td></tr></tbody></table></figure>
+<p>但如果不用numpy呢？</p>
 <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>有人会说可以定义一个二维列表代替二维数组呗。</p>
-<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><br>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
-<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></table></figure><br>可以看到这样做就没有上面的错误出现了。</p>
-
+<h4 id="1-错误方式"><a href="#1-错误方式" class="headerlink" title="1. 错误方式"></a>1. 错误方式</h4><p>一开始一定会有人这样定义</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [[<span class="hljs-number">0</span>]*<span class="hljs-number">3</span>]*<span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>看是不是成功了，但当我们修改其中的某个值的时候，就会发现奇怪的地方</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>特么的怎么连<code>a[1][0]</code>也跟着变成1了，因为上面的定义方式等价于：</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list = [<span class="hljs-number">0</span>] * <span class="hljs-number">3</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a = [temp_list, temp_list]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>temp_list</span><br><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<p>所以这么用list定义二维数组的方法是错的，那么正确的方式应该怎么做呢？</p>
+<h4 id="2-正确方式"><a href="#2-正确方式" class="headerlink" title="2. 正确方式"></a>2. 正确方式</h4><p>我们可以用for来定义二维数组。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra = [ [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>)] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>)]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-meta">&gt;&gt;&gt; </span>arra</span><br><span class="line">[[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<p>可以看到这样做就没有上面的错误出现了。</p>
+</body></html>
     
     </div>
     
@@ -202,8 +217,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -212,7 +225,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -221,7 +234,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -240,7 +253,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -376,7 +389,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -406,7 +421,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

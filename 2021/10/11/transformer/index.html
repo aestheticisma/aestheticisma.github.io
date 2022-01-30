@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Transformer 解读 - 生如逆旅 一苇以航</title>
+<title>Transformer 解读 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -17,29 +17,31 @@
 
 
     <meta name="description" content="Transformer 是 Google Brain 发表在 NIPS2017 的论文《Attention is all you need》中提出的模型，随着深度学习的火热，基于Transformer的预训练模型已经席卷 NLP 领域，足见Transformer的重要性。 本文将按照这篇论文的顺序并结合一定的代码进行解读，但会调整论文中某些部分的顺序。">
-<meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer 解读">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2021/10/11/transformer/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="Transformer 是 Google Brain 发表在 NIPS2017 的论文《Attention is all you need》中提出的模型，随着深度学习的火热，基于Transformer的预训练模型已经席卷 NLP 领域，足见Transformer的重要性。 本文将按照这篇论文的顺序并结合一定的代码进行解读，但会调整论文中某些部分的顺序。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;Encoder-Decoder.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;scaledDotProductAttn.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;QKV.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;multiHead.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;multiHeadAttn.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;BN_LN.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;encoderLayer.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;scaledDotProductAttn.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;maskAttn1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;maskAttn2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer3.png">
-<meta property="og:updated_time" content="2021-10-14T10:06:25.167Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/transformer.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/Encoder-Decoder.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/scaledDotProductAttn.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/QKV.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/multiHead.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/multiHeadAttn.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/BN_LN.jpg">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/encoderLayer.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/scaledDotProductAttn.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/maskAttn1.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/maskAttn2.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/transformer2.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/10/11/transformer/transformer3.png">
+<meta property="article:published_time" content="2021-10-11T14:18:19.000Z">
+<meta property="article:modified_time" content="2021-10-14T10:06:25.167Z">
+<meta property="article:author" content="流岚">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;10&#x2F;11&#x2F;transformer&#x2F;transformer.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2021/10/11/transformer/transformer.png">
 
 
 
@@ -58,9 +60,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -77,8 +81,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -130,63 +133,63 @@
                     
                     
                     
-                    <a class="navbar-item" href="#0-初次见面">&nbsp;&nbsp;<b>0. 初次见面</b></a>
+                    <a class="navbar-item" href="#0-初次见面">1&nbsp;&nbsp;<b>0. 初次见面</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#1-Model-Architecture">&nbsp;&nbsp;<b>1. Model Architecture</b></a>
+                    <a class="navbar-item" href="#1-Model-Architecture">2&nbsp;&nbsp;<b>1. Model Architecture</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-1-Positional-Encoding">&nbsp;&nbsp;1.1 Positional Encoding</a>
+                    <a class="navbar-item" href="#1-1-Positional-Encoding">2.1&nbsp;&nbsp;1.1 Positional Encoding</a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-2-Scaled-Dot-Product-Attention">&nbsp;&nbsp;1.2 Scaled Dot-Product Attention</a>
+                    <a class="navbar-item" href="#1-2-Scaled-Dot-Product-Attention">2.2&nbsp;&nbsp;1.2 Scaled Dot-Product Attention</a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-3-Multi-Head-Attention">&nbsp;&nbsp;1.3 Multi-Head Attention</a>
+                    <a class="navbar-item" href="#1-3-Multi-Head-Attention">2.3&nbsp;&nbsp;1.3 Multi-Head Attention</a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-4-Position-wise-Feed-Forward-Networks">&nbsp;&nbsp;1.4 Position-wise Feed-Forward Networks</a>
+                    <a class="navbar-item" href="#1-4-Position-wise-Feed-Forward-Networks">2.4&nbsp;&nbsp;1.4 Position-wise Feed-Forward Networks</a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-5-Masked-Multi-Head-Attention">&nbsp;&nbsp;1.5 Masked Multi-Head Attention</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#2-Transformer-Encoder-一览">&nbsp;&nbsp;<b>2. Transformer Encoder 一览</b></a>
+                    <a class="navbar-item" href="#1-5-Masked-Multi-Head-Attention">2.5&nbsp;&nbsp;1.5 Masked Multi-Head Attention</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#3-Transformer-Decoder-一览">&nbsp;&nbsp;<b>3. Transformer Decoder 一览</b></a>
+                    <a class="navbar-item" href="#2-Transformer-Encoder-一览">3&nbsp;&nbsp;<b>2. Transformer Encoder 一览</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#4-The-END">&nbsp;&nbsp;<b>4. The END</b></a>
+                    <a class="navbar-item" href="#3-Transformer-Decoder-一览">4&nbsp;&nbsp;<b>3. Transformer Decoder 一览</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#Reference">&nbsp;&nbsp;<b>Reference</b></a>
+                    <a class="navbar-item" href="#4-The-END">5&nbsp;&nbsp;<b>4. The END</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Reference">6&nbsp;&nbsp;<b>Reference</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -207,7 +210,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2021-10-11T14:18:19.000Z" itemprop="datePublished">10月 11 2021</time>
+            
+                <time datetime="2021-10-11T14:18:19.000Z" itemprop="datePublished">10月 11 2021</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -225,20 +230,18 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p style="text-indent:2em">
+        <html><head></head><body><p style="text-indent:2em">
 Transformer 是 Google Brain 发表在 NIPS2017 的论文《Attention is all you need》中提出的模型，随着深度学习的火热，基于Transformer的预训练模型已经席卷 NLP 领域，足见Transformer的重要性。
-本文将按照这篇论文的顺序并结合一定的代码进行解读，但会调整论文中某些部分的顺序。<a id="more"></a>
+本文将按照这篇论文的顺序并结合一定的代码进行解读，但会调整论文中某些部分的顺序。<span id="more"></span>
 </p>
 
 <h3 id="0-初次见面"><a href="#0-初次见面" class="headerlink" title="0. 初次见面"></a>0. 初次见面</h3><p><img src="/2021/10/11/transformer/transformer.png" alt="transformer.png"></p>
 <p style="text-indent:2em">
 我们可以从上图看到Transformer的总体结构，可以发现，他与传统的神经网络如 RNN（LSTM、GRU）有着显著的不同。循环神经网络如RNN的训练是迭代的、串行的，必须要等到前一个 step 计算完成才会去计算下一个 step ，也就是后一个单元的运算依赖于前一个单元的输出，在这里不得不再次指出 RNN 的两个缺陷：
 
-<ul>
+</p><ul>
 <li>时间片的计算依赖问题，无法并行计算</li>
-<li>顺序计算的过程中信息会丢失，尽管 LSTM 等门机制在一定程度上缓解了长期依赖的问题，但在对于特别长期的依赖现象上，LSTM 依旧无能为力。</li></ul></p>
-
-
+<li>顺序计算的过程中信息会丢失，尽管 LSTM 等门机制在一定程度上缓解了长期依赖的问题，但在对于特别长期的依赖现象上，LSTM 依旧无能为力。</li></ul><p></p>
 
 <p style="text-indent:2em">
 而 Transformer 则完全摒弃了 RNN，转而采用自注意力机制（Self Attention Mechanism）来绘制输入和输出之间的全局依赖关系。
@@ -252,20 +255,16 @@ Transformer 是 Google Brain 发表在 NIPS2017 的论文《Attention is all you
 <p style="text-indent:2em">
 而 Encoder 和 Decoder 均是由第一张图中的 Encoder Layer 和 Decoder Layer 分别堆叠而成，原论文中使用 Stacks 来形容。Encoder Layer 和 Decoder Layer 又长得十分相似，主要分为以下几个部分，本文也按照如下顺序展开。
 
-<ul>
-<li>Model Architecture<ul>
+</p><ul>
+<li>Model Architecture</li>
 <li>Positional Encoding</li>
 <li>Scaled Dot-Product Attention</li>
 <li>Multi-Head Attention</li>
 <li>Position-wise Feed-Forward Networks</li>
 <li>Masked Multi-Head Attention</li>
-</ul>
-</li>
 <li>Transformer Encoder 一览</li>
 <li>Transformer Decoder 一览</li>
-<li>The END</li></ul></p>
-
-
+<li>The END</li></ul><p></p>
 
 <h3 id="1-Model-Architecture"><a href="#1-Model-Architecture" class="headerlink" title="1. Model Architecture"></a>1. Model Architecture</h3><h4 id="1-1-Positional-Encoding"><a href="#1-1-Positional-Encoding" class="headerlink" title="1.1 Positional Encoding"></a>1.1 Positional Encoding</h4><p style="text-indent:2em">
 前面提到，Transformer中没有递归和卷积操作，因此模型缺少了序列的顺序信息，为了让模型能够利用序列的顺序，必须加入一些序列中的有关于相对或绝对位置的信息。论文中最终使用了 "Positional Encoding"，并将其加入到 "the bottom of the encoder and decoder stacks"，即在 Word Embedding 处添加了一个位置嵌入，因此这个位置嵌入的维度是和词（字）向量的维度相同的。
@@ -282,11 +281,9 @@ $$ PE(pos, 2i+1) = cos(pos/1000^{2i/d_{model}}) $$
 位置嵌入在 $d_{model}$ 上随着维度序号的增大，周期变化越来越慢，从最初的 $2\pi$ 变化至 $10000*2\pi$，而每一个字或单词都会在整个 $d_{model}$ 维度上获得不同周期的 sin 与 cos 函数的取值组合，最终以此作为序列的位置信息加入至模型当中。
 位置向量在这里有两个作用：
 
-<ul>
+</p><ul>
 <li>决定当前词的位置</li>
-<li>计算在一个句子中不同的词之间的距离</li></ul></p>
-
-
+<li>计算在一个句子中不同的词之间的距离</li></ul><p></p>
 
 <p>我们实际画一下位置嵌入的图像，纵向观察下图，可以发现随着 $d_{model}$ 的序号的增大，位置嵌入的变化越来越平缓。</p>
 <iframe src="../../../../templates/PositionalEncoding.html" width="100%" height="600"></iframe>
@@ -303,19 +300,20 @@ $$ PE(pos, 2i+1) = cos(pos/1000^{2i/d_{model}}) $$
 <p style="text-indent:2em">
 通过上图可以看到，这个 Scaled Dot-Product Attention 主要进行以下几个操作
 
-<ul>
+</p><ul>
 <li>a. 将 Q 和 K 进行了矩阵乘法（注意 K 需要被转置）。</li>
 <li>b. 对 a 中结果进行了Scaled操作，其实也就是除以了 $\sqrt{d_{k}}$ 。</li>
 <li>c. 将 b 的结果执行了mask操作，这一步是为了防止下一步的 softmax 概率化了 Padding 等无用位置。</li>
 <li>d. 最后将 c 的结果乘以矩阵 V 即得到最后结果。</li>
 </ul>
-</p><p>总结下来，就是一个公式：$$ Attention(Q, K, V) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V $$<br>而至于为什么需要 Scaled，也就是为什么要执行 b 操作，原文是这么解释的： We suspect that for large values of<br>$d_{k}$, the dot products grow large in magnitude, pushing the softmax function into regions where it has<br>extremely small gradients. 也就是说，作者认为当维度很大时，点积的结果会很大，会导致 Softmax 的梯度很小，为了减轻这个影响，对点积进行缩放。当然，假设 Q 和 K 的均值为 0，方差为 1。它们的矩阵乘积将有均值为 0，方差为 $d_{k}$，因此使用$d_{k}$的平方根用于缩放。</p>
+<p></p><p>总结下来，就是一个公式：$$ Attention(Q, K, V) = softmax(\frac{QK^{T}}{\sqrt{d_{k}}})V $$<br>而至于为什么需要 Scaled，也就是为什么要执行 b 操作，原文是这么解释的： We suspect that for large values of<br>$d_{k}$, the dot products grow large in magnitude, pushing the softmax function into regions where it has<br>extremely small gradients. 也就是说，作者认为当维度很大时，点积的结果会很大，会导致 Softmax 的梯度很小，为了减轻这个影响，对点积进行缩放。当然，假设 Q 和 K 的均值为 0，方差为 1。它们的矩阵乘积将有均值为 0，方差为 $d_{k}$，因此使用$d_{k}$的平方根用于缩放。</p>
 <p></p>
 
-<p>关于为什么要 Scaled 的数学层面的理解请看 <a href="https://www.zhihu.com/question/339723385/answer/782509914" target="_blank" rel="noopener">这里</a></p>
+<p>关于为什么要 Scaled 的数学层面的理解请看 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/339723385/answer/782509914">这里</a></p>
 <hr>
 <p>不多说，放代码！</p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">假设 d_k 已定义</span></span><br><span class="line"><span class="hljs-string">假定 d_q == d_k == d_v</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScaledDotProductAttention</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(ScaledDotProductAttention, self).__init__()</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, Q, K, V, attn_mask)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        Q: [batch_size, n_heads, len_q, d_k]</span></span><br><span class="line"><span class="hljs-string">        K: [batch_size, n_heads, len_k, d_k]</span></span><br><span class="line"><span class="hljs-string">        V: [batch_size, n_heads, len_v(=len_k), d_v]</span></span><br><span class="line"><span class="hljs-string">        attn_mask: [batch_size, n_heads, seq_len, seq_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        scores = torch.matmul(Q, K.transpose(<span class="hljs-number">-1</span>, <span class="hljs-number">-2</span>)) / np.sqrt(d_k)</span><br><span class="line">        scores.masked_fill_(attn_mask, <span class="hljs-number">-1e9</span>)</span><br><span class="line">        </span><br><span class="line">        attn = nn.Softmax(dim = <span class="hljs-number">-1</span>)(scores)</span><br><span class="line">        context = torch.matmul(attn, V) <span class="hljs-comment"># [batch_size, n_heads, len_q, d_v]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> context, attn</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">假设 d_k 已定义</span></span><br><span class="line"><span class="hljs-string">假定 d_q == d_k == d_v</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScaledDotProductAttention</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(ScaledDotProductAttention, self).__init__()</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, Q, K, V, attn_mask</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        Q: [batch_size, n_heads, len_q, d_k]</span></span><br><span class="line"><span class="hljs-string">        K: [batch_size, n_heads, len_k, d_k]</span></span><br><span class="line"><span class="hljs-string">        V: [batch_size, n_heads, len_v(=len_k), d_v]</span></span><br><span class="line"><span class="hljs-string">        attn_mask: [batch_size, n_heads, seq_len, seq_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        scores = torch.matmul(Q, K.transpose(-<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>)) / np.sqrt(d_k)</span><br><span class="line">        scores.masked_fill_(attn_mask, -<span class="hljs-number">1e9</span>)</span><br><span class="line">        </span><br><span class="line">        attn = nn.Softmax(dim = -<span class="hljs-number">1</span>)(scores)</span><br><span class="line">        context = torch.matmul(attn, V) <span class="hljs-comment"># [batch_size, n_heads, len_q, d_v]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> context, attn</span><br></pre></td></tr></tbody></table></figure>
+
 <p style="text-indent:2em">
 在上述代码的第17行，我们可以发现执行了一个 Mask 操作，将 scores 矩阵的对应位置变成了 -1e9，这里解释一下：因为我们通常训练是一个batch送入模型的，因此需要保证这个batch中的例如每一句话需要等长，所以需要给每一句话 Padding 到设定的最大长度，而用于 Padding 的占位符是没有任何文本意义的，如果不加以操作就将 scores 进行 Softmax，就会让没有意义的 Padding 部分参与了 Softmax 运算，Softmax函数为 $\sigma(z_{i}) = \frac{e^{z_{i}}}{\sum_{j=1}^{K}e^{z_{i}}}$，我们可以透过公式看到，$e^{0}$ 是有值的。为了解决这个问题，就需要给原先 Padding 的部分加上一个很大的负数偏置，使得 Padding 位置经过 Softmax 为 0。
 </p>
@@ -360,14 +358,16 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 
 <hr>
 <p>继续，上代码！</p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultiHeadAttention</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(MultiHeadAttention, self).__init__()</span><br><span class="line">        self.W_Q = nn.Linear(d_model, d_k * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.W_K = nn.Linear(d_model, d_k * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.W_V = nn.Linear(d_model, d_v * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.fc = nn.Linear(n_heads * d_v, d_model, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, input_Q, input_K, input_V, attn_mask)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        input_Q: [batch_size, len_q, d_model]</span></span><br><span class="line"><span class="hljs-string">        input_K: [batch_size, len_k, d_model]</span></span><br><span class="line"><span class="hljs-string">        input_V: [batch_size, len_v(=len_k), d_model]</span></span><br><span class="line"><span class="hljs-string">        attn_mask: [batch_size, seq_len, seq_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        residual, batch_size = input_Q, input_Q.size(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-comment"># (B, S, D) -proj-&gt; (B, S, D_new) -split-&gt; (B, S, H, W) -trans-&gt; (B, H, S, W)</span></span><br><span class="line">        Q = self.W_Q(input_Q).view(batch_size, <span class="hljs-number">-1</span>, n_heads, d_k).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># Q: [batch_size, n_heads, len_q, d_k]</span></span><br><span class="line">        K = self.W_K(input_K).view(batch_size, <span class="hljs-number">-1</span>, n_heads, d_k).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># K: [batch_size, n_heads, len_k, d_k]</span></span><br><span class="line">        V = self.W_V(input_V).view(batch_size, <span class="hljs-number">-1</span>, n_heads, d_v).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># V: [batch_size, n_heads, len_v(=len_k), d_v]</span></span><br><span class="line"></span><br><span class="line">        attn_mask = attn_mask.unsqueeze(<span class="hljs-number">1</span>).repeat(<span class="hljs-number">1</span>, n_heads, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># attn_mask : [batch_size, n_heads, seq_len, seq_len]</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># context: [batch_size, n_heads, len_q, d_v], attn: [batch_size, n_heads, len_q, len_k]</span></span><br><span class="line">        context, attn = ScaledDotProductAttention()(Q, K, V, attn_mask)</span><br><span class="line">        context = context.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).reshape(batch_size, <span class="hljs-number">-1</span>, n_heads * d_v) <span class="hljs-comment"># context: [batch_size, len_q, n_heads * d_v]</span></span><br><span class="line">        output = self.fc(context) <span class="hljs-comment"># [batch_size, len_q, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> nn.LayerNorm(d_model).cuda()(output + residual), attn</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultiHeadAttention</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(MultiHeadAttention, self).__init__()</span><br><span class="line">        self.W_Q = nn.Linear(d_model, d_k * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.W_K = nn.Linear(d_model, d_k * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.W_V = nn.Linear(d_model, d_v * n_heads, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">        self.fc = nn.Linear(n_heads * d_v, d_model, bias = <span class="hljs-literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, input_Q, input_K, input_V, attn_mask</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        input_Q: [batch_size, len_q, d_model]</span></span><br><span class="line"><span class="hljs-string">        input_K: [batch_size, len_k, d_model]</span></span><br><span class="line"><span class="hljs-string">        input_V: [batch_size, len_v(=len_k), d_model]</span></span><br><span class="line"><span class="hljs-string">        attn_mask: [batch_size, seq_len, seq_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        residual, batch_size = input_Q, input_Q.size(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-comment"># (B, S, D) -proj-&gt; (B, S, D_new) -split-&gt; (B, S, H, W) -trans-&gt; (B, H, S, W)</span></span><br><span class="line">        Q = self.W_Q(input_Q).view(batch_size, -<span class="hljs-number">1</span>, n_heads, d_k).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># Q: [batch_size, n_heads, len_q, d_k]</span></span><br><span class="line">        K = self.W_K(input_K).view(batch_size, -<span class="hljs-number">1</span>, n_heads, d_k).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># K: [batch_size, n_heads, len_k, d_k]</span></span><br><span class="line">        V = self.W_V(input_V).view(batch_size, -<span class="hljs-number">1</span>, n_heads, d_v).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># V: [batch_size, n_heads, len_v(=len_k), d_v]</span></span><br><span class="line"></span><br><span class="line">        attn_mask = attn_mask.unsqueeze(<span class="hljs-number">1</span>).repeat(<span class="hljs-number">1</span>, n_heads, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># attn_mask : [batch_size, n_heads, seq_len, seq_len]</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># context: [batch_size, n_heads, len_q, d_v], attn: [batch_size, n_heads, len_q, len_k]</span></span><br><span class="line">        context, attn = ScaledDotProductAttention()(Q, K, V, attn_mask)</span><br><span class="line">        context = context.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).reshape(batch_size, -<span class="hljs-number">1</span>, n_heads * d_v) <span class="hljs-comment"># context: [batch_size, len_q, n_heads * d_v]</span></span><br><span class="line">        output = self.fc(context) <span class="hljs-comment"># [batch_size, len_q, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> nn.LayerNorm(d_model).cuda()(output + residual), attn</span><br></pre></td></tr></tbody></table></figure>
+
 <h4 id="1-4-Position-wise-Feed-Forward-Networks"><a href="#1-4-Position-wise-Feed-Forward-Networks" class="headerlink" title="1.4 Position-wise Feed-Forward Networks"></a>1.4 Position-wise Feed-Forward Networks</h4><p style="text-indent:2em">
     这一部分就显得比较简单了，总共包含两个线形层外加一个ReLU激活层，具体公式如下所示：
     $$ FFN(x) = max(0, xW_{1} + b_{1})W_{2} + b_{2} $$
     首先上一阶段的输出做一个线形变换，再经过一个ReLU激活，最后再经过一个线形变换。这就是这一部分的所有操作，具体代码如下（在这里将后续的残差连接与LN也放在一起实现）：
 </p>
 
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PoswiseFeedForwardNet</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(PoswiseFeedForwardNet, self).__init__()</span><br><span class="line">        self.fc = nn.Sequential(</span><br><span class="line">            nn.Linear(d_model, d_ff, bias=<span class="hljs-literal">False</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(d_ff, d_model, bias=<span class="hljs-literal">False</span>)</span><br><span class="line">        )</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, inputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        inputs: [batch_size, seq_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        residual = inputs</span><br><span class="line">        output = self.fc(inputs)</span><br><span class="line">        <span class="hljs-keyword">return</span> nn.LayerNorm(d_model).cuda()(output + residual) <span class="hljs-comment"># [batch_size, seq_len, d_model]</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PoswiseFeedForwardNet</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(PoswiseFeedForwardNet, self).__init__()</span><br><span class="line">        self.fc = nn.Sequential(</span><br><span class="line">            nn.Linear(d_model, d_ff, bias=<span class="hljs-literal">False</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(d_ff, d_model, bias=<span class="hljs-literal">False</span>)</span><br><span class="line">        )</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, inputs</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        inputs: [batch_size, seq_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        residual = inputs</span><br><span class="line">        output = self.fc(inputs)</span><br><span class="line">        <span class="hljs-keyword">return</span> nn.LayerNorm(d_model).cuda()(output + residual) <span class="hljs-comment"># [batch_size, seq_len, d_model]</span></span><br></pre></td></tr></tbody></table></figure>
+
 <hr>
 <p>这部分最后，上一个 Encoder Layer模块的细节图：<br><img src="/2021/10/11/transformer/encoderLayer.png" alt="encoderLayer"></p>
 <h4 id="1-5-Masked-Multi-Head-Attention"><a href="#1-5-Masked-Multi-Head-Attention" class="headerlink" title="1.5 Masked Multi-Head Attention"></a>1.5 Masked Multi-Head Attention</h4><p style="text-indent:2em">
@@ -414,29 +414,34 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 </li>
 </ol>
 <hr>
-<p>Show The Code!<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderLayer</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(EncoderLayer, self).__init__()</span><br><span class="line">        self.enc_self_attn = MultiHeadAttention()</span><br><span class="line">        self.pos_ffn = PoswiseFeedForwardNet()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, enc_inputs, enc_self_attn_mask)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        enc_self_attn_mask: [batch_size, src_len, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], attn: [batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, attn = self.enc_self_attn(enc_inputs, enc_inputs, enc_inputs, enc_self_attn_mask) <span class="hljs-comment"># enc_inputs to same Q,K,V</span></span><br><span class="line">        enc_outputs = self.pos_ffn(enc_outputs) <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> enc_outputs, attn</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Encoder</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(Encoder, self).__init__()</span><br><span class="line">        self.src_emb = nn.Embedding(src_vocab_size, d_model)</span><br><span class="line">        self.pos_emb = PositionalEncoding(d_model)</span><br><span class="line">        self.layers = nn.ModuleList([EncoderLayer() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n_layers)])</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, enc_inputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        enc_outputs = self.src_emb(enc_inputs) <span class="hljs-comment"># [batch_size, src_len, d_model]</span></span><br><span class="line">        enc_outputs = self.pos_emb(enc_outputs.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># [batch_size, src_len, d_model]</span></span><br><span class="line">        enc_self_attn_mask = get_attn_pad_mask(enc_inputs, enc_inputs) <span class="hljs-comment"># [batch_size, src_len, src_len]</span></span><br><span class="line">        enc_self_attns = []</span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:</span><br><span class="line">            <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attn: [batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">            enc_outputs, enc_self_attn = layer(enc_outputs, enc_self_attn_mask)</span><br><span class="line">            enc_self_attns.append(enc_self_attn)</span><br><span class="line">        <span class="hljs-keyword">return</span> enc_outputs, enc_self_attns</span><br></pre></td></tr></table></figure></p>
+<p>Show The Code!</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EncoderLayer</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(EncoderLayer, self).__init__()</span><br><span class="line">        self.enc_self_attn = MultiHeadAttention()</span><br><span class="line">        self.pos_ffn = PoswiseFeedForwardNet()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, enc_inputs, enc_self_attn_mask</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        enc_self_attn_mask: [batch_size, src_len, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], attn: [batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, attn = self.enc_self_attn(enc_inputs, enc_inputs, enc_inputs, enc_self_attn_mask) <span class="hljs-comment"># enc_inputs to same Q,K,V</span></span><br><span class="line">        enc_outputs = self.pos_ffn(enc_outputs) <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> enc_outputs, attn</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Encoder</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(Encoder, self).__init__()</span><br><span class="line">        self.src_emb = nn.Embedding(src_vocab_size, d_model)</span><br><span class="line">        self.pos_emb = PositionalEncoding(d_model)</span><br><span class="line">        self.layers = nn.ModuleList([EncoderLayer() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers)])</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, enc_inputs</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        enc_outputs = self.src_emb(enc_inputs) <span class="hljs-comment"># [batch_size, src_len, d_model]</span></span><br><span class="line">        enc_outputs = self.pos_emb(enc_outputs.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># [batch_size, src_len, d_model]</span></span><br><span class="line">        enc_self_attn_mask = get_attn_pad_mask(enc_inputs, enc_inputs) <span class="hljs-comment"># [batch_size, src_len, src_len]</span></span><br><span class="line">        enc_self_attns = []</span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:</span><br><span class="line">            <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attn: [batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">            enc_outputs, enc_self_attn = layer(enc_outputs, enc_self_attn_mask)</span><br><span class="line">            enc_self_attns.append(enc_self_attn)</span><br><span class="line">        <span class="hljs-keyword">return</span> enc_outputs, enc_self_attns</span><br></pre></td></tr></tbody></table></figure>
+
 <h3 id="3-Transformer-Decoder-一览"><a href="#3-Transformer-Decoder-一览" class="headerlink" title="3. Transformer Decoder 一览"></a>3. Transformer Decoder 一览</h3><p>我们先上图，毕竟 Decoder Layer 部分还是比 Encoder Layer部分多了一点东西的！<br><img src="/2021/10/11/transformer/transformer2.png" alt="transformer.png"></p>
 <p style="text-indent:2em">
     我们把用红线框起来的部分叫做 Decoder self attention，而用蓝虚线框起来的部分区分为 Encoder-Decoder attention。在前面我们已经介绍过了 Decoder self attention 部分，它仅仅是多了一个上三角矩阵用于mask掉未知的权重信息；而后者与前述的 Self-Attention 并无不同，唯一的区别在于其中产生 Q 的输入来自于其前面的 Decoder self attention 部分，而 产生 K 和 V 的输入来自于最后一个 Encoder Layer 的输出，也就是整个 Encoder 的输出。
 </p>
 
 <hr>
-<p>Show The Code!<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DecoderLayer</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(DecoderLayer, self).__init__()</span><br><span class="line">        self.dec_self_attn = MultiHeadAttention()</span><br><span class="line">        self.dec_enc_attn = MultiHeadAttention()</span><br><span class="line">        self.pos_ffn = PoswiseFeedForwardNet()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, dec_inputs, enc_outputs, dec_self_attn_mask, dec_enc_attn_mask)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        enc_outputs: [batch_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        dec_self_attn_mask: [batch_size, tgt_len, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        dec_enc_attn_mask: [batch_size, tgt_len, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_self_attn: [batch_size, n_heads, tgt_len, tgt_len]</span></span><br><span class="line">        dec_outputs, dec_self_attn = self.dec_self_attn(dec_inputs, dec_inputs, dec_inputs, dec_self_attn_mask)</span><br><span class="line">        <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_enc_attn: [batch_size, h_heads, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_enc_attn = self.dec_enc_attn(dec_outputs, enc_outputs, enc_outputs, dec_enc_attn_mask)</span><br><span class="line">        dec_outputs = self.pos_ffn(dec_outputs) <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_outputs, dec_self_attn, dec_enc_attn</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Decoder</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(Decoder, self).__init__()</span><br><span class="line">        self.tgt_emb = nn.Embedding(tgt_vocab_size, d_model)</span><br><span class="line">        self.pos_emb = PositionalEncoding(d_model)</span><br><span class="line">        self.layers = nn.ModuleList([DecoderLayer() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n_layers)])</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, dec_inputs, enc_inputs, enc_outputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        enc_intpus: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        enc_outputs: [batsh_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        dec_outputs = self.tgt_emb(dec_inputs) <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        dec_outputs = self.pos_emb(dec_outputs.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).cuda() <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        dec_self_attn_pad_mask = get_attn_pad_mask(dec_inputs, dec_inputs).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line">        dec_self_attn_subsequence_mask = get_attn_subsequence_mask(dec_inputs).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line">        dec_self_attn_mask = torch.gt((dec_self_attn_pad_mask + dec_self_attn_subsequence_mask), <span class="hljs-number">0</span>).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line"></span><br><span class="line">        dec_enc_attn_mask = get_attn_pad_mask(dec_inputs, enc_inputs) <span class="hljs-comment"># [batc_size, tgt_len, src_len]</span></span><br><span class="line"></span><br><span class="line">        dec_self_attns, dec_enc_attns = [], []</span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:</span><br><span class="line">            <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_self_attn: [batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [batch_size, h_heads, tgt_len, src_len]</span></span><br><span class="line">            dec_outputs, dec_self_attn, dec_enc_attn = layer(dec_outputs, enc_outputs, dec_self_attn_mask, dec_enc_attn_mask)</span><br><span class="line">            dec_self_attns.append(dec_self_attn)</span><br><span class="line">            dec_enc_attns.append(dec_enc_attn)</span><br><span class="line">        <span class="hljs-keyword">return</span> dec_outputs, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></table></figure></p>
+<p>Show The Code!</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DecoderLayer</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(DecoderLayer, self).__init__()</span><br><span class="line">        self.dec_self_attn = MultiHeadAttention()</span><br><span class="line">        self.dec_enc_attn = MultiHeadAttention()</span><br><span class="line">        self.pos_ffn = PoswiseFeedForwardNet()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, dec_inputs, enc_outputs, dec_self_attn_mask, dec_enc_attn_mask</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        enc_outputs: [batch_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        dec_self_attn_mask: [batch_size, tgt_len, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        dec_enc_attn_mask: [batch_size, tgt_len, src_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_self_attn: [batch_size, n_heads, tgt_len, tgt_len]</span></span><br><span class="line">        dec_outputs, dec_self_attn = self.dec_self_attn(dec_inputs, dec_inputs, dec_inputs, dec_self_attn_mask)</span><br><span class="line">        <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_enc_attn: [batch_size, h_heads, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_enc_attn = self.dec_enc_attn(dec_outputs, enc_outputs, enc_outputs, dec_enc_attn_mask)</span><br><span class="line">        dec_outputs = self.pos_ffn(dec_outputs) <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_outputs, dec_self_attn, dec_enc_attn</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Decoder</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(Decoder, self).__init__()</span><br><span class="line">        self.tgt_emb = nn.Embedding(tgt_vocab_size, d_model)</span><br><span class="line">        self.pos_emb = PositionalEncoding(d_model)</span><br><span class="line">        self.layers = nn.ModuleList([DecoderLayer() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers)])</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, dec_inputs, enc_inputs, enc_outputs</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        enc_intpus: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        enc_outputs: [batsh_size, src_len, d_model]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        dec_outputs = self.tgt_emb(dec_inputs) <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        dec_outputs = self.pos_emb(dec_outputs.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)).transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).cuda() <span class="hljs-comment"># [batch_size, tgt_len, d_model]</span></span><br><span class="line">        dec_self_attn_pad_mask = get_attn_pad_mask(dec_inputs, dec_inputs).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line">        dec_self_attn_subsequence_mask = get_attn_subsequence_mask(dec_inputs).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line">        dec_self_attn_mask = torch.gt((dec_self_attn_pad_mask + dec_self_attn_subsequence_mask), <span class="hljs-number">0</span>).cuda() <span class="hljs-comment"># [batch_size, tgt_len, tgt_len]</span></span><br><span class="line"></span><br><span class="line">        dec_enc_attn_mask = get_attn_pad_mask(dec_inputs, enc_inputs) <span class="hljs-comment"># [batc_size, tgt_len, src_len]</span></span><br><span class="line"></span><br><span class="line">        dec_self_attns, dec_enc_attns = [], []</span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:</span><br><span class="line">            <span class="hljs-comment"># dec_outputs: [batch_size, tgt_len, d_model], dec_self_attn: [batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [batch_size, h_heads, tgt_len, src_len]</span></span><br><span class="line">            dec_outputs, dec_self_attn, dec_enc_attn = layer(dec_outputs, enc_outputs, dec_self_attn_mask, dec_enc_attn_mask)</span><br><span class="line">            dec_self_attns.append(dec_self_attn)</span><br><span class="line">            dec_enc_attns.append(dec_enc_attn)</span><br><span class="line">        <span class="hljs-keyword">return</span> dec_outputs, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></tbody></table></figure>
+
 <h3 id="4-The-END"><a href="#4-The-END" class="headerlink" title="4. The END"></a>4. The END</h3><p><img src="/2021/10/11/transformer/transformer3.png" alt="transformer.png"></p>
 <p style="text-indent:2em">
 说来惭愧，最初去了解 Transformer 的时候，我总是有个疑惑，每个子单元结构我都知道了，但是它们是怎么级联起来的呢？看完上图，就会大致明白了，一定要注意是 Encoder 的最后一个 Layer 的输出会送入到 Decoder 的每一个 Layer 中，作为在 Encoder-Decoder attention 部分用于产生 K、V 矩阵。
 </p>
 
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Transformer</span><span class="hljs-params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        super(Transformer, self).__init__()</span><br><span class="line">        self.encoder = Encoder().cuda()</span><br><span class="line">        self.decoder = Decoder().cuda()</span><br><span class="line">        self.projection = nn.Linear(d_model, tgt_vocab_size, bias=<span class="hljs-literal">False</span>).cuda()</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, enc_inputs, dec_inputs)</span>:</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># tensor to store decoder outputs</span></span><br><span class="line">        <span class="hljs-comment"># outputs = torch.zeros(batch_size, tgt_len, tgt_vocab_size).to(self.device)</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attns: [n_layers, batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, enc_self_attns = self.encoder(enc_inputs)</span><br><span class="line">        <span class="hljs-comment"># dec_outpus: [batch_size, tgt_len, d_model], dec_self_attns: [n_layers, batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [n_layers, batch_size, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_self_attns, dec_enc_attns = self.decoder(dec_inputs, enc_inputs, enc_outputs)</span><br><span class="line">        dec_logits = self.projection(dec_outputs) <span class="hljs-comment"># dec_logits: [batch_size, tgt_len, tgt_vocab_size]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_logits.view(<span class="hljs-number">-1</span>, dec_logits.size(<span class="hljs-number">-1</span>)), enc_self_attns, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></table></figure></p>
-<p>完整代码：<a href="https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb" target="_blank" rel="noopener">https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb</a></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Transformer</span>(<span class="hljs-params">nn.Module</span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span></span><br><span class="line">        <span class="hljs-built_in">super</span>(Transformer, self).__init__()</span><br><span class="line">        self.encoder = Encoder().cuda()</span><br><span class="line">        self.decoder = Decoder().cuda()</span><br><span class="line">        self.projection = nn.Linear(d_model, tgt_vocab_size, bias=<span class="hljs-literal">False</span>).cuda()</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, enc_inputs, dec_inputs</span>):</span></span><br><span class="line">        <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">        enc_inputs: [batch_size, src_len]</span></span><br><span class="line"><span class="hljs-string">        dec_inputs: [batch_size, tgt_len]</span></span><br><span class="line"><span class="hljs-string">        '''</span></span><br><span class="line">        <span class="hljs-comment"># tensor to store decoder outputs</span></span><br><span class="line">        <span class="hljs-comment"># outputs = torch.zeros(batch_size, tgt_len, tgt_vocab_size).to(self.device)</span></span><br><span class="line">        </span><br><span class="line">        <span class="hljs-comment"># enc_outputs: [batch_size, src_len, d_model], enc_self_attns: [n_layers, batch_size, n_heads, src_len, src_len]</span></span><br><span class="line">        enc_outputs, enc_self_attns = self.encoder(enc_inputs)</span><br><span class="line">        <span class="hljs-comment"># dec_outpus: [batch_size, tgt_len, d_model], dec_self_attns: [n_layers, batch_size, n_heads, tgt_len, tgt_len], dec_enc_attn: [n_layers, batch_size, tgt_len, src_len]</span></span><br><span class="line">        dec_outputs, dec_self_attns, dec_enc_attns = self.decoder(dec_inputs, enc_inputs, enc_outputs)</span><br><span class="line">        dec_logits = self.projection(dec_outputs) <span class="hljs-comment"># dec_logits: [batch_size, tgt_len, tgt_vocab_size]</span></span><br><span class="line">        <span class="hljs-keyword">return</span> dec_logits.view(-<span class="hljs-number">1</span>, dec_logits.size(-<span class="hljs-number">1</span>)), enc_self_attns, dec_self_attns, dec_enc_attns</span><br></pre></td></tr></tbody></table></figure>
+
+<p>完整代码：<a target="_blank" rel="noopener" href="https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb">https://github.com/aestheticisma/iWantOffer/blob/main/Transformer/Transformer.ipynb</a></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a href="https://wmathor.com/index.php/archives/1438/" target="_blank" rel="noopener">https://wmathor.com/index.php/archives/1438/</a></li>
-<li><a href="https://www.cnblogs.com/zingp/p/11696111.html" target="_blank" rel="noopener">https://www.cnblogs.com/zingp/p/11696111.html</a></li>
-<li><a href="https://www.zhihu.com/question/347678607" target="_blank" rel="noopener">https://www.zhihu.com/question/347678607</a></li>
-<li><a href="https://colab.research.google.com/drive/15yTJSjZpYuIWzL9hSbyThHLer4iaJjBD?usp=sharing#scrollTo=g831xANXh2HY" target="_blank" rel="noopener">https://colab.research.google.com/drive/15yTJSjZpYuIWzL9hSbyThHLer4iaJjBD?usp=sharing#scrollTo=g831xANXh2HY</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/363466672" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/363466672</a></li>
-<li><a href="https://www.zhihu.com/question/339723385/answer/782509914" target="_blank" rel="noopener">https://www.zhihu.com/question/339723385/answer/782509914</a></li>
-<li><a href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3" target="_blank" rel="noopener">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></li>
+<li><a target="_blank" rel="noopener" href="https://wmathor.com/index.php/archives/1438/">https://wmathor.com/index.php/archives/1438/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zingp/p/11696111.html">https://www.cnblogs.com/zingp/p/11696111.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/347678607">https://www.zhihu.com/question/347678607</a></li>
+<li><a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/15yTJSjZpYuIWzL9hSbyThHLer4iaJjBD?usp=sharing#scrollTo=g831xANXh2HY">https://colab.research.google.com/drive/15yTJSjZpYuIWzL9hSbyThHLer4iaJjBD?usp=sharing#scrollTo=g831xANXh2HY</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363466672">https://zhuanlan.zhihu.com/p/363466672</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/339723385/answer/782509914">https://www.zhihu.com/question/339723385/answer/782509914</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></li>
 </ul>
 <style>
     img {
@@ -447,7 +452,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
         text-align: center;
     }
 </style>
-
+</body></html>
     
     </div>
     
@@ -476,8 +481,6 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -486,7 +489,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -495,7 +498,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -514,7 +517,7 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -650,7 +653,9 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -680,7 +685,9 @@ $$ NEXT = X_{embedding} + SelfAttention(Q, K, V) $$
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

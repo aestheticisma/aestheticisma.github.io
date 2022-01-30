@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>关于CUDA Toolkit安装失败解决措施总结（Ubuntu server 20.04.2） - 生如逆旅 一苇以航</title>
+<title>关于CUDA Toolkit安装失败解决措施总结（Ubuntu server 20.04.2） - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -17,20 +17,22 @@
 
 
     <meta name="description" content="在ubuntu server上安装nvidia驱动以及cuda是件很令人头疼的事，但幸运的是，nvidia官方推出了CUDA Toolkit安装包，我们可以使用它直接安装显卡驱动和cuda toolkit工具包。但不那么幸运的是，这样做在一些服务器上是成功的，但在另一些服务器上又是失败的。这不禁引发了我的一些思考。经过了半个晚上的问题排查，共总结了以下几个问题来源。如果你也遇到了这个问题，希望这篇">
-<meta name="keywords" content="Daily Essays">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于CUDA Toolkit安装失败解决措施总结（Ubuntu server 20.04.2）">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="在ubuntu server上安装nvidia驱动以及cuda是件很令人头疼的事，但幸运的是，nvidia官方推出了CUDA Toolkit安装包，我们可以使用它直接安装显卡驱动和cuda toolkit工具包。但不那么幸运的是，这样做在一些服务器上是成功的，但在另一些服务器上又是失败的。这不禁引发了我的一些思考。经过了半个晚上的问题排查，共总结了以下几个问题来源。如果你也遇到了这个问题，希望这篇">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;downCudaToolkit.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;cudaInstall1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;cudaInstall2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;systemNetwork.png">
-<meta property="og:updated_time" content="2021-10-11T03:18:04.783Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/downCudaToolkit.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/cudaInstall1.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/cudaInstall2.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/systemNetwork.png">
+<meta property="article:published_time" content="2021-06-28T16:35:17.000Z">
+<meta property="article:modified_time" content="2021-10-11T03:18:04.783Z">
+<meta property="article:author" content="流岚">
+<meta property="article:tag" content="Daily Essays">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;06&#x2F;29&#x2F;cudaToolkitInstallProblem&#x2F;downCudaToolkit.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2021/06/29/cudaToolkitInstallProblem/downCudaToolkit.png">
 
 
 
@@ -49,9 +51,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -68,8 +72,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -121,53 +124,53 @@
                     
                     
                     
-                    <a class="navbar-item" href="#0-CUDA-Toolkit-通常”食用”方法">&nbsp;&nbsp;<b>0. CUDA Toolkit 通常”食用”方法</b></a>
+                    <a class="navbar-item" href="#0-CUDA-Toolkit-通常”食用”方法">1&nbsp;&nbsp;<b>0. CUDA Toolkit 通常”食用”方法</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#1-系统内核版本与驱动所需不一致">&nbsp;&nbsp;<b>1. 系统内核版本与驱动所需不一致</b></a>
+                    <a class="navbar-item" href="#1-系统内核版本与驱动所需不一致">2&nbsp;&nbsp;<b>1. 系统内核版本与驱动所需不一致</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#切换内核方法如下：">&nbsp;&nbsp;切换内核方法如下：</a>
+                    <a class="navbar-item" href="#切换内核方法如下：">2.1&nbsp;&nbsp;切换内核方法如下：</a>
                     
                     
                     
-                    <a class="navbar-item" href="#安装Linux内核">&nbsp;&nbsp;安装Linux内核</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#2-你缺一些环境依赖呀！">&nbsp;&nbsp;<b>2. 你缺一些环境依赖呀！</b></a>
+                    <a class="navbar-item" href="#安装Linux内核">2.2&nbsp;&nbsp;安装Linux内核</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#3-一点点注意事项">&nbsp;&nbsp;<b>3. 一点点注意事项</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#（1）突然-server系统有了桌面？">&nbsp;&nbsp;（1）突然 server系统有了桌面？</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#（2）哎，我开机时间怎么这么长？">&nbsp;&nbsp;（2）哎，我开机时间怎么这么长？</a>
+                    <a class="navbar-item" href="#2-你缺一些环境依赖呀！">3&nbsp;&nbsp;<b>2. 你缺一些环境依赖呀！</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#4-写在最后">&nbsp;&nbsp;<b>4. 写在最后</b></a>
+                    <a class="navbar-item" href="#3-一点点注意事项">4&nbsp;&nbsp;<b>3. 一点点注意事项</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#（1）突然-server系统有了桌面？">4.1&nbsp;&nbsp;（1）突然 server系统有了桌面？</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#（2）哎，我开机时间怎么这么长？">4.2&nbsp;&nbsp;（2）哎，我开机时间怎么这么长？</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#4-写在最后">5&nbsp;&nbsp;<b>4. 写在最后</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -188,7 +191,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2021-06-28T16:35:17.000Z" itemprop="datePublished">6月 29 2021</time>
+            
+                <time datetime="2021-06-28T16:35:17.000Z" itemprop="datePublished">6月 29 2021</time>
+            
         </span>
         
         
@@ -201,10 +206,11 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>在ubuntu server上安装nvidia驱动以及cuda是件很令人头疼的事，但幸运的是，nvidia官方推出了CUDA Toolkit安装包，我们可以使用它直接安装显卡驱动和cuda toolkit工具包。但不那么幸运的是，这样做在一些服务器上是成功的，但在另一些服务器上又是失败的。这不禁引发了我的一些思考。经过了半个晚上的问题排查，共总结了以下几个问题来源。如果你也遇到了这个问题，希望这篇文章能帮助到您。<a id="more"></a></p>
-<h3 id="0-CUDA-Toolkit-通常”食用”方法"><a href="#0-CUDA-Toolkit-通常”食用”方法" class="headerlink" title="0. CUDA Toolkit 通常”食用”方法"></a>0. CUDA Toolkit 通常”食用”方法</h3><p>去<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">这里</a>可以下载最新版本。<br>我在这里以 Ubuntu 20.04 x86_64 为例：<br><img src="/2021/06/29/cudaToolkitInstallProblem/downCudaToolkit.png" alt="Download_CUDA_Toolkit"><br>从图中我们也可以发现，具体的下载以及使用命令官方也给我们提供好了，我们直接执行以下两条命令即可。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/11.2.0/local_installers/cuda_11.2.0_460.27.04_linux.run</span><br><span class="line">sudo sh cuda_11.2.0_460.27.04_linux.run</span><br></pre></td></tr></table></figure></p>
+        <html><head></head><body><p>在ubuntu server上安装nvidia驱动以及cuda是件很令人头疼的事，但幸运的是，nvidia官方推出了CUDA Toolkit安装包，我们可以使用它直接安装显卡驱动和cuda toolkit工具包。但不那么幸运的是，这样做在一些服务器上是成功的，但在另一些服务器上又是失败的。这不禁引发了我的一些思考。经过了半个晚上的问题排查，共总结了以下几个问题来源。如果你也遇到了这个问题，希望这篇文章能帮助到您。<span id="more"></span></p>
+<h3 id="0-CUDA-Toolkit-通常”食用”方法"><a href="#0-CUDA-Toolkit-通常”食用”方法" class="headerlink" title="0. CUDA Toolkit 通常”食用”方法"></a>0. CUDA Toolkit 通常”食用”方法</h3><p>去<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">这里</a>可以下载最新版本。<br>我在这里以 Ubuntu 20.04 x86_64 为例：<br><img src="/2021/06/29/cudaToolkitInstallProblem/downCudaToolkit.png" alt="Download_CUDA_Toolkit"><br>从图中我们也可以发现，具体的下载以及使用命令官方也给我们提供好了，我们直接执行以下两条命令即可。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/11.2.0/local_installers/cuda_11.2.0_460.27.04_linux.run</span><br><span class="line">sudo sh cuda_11.2.0_460.27.04_linux.run</span><br></pre></td></tr></tbody></table></figure>
 <ul>
-<li>注：我在这里以我正在使用的cuda 11.2.0版本为例，如果你想要下载其他版本，可以点击<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">这里</a>。</li>
+<li>注：我在这里以我正在使用的cuda 11.2.0版本为例，如果你想要下载其他版本，可以点击<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">这里</a>。</li>
 </ul>
 <p>等待一段时间后，你会看到下面这个画面：</p>
 <p><img src="/2021/06/29/cudaToolkitInstallProblem/cudaInstall1.png" alt="cudaInstall1"></p>
@@ -213,29 +219,48 @@
 <p>叉号代表选择，如果哪个部分不需要，使用空格键取消掉叉号即可，比如在这里最后三个就显得没必要了。之后将光标移动到 <strong>Install</strong> 选项上，等待安装即可。</p>
 <p>好了，通常的“食用”方法我们已经了解了，如果运气好，一次成功，您就可以放心的去搭建自己的“炼丹炉”了，但如果你和我一样不幸失败了，就请继续看下去吧。</p>
 <p>而报错的主要原因是在安装nvidia驱动时出错了，具体可以在log中查看。可为什么驱动就安装失败了呢，又如何进行解决呢？</p>
-<h3 id="1-系统内核版本与驱动所需不一致"><a href="#1-系统内核版本与驱动所需不一致" class="headerlink" title="1. 系统内核版本与驱动所需不一致"></a>1. 系统内核版本与驱动所需不一致</h3><p>不知你在安装nvidia驱动的时候是否经常遇到下述这个错误？或是突然某一天你发现<code>nvidia-smi</code>报错了。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br><span class="line">NVIDIA-SMI has failed because it couldn<span class="hljs-string">'t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</span></span><br></pre></td></tr></table></figure><br>然后把这个错误复制到百度上，往往会出现一堆博客告诉你要去装一个叫做<code>dkms</code>的工具，但我每次都照做了，可一次也没有成功过。再继续搜一些博客，有些好心人会告诉你这个错误的出现是因为你的系统内核版本与驱动版本不相符了。<br>嗯？那解决方案就很容易了，我手动切换到之前的内核不就好了？<br>可，我只能远程连接到服务器，如何才能切换内核呢？但这又怎能难住面向搜索引擎编程的我呢？</p>
+<h3 id="1-系统内核版本与驱动所需不一致"><a href="#1-系统内核版本与驱动所需不一致" class="headerlink" title="1. 系统内核版本与驱动所需不一致"></a>1. 系统内核版本与驱动所需不一致</h3><p>不知你在安装nvidia驱动的时候是否经常遇到下述这个错误？或是突然某一天你发现<code>nvidia-smi</code>报错了。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br><span class="line">NVIDIA-SMI has failed because it couldn<span class="hljs-string">'t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</span></span><br><span class="line"><span class="hljs-string"></span></span><br></pre></td></tr></tbody></table></figure>
+<p>然后把这个错误复制到百度上，往往会出现一堆博客告诉你要去装一个叫做<code>dkms</code>的工具，但我每次都照做了，可一次也没有成功过。再继续搜一些博客，有些好心人会告诉你这个错误的出现是因为你的系统内核版本与驱动版本不相符了。<br>嗯？那解决方案就很容易了，我手动切换到之前的内核不就好了？<br>可，我只能远程连接到服务器，如何才能切换内核呢？但这又怎能难住面向搜索引擎编程的我呢？</p>
 <h4 id="切换内核方法如下："><a href="#切换内核方法如下：" class="headerlink" title="切换内核方法如下："></a><strong>切换内核方法如下：</strong></h4><ul>
-<li>首先我们可以使用这个命令打印一下我们目前机器上已经安装的内核版本。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep menuentry /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure><br>你可能会看到如下信息：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> [ x<span class="hljs-string">"<span class="hljs-variable">$&#123;feature_menuentry_id&#125;</span>"</span> = xy ]; <span class="hljs-keyword">then</span></span><br><span class="line">  menuentry_id_option=<span class="hljs-string">"--id"</span></span><br><span class="line">  menuentry_id_option=<span class="hljs-string">""</span></span><br><span class="line"><span class="hljs-built_in">export</span> menuentry_id_option</span><br><span class="line">menuentry <span class="hljs-string">'Ubuntu'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-simple-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">submenu <span class="hljs-string">'Advanced options for Ubuntu'</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.10.0-1034-oem'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.10.0-1034-oem-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.10.0-1034-oem (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.10.0-1034-oem-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-77-generic'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-77-generic-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-77-generic (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-77-generic-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-73-generic'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-73-generic-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-73-generic (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-73-generic-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> &#123;</span><br><span class="line">menuentry <span class="hljs-string">'UEFI Firmware Settings'</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'uefi-firmware'</span> &#123;</span><br></pre></td></tr></table></figure><br>咦？这是不是有点像我们在开机的时候出现的高级选项里面的菜单？哈哈，我好像感觉快能切换内核了哦！接下来要怎么做呢？</li>
+<li>首先我们可以使用这个命令打印一下我们目前机器上已经安装的内核版本。<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep menuentry /boot/grub/grub.cfg</span><br></pre></td></tr></tbody></table></figure>
+你可能会看到如下信息：<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> [ x<span class="hljs-string">"<span class="hljs-variable">${feature_menuentry_id}</span>"</span> = xy ]; <span class="hljs-keyword">then</span></span><br><span class="line">  menuentry_id_option=<span class="hljs-string">"--id"</span></span><br><span class="line">  menuentry_id_option=<span class="hljs-string">""</span></span><br><span class="line"><span class="hljs-built_in">export</span> menuentry_id_option</span><br><span class="line">menuentry <span class="hljs-string">'Ubuntu'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-simple-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">submenu <span class="hljs-string">'Advanced options for Ubuntu'</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.10.0-1034-oem'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.10.0-1034-oem-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.10.0-1034-oem (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.10.0-1034-oem-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-77-generic'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-77-generic-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-77-generic (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-77-generic-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-73-generic'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-73-generic-advanced-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">	menuentry <span class="hljs-string">'Ubuntu, with Linux 5.4.0-73-generic (recovery mode)'</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'gnulinux-5.4.0-73-generic-recovery-36cdc2c8-c9e8-476e-ba87-d0a912825a92'</span> {</span><br><span class="line">menuentry <span class="hljs-string">'UEFI Firmware Settings'</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">'uefi-firmware'</span> {</span><br></pre></td></tr></tbody></table></figure>
+咦？这是不是有点像我们在开机的时候出现的高级选项里面的菜单？哈哈，我好像感觉快能切换内核了哦！接下来要怎么做呢？</li>
 </ul>
 <ul>
-<li><p>接下来，我们去修改一下GRUB，设置一下内核的启动版本。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br></pre></td></tr></table></figure><br>我们能看到有一行是<code>GRUB_DEFAULT=0</code>，嗯… <strong>0</strong> 这个意思是不是就是内核选项呢？对，没错！那我们只要把所需要的内核版本的序号改过去是不是就可以了哎，但很可惜，我也不知道序号是不是可用的，因为写这篇博客的时候我并没有去验证。（因为之前隐约记得写成序号重启之后开不了机了，一直卡在高级选项页面，因此不敢轻易尝试，毕竟，我不想再跑趟机房了呀！）<br>但，我在这里介绍另一种修改方式，不用整形数，我们用字符串！比如，我在这里要修改成<code>Ubuntu, with Linux 5.4.0-73-generic</code>，那怎么改呢？<br>请将 <code>GRUB_DEFAULT=0</code> 改为 <code>GRUB_DEFAULT=&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux 5.4.0-73-generic&quot;</code><br><strong>请注意</strong>，等号左右两边是不能有空格的哦！</p>
+<li><p>接下来，我们去修改一下GRUB，设置一下内核的启动版本。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br></pre></td></tr></tbody></table></figure>
+<p>我们能看到有一行是<code>GRUB_DEFAULT=0</code>，嗯… <strong>0</strong> 这个意思是不是就是内核选项呢？对，没错！那我们只要把所需要的内核版本的序号改过去是不是就可以了哎，但很可惜，我也不知道序号是不是可用的，因为写这篇博客的时候我并没有去验证。（因为之前隐约记得写成序号重启之后开不了机了，一直卡在高级选项页面，因此不敢轻易尝试，毕竟，我不想再跑趟机房了呀！）<br>但，我在这里介绍另一种修改方式，不用整形数，我们用字符串！比如，我在这里要修改成<code>Ubuntu, with Linux 5.4.0-73-generic</code>，那怎么改呢？<br>请将 <code>GRUB_DEFAULT=0</code> 改为 <code>GRUB_DEFAULT="Advanced options for Ubuntu&gt;Ubuntu, with Linux 5.4.0-73-generic"</code></p>
 </li>
-<li><p>再之后，我们需要更新一下GRUB，怎么做呢？<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure></p>
+<li><p>*请注意**，等号左右两边是不能有空格的哦！</p>
 </li>
-<li><p>最后，重启机器吧，等待重启之后我们可以打印一下系统内核版本，看看是不是我们想要的那个。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure></p>
-</li>
+<li><p>再之后，我们需要更新一下GRUB，怎么做呢？</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>最后，重启机器吧，等待重启之后我们可以打印一下系统内核版本，看看是不是我们想要的那个。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h4 id="安装Linux内核"><a href="#安装Linux内核" class="headerlink" title="安装Linux内核"></a>安装Linux内核</h4><p>这个时候就有小伙伴要问了，你只告诉了我们如何切换内核，可我的系统里没有我想要使用的内核版本啊，这时候怎么办呢？嘿嘿嘿，那当然是要去安装了！</p>
-<p>我们可以先查看一下系统可以安装的内核版本<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-cache search linux-image | grep generic</span><br></pre></td></tr></table></figure><br>找到满意的之后，就直接使用<code>apt</code>进行安装吧！<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-headers-5.4.0-73-generic linux-image-5.4.0-73-generic</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 一定要注意这里是要安装两个哟，headers和image我们都得安装！</span></span><br></pre></td></tr></table></figure><br>为了保险起见，在这里你可以再次重启系统，但其实不重启也没影响的。</p>
+<p>我们可以先查看一下系统可以安装的内核版本</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-cache search linux-image | grep generic</span><br></pre></td></tr></tbody></table></figure>
+<p>找到满意的之后，就直接使用<code>apt</code>进行安装吧！</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-headers-5.4.0-73-generic linux-image-5.4.0-73-generic</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 一定要注意这里是要安装两个哟，headers和image我们都得安装！</span></span><br></pre></td></tr></tbody></table></figure>
+<p>为了保险起见，在这里你可以再次重启系统，但其实不重启也没影响的。</p>
 <p>好了，你可以继续尝试用 <code>CUDA_Toolkit</code> 安装包安装驱动了，我想这次你应该不会失败的。</p>
 <p>嘿嘿，忘了说，<code>Linux 5.4.0-73-generic</code> 和 <code>cuda 11.2.0</code> 以及 <code>Nvidia Driver 460.27.04</code> 很配哦！<br>为什么呢，因为写这篇博客时下载的Ubuntu20.04.2镜像附带的内核版本是 <code>Linux 5.4.0-77-generic</code> 的，就导致我一直没有安装成功驱动，呜呜呜！<br>如果你到这里还没有成功，那我想，你是不是忘了下面的一点东东。</p>
-<h3 id="2-你缺一些环境依赖呀！"><a href="#2-你缺一些环境依赖呀！" class="headerlink" title="2. 你缺一些环境依赖呀！"></a>2. 你缺一些环境依赖呀！</h3><p>比如，当你去查看nvidia驱动安装的log<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="hljs-built_in">log</span>/nvidia-installer.log</span><br></pre></td></tr></table></figure><br>你是不是发现你的系统缺了<code>make</code>啦，赶紧安装上继续冲驱动吧！<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install make</span><br></pre></td></tr></table></figure><br>对了，别忘了要安装<code>gcc</code>哦！</p>
+<h3 id="2-你缺一些环境依赖呀！"><a href="#2-你缺一些环境依赖呀！" class="headerlink" title="2. 你缺一些环境依赖呀！"></a>2. 你缺一些环境依赖呀！</h3><p>比如，当你去查看nvidia驱动安装的log</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="hljs-built_in">log</span>/nvidia-installer.log</span><br></pre></td></tr></tbody></table></figure>
+<p>你是不是发现你的系统缺了<code>make</code>啦，赶紧安装上继续冲驱动吧！</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install make</span><br></pre></td></tr></tbody></table></figure>
+<p>对了，别忘了要安装<code>gcc</code>哦！</p>
 <p>其他的具体情况，就请详见安装日志啦，都到这里了，我相信你会成功的！</p>
-<h3 id="3-一点点注意事项"><a href="#3-一点点注意事项" class="headerlink" title="3. 一点点注意事项"></a>3. 一点点注意事项</h3><h4 id="（1）突然-server系统有了桌面？"><a href="#（1）突然-server系统有了桌面？" class="headerlink" title="（1）突然 server系统有了桌面？"></a>（1）突然 <strong>server</strong>系统有了桌面？</h4><p>作为<code>ubuntu server</code>的忠实用户，请一定不要使用<code>ubuntu-drivers devices</code>来安装Nvidia驱动！如果你这么做了然后使用了<code>ubuntu-drivers autoinstall</code>安装了驱动，你重启后就会发现你的server版本的系统竟然多了桌面！这对我们怎么是能忍的呢？赶紧卸载掉<code>gnome</code>！<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 卸载掉gnome-shell主程序</span></span><br><span class="line">sudo apt-get remove gnome-shell</span><br><span class="line"><span class="hljs-comment"># 卸载掉gnome</span></span><br><span class="line">sudo apt-get remove gnome</span><br><span class="line"><span class="hljs-comment"># 卸载不需要的依赖关系</span></span><br><span class="line">sudo apt-get autoremove</span><br><span class="line"><span class="hljs-comment"># 彻底卸载删除gnome的相关配置文件</span></span><br><span class="line">sudo apt-get purge gnome</span><br></pre></td></tr></table></figure></p>
-<h4 id="（2）哎，我开机时间怎么这么长？"><a href="#（2）哎，我开机时间怎么这么长？" class="headerlink" title="（2）哎，我开机时间怎么这么长？"></a>（2）哎，我开机时间怎么这么长？</h4><p>当我重启的时候，为啥需要这么长的时间，这破机器到底在干啥？别埋怨了，是开机的网络自检占据了大部分的时间，那我们怎么限制开机的网络自检时间呢？<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /lib/systemd/system/systemd-networkd-wait-online.service</span><br></pre></td></tr></table></figure><br><img src="/2021/06/29/cudaToolkitInstallProblem/systemNetwork.png" alt="systemNetwork"></p>
+<h3 id="3-一点点注意事项"><a href="#3-一点点注意事项" class="headerlink" title="3. 一点点注意事项"></a>3. 一点点注意事项</h3><h4 id="（1）突然-server系统有了桌面？"><a href="#（1）突然-server系统有了桌面？" class="headerlink" title="（1）突然 server系统有了桌面？"></a>（1）突然 <strong>server</strong>系统有了桌面？</h4><p>作为<code>ubuntu server</code>的忠实用户，请一定不要使用<code>ubuntu-drivers devices</code>来安装Nvidia驱动！如果你这么做了然后使用了<code>ubuntu-drivers autoinstall</code>安装了驱动，你重启后就会发现你的server版本的系统竟然多了桌面！这对我们怎么是能忍的呢？赶紧卸载掉<code>gnome</code>！</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 卸载掉gnome-shell主程序</span></span><br><span class="line">sudo apt-get remove gnome-shell</span><br><span class="line"><span class="hljs-comment"># 卸载掉gnome</span></span><br><span class="line">sudo apt-get remove gnome</span><br><span class="line"><span class="hljs-comment"># 卸载不需要的依赖关系</span></span><br><span class="line">sudo apt-get autoremove</span><br><span class="line"><span class="hljs-comment"># 彻底卸载删除gnome的相关配置文件</span></span><br><span class="line">sudo apt-get purge gnome</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="（2）哎，我开机时间怎么这么长？"><a href="#（2）哎，我开机时间怎么这么长？" class="headerlink" title="（2）哎，我开机时间怎么这么长？"></a>（2）哎，我开机时间怎么这么长？</h4><p>当我重启的时候，为啥需要这么长的时间，这破机器到底在干啥？别埋怨了，是开机的网络自检占据了大部分的时间，那我们怎么限制开机的网络自检时间呢？</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /lib/systemd/system/systemd-networkd-wait-online.service</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/2021/06/29/cudaToolkitInstallProblem/systemNetwork.png" alt="systemNetwork"></p>
 <p>我们在上图中所示的位置加一个 <code>--timeout=5</code> 参数即可，快去重启系统看看，你的开机速度是不是显著加快啦！</p>
 <h3 id="4-写在最后"><a href="#4-写在最后" class="headerlink" title="4. 写在最后"></a>4. 写在最后</h3><p>嗯，转眼间编辑到凌晨两点多了，夜猫子要去碎觉了！<br>另外，这篇文章有哪里写的不对的地方，请家人们一定要指出来哦！<br>感谢您读到这里，晚安。</p>
-
+</body></html>
     
     </div>
     
@@ -264,8 +289,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -274,7 +297,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -283,7 +306,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -302,7 +325,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -438,7 +461,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -468,7 +493,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

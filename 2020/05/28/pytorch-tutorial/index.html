@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>面向和我一样小白的Pytorch教程（待更新） - 生如逆旅 一苇以航</title>
+<title>面向和我一样小白的Pytorch教程（待更新） - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,14 +19,16 @@
     <meta name="description" content="经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向和我一样小白的Pytorch教程（待更新）">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2020/05/28/pytorch-tutorial/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
-<meta property="og:updated_time" content="2020-06-26T14:29:07.617Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2020/05/28/pytorch-tutorial/pytorch_install.png">
+<meta property="article:published_time" content="2020-05-27T16:12:59.000Z">
+<meta property="article:modified_time" content="2020-06-26T14:29:07.617Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;05&#x2F;28&#x2F;pytorch-tutorial&#x2F;pytorch_install.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2020/05/28/pytorch-tutorial/pytorch_install.png">
 
 
 
@@ -45,9 +47,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -64,8 +68,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -117,23 +120,23 @@
                     
                     
                     
-                    <a class="navbar-item" href="#一、Install">&nbsp;&nbsp;<b>一、Install</b></a>
+                    <a class="navbar-item" href="#一、Install">1&nbsp;&nbsp;<b>一、Install</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#二、Tensor">&nbsp;&nbsp;<b>二、Tensor</b></a>
+                    <a class="navbar-item" href="#二、Tensor">2&nbsp;&nbsp;<b>二、Tensor</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-About-Tensor’s-Attribute">&nbsp;&nbsp;1. About Tensor’s Attribute</a>
+                    <a class="navbar-item" href="#1-About-Tensor’s-Attribute">2.1&nbsp;&nbsp;1. About Tensor’s Attribute</a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -154,7 +157,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-05-27T16:12:59.000Z" itemprop="datePublished">5月 28 2020</time>
+            
+                <time datetime="2020-05-27T16:12:59.000Z" itemprop="datePublished">5月 28 2020</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -172,26 +177,32 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。<a id="more"></a><br>看完这个教程，你会基本学会如何使用Pytorch进行初级水平的搭积木。让我们开始吧！</p>
-<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a href="https://fansblog.club/2019/12/03/anaconda-installformac/" target="_blank" rel="noopener">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
-<h3 id="二、Tensor"><a href="#二、Tensor" class="headerlink" title="二、Tensor"></a>二、Tensor</h3><p>要开始介绍Pytorch之前，我们首先要知道它的计算的基本单位是什么，没错就是Tensor——张量，Tensor比较类似Numpy中的array，比如标量可以理解为0维Tensor，向量可以理解为1维Tensor，矩阵可以理解为2维Tensor，但二者又不完全相同，因为Tensor还附有更多的属性。它有哪些属性呢？让我们来看一下。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> torch</span><br><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(len(dir(tensor_a)))</span><br><span class="line"><span class="hljs-comment"># 479</span></span><br></pre></td></tr></table></figure><br>哇，它竟然有这么多的方法或属性，那我们列举几个比较常用的吧。</p>
+        <html><head></head><body><p>经过一次本科毕业设计的洗礼，让我逐渐从一个对Deep Learning一无所知的骚年变成一个准备入门的炼丹小白。回顾这几个月（虽然大部分时间都在划水），想做什么都是在谷歌百度，也很难找到一个完全适合我这种小白的Pytorch教程，网上的资料要么过时要么繁琐，最好的学习方式大概是官方的教程，但谁会看得进去呢？所以，我想把我这些日子的经历记录下来，如果有和我一样小白的同学们可以用来参考一下。<span id="more"></span><br>看完这个教程，你会基本学会如何使用Pytorch进行初级水平的搭积木。让我们开始吧！</p>
+<h3 id="一、Install"><a href="#一、Install" class="headerlink" title="一、Install"></a>一、Install</h3><p>第一步，当然是要安装Pytorch啦，请移步<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">官网</a>，里面有给出具体的安装命令，包括conda以及pip的安装方式。当然这里强烈建议使用Anaconda，Anaconda配置教程详见<a target="_blank" rel="noopener" href="https://fansblog.club/2019/12/03/anaconda-installformac/">这里</a>。选择你机器的配置之后复制命令即可，如图所示：<br><img src="/2020/05/28/pytorch-tutorial/pytorch_install.png" alt="pytorch_install.png"></p>
+<h3 id="二、Tensor"><a href="#二、Tensor" class="headerlink" title="二、Tensor"></a>二、Tensor</h3><p>要开始介绍Pytorch之前，我们首先要知道它的计算的基本单位是什么，没错就是Tensor——张量，Tensor比较类似Numpy中的array，比如标量可以理解为0维Tensor，向量可以理解为1维Tensor，矩阵可以理解为2维Tensor，但二者又不完全相同，因为Tensor还附有更多的属性。它有哪些属性呢？让我们来看一下。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> torch</span><br><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(<span class="hljs-built_in">dir</span>(tensor_a)))</span><br><span class="line"><span class="hljs-comment"># 479</span></span><br></pre></td></tr></tbody></table></figure>
+<p>哇，它竟然有这么多的方法或属性，那我们列举几个比较常用的吧。</p>
 <h4 id="1-About-Tensor’s-Attribute"><a href="#1-About-Tensor’s-Attribute" class="headerlink" title="1. About Tensor’s Attribute"></a>1. About Tensor’s Attribute</h4><ul>
-<li><p>Tensor.requires_grad<br>首先第一个<code>requires_grad</code>，是我认为最重要的，它可是Tensor区别于Numpy的灵魂所在，没有了它，怎么知道这个这个Tensor需不需要求导数呢？当我们创建Tensor的时候，它是默认为False的，但如果我们新建一个网络的时候，它的默认值就是True了。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(tensor_a.requires_grad)</span><br><span class="line"><span class="hljs-comment"># False</span></span><br><span class="line">tensor_b = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)</span><br><span class="line">print(tensor_b.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br><span class="line">embed = torch.nn.Embedding(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)</span><br><span class="line">print(embed.weight.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br></pre></td></tr></table></figure><br>如果你看过有关Pytorch的代码，你可能会发现有个叫Variable的东西，在0.4版本之前，对Tensor，都会用Variable一裹，但现在没必要这么做了，现在的Tensor已经和Variable等价了，所以忘掉Variable吧。</p>
+<li><p>Tensor.requires_grad<br>首先第一个<code>requires_grad</code>，是我认为最重要的，它可是Tensor区别于Numpy的灵魂所在，没有了它，怎么知道这个这个Tensor需不需要求导数呢？当我们创建Tensor的时候，它是默认为False的，但如果我们新建一个网络的时候，它的默认值就是True了。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a.requires_grad)</span><br><span class="line"><span class="hljs-comment"># False</span></span><br><span class="line">tensor_b = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, requires_grad=<span class="hljs-literal">True</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_b.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br><span class="line">embed = torch.nn.Embedding(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(embed.weight.requires_grad)</span><br><span class="line"><span class="hljs-comment"># True</span></span><br></pre></td></tr></tbody></table></figure>
+<p>如果你看过有关Pytorch的代码，你可能会发现有个叫Variable的东西，在0.4版本之前，对Tensor，都会用Variable一裹，但现在没必要这么做了，现在的Tensor已经和Variable等价了，所以忘掉Variable吧。</p>
 </li>
-<li><p>Tensor.shape or Tensor.size()<br>当我们想查看一下Tensor的形状的时候，也就是我们想知道它的每一维是多少，我们可以用这两种方式：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line">print(tensor_a.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 3])</span></span><br><span class="line">print(tensor_a.size())</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 3])</span></span><br><span class="line"><span class="hljs-comment"># 我们可以将这两种方法返回的结果看作是个tuple，因为你可以取出每一维的数值，而且它的值并不能被更改.</span></span><br><span class="line">print(tensor_a.size()[<span class="hljs-number">0</span>])</span><br><span class="line"><span class="hljs-comment"># 5</span></span><br><span class="line"><span class="hljs-comment"># 同时，还有其他几个方法，比如Tensor.dim()用来查看维数，Tensor.numel()用来查看所有元素个数.</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>Tensor.view()<br>当我们需要喂给下游的网络一个对应维度的Tensor需要怎么做呢？这就可以用到<code>Tensor.view()</code>了，我们可以在括号里指定维数。但需要注意的一点是，view后的Tensor变量其实是和前者共享一个存储空间的，这也就意味着如果前者发生了改变，后者对应位置的值也是要跟着改变的，反之亦然。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[-0.0519, -1.4556,  0.9473],</span></span><br><span class="line"><span class="hljs-string">    [ 1.1269, -1.1122,  0.8940],</span></span><br><span class="line"><span class="hljs-string">    [ 1.9436, -0.4815, -1.6614],</span></span><br><span class="line"><span class="hljs-string">    [ 0.6607, -0.2767,  0.9539],</span></span><br><span class="line"><span class="hljs-string">    [ 1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line">tensor_b = tensor_a.view(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[-0.0519, -1.4556,  0.9473,  1.1269, -1.1122,  0.8940,  1.9436, -0.4815,</span></span><br><span class="line"><span class="hljs-string">         -1.6614,  0.6607, -0.2767,  0.9539,  1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-comment"># 使用-1的意思就是根据前面的维度数值自动计算出这个维度位置的具体数值。</span></span><br><span class="line"><span class="hljs-comment"># 当我们修改tensor_a会发生什么呢？</span></span><br><span class="line">tensor_a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line">print(tensor_b)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[ 0.0000, -1.4556,  0.9473,  1.1269, -1.1122,  0.8940,  1.9436, -0.4815,</span></span><br><span class="line"><span class="hljs-string">         -1.6614,  0.6607, -0.2767,  0.9539,  1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-comment"># 看！它俩共享一个存储空间的吧。</span></span><br><span class="line"><span class="hljs-comment"># 当然，如果你不想他们共享存储空间，可以用clone()方法复制一个Tensor，之后再对其改变维度。</span></span><br><span class="line">tensor_c = tensor_a.clone().view(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>Tensor.item()<br>用来返回Python中的标量值。这个方法只适用于一个元素的Tensor，并不管是不是一维的，只要这个Tensor只有一个元素就可以。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.Tensor([<span class="hljs-number">1</span>])</span><br><span class="line">print(tensor_a.item())</span><br><span class="line"><span class="hljs-comment"># 1.0</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>Tensor.squeeze() and Tensor.unsqueeze()<br>这两个方法是用来干嘛的呢？我们可以查一下squeeze的意思——挤压，没错，就是用来挤压Tensor维度的，当一个Tensor有维度值是1的时候，我们就可以用squeeze()来消除这一维，反之，可以用unsqueeze()增加一个维度值为1的维度。注意使用unsqueeze()的时候需要指定维度位置参数。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 3])</span></span><br><span class="line">tensor_b = tensor_a.unsqueeze(<span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 1, 3])</span></span><br><span class="line">tensor_c = tensor_b.squeeze()</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 3])</span></span><br><span class="line"><span class="hljs-comment"># 当然在squeeze()中指定维度位置参数也是可以的，比如tensor_c = tensor_b.squeeze(1)</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>Tensor.transpose() and Tensor.permute()<br>这两个方法用于对Tensor的维度进行交换，对于矩阵来说，也就达到了转置的功能。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</span><br><span class="line"><span class="hljs-comment"># 利用transpose()对0，1维度进行交换</span></span><br><span class="line">tensor_b = tensor_a.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-comment"># 传入一组维度，将对应维度按顺序生成新的size</span></span><br><span class="line">tensor_c = tensor_a.permute(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span><br><span class="line">print(tensor_b.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([4, 3, 5])</span></span><br><span class="line">print(tensor_c.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 4, 3])</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>切片和索引<br>既然pytorch语法与Python高度相似，那Tensor一定也是支持切片与索引功能的。但注意，与列表不同，切片出的Tensor与原Tensor共享内存，也就意味着切片出的Tensor的数据修改将导致原Tensor的数据跟着修改。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)</span><br><span class="line">tensor_b = tensor_a[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>]</span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line">print(tensor_b)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 3])</span></span><br><span class="line">tensor_b[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line">print(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([0, 2, 3, 4])</span></span><br></pre></td></tr></table></figure><br><code>未完待续</code><br>BTW，最近我这个废物太懒了，什么也不想干，只想躺在床上玩手机。等我调整好状态再写下去吧，所以更新随缘吧…</p>
+<li><p>Tensor.shape or Tensor.size()<br>当我们想查看一下Tensor的形状的时候，也就是我们想知道它的每一维是多少，我们可以用这两种方式：</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 3])</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a.size())</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 3])</span></span><br><span class="line"><span class="hljs-comment"># 我们可以将这两种方法返回的结果看作是个tuple，因为你可以取出每一维的数值，而且它的值并不能被更改.</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a.size()[<span class="hljs-number">0</span>])</span><br><span class="line"><span class="hljs-comment"># 5</span></span><br><span class="line"><span class="hljs-comment"># 同时，还有其他几个方法，比如Tensor.dim()用来查看维数，Tensor.numel()用来查看所有元素个数.</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>Tensor.view()<br>当我们需要喂给下游的网络一个对应维度的Tensor需要怎么做呢？这就可以用到<code>Tensor.view()</code>了，我们可以在括号里指定维数。但需要注意的一点是，view后的Tensor变量其实是和前者共享一个存储空间的，这也就意味着如果前者发生了改变，后者对应位置的值也是要跟着改变的，反之亦然。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[-0.0519, -1.4556,  0.9473],</span></span><br><span class="line"><span class="hljs-string">    [ 1.1269, -1.1122,  0.8940],</span></span><br><span class="line"><span class="hljs-string">    [ 1.9436, -0.4815, -1.6614],</span></span><br><span class="line"><span class="hljs-string">    [ 0.6607, -0.2767,  0.9539],</span></span><br><span class="line"><span class="hljs-string">    [ 1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line">tensor_b = tensor_a.view(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[-0.0519, -1.4556,  0.9473,  1.1269, -1.1122,  0.8940,  1.9436, -0.4815,</span></span><br><span class="line"><span class="hljs-string">         -1.6614,  0.6607, -0.2767,  0.9539,  1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-comment"># 使用-1的意思就是根据前面的维度数值自动计算出这个维度位置的具体数值。</span></span><br><span class="line"><span class="hljs-comment"># 当我们修改tensor_a会发生什么呢？</span></span><br><span class="line">tensor_a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_b)</span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">tensor([[ 0.0000, -1.4556,  0.9473,  1.1269, -1.1122,  0.8940,  1.9436, -0.4815,</span></span><br><span class="line"><span class="hljs-string">         -1.6614,  0.6607, -0.2767,  0.9539,  1.6680, -1.1298, -1.2454]])</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-comment"># 看！它俩共享一个存储空间的吧。</span></span><br><span class="line"><span class="hljs-comment"># 当然，如果你不想他们共享存储空间，可以用clone()方法复制一个Tensor，之后再对其改变维度。</span></span><br><span class="line">tensor_c = tensor_a.clone().view(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>)</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>Tensor.item()<br>用来返回Python中的标量值。这个方法只适用于一个元素的Tensor，并不管是不是一维的，只要这个Tensor只有一个元素就可以。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.Tensor([<span class="hljs-number">1</span>])</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a.item())</span><br><span class="line"><span class="hljs-comment"># 1.0</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>Tensor.squeeze() and Tensor.unsqueeze()<br>这两个方法是用来干嘛的呢？我们可以查一下squeeze的意思——挤压，没错，就是用来挤压Tensor维度的，当一个Tensor有维度值是1的时候，我们就可以用squeeze()来消除这一维，反之，可以用unsqueeze()增加一个维度值为1的维度。注意使用unsqueeze()的时候需要指定维度位置参数。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 3])</span></span><br><span class="line">tensor_b = tensor_a.unsqueeze(<span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 1, 3])</span></span><br><span class="line">tensor_c = tensor_b.squeeze()</span><br><span class="line"><span class="hljs-comment"># shape: torch.Size([5, 3])</span></span><br><span class="line"><span class="hljs-comment"># 当然在squeeze()中指定维度位置参数也是可以的，比如tensor_c = tensor_b.squeeze(1)</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>Tensor.transpose() and Tensor.permute()<br>这两个方法用于对Tensor的维度进行交换，对于矩阵来说，也就达到了转置的功能。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)</span><br><span class="line"><span class="hljs-comment"># 利用transpose()对0，1维度进行交换</span></span><br><span class="line">tensor_b = tensor_a.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)</span><br><span class="line"><span class="hljs-comment"># 传入一组维度，将对应维度按顺序生成新的size</span></span><br><span class="line">tensor_c = tensor_a.permute(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_b.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([4, 3, 5])</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_c.shape)</span><br><span class="line"><span class="hljs-comment"># torch.Size([5, 4, 3])</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>切片和索引<br>既然pytorch语法与Python高度相似，那Tensor一定也是支持切片与索引功能的。但注意，与列表不同，切片出的Tensor与原Tensor共享内存，也就意味着切片出的Tensor的数据修改将导致原Tensor的数据跟着修改。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor_a = torch.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)</span><br><span class="line">tensor_b = tensor_a[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>:<span class="hljs-number">2</span>]</span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_b)</span><br><span class="line"><span class="hljs-comment"># tensor([1, 3])</span></span><br><span class="line">tensor_b[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-built_in">print</span>(tensor_a)</span><br><span class="line"><span class="hljs-comment"># tensor([0, 2, 3, 4])</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>未完待续</code><br>BTW，最近我这个废物太懒了，什么也不想干，只想躺在床上玩手机。等我调整好状态再写下去吧，所以更新随缘吧…</p>
 </li>
 </ul>
-
+</body></html>
     
     </div>
     
@@ -214,8 +225,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -224,7 +233,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -233,7 +242,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -252,7 +261,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -388,7 +397,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -418,7 +429,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

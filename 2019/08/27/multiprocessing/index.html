@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Python 多进程 - 生如逆旅 一苇以航</title>
+<title>Python 多进程 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,11 +19,13 @@
     <meta name="description" content="学习廖雪峰的Python教程中的多进程部分，知识点整理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 多进程">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;08&#x2F;27&#x2F;multiprocessing&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/08/27/multiprocessing/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="学习廖雪峰的Python教程中的多进程部分，知识点整理">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-11-15T08:18:04.531Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-27T11:38:18.000Z">
+<meta property="article:modified_time" content="2019-11-15T08:18:04.531Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
 
 
@@ -43,9 +45,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -62,8 +66,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -115,27 +118,27 @@
                     
                     
                     
-                    <a class="navbar-item" href="#一、-Unix、Linux">&nbsp;&nbsp;<b>一、 Unix、Linux</b></a>
+                    <a class="navbar-item" href="#一、-Unix、Linux">1&nbsp;&nbsp;<b>一、 Unix、Linux</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#二、跨平台使用">&nbsp;&nbsp;<b>二、跨平台使用</b></a>
+                    <a class="navbar-item" href="#二、跨平台使用">2&nbsp;&nbsp;<b>二、跨平台使用</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#Process">&nbsp;&nbsp;Process</a>
+                    <a class="navbar-item" href="#Process">2.1&nbsp;&nbsp;Process</a>
                     
                     
                     
-                    <a class="navbar-item" href="#Pool">&nbsp;&nbsp;Pool</a>
+                    <a class="navbar-item" href="#Pool">2.2&nbsp;&nbsp;Pool</a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -156,7 +159,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-08-27T11:38:18.000Z" itemprop="datePublished">8月 27 2019</time>
+            
+                <time datetime="2019-08-27T11:38:18.000Z" itemprop="datePublished">8月 27 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -174,14 +179,16 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>学习廖雪峰的Python教程中的多进程部分，知识点整理<a id="more"></a></p>
+        <html><head></head><body><p>学习廖雪峰的Python教程中的多进程部分，知识点整理<span id="more"></span></p>
 <hr>
 <h3 id="一、-Unix、Linux"><a href="#一、-Unix、Linux" class="headerlink" title="一、 Unix、Linux"></a>一、 Unix、Linux</h3><p>在<strong>unix/linux</strong>系统下，可以直接使用<code>fork()</code>创建子进程。<code>fork()</code>函数调用一次，返回两次，因为操作系统自动把当前进程（父进程）复制了一份（子进程），然后分别在父进程和子进程内返回，创建成功子进程内返回<code>pid=0</code>，父进程内返回值为子进程的<code>pid</code>。</p>
 <p>使用<code>fork()</code>需要<code>import os</code></p>
 <p><strong>示例代码：</strong></p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'Process (%s) start...'</span> % os.getpid())</span><br><span class="line"><span class="hljs-comment"># Only works on Unix/Linux/Mac:</span></span><br><span class="line">pid = os.fork()</span><br><span class="line"><span class="hljs-keyword">if</span> pid == <span class="hljs-number">0</span>:</span><br><span class="line">    print(<span class="hljs-string">'I am child process (%s) and my parent is %s.'</span> % (os.getpid(), os.getppid()))</span><br><span class="line"><span class="hljs-keyword">else</span>:</span><br><span class="line">    print(<span class="hljs-string">'I (%s) just created a child process (%s).'</span> % (os.getpid(), pid))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">print</span>(<span class="hljs-string">'Process (%s) start...'</span> % os.getpid())</span><br><span class="line"><span class="hljs-comment"># Only works on Unix/Linux/Mac:</span></span><br><span class="line">pid = os.fork()</span><br><span class="line"><span class="hljs-keyword">if</span> pid == <span class="hljs-number">0</span>:</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'I am child process (%s) and my parent is %s.'</span> % (os.getpid(), os.getppid()))</span><br><span class="line"><span class="hljs-keyword">else</span>:</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'I (%s) just created a child process (%s).'</span> % (os.getpid(), pid))</span><br></pre></td></tr></tbody></table></figure>
+
 <p><strong>执行结果：</strong></p>
-<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Process (63034) start...</span><br><span class="line">I (63034) just created a child process (63035).</span><br><span class="line">I am child process (63035) and my parent is 63034.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Process (63034) start...</span><br><span class="line">I (63034) just created a child process (63035).</span><br><span class="line">I am child process (63035) and my parent is 63034.</span><br></pre></td></tr></tbody></table></figure>
+
 <hr>
 <h3 id="二、跨平台使用"><a href="#二、跨平台使用" class="headerlink" title="二、跨平台使用"></a>二、跨平台使用</h3><p>由于<code>python</code>是跨平台的，自然也提供一个跨平台的多进程支持，<code>multiprocessing</code>模块就是跨平台版本的多进程模块。</p>
 <ul>
@@ -189,19 +196,25 @@
 </ul>
 <p>使用<code>Process()</code>创建子进程实例，之后使用实例的<code>start()</code>方法开始启动子进程</p>
 <p><strong>示例代码：</strong></p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process</span><br><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#子进程要执行的代码</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_proc</span><span class="hljs-params">(name)</span>:</span></span><br><span class="line">	print(<span class="hljs-string">'Run child process %s (%s).'</span> % (name,os.getpid()))</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">	print(<span class="hljs-string">'Parent process %s.'</span> % os.getpid())</span><br><span class="line">	<span class="hljs-comment">#创建子进程</span></span><br><span class="line">	p = Process(target=run_proc, args=(<span class="hljs-string">'test'</span>,))</span><br><span class="line">	print(<span class="hljs-string">'Child process will start'</span>)</span><br><span class="line">	<span class="hljs-comment">#开始启动子进程</span></span><br><span class="line">	p.start()</span><br><span class="line">	<span class="hljs-comment">#join()方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步</span></span><br><span class="line">	p.join()</span><br><span class="line">	print(<span class="hljs-string">'Child process end.'</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process</span><br><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#子进程要执行的代码</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_proc</span>(<span class="hljs-params">name</span>):</span></span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Run child process %s (%s).'</span> % (name,os.getpid()))</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Parent process %s.'</span> % os.getpid())</span><br><span class="line">	<span class="hljs-comment">#创建子进程</span></span><br><span class="line">	p = Process(target=run_proc, args=(<span class="hljs-string">'test'</span>,))</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Child process will start'</span>)</span><br><span class="line">	<span class="hljs-comment">#开始启动子进程</span></span><br><span class="line">	p.start()</span><br><span class="line">	<span class="hljs-comment">#join()方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步</span></span><br><span class="line">	p.join()</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Child process end.'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
 <p><strong>执行结果：</strong></p>
-<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Parent process 62629.</span><br><span class="line">Child process will start</span><br><span class="line">Run child process test (62630).</span><br><span class="line">Child process end.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Parent process 62629.</span><br><span class="line">Child process will start</span><br><span class="line">Run child process test (62630).</span><br><span class="line">Child process end.</span><br></pre></td></tr></tbody></table></figure>
+
+
+
 <ul>
 <li><h5 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a>Pool</h5></li>
 </ul>
 <p>如果要启用大量子进程，可以使用进程池<code>Pool</code></p>
 <p><strong>示例代码：</strong></p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool</span><br><span class="line"><span class="hljs-keyword">import</span> os,time,random</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">long_time_task</span><span class="hljs-params">(name)</span>:</span></span><br><span class="line">	print(<span class="hljs-string">'Run task %s (%s)...'</span> % (name,os.getpid()))</span><br><span class="line">	start = time.time()</span><br><span class="line">	<span class="hljs-comment">#random()随机产生0～1之间的数</span></span><br><span class="line">	time.sleep(random.random()*<span class="hljs-number">3</span>)</span><br><span class="line">	end = time.time()</span><br><span class="line">	print(<span class="hljs-string">'Task %s runs %.2f seconds.'</span> % (name,(end-start)))</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">	print(<span class="hljs-string">'Parent process %s.'</span> % os.getpid())</span><br><span class="line">	<span class="hljs-comment">#限制同时运行4个子进程</span></span><br><span class="line">	p = Pool(<span class="hljs-number">4</span>)</span><br><span class="line">	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">		p.apply_async(long_time_task,args=(i,))</span><br><span class="line">	print(<span class="hljs-string">'Waiting for all subprocesses done'</span>)</span><br><span class="line">	<span class="hljs-comment">#调用join()之前必须先调用close(),之后不能继续添加新的Process了</span></span><br><span class="line">	p.close()</span><br><span class="line">	<span class="hljs-comment">#等待所有子进程执行完毕</span></span><br><span class="line">	p.join()</span><br><span class="line">	print(<span class="hljs-string">'All subprocesses done.'</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>执行结果：</strong></p>
-<p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Parent process 63187.</span><br><span class="line">Waiting for all subprocesses done</span><br><span class="line">Run task 1 (63189)...</span><br><span class="line">Run task 2 (63190)...</span><br><span class="line">Run task 3 (63191)...</span><br><span class="line">Run task 0 (63188)...</span><br><span class="line">Task 3 runs 0.15 seconds.</span><br><span class="line">Run task 4 (63191)...</span><br><span class="line">Task 2 runs 0.96 seconds.</span><br><span class="line">Task 1 runs 1.18 seconds.</span><br><span class="line">Task 0 runs 1.72 seconds.</span><br><span class="line">Task 4 runs 2.17 seconds.</span><br><span class="line">All subprocesses done.</span><br></pre></td></tr></table></figure></p>
-<p>可以通过执行结果看到，定义<code>Pool(4)</code>之后只能同时执行4个进程。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool</span><br><span class="line"><span class="hljs-keyword">import</span> os,time,random</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">long_time_task</span>(<span class="hljs-params">name</span>):</span></span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Run task %s (%s)...'</span> % (name,os.getpid()))</span><br><span class="line">	start = time.time()</span><br><span class="line">	<span class="hljs-comment">#random()随机产生0～1之间的数</span></span><br><span class="line">	time.sleep(random.random()*<span class="hljs-number">3</span>)</span><br><span class="line">	end = time.time()</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Task %s runs %.2f seconds.'</span> % (name,(end-start)))</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Parent process %s.'</span> % os.getpid())</span><br><span class="line">	<span class="hljs-comment">#限制同时运行4个子进程</span></span><br><span class="line">	p = Pool(<span class="hljs-number">4</span>)</span><br><span class="line">	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):</span><br><span class="line">		p.apply_async(long_time_task,args=(i,))</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'Waiting for all subprocesses done'</span>)</span><br><span class="line">	<span class="hljs-comment">#调用join()之前必须先调用close(),之后不能继续添加新的Process了</span></span><br><span class="line">	p.close()</span><br><span class="line">	<span class="hljs-comment">#等待所有子进程执行完毕</span></span><br><span class="line">	p.join()</span><br><span class="line">	<span class="hljs-built_in">print</span>(<span class="hljs-string">'All subprocesses done.'</span>)		</span><br></pre></td></tr></tbody></table></figure>
 
+<p><strong>执行结果：</strong></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Parent process 63187.</span><br><span class="line">Waiting for all subprocesses done</span><br><span class="line">Run task 1 (63189)...</span><br><span class="line">Run task 2 (63190)...</span><br><span class="line">Run task 3 (63191)...</span><br><span class="line">Run task 0 (63188)...</span><br><span class="line">Task 3 runs 0.15 seconds.</span><br><span class="line">Run task 4 (63191)...</span><br><span class="line">Task 2 runs 0.96 seconds.</span><br><span class="line">Task 1 runs 1.18 seconds.</span><br><span class="line">Task 0 runs 1.72 seconds.</span><br><span class="line">Task 4 runs 2.17 seconds.</span><br><span class="line">All subprocesses done.</span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以通过执行结果看到，定义<code>Pool(4)</code>之后只能同时执行4个进程。</p>
+</body></html>
     
     </div>
     
@@ -224,8 +237,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -234,7 +245,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -243,7 +254,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -262,7 +273,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -398,7 +409,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -428,7 +441,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>如何使用ipv6进行校园网免流 - 生如逆旅 一苇以航</title>
+<title>如何使用ipv6进行校园网免流 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,22 +19,24 @@
     <meta name="description" content="总结一下自己搭建ipv6服务器的过程，以防自己忘记了……">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用ipv6进行校园网免流">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/06/29/ipv6/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="总结一下自己搭建ipv6服务器的过程，以防自己忘记了……">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;vultr_login.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;4.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;8.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;9.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;5.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;6.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;7.png">
-<meta property="og:updated_time" content="2019-12-09T09:10:59.558Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/vultr_login.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/2.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/3.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/4.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/8.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/9.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/5.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/6.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/7.png">
+<meta property="article:published_time" content="2019-06-29T14:01:17.000Z">
+<meta property="article:modified_time" content="2019-12-09T09:10:59.558Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;06&#x2F;29&#x2F;ipv6&#x2F;vultr_login.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2019/06/29/ipv6/vultr_login.png">
 
 
 
@@ -53,9 +55,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -72,8 +76,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -125,47 +128,47 @@
                     
                     
                     
-                    <a class="navbar-item" href="#一、购买VPS服务器">&nbsp;&nbsp;<b>一、购买VPS服务器</b></a>
+                    <a class="navbar-item" href="#一、购买VPS服务器">1&nbsp;&nbsp;<b>一、购买VPS服务器</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#二、部署VPS服务器">&nbsp;&nbsp;<b>二、部署VPS服务器</b></a>
+                    <a class="navbar-item" href="#二、部署VPS服务器">2&nbsp;&nbsp;<b>二、部署VPS服务器</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#Begin">&nbsp;&nbsp;Begin</a>
+                    <a class="navbar-item" href="#Begin">2.1&nbsp;&nbsp;Begin</a>
                     
                     
                     
-                    <a class="navbar-item" href="#安装pip环境-Ubuntu">&nbsp;&nbsp;安装pip环境(Ubuntu)</a>
+                    <a class="navbar-item" href="#安装pip环境-Ubuntu">2.2&nbsp;&nbsp;安装pip环境(Ubuntu)</a>
                     
                     
                     
-                    <a class="navbar-item" href="#直接安装shadowsocks">&nbsp;&nbsp;直接安装shadowsocks</a>
+                    <a class="navbar-item" href="#直接安装shadowsocks">2.3&nbsp;&nbsp;直接安装shadowsocks</a>
                     
                     
                     
-                    <a class="navbar-item" href="#配置shadowsocks-json文件">&nbsp;&nbsp;配置shadowsocks.json文件</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#三、在自己PC上下载shadowsocks">&nbsp;&nbsp;<b>三、在自己PC上下载shadowsocks</b></a>
+                    <a class="navbar-item" href="#配置shadowsocks-json文件">2.4&nbsp;&nbsp;配置shadowsocks.json文件</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#四、开启BBR">&nbsp;&nbsp;<b>四、开启BBR</b></a>
+                    <a class="navbar-item" href="#三、在自己PC上下载shadowsocks">3&nbsp;&nbsp;<b>三、在自己PC上下载shadowsocks</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#四、开启BBR">4&nbsp;&nbsp;<b>四、开启BBR</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -186,7 +189,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-06-29T14:01:17.000Z" itemprop="datePublished">6月 29 2019</time>
+            
+                <time datetime="2019-06-29T14:01:17.000Z" itemprop="datePublished">6月 29 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -204,71 +209,92 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>总结一下自己搭建ipv6服务器的过程，以防自己忘记了……<a id="more"></a></p>
-<h2 id="一、购买VPS服务器"><a href="#一、购买VPS服务器" class="headerlink" title="一、购买VPS服务器"></a>一、购买VPS服务器</h2><p>VPS服务器我选择了国外的，毕竟这样子可以让我们的ss自带科学上网功能嗷，何乐而不为呢嘻嘻。<br>下面进入正题：<br>根据各位大佬们的推荐，我选择了国际知名（我也不知道它到底知不知名嘻嘻）的vultr：<a href="http://www.vultr.com/" target="_blank" rel="noopener">vultr注册地址</a></p>
-<p><img src="/2019/06/29/ipv6/vultr_login.png" alt></p>
+        <html><head></head><body><p>总结一下自己搭建ipv6服务器的过程，以防自己忘记了……<span id="more"></span></p>
+<h2 id="一、购买VPS服务器"><a href="#一、购买VPS服务器" class="headerlink" title="一、购买VPS服务器"></a>一、购买VPS服务器</h2><p>VPS服务器我选择了国外的，毕竟这样子可以让我们的ss自带科学上网功能嗷，何乐而不为呢嘻嘻。<br>下面进入正题：<br>根据各位大佬们的推荐，我选择了国际知名（我也不知道它到底知不知名嘻嘻）的vultr：<a target="_blank" rel="noopener" href="http://www.vultr.com/">vultr注册地址</a></p>
+<p><img src="/2019/06/29/ipv6/vultr_login.png"></p>
 <p>注册登录后点击下图的加号就可以进行购买了（哦对前提是你的账户里要有钱…而且我买的时候vultr有充10$赠送50$的活动）支持支付宝微信支付哦！</p>
-<p><img src="/2019/06/29/ipv6/2.png" alt></p>
+<p><img src="/2019/06/29/ipv6/2.png"></p>
 <p>点击加号之后就可以选择服务器的类型了，你可以选择服务器的Locations，如果你希望访问Youtube快一些，那就选美国的服务器，要是你想看一些日本的小网站快一些（我也不知道是什么小网站啦）那就选择日本的服务器。我当时选择了Los Angeles的服务器…至于服务器的os嘛，ubuntu14就够了（最近看到这个网站把ubuntu14取消了，最低都是16.04了）<br>至于配置情况，选价格最低的就完事了（最低也要5$我哭）</p>
 <p>选完之后一定要勾选上下图这个选项，因为我们要用ipv6嘛</p>
-<p><img src="/2019/06/29/ipv6/3.png" alt></p>
+<p><img src="/2019/06/29/ipv6/3.png"></p>
 <p>接下来就放心的付款就好了，vultr是按小时收费的，所以就算选错了误付款也没事，我们destroy了它重新买就好了。</p>
 <p>接下来在服务器后台页面的settings选项中我们可以找到服务器的ipv6地址。在部署SSR账号时，我们就用ipv6的ip地址了，前提是我们的网络要支持ipv6喔。</p>
 <h2 id="二、部署VPS服务器"><a href="#二、部署VPS服务器" class="headerlink" title="二、部署VPS服务器"></a>二、部署VPS服务器</h2><h3 id="Begin"><a href="#Begin" class="headerlink" title="Begin"></a>Begin</h3><p>写这篇blog的时候发现，我的服务器的ipv4地址被墙了（从这个月初开始同学告诉我某些vpn被封了，然后我发现我搭的vpn也崩溃了…很难过…)但是没关系！我们还有ipv6啊，你不让我用ipv4,我还可以用ipv6啊。不过首先你的网络和电脑都要支持ipv6，我们才能用ipv6进行ssh远程控制服务器。</p>
 <p>ssh命令如下：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@ipv6地址</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@ipv6地址</span><br></pre></td></tr></tbody></table></figure>
+
 <p>username默认是root，之后输入yes,windows下一定是输入yes而不是y。之后输入vultr给的默认密码(有点复杂远程之后可以修改)，这样我们就可以远程连接到了我们的服务器了！<br>为了解决这个默认的密码有点难输入的问题，ssh后的第一步我们当然是修改密码啦！输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></tbody></table></figure>
+
 <p>之后输入你想改的密码，再确认一次就成功啦（这里的密码也是不带回显的哦）</p>
-<h3 id="安装pip环境-Ubuntu"><a href="#安装pip环境-Ubuntu" class="headerlink" title="安装pip环境(Ubuntu)"></a>安装pip环境(Ubuntu)</h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python-pip</span><br></pre></td></tr></table></figure></p>
-<h3 id="直接安装shadowsocks"><a href="#直接安装shadowsocks" class="headerlink" title="直接安装shadowsocks"></a>直接安装shadowsocks</h3><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装pip环境-Ubuntu"><a href="#安装pip环境-Ubuntu" class="headerlink" title="安装pip环境(Ubuntu)"></a>安装pip环境(Ubuntu)</h3><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python-pip</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="直接安装shadowsocks"><a href="#直接安装shadowsocks" class="headerlink" title="直接安装shadowsocks"></a>直接安装shadowsocks</h3><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></tbody></table></figure>
+
 <p>如果出现Command “python setup.py egg_info” failed错误信息，则输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip </span><br></pre></td></tr></tbody></table></figure>
+
 <p>再执行上面的操作</p>
 <p>如果提示没有setuptools模块，则安装setuptools</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install setuptools</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install setuptools </span><br></pre></td></tr></tbody></table></figure>
+
 <p>再执行上面的操作</p>
 <p>如果出现”cannot import name main”错误信息，则是因为将pip更新之后库里面的函数有所变动造成的。解决方法如下：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /usr/bin/pip</span><br></pre></td></tr></table></figure></p>
-<p>将原来的<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pip import main</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /usr/bin/pip</span><br></pre></td></tr></tbody></table></figure>
+
+<p>将原来的</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pip import main</span><br></pre></td></tr></tbody></table></figure>
+
 <p>改为</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pip._internal import main</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pip._internal import main</span><br></pre></td></tr></tbody></table></figure>
+
 <p>ps:在这里我默认你会vi的操作，如果不会，请自行百度。</p>
-<h3 id="配置shadowsocks-json文件"><a href="#配置shadowsocks-json文件" class="headerlink" title="配置shadowsocks.json文件"></a>配置shadowsocks.json文件</h3><p>装好shadowsocks后，我们需要在/etc/下创建一个名为shadowsocks.json的文件（其实这个json文件不叫这个名字也可以）<br>创建该文件的命令为:<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置shadowsocks-json文件"><a href="#配置shadowsocks-json文件" class="headerlink" title="配置shadowsocks.json文件"></a>配置shadowsocks.json文件</h3><p>装好shadowsocks后，我们需要在/etc/下创建一个名为shadowsocks.json的文件（其实这个json文件不叫这个名字也可以）<br>创建该文件的命令为:</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></tbody></table></figure>
+
 <p>这时我们创建一个新文件，在里面输入下图所示内容：</p>
-<p><img src="/2019/06/29/ipv6/4.png" alt></p>
+<p><img src="/2019/06/29/ipv6/4.png"></p>
 <p>其中的 “server”:”::” 中的”::”代表启用ipv6。<br>编辑完后，我们按esc退出编辑模式，输入 :wq 保存并退出。<br>之后再shell中输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></tbody></table></figure>
+
 <p>来启动shadowsocks服务。<br>接下来在vultr网站的服务器管理页面，点击settings,如下图所示</p>
-<p><img src="/2019/06/29/ipv6/8.png" alt></p>
+<p><img src="/2019/06/29/ipv6/8.png"></p>
 <p>点击图中这个configuration examples 按照官网例程所示，修改/ect/network/interfaces文件</p>
-<p><img src="/2019/06/29/ipv6/9.png" alt></p>
+<p><img src="/2019/06/29/ipv6/9.png"></p>
 <p>这里面是我的ip地址，你要填你自己的哦，填我的是没用的啦…<br>最后重启服务器就好了！<br>重启完服务器别忘了重启shadowsocks服务嗷，如果忘记了启动命令往上面看哦~<br>（ps:我们可以利用supervisor使shadowsocks进程开机自启，具体怎么操作就自行百度一下吧嘻嘻）</p>
 <p>到此，我们在服务器上的配置工作就完成了</p>
 <h2 id="三、在自己PC上下载shadowsocks"><a href="#三、在自己PC上下载shadowsocks" class="headerlink" title="三、在自己PC上下载shadowsocks"></a>三、在自己PC上下载shadowsocks</h2><p>在我们自己的pc上，我们需要下载一个小飞机，也就是shadowsocks。<br>具体配置如下图所示</p>
-<p><img src="/2019/06/29/ipv6/5.png" alt></p>
+<p><img src="/2019/06/29/ipv6/5.png"></p>
 <p>服务器地址就是你的ipv6地址，端口是在shadowsocks.json文件中填写的端口，注意加密方式不要选错哦。之后点击确定就可以了。<br>小飞机有全局模式和PAC模式，全局就是所有的在浏览器内的网络访问全部走的代理，即通过你的ipv6网络到你的服务器，而PAC模式则是访问国内网站使用自己的本地网络ip，访问国外网站走代理。<br>下面我们测试一下，将小飞机的全局模式打开，启动系统代理，在百度中输入ip，如果会有下图显示的样子，就说明我们大功告成了！</p>
-<p><img src="/2019/06/29/ipv6/6.png" alt></p>
+<p><img src="/2019/06/29/ipv6/6.png"></p>
 <p>不过现在的网络速度还是太太太太慢了，如果你想提高网络速度，请继续往下看…</p>
 <h2 id="四、开启BBR"><a href="#四、开启BBR" class="headerlink" title="四、开启BBR"></a>四、开启BBR</h2><p>BBR（新的TCP拥塞控制算法Bottleneck Bandwidth and RTT).<br>要开启BBR，必须要求Ubuntu的内核大于等于4.9，所以要使用这个牛逼哄哄的玩意，我们需要看一下内核是不是4.9以上。<br>查看内核命令</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
-<p>如果没有高于4.9，那我们接下来需要升级内核了！<br>升级的过程也比较简单，首先我们需要确定我们服务器的系统是32位的还是64位的<br>查看命令：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure></p>
-<p>比如我的服务器系统是64位的，那么输入以下命令</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.2/linux-image-4.10.2-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br><span class="line">dpkg -i linux-image-4.10.0-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br></pre></td></tr></table></figure></p>
-<p>上述命令都执行完后，就可以更新grub引导装入程序了。命令为：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure></p>
-<p>最后输入</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
-<p>重启机器，我们再次用uname -a命令查看内核版本，会发现升级成功！<br>准备工作都做完了，我们可以开始开启BBR了！<br>执行以下命令：</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.core.default_qdisc=fq"</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.ipv4.tcp_congestion_control=bbr"</span> &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p>
-<p>保存生效</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure></p>
-<p>验证是否已开启bbr:</p>
-<p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure></p>
-<p>如果出现<img src="/2019/06/29/ipv6/7.png" alt></p>
-<p>则开启成功！<br>现在开启我们的科学上网之旅吧！</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></tbody></table></figure>
 
+<p>如果没有高于4.9，那我们接下来需要升级内核了！<br>升级的过程也比较简单，首先我们需要确定我们服务器的系统是32位的还是64位的<br>查看命令：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></tbody></table></figure>
+
+<p>比如我的服务器系统是64位的，那么输入以下命令</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.10.2/linux-image-4.10.2-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br><span class="line">dpkg -i linux-image-4.10.0-041002-generic_4.10.2-041002.201703120131_amd64.deb</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>上述命令都执行完后，就可以更新grub引导装入程序了。命令为：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></tbody></table></figure>
+
+<p>最后输入</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
+
+<p>重启机器，我们再次用uname -a命令查看内核版本，会发现升级成功！<br>准备工作都做完了，我们可以开始开启BBR了！<br>执行以下命令：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.core.default_qdisc=fq"</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="hljs-built_in">echo</span> <span class="hljs-string">"net.ipv4.tcp_congestion_control=bbr"</span> &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>保存生效</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></tbody></table></figure>
+
+<p>验证是否已开启bbr:</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果出现<img src="/2019/06/29/ipv6/7.png"></p>
+<p>则开启成功！<br>现在开启我们的科学上网之旅吧！</p>
+</body></html>
     
     </div>
     
@@ -289,8 +315,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -299,7 +323,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -308,7 +332,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -327,7 +351,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -463,7 +487,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -493,7 +519,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

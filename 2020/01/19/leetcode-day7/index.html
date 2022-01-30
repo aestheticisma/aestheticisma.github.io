@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>LeetCode DAY 7 (11-12) - 生如逆旅 一苇以航</title>
+<title>LeetCode DAY 7 (11-12) - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,14 +19,16 @@
     <meta name="description" content="我果然还是一条懒狗，拖更了两天，今天补上。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode DAY 7 (11-12)">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;01&#x2F;19&#x2F;leetcode-day7&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2020/01/19/leetcode-day7/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="我果然还是一条懒狗，拖更了两天，今天补上。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;01&#x2F;19&#x2F;leetcode-day7&#x2F;question_11.jpg">
-<meta property="og:updated_time" content="2020-01-19T09:37:17.678Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2020/01/19/leetcode-day7/question_11.jpg">
+<meta property="article:published_time" content="2020-01-19T03:28:05.000Z">
+<meta property="article:modified_time" content="2020-01-19T09:37:17.678Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2020&#x2F;01&#x2F;19&#x2F;leetcode-day7&#x2F;question_11.jpg">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2020/01/19/leetcode-day7/question_11.jpg">
 
 
 
@@ -45,9 +47,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -64,8 +68,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -117,75 +120,75 @@
                     
                     
                     
-                    <a class="navbar-item" href="#11-盛最多水的容器（中等）">&nbsp;&nbsp;<b>11. 盛最多水的容器（中等）</b></a>
+                    <a class="navbar-item" href="#11-盛最多水的容器（中等）">1&nbsp;&nbsp;<b>11. 盛最多水的容器（中等）</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#题目描述">&nbsp;&nbsp;题目描述</a>
+                    <a class="navbar-item" href="#题目描述">1.1&nbsp;&nbsp;题目描述</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例：">&nbsp;&nbsp;示例：</a>
+                    <a class="navbar-item" href="#示例：">1.1.1&nbsp;&nbsp;示例：</a>
                     
                     
                     
-                    <a class="navbar-item" href="#代码">&nbsp;&nbsp;代码</a>
+                    <a class="navbar-item" href="#代码">1.2&nbsp;&nbsp;代码</a>
                     
                     
                     
-                    <a class="navbar-item" href="#解法1：暴力穷举法">&nbsp;&nbsp;解法1：暴力穷举法</a>
+                    <a class="navbar-item" href="#解法1：暴力穷举法">1.2.1&nbsp;&nbsp;解法1：暴力穷举法</a>
                     
                     
                     
-                    <a class="navbar-item" href="#解法2：（双指针法）利用题意中的特点">&nbsp;&nbsp;解法2：（双指针法）利用题意中的特点</a>
+                    <a class="navbar-item" href="#解法2：（双指针法）利用题意中的特点">1.2.2&nbsp;&nbsp;解法2：（双指针法）利用题意中的特点</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#12-整数转罗马数字（中等）">&nbsp;&nbsp;<b>12. 整数转罗马数字（中等）</b></a>
+                    <a class="navbar-item" href="#12-整数转罗马数字（中等）">2&nbsp;&nbsp;<b>12. 整数转罗马数字（中等）</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#题目描述-1">&nbsp;&nbsp;题目描述</a>
+                    <a class="navbar-item" href="#题目描述-1">2.1&nbsp;&nbsp;题目描述</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例1">&nbsp;&nbsp;示例1:</a>
+                    <a class="navbar-item" href="#示例1">2.1.1&nbsp;&nbsp;示例1:</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例2">&nbsp;&nbsp;示例2:</a>
+                    <a class="navbar-item" href="#示例2">2.1.2&nbsp;&nbsp;示例2:</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例3">&nbsp;&nbsp;示例3:</a>
+                    <a class="navbar-item" href="#示例3">2.1.3&nbsp;&nbsp;示例3:</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例4">&nbsp;&nbsp;示例4:</a>
+                    <a class="navbar-item" href="#示例4">2.1.4&nbsp;&nbsp;示例4:</a>
                     
                     
                     
-                    <a class="navbar-item" href="#示例5">&nbsp;&nbsp;示例5:</a>
+                    <a class="navbar-item" href="#示例5">2.1.5&nbsp;&nbsp;示例5:</a>
                     
                     
                     
-                    <a class="navbar-item" href="#代码-1">&nbsp;&nbsp;代码</a>
+                    <a class="navbar-item" href="#代码-1">2.2&nbsp;&nbsp;代码</a>
                     
                     
                     
-                    <a class="navbar-item" href="#解法1：分情况讨论">&nbsp;&nbsp;解法1：分情况讨论</a>
+                    <a class="navbar-item" href="#解法1：分情况讨论">2.2.1&nbsp;&nbsp;解法1：分情况讨论</a>
                     
                     
                     
-                    <a class="navbar-item" href="#解法2：贪心算法">&nbsp;&nbsp;解法2：贪心算法</a>
+                    <a class="navbar-item" href="#解法2：贪心算法">2.2.2&nbsp;&nbsp;解法2：贪心算法</a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -206,7 +209,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-01-19T03:28:05.000Z" itemprop="datePublished">1月 19 2020</time>
+            
+                <time datetime="2020-01-19T03:28:05.000Z" itemprop="datePublished">1月 19 2020</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -224,27 +229,48 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>我果然还是一条懒狗，拖更了两天，今天补上。<a id="more"></a></p>
-<h3 id="11-盛最多水的容器（中等）"><a href="#11-盛最多水的容器（中等）" class="headerlink" title="11. 盛最多水的容器（中等）"></a>11. 盛最多水的容器（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定n个非负整数a1，a2，…，an，每个数代表坐标中的一个点(i, ai)。在坐标内画n条垂直线，垂直线i的两个端点分别为(i, ai)和(i, 0)。找出其中的两条线，使得它们与x轴共同构成的容器可以容纳最多的水。<br><strong>说明</strong>：你不能倾斜容器，且n的值至少为2。<br><img src="/2020/01/19/leetcode-day7/question_11.jpg" alt="question_11.jpg"><br>图中垂直线代表输入数组[1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为49。</p>
-<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力穷举法"><a href="#解法1：暴力穷举法" class="headerlink" title="解法1：暴力穷举法"></a>解法1：暴力穷举法</h5><p>本懒狗第一个想到的办法就是写两个for循环穷举所有情况…<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(self, height)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type height: List[int]</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        maxarea = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, len(height)<span class="hljs-number">-1</span>):</span><br><span class="line">            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>, len(height)):</span><br><span class="line">                area = (j-i)*min(height[i], height[j])</span><br><span class="line">                <span class="hljs-keyword">if</span> maxarea &lt; area:</span><br><span class="line">                    maxarea = area</span><br><span class="line">        <span class="hljs-keyword">return</span> maxarea</span><br></pre></td></tr></table></figure></p>
-<h5 id="解法2：（双指针法）利用题意中的特点"><a href="#解法2：（双指针法）利用题意中的特点" class="headerlink" title="解法2：（双指针法）利用题意中的特点"></a>解法2：（双指针法）利用题意中的特点</h5><p>我们知道，盛水的多少取决于容器最短的那根木板，还有两块木板之间的距离。<br>我们将初始位置放在列表的开始和末尾，为了增大两块木板之间的面积，我们不得不将较短的木板向内侧移动以寻求更长的木板，这样虽然会导致木板之间的距离变短，但还是有可能找到比初始位置面积要大的情况存在。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(self, height)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type height: List[int]</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        left, right = <span class="hljs-number">0</span>, len(height)<span class="hljs-number">-1</span></span><br><span class="line">        <span class="hljs-comment"># 记录面积</span></span><br><span class="line">        maxarea = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">while</span> left &lt; right:</span><br><span class="line">        	<span class="hljs-comment"># 两块木板之间的距离</span></span><br><span class="line">            b = right - left</span><br><span class="line">            <span class="hljs-keyword">if</span> height[left] &lt; height[right]:</span><br><span class="line">                h = height[left]</span><br><span class="line">                left += <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                h = height[right]</span><br><span class="line">                right -= <span class="hljs-number">1</span></span><br><span class="line">            area = b*h</span><br><span class="line">            <span class="hljs-keyword">if</span> maxarea &lt; area:</span><br><span class="line">                maxarea = area</span><br><span class="line">        <span class="hljs-keyword">return</span> maxarea</span><br></pre></td></tr></table></figure></p>
-<h3 id="12-整数转罗马数字（中等）"><a href="#12-整数转罗马数字（中等）" class="headerlink" title="12. 整数转罗马数字（中等）"></a>12. 整数转罗马数字（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure><br>例如，罗马数字<code>2</code>写做<code>II</code>，即为两个并列的<code>I</code>。<code>12</code>写做<code>XII</code>，即为<code>X</code>+<code>II</code>。<code>27</code>写做<code>XXVII</code>,即为<code>XX</code>+<code>V</code>+<code>II</code>。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如<code>4</code>不写做<code>IIII</code>，而是<code>IV</code>。数字<code>1</code>在数字<code>5</code>的左边，所表示的数等于大数<code>5</code>减小数<code>1</code>得到的数值<code>4</code> 。同样地，数字<code>9</code>表示为<code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
+        <html><head></head><body><p>我果然还是一条懒狗，拖更了两天，今天补上。<span id="more"></span></p>
+<h3 id="11-盛最多水的容器（中等）"><a href="#11-盛最多水的容器（中等）" class="headerlink" title="11. 盛最多水的容器（中等）"></a>11. 盛最多水的容器（中等）</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定n个非负整数a1，a2，…，an，每个数代表坐标中的一个点(i,&nbsp;ai)。在坐标内画n条垂直线，垂直线i的两个端点分别为(i,&nbsp;ai)和(i, 0)。找出其中的两条线，使得它们与x轴共同构成的容器可以容纳最多的水。<br><strong>说明</strong>：你不能倾斜容器，且n的值至少为2。<br><img src="/2020/01/19/leetcode-day7/question_11.jpg" alt="question_11.jpg"><br>图中垂直线代表输入数组[1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为49。</p>
+<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：暴力穷举法"><a href="#解法1：暴力穷举法" class="headerlink" title="解法1：暴力穷举法"></a>解法1：暴力穷举法</h5><p>本懒狗第一个想到的办法就是写两个for循环穷举所有情况…</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxArea</span>(<span class="hljs-params">self, height</span>):</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type height: List[int]</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        maxarea = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(height)-<span class="hljs-number">1</span>):</span><br><span class="line">            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i+<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(height)):</span><br><span class="line">                area = (j-i)*<span class="hljs-built_in">min</span>(height[i], height[j])</span><br><span class="line">                <span class="hljs-keyword">if</span> maxarea &lt; area:</span><br><span class="line">                    maxarea = area</span><br><span class="line">        <span class="hljs-keyword">return</span> maxarea</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="解法2：（双指针法）利用题意中的特点"><a href="#解法2：（双指针法）利用题意中的特点" class="headerlink" title="解法2：（双指针法）利用题意中的特点"></a>解法2：（双指针法）利用题意中的特点</h5><p>我们知道，盛水的多少取决于容器最短的那根木板，还有两块木板之间的距离。<br>我们将初始位置放在列表的开始和末尾，为了增大两块木板之间的面积，我们不得不将较短的木板向内侧移动以寻求更长的木板，这样虽然会导致木板之间的距离变短，但还是有可能找到比初始位置面积要大的情况存在。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxArea</span>(<span class="hljs-params">self, height</span>):</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type height: List[int]</span></span><br><span class="line"><span class="hljs-string">        :rtype: int</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        left, right = <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(height)-<span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-comment"># 记录面积</span></span><br><span class="line">        maxarea = <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">while</span> left &lt; right:</span><br><span class="line">        	<span class="hljs-comment"># 两块木板之间的距离</span></span><br><span class="line">            b = right - left</span><br><span class="line">            <span class="hljs-keyword">if</span> height[left] &lt; height[right]:</span><br><span class="line">                h = height[left]</span><br><span class="line">                left += <span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">else</span>:</span><br><span class="line">                h = height[right]</span><br><span class="line">                right -= <span class="hljs-number">1</span></span><br><span class="line">            area = b*h</span><br><span class="line">            <span class="hljs-keyword">if</span> maxarea &lt; area:</span><br><span class="line">                maxarea = area</span><br><span class="line">        <span class="hljs-keyword">return</span> maxarea</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="12-整数转罗马数字（中等）"><a href="#12-整数转罗马数字（中等）" class="headerlink" title="12. 整数转罗马数字（中等）"></a>12. 整数转罗马数字（中等）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></tbody></table></figure>
+<p>例如，罗马数字<code>2</code>写做<code>II</code>，即为两个并列的<code>I</code>。<code>12</code>写做<code>XII</code>，即为<code>X</code>+<code>II</code>。<code>27</code>写做<code>XXVII</code>,即为<code>XX</code>+<code>V</code>+<code>II</code>。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如<code>4</code>不写做<code>IIII</code>，而是<code>IV</code>。数字<code>1</code>在数字<code>5</code>的左边，所表示的数等于大数<code>5</code>减小数<code>1</code>得到的数值<code>4</code> 。同样地，数字<code>9</code>表示为<code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
 <ul>
 <li><code>I</code>可以放在<code>V</code>(5)和<code>X</code>(10)的左边，来表示<code>4</code>和<code>9</code>。</li>
-<li><code>X</code>可以放在<code>L</code>(50)和<code>C</code>(100)的左边，来表示<code>40</code>和<code>90</code>。 </li>
+<li><code>X</code>可以放在<code>L</code>(50)和<code>C</code>(100)的左边，来表示<code>40</code>和<code>90</code>。&nbsp;</li>
 <li><code>C</code>可以放在<code>D</code>(500)和<code>M</code>(1000)的左边，来表示<code>400</code>和<code>900</code>。</li>
 </ul>
 <p>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: &quot;III&quot;</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 4</span><br><span class="line">输出: &quot;IV&quot;</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 9</span><br><span class="line">输出: &quot;IX&quot;</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 58</span><br><span class="line">输出: &quot;LVIII&quot;</span><br><span class="line">解释: L = 50, V = 5, III = 3.</span><br></pre></td></tr></table></figure></p>
-<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 1994</span><br><span class="line">输出: &quot;MCMXCIV&quot;</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></table></figure></p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：分情况讨论"><a href="#解法1：分情况讨论" class="headerlink" title="解法1：分情况讨论"></a>解法1：分情况讨论</h5><p>这是我最开始的想法：既然这道题有这么多种情况，那我就直接分情况讨论吧。<br>总共大致分成了三种情况，一种是题目中给出的，也就是单个字符的数值，和特例（数字小的数字在大的数字的左边的情况）；第二种是数字大于5(50,500等)的，最后一种当然就是数字小于5(50,500等)的。将属于第一种情况的键值对写入字典中。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intToRoman</span><span class="hljs-params">(self, num)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type num: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        dict_str = &#123;<span class="hljs-number">1</span>:<span class="hljs-string">'I'</span>, <span class="hljs-number">5</span>:<span class="hljs-string">'V'</span>, <span class="hljs-number">10</span>:<span class="hljs-string">'X'</span>, <span class="hljs-number">50</span>:<span class="hljs-string">'L'</span>, <span class="hljs-number">100</span>:<span class="hljs-string">'C'</span>, <span class="hljs-number">500</span>:<span class="hljs-string">'D'</span>, <span class="hljs-number">1000</span>:<span class="hljs-string">'M'</span>, <span class="hljs-number">4</span>: <span class="hljs-string">'IV'</span>, <span class="hljs-number">9</span>:<span class="hljs-string">'IX'</span>, <span class="hljs-number">40</span>:<span class="hljs-string">'XL'</span>, <span class="hljs-number">90</span>:<span class="hljs-string">'XC'</span>, <span class="hljs-number">400</span>:<span class="hljs-string">'CD'</span>, <span class="hljs-number">900</span>:<span class="hljs-string">'CM'</span>&#125;</span><br><span class="line">        <span class="hljs-comment"># 用来存储转换成的罗马数字符号的列表，是倒着存储的，因此最后需要重排序</span></span><br><span class="line">        ans_list = []</span><br><span class="line">        <span class="hljs-comment"># 用来存储数字位的倍数</span></span><br><span class="line">        count = <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> num != <span class="hljs-number">0</span>:</span><br><span class="line">            a = num % <span class="hljs-number">10</span></span><br><span class="line">            num_str = a * count</span><br><span class="line">            <span class="hljs-comment"># 在字典中，取出value即是该位的罗马数字值</span></span><br><span class="line">            <span class="hljs-keyword">if</span> num_str <span class="hljs-keyword">in</span> dict_str:</span><br><span class="line">                ans_list.append(dict_str[num_str])</span><br><span class="line">            <span class="hljs-comment"># 大于5，需要变成'5的倍数的罗马值'+'某个1倍数的罗马值'*b</span></span><br><span class="line">            <span class="hljs-keyword">elif</span> a&gt;<span class="hljs-number">5</span>:</span><br><span class="line">                b = a<span class="hljs-number">-5</span></span><br><span class="line">                ans_list.append(dict_str[<span class="hljs-number">5</span>*count]+dict_str[count]*b)</span><br><span class="line">            <span class="hljs-comment"># 小于5，即 '某个1倍数的罗马值'*a</span></span><br><span class="line">            <span class="hljs-keyword">elif</span> a&lt;<span class="hljs-number">5</span>:</span><br><span class="line">                ans_list.append(dict_str[count]*a)</span><br><span class="line">            count *= <span class="hljs-number">10</span></span><br><span class="line">            num //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans_list[::<span class="hljs-number">-1</span>])</span><br></pre></td></tr></table></figure></p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: "III"</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 4</span><br><span class="line">输出: "IV"</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="示例3"><a href="#示例3" class="headerlink" title="示例3:"></a>示例3:</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 9</span><br><span class="line">输出: "IX"</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="示例4"><a href="#示例4" class="headerlink" title="示例4:"></a>示例4:</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 58</span><br><span class="line">输出: "LVIII"</span><br><span class="line">解释: L = 50, V = 5, III = 3.</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="示例5"><a href="#示例5" class="headerlink" title="示例5:"></a>示例5:</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 1994</span><br><span class="line">输出: "MCMXCIV"</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><h5 id="解法1：分情况讨论"><a href="#解法1：分情况讨论" class="headerlink" title="解法1：分情况讨论"></a>解法1：分情况讨论</h5><p>这是我最开始的想法：既然这道题有这么多种情况，那我就直接分情况讨论吧。<br>总共大致分成了三种情况，一种是题目中给出的，也就是单个字符的数值，和特例（数字小的数字在大的数字的左边的情况）；第二种是数字大于5(50,500等)的，最后一种当然就是数字小于5(50,500等)的。将属于第一种情况的键值对写入字典中。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intToRoman</span>(<span class="hljs-params">self, num</span>):</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type num: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        dict_str = {<span class="hljs-number">1</span>:<span class="hljs-string">'I'</span>, <span class="hljs-number">5</span>:<span class="hljs-string">'V'</span>, <span class="hljs-number">10</span>:<span class="hljs-string">'X'</span>, <span class="hljs-number">50</span>:<span class="hljs-string">'L'</span>, <span class="hljs-number">100</span>:<span class="hljs-string">'C'</span>, <span class="hljs-number">500</span>:<span class="hljs-string">'D'</span>, <span class="hljs-number">1000</span>:<span class="hljs-string">'M'</span>, <span class="hljs-number">4</span>: <span class="hljs-string">'IV'</span>, <span class="hljs-number">9</span>:<span class="hljs-string">'IX'</span>, <span class="hljs-number">40</span>:<span class="hljs-string">'XL'</span>, <span class="hljs-number">90</span>:<span class="hljs-string">'XC'</span>, <span class="hljs-number">400</span>:<span class="hljs-string">'CD'</span>, <span class="hljs-number">900</span>:<span class="hljs-string">'CM'</span>}</span><br><span class="line">        <span class="hljs-comment"># 用来存储转换成的罗马数字符号的列表，是倒着存储的，因此最后需要重排序</span></span><br><span class="line">        ans_list = []</span><br><span class="line">        <span class="hljs-comment"># 用来存储数字位的倍数</span></span><br><span class="line">        count = <span class="hljs-number">1</span></span><br><span class="line">        <span class="hljs-keyword">while</span> num != <span class="hljs-number">0</span>:</span><br><span class="line">            a = num % <span class="hljs-number">10</span></span><br><span class="line">            num_str = a * count</span><br><span class="line">            <span class="hljs-comment"># 在字典中，取出value即是该位的罗马数字值</span></span><br><span class="line">            <span class="hljs-keyword">if</span> num_str <span class="hljs-keyword">in</span> dict_str:</span><br><span class="line">                ans_list.append(dict_str[num_str])</span><br><span class="line">            <span class="hljs-comment"># 大于5，需要变成'5的倍数的罗马值'+'某个1倍数的罗马值'*b</span></span><br><span class="line">            <span class="hljs-keyword">elif</span> a&gt;<span class="hljs-number">5</span>:</span><br><span class="line">                b = a-<span class="hljs-number">5</span></span><br><span class="line">                ans_list.append(dict_str[<span class="hljs-number">5</span>*count]+dict_str[count]*b)</span><br><span class="line">            <span class="hljs-comment"># 小于5，即 '某个1倍数的罗马值'*a</span></span><br><span class="line">            <span class="hljs-keyword">elif</span> a&lt;<span class="hljs-number">5</span>:</span><br><span class="line">                ans_list.append(dict_str[count]*a)</span><br><span class="line">            count *= <span class="hljs-number">10</span></span><br><span class="line">            num //= <span class="hljs-number">10</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(ans_list[::-<span class="hljs-number">1</span>])</span><br></pre></td></tr></tbody></table></figure>
 <h5 id="解法2：贪心算法"><a href="#解法2：贪心算法" class="headerlink" title="解法2：贪心算法"></a>解法2：贪心算法</h5><p>我们每次用最大面值的来替换，可以保证用的罗马字符最少且最终的组合唯一。<br>其实我们仔细看这些面值，除了特殊的<code>4</code>,<code>9</code>,<code>40</code>,<code>90</code>之类的数，其余都是要么小于5，然后就是几个<code>I</code>连在一起，要么就是大与5，在几个<code>I</code>的左边再加上<code>5</code>(50,500等)对应的罗马数字。<br>只要除去特例，我们每次判断，取面值最大的，然后把该符号加在后面即可，对于特例，直接在字典或列表中加入即可。</p>
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intToRoman</span><span class="hljs-params">(self, num)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type num: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        nums = [<span class="hljs-number">1000</span>, <span class="hljs-number">900</span>, <span class="hljs-number">500</span>, <span class="hljs-number">400</span>, <span class="hljs-number">100</span>, <span class="hljs-number">90</span>, <span class="hljs-number">50</span>, <span class="hljs-number">40</span>, <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]</span><br><span class="line">        romans = [<span class="hljs-string">"M"</span>, <span class="hljs-string">"CM"</span>, <span class="hljs-string">"D"</span>, <span class="hljs-string">"CD"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"XC"</span>, <span class="hljs-string">"L"</span>, <span class="hljs-string">"XL"</span>, <span class="hljs-string">"X"</span>, <span class="hljs-string">"IX"</span>, <span class="hljs-string">"V"</span>, <span class="hljs-string">"IV"</span>, <span class="hljs-string">"I"</span>]</span><br><span class="line">        ans = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>,<span class="hljs-number">13</span>):</span><br><span class="line">            <span class="hljs-keyword">while</span> num &gt;= nums[index]:</span><br><span class="line">                ans += romans[index]</span><br><span class="line">                num -= nums[index]</span><br><span class="line">        <span class="hljs-keyword">return</span> ans</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">intToRoman</span>(<span class="hljs-params">self, num</span>):</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type num: int</span></span><br><span class="line"><span class="hljs-string">        :rtype: str</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        nums = [<span class="hljs-number">1000</span>, <span class="hljs-number">900</span>, <span class="hljs-number">500</span>, <span class="hljs-number">400</span>, <span class="hljs-number">100</span>, <span class="hljs-number">90</span>, <span class="hljs-number">50</span>, <span class="hljs-number">40</span>, <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]</span><br><span class="line">        romans = [<span class="hljs-string">"M"</span>, <span class="hljs-string">"CM"</span>, <span class="hljs-string">"D"</span>, <span class="hljs-string">"CD"</span>, <span class="hljs-string">"C"</span>, <span class="hljs-string">"XC"</span>, <span class="hljs-string">"L"</span>, <span class="hljs-string">"XL"</span>, <span class="hljs-string">"X"</span>, <span class="hljs-string">"IX"</span>, <span class="hljs-string">"V"</span>, <span class="hljs-string">"IV"</span>, <span class="hljs-string">"I"</span>]</span><br><span class="line">        ans = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">13</span>):</span><br><span class="line">            <span class="hljs-keyword">while</span> num &gt;= nums[index]:</span><br><span class="line">                ans += romans[index]</span><br><span class="line">                num -= nums[index]</span><br><span class="line">        <span class="hljs-keyword">return</span> ans</span><br></pre></td></tr></tbody></table></figure>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
     
     </div>
     
@@ -267,8 +293,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -277,7 +301,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -286,7 +310,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -305,7 +329,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -441,7 +465,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -471,7 +497,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

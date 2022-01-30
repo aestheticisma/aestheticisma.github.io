@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>利用webdriver爬取知网作者知网节 - 生如逆旅 一苇以航</title>
+<title>利用webdriver爬取知网作者知网节 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,19 +19,21 @@
     <meta name="description" content="本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用webdriver爬取知网作者知网节">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;4.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;5.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;6.png">
-<meta property="og:updated_time" content="2019-12-19T09:37:35.281Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/1.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/2.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/3.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/4.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/5.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/6.png">
+<meta property="article:published_time" content="2019-12-17T07:33:30.000Z">
+<meta property="article:modified_time" content="2019-12-19T09:37:35.281Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2019&#x2F;12&#x2F;17&#x2F;cnki-spider&#x2F;1.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2019/12/17/cnki-spider/1.png">
 
 
 
@@ -50,9 +52,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -69,8 +73,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -122,95 +125,95 @@
                     
                     
                     
-                    <a class="navbar-item" href="#一、环境配置">&nbsp;&nbsp;<b>一、环境配置</b></a>
+                    <a class="navbar-item" href="#一、环境配置">1&nbsp;&nbsp;<b>一、环境配置</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-安装selenium">&nbsp;&nbsp;1. 安装selenium</a>
+                    <a class="navbar-item" href="#1-安装selenium">1.1&nbsp;&nbsp;1. 安装selenium</a>
                     
                     
                     
-                    <a class="navbar-item" href="#2-安装基于浏览器的webdriver">&nbsp;&nbsp;2. 安装基于浏览器的webdriver</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#二、代码编写">&nbsp;&nbsp;<b>二、代码编写</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#1-简单使用">&nbsp;&nbsp;1. 简单使用</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#2-定位问题">&nbsp;&nbsp;2. 定位问题</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#1-id定位">&nbsp;&nbsp;(1) id定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#2-name定位">&nbsp;&nbsp;(2) name定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#3-class定位">&nbsp;&nbsp;(3) class定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#4-tag定位">&nbsp;&nbsp;(4) tag定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#5-link定位">&nbsp;&nbsp;(5) link定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#6-xpath定位">&nbsp;&nbsp;(6) xpath定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#7-CSS定位">&nbsp;&nbsp;(7) CSS定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#8-通过By定位">&nbsp;&nbsp;(8) 通过By定位</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#3-出现定位不到元素的问题">&nbsp;&nbsp;3. 出现定位不到元素的问题</a>
+                    <a class="navbar-item" href="#2-安装基于浏览器的webdriver">1.2&nbsp;&nbsp;2. 安装基于浏览器的webdriver</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#三、其他常用函数补充">&nbsp;&nbsp;<b>三、其他常用函数补充</b></a>
+                    <a class="navbar-item" href="#二、代码编写">2&nbsp;&nbsp;<b>二、代码编写</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#切换标签页">&nbsp;&nbsp;切换标签页:</a>
+                    <a class="navbar-item" href="#1-简单使用">2.1&nbsp;&nbsp;1. 简单使用</a>
                     
                     
                     
-                    <a class="navbar-item" href="#控制浏览器前进、后退、刷新">&nbsp;&nbsp;控制浏览器前进、后退、刷新</a>
+                    <a class="navbar-item" href="#2-定位问题">2.2&nbsp;&nbsp;2. 定位问题</a>
                     
                     
                     
-                    <a class="navbar-item" href="#关闭浏览器">&nbsp;&nbsp;关闭浏览器</a>
+                    <a class="navbar-item" href="#1-id定位">2.2.1&nbsp;&nbsp;(1) id定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-name定位">2.2.2&nbsp;&nbsp;(2) name定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-class定位">2.2.3&nbsp;&nbsp;(3) class定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-tag定位">2.2.4&nbsp;&nbsp;(4) tag定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#5-link定位">2.2.5&nbsp;&nbsp;(5) link定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#6-xpath定位">2.2.6&nbsp;&nbsp;(6) xpath定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#7-CSS定位">2.2.7&nbsp;&nbsp;(7) CSS定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#8-通过By定位">2.2.8&nbsp;&nbsp;(8) 通过By定位</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-出现定位不到元素的问题">2.3&nbsp;&nbsp;3. 出现定位不到元素的问题</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#写在最后">&nbsp;&nbsp;<b>写在最后</b></a>
+                    <a class="navbar-item" href="#三、其他常用函数补充">3&nbsp;&nbsp;<b>三、其他常用函数补充</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#切换标签页">3.1&nbsp;&nbsp;切换标签页:</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#控制浏览器前进、后退、刷新">3.2&nbsp;&nbsp;控制浏览器前进、后退、刷新</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#关闭浏览器">3.3&nbsp;&nbsp;关闭浏览器</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#写在最后">4&nbsp;&nbsp;<b>写在最后</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -231,7 +234,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-12-17T07:33:30.000Z" itemprop="datePublished">12月 17 2019</time>
+            
+                <time datetime="2019-12-17T07:33:30.000Z" itemprop="datePublished">12月 17 2019</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -249,38 +254,87 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p>本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。<a id="more"></a><br>上个周师姐布置任务让我爬取知网的作者知网节，本来以为看起来挺好爬的，但知网还是有些坑，之后详细介绍。下面就让我们从零开始吧。</p>
+        <html><head></head><body><p>本篇主要介绍基于Chrome的webdriver进行爬虫的基本方法，整理下来以备遗忘。<span id="more"></span><br>上个周师姐布置任务让我爬取知网的作者知网节，本来以为看起来挺好爬的，但知网还是有些坑，之后详细介绍。下面就让我们从零开始吧。</p>
 <h3 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h3><p>我们主要用到的工具有<code>python</code>中的<code>selenium</code>和<code>chrome</code>，以及需要驱动<code>chrome</code>的插件<code>webdriver</code>。<br>下面是来自百度关于<code>selenium</code>的介绍。<br><img src="/2019/12/17/cnki-spider/1.png" alt="1.png"><br>从图中我们可以看到，利用<code>selenium</code>我们可以模拟用户的浏览器行为，从而获取到我们需要的网页内容，因为能模拟用户行为，所以利用<code>selenium</code>进行爬虫自然可以一定程度上避免被网站反爬虫拦截，但也有不好的一面，比如爬取的速度相对来说会慢一些。</p>
-<h4 id="1-安装selenium"><a href="#1-安装selenium" class="headerlink" title="1. 安装selenium"></a>1. 安装<code>selenium</code></h4><p><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure><br>当然我们也可以新建一个conda环境，再进行安装<code>selenium</code>，这里简单复习一下创建并激活conda环境的命令：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#创建新环境</span></span><br><span class="line">conda create -n cnki-spider</span><br><span class="line"><span class="hljs-comment">#激活进入新环境</span></span><br><span class="line"><span class="hljs-built_in">source</span> activate cnki-spider</span><br><span class="line"><span class="hljs-comment"># 安装selenium</span></span><br><span class="line">pip install selenium</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-安装基于浏览器的webdriver"><a href="#2-安装基于浏览器的webdriver" class="headerlink" title="2. 安装基于浏览器的webdriver"></a>2. 安装基于浏览器的webdriver</h4><p><code>selenium</code>支持多种浏览器，比如<code>chrome</code>和<code>firefox</code>等等，这里我选用了<code>chrome</code>：<a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="noopener">下载地址</a><br>注意选择和浏览器版本对应的chromedriver。</p>
+<h4 id="1-安装selenium"><a href="#1-安装selenium" class="headerlink" title="1. 安装selenium"></a>1. 安装<code>selenium</code></h4><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></tbody></table></figure>
+<p>当然我们也可以新建一个conda环境，再进行安装<code>selenium</code>，这里简单复习一下创建并激活conda环境的命令：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#创建新环境</span></span><br><span class="line">conda create -n cnki-spider</span><br><span class="line"><span class="hljs-comment">#激活进入新环境</span></span><br><span class="line"><span class="hljs-built_in">source</span> activate cnki-spider</span><br><span class="line"><span class="hljs-comment"># 安装selenium</span></span><br><span class="line">pip install selenium</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="2-安装基于浏览器的webdriver"><a href="#2-安装基于浏览器的webdriver" class="headerlink" title="2. 安装基于浏览器的webdriver"></a>2. 安装基于浏览器的webdriver</h4><p><code>selenium</code>支持多种浏览器，比如<code>chrome</code>和<code>firefox</code>等等，这里我选用了<code>chrome</code>：<a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">下载地址</a><br>注意选择和浏览器版本对应的chromedriver。</p>
 <ul>
 <li>win<br>直接将解压后的<code>chromedriver</code>直接拖进<code>chrome</code>的安装目录，然后配置环境变量。</li>
 <li>mac<br>将解压后的<code>chromedriver</code>拖进<code>/usr/local/bin/</code>即可。</li>
 <li>linxu<br>将解压后的<code>chromedriver</code>拷贝进<code>/usr/bin</code>目录，之后在代码中声明路径即可。</li>
 </ul>
 <p>另外以上，默认已装好<code>Chrome</code>，如果没有，请自行百度。</p>
-<h3 id="二、代码编写"><a href="#二、代码编写" class="headerlink" title="二、代码编写"></a>二、代码编写</h3><h4 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1. 简单使用"></a>1. 简单使用</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line"><span class="hljs-comment"># 不能只用域名，要使用完整url</span></span><br><span class="line">browser.get(<span class="hljs-string">'https://www.baidu.com/'</span>)</span><br></pre></td></tr></table></figure><br>接下来让我们在百度的搜索框中输入些什么进行搜索看看。<br>既然要输入，那我们首先需要找到在哪个位置进行输入，因此我们需要简单定个位，打开百度页面的源代码看一下输入框在哪。<br><img src="/2019/12/17/cnki-spider/2.png" alt="2.png"><br>我们可以发现原来这个输入框的<code>class = &quot;s_ipt&quot;</code>，那我们就先通过class来定位试试吧！<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search_input = browser.find_element_by_class_name(<span class="hljs-string">'s_ipt'</span>)</span><br><span class="line">search_input.clear()</span><br><span class="line">search_input.send_keys(<span class="hljs-string">'IR实验室'</span>)</span><br></pre></td></tr></table></figure><br><img src="/2019/12/17/cnki-spider/3.png" alt="3.png"><br>可以看到我们成功的在输入框里输入了搜索内容，下面就让我们点击一下“百度一下”搜索试试吧。<br>看一下“百度一下”按键的源码是什么：<br><img src="/2019/12/17/cnki-spider/4.png" alt="4.png"><br>可以发现它的<code>id = &quot;su&quot;</code>，那我们就通过id来定位它吧！<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.find_element_by_id(<span class="hljs-string">'su'</span>).click()</span><br></pre></td></tr></table></figure><br><img src="/2019/12/17/cnki-spider/5.png" alt="5.png"><br>除了通过点击“百度一下”按钮，我们通常搜索的时候一般是直接按回车键的，那在这里可不可以模拟回车键呢？<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys</span><br><span class="line"><span class="hljs-comment"># 将上面的click()那一行换作在搜索框中输入回车键</span></span><br><span class="line">search_input.send_keys(Keys.RETURN)</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、代码编写"><a href="#二、代码编写" class="headerlink" title="二、代码编写"></a>二、代码编写</h3><h4 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1. 简单使用"></a>1. 简单使用</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line"><span class="hljs-comment"># 不能只用域名，要使用完整url</span></span><br><span class="line">browser.get(<span class="hljs-string">'https://www.baidu.com/'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>接下来让我们在百度的搜索框中输入些什么进行搜索看看。<br>既然要输入，那我们首先需要找到在哪个位置进行输入，因此我们需要简单定个位，打开百度页面的源代码看一下输入框在哪。<br><img src="/2019/12/17/cnki-spider/2.png" alt="2.png"><br>我们可以发现原来这个输入框的<code>class = "s_ipt"</code>，那我们就先通过class来定位试试吧！</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search_input = browser.find_element_by_class_name(<span class="hljs-string">'s_ipt'</span>)</span><br><span class="line">search_input.clear()</span><br><span class="line">search_input.send_keys(<span class="hljs-string">'IR实验室'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/2019/12/17/cnki-spider/3.png" alt="3.png"><br>可以看到我们成功的在输入框里输入了搜索内容，下面就让我们点击一下“百度一下”搜索试试吧。<br>看一下“百度一下”按键的源码是什么：<br><img src="/2019/12/17/cnki-spider/4.png" alt="4.png"><br>可以发现它的<code>id = "su"</code>，那我们就通过id来定位它吧！</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.find_element_by_id(<span class="hljs-string">'su'</span>).click()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/2019/12/17/cnki-spider/5.png" alt="5.png"><br>除了通过点击“百度一下”按钮，我们通常搜索的时候一般是直接按回车键的，那在这里可不可以模拟回车键呢？</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys</span><br><span class="line"><span class="hljs-comment"># 将上面的click()那一行换作在搜索框中输入回车键</span></span><br><span class="line">search_input.send_keys(Keys.RETURN)</span><br></pre></td></tr></tbody></table></figure>
 <h4 id="2-定位问题"><a href="#2-定位问题" class="headerlink" title="2. 定位问题"></a>2. 定位问题</h4><p>模拟浏览器行为无非就是模拟鼠标和键盘来操作html中的这些元素，那首要的任务就是元素定位问题了。<br>在<code>selenium</code>中提供了很多种方法可以进行元素定位，下面一一介绍。</p>
-<h5 id="1-id定位"><a href="#1-id定位" class="headerlink" title="(1) id定位"></a>(1) id定位</h5><p><code>find_element_by_id()</code><br>例如上面的例子我们定位了“百度一下”按钮：<code>browser.find_element_by_id(&#39;su&#39;)</code></p>
-<h5 id="2-name定位"><a href="#2-name定位" class="headerlink" title="(2) name定位"></a>(2) name定位</h5><p><code>find_element_by_name()</code><br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s_ipt"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"wd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"kw"</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>&gt;</span></span><br></pre></td></tr></table></figure><br>比如这是百度搜索框的源码，我们可以通过name这样定位：<code>browser.find_element_by_name(&#39;wd&#39;)</code></p>
-<h5 id="3-class定位"><a href="#3-class定位" class="headerlink" title="(3) class定位"></a>(3) class定位</h5><p><code>find_element_by_class_name()</code><br>同样地定位搜索框：<code>browser.find_element_by_class_name(&#39;s_ipt&#39;)</code></p>
-<h5 id="4-tag定位"><a href="#4-tag定位" class="headerlink" title="(4) tag定位"></a>(4) tag定位</h5><p><code>find_element_by_tag_name()</code><br>每一个元素本质就是一个tag，但是HTML页面的tag重复性很厉害，一般很少用这个定位。<br>例子：<code>browser.find_element_by_tag_name(&#39;input&#39;)</code></p>
-<h5 id="5-link定位"><a href="#5-link定位" class="headerlink" title="(5) link定位"></a>(5) link定位</h5><p><code>find_element_by_link_text()</code> 可以用来定义文本链接。<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://news.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>新闻<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.hao123.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>hao123<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://map.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>地图<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://v.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>视频<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><br>我们可以通过这些文本内容打开链接：<code>browser.find_element_by_link_text(&#39;新闻&#39;).click()</code><br>也可以通过部分文本链接进行定位，也就是partial定位：<br><code>find_element_by_partial_link_text()</code><br>例子：<code>browser.find_element_by_partial_link_text(&#39;hao&#39;).click()</code></p>
-<h5 id="6-xpath定位"><a href="#6-xpath定位" class="headerlink" title="(6) xpath定位"></a>(6) xpath定位</h5><p>它又分为绝对路径定位和相对路径定位，但我觉得没人喜欢<code>/html/*/*/</code>这样从头写路径，经常使用的也就是相对路径定位。<br><code>find_element_by_xpath(&#39;//标签[@属性名=属性值]&#39;)</code> 属性名可以是id、name、class或者其他可唯一标识该标签的元素。<br>比如上面定位百度搜索框的可以改写为：<br><code>browser.find_element_by_xpath(&#39;//input[@class=&quot;s_ipt&quot;]&#39;).send_keys(&#39;IR 实验室&#39;）</code><br><code>//</code>代表当前页面的某个路径下，<code>input</code>代表元素标签名，不指定标签可以用<code>*</code>代替。<br>既然xpath都支持路径了，那层级，也就是在某个标签之下的元素也可以通过它定位了。<br>比如，有个div标签的class=’helloworld’，然后在这个标签的里面有一个a标签，我们想要定位这个a标签就可以这么写：<br><code>browser.find_element_by_xpath(&#39;//div[@class=&quot;helloworld&quot;]/a&#39;)</code><br>更强大的是这个方法还支持通过逻辑运算符进行定位。<br>比如<code>find_element_by_xpath(&quot;//input[@id=&#39;a&#39; and @class=&#39;su&#39;]/span/input&quot;)</code></p>
+<h5 id="1-id定位"><a href="#1-id定位" class="headerlink" title="(1) id定位"></a>(1) id定位</h5><p><code>find_element_by_id()</code><br>例如上面的例子我们定位了“百度一下”按钮：<code>browser.find_element_by_id('su')</code></p>
+<h5 id="2-name定位"><a href="#2-name定位" class="headerlink" title="(2) name定位"></a>(2) name定位</h5><p><code>find_element_by_name()</code></p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s_ipt"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"wd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"kw"</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>比如这是百度搜索框的源码，我们可以通过name这样定位：<code>browser.find_element_by_name('wd')</code></p>
+<h5 id="3-class定位"><a href="#3-class定位" class="headerlink" title="(3) class定位"></a>(3) class定位</h5><p><code>find_element_by_class_name()</code><br>同样地定位搜索框：<code>browser.find_element_by_class_name('s_ipt')</code></p>
+<h5 id="4-tag定位"><a href="#4-tag定位" class="headerlink" title="(4) tag定位"></a>(4) tag定位</h5><p><code>find_element_by_tag_name()</code><br>每一个元素本质就是一个tag，但是HTML页面的tag重复性很厉害，一般很少用这个定位。<br>例子：<code>browser.find_element_by_tag_name('input')</code></p>
+<h5 id="5-link定位"><a href="#5-link定位" class="headerlink" title="(5) link定位"></a>(5) link定位</h5><p><code>find_element_by_link_text()</code> 可以用来定义文本链接。</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://news.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>新闻<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.hao123.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>hao123<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://map.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>地图<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://v.baidu.com"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mnav"</span>&gt;</span>视频<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>我们可以通过这些文本内容打开链接：<code>browser.find_element_by_link_text('新闻').click()</code><br>也可以通过部分文本链接进行定位，也就是partial定位：<br><code>find_element_by_partial_link_text()</code><br>例子：<code>browser.find_element_by_partial_link_text('hao').click()</code></p>
+<h5 id="6-xpath定位"><a href="#6-xpath定位" class="headerlink" title="(6) xpath定位"></a>(6) xpath定位</h5><p>它又分为绝对路径定位和相对路径定位，但我觉得没人喜欢<code>/html/*/*/</code>这样从头写路径，经常使用的也就是相对路径定位。<br><code>find_element_by_xpath('//标签[@属性名=属性值]')</code> 属性名可以是id、name、class或者其他可唯一标识该标签的元素。<br>比如上面定位百度搜索框的可以改写为：<br><code>browser.find_element_by_xpath('//input[@class="s_ipt"]').send_keys('IR 实验室'）</code><br><code>//</code>代表当前页面的某个路径下，<code>input</code>代表元素标签名，不指定标签可以用<code>*</code>代替。<br>既然xpath都支持路径了，那层级，也就是在某个标签之下的元素也可以通过它定位了。<br>比如，有个div标签的class=’helloworld’，然后在这个标签的里面有一个a标签，我们想要定位这个a标签就可以这么写：<br><code>browser.find_element_by_xpath('//div[@class="helloworld"]/a')</code><br>更强大的是这个方法还支持通过逻辑运算符进行定位。<br>比如<code>find_element_by_xpath("//input[@id='a' and @class='su']/span/input")</code></p>
 <h5 id="7-CSS定位"><a href="#7-CSS定位" class="headerlink" title="(7) CSS定位"></a>(7) CSS定位</h5><p><code>find_element_by_css_selector()</code></p>
-<h6 id="通过class定位"><a href="#通过class定位" class="headerlink" title="通过class定位"></a>通过class定位</h6><p>比如在百度搜索框输入要搜索的内容：<br><code>browser.find_element_by_css_selector(&quot;.s_ipt&quot;).send_keys(&#39;hello world&#39;)</code></p>
-<h6 id="通过id定位"><a href="#通过id定位" class="headerlink" title="通过id定位"></a>通过id定位</h6><p>例子：<code>browser.find_element_by_css_selector(&quot;#kw&quot;).send_keys(&#39;hello world&#39;)</code></p>
-<h6 id="通过标签名定位-（很少用）"><a href="#通过标签名定位-（很少用）" class="headerlink" title="通过标签名定位 （很少用）"></a>通过标签名定位 （很少用）</h6><p>例子：<code>browser.find_element_by_css_selector(&quot;input&quot;)</code></p>
-<h6 id="通过标签属性定位"><a href="#通过标签属性定位" class="headerlink" title="通过标签属性定位"></a>通过标签属性定位</h6><p>例子：<br><code>browser.find_element_by_css_selector(&#39;[autocomplete=&quot;off&quot;]&#39;).send_keys(&#39;helloworld&#39;)</code><br><strong>属性值</strong>的引号可加可不加。</p>
-<h6 id="通过标签父子关系定位"><a href="#通过标签父子关系定位" class="headerlink" title="通过标签父子关系定位"></a>通过标签父子关系定位</h6><p><code>find_element_by_css_selector(&quot;parent&gt;child&quot;)</code><br>例子：<code>browser.find_element_by_css_selector(&quot;span&gt;input&quot;).send_keys(&quot;IR 实验室&quot;)</code></p>
-<h6 id="组合定位"><a href="#组合定位" class="headerlink" title="组合定位"></a>组合定位</h6><p>例子：<code>browser.find_element_by_css_selector(&quot;span&gt;input#kw&quot;).send_keys(&quot;IR 实验室&quot;)</code><br>同样的，可以将属性值、id、class、父子关系等结合起来组合定位，这样可以提高定位的准确性。</p>
-<h5 id="8-通过By定位"><a href="#8-通过By定位" class="headerlink" title="(8) 通过By定位"></a>(8) 通过By定位</h5><p>By定位元素是统一调用<code>find_element()</code>的方法。<code>find_element()</code>方法只用于定位元素，它有两个参数，第一个是定位的类型，由By提供；第二个参数是定位的具体方式。<br>使用By之前需要先导入By类：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By</span><br></pre></td></tr></table></figure><br>实例：<code>browser.find_element(By.ID,&#39;kw&#39;).send_keys(&quot;IR 实验室&quot;)</code><br>定位的类型包括：<br><code>By.ID, By.NAME, By.CLASS_NAME, By.TAG_NAME, By.LINK_TEXT, By.PARTIAL_LINK_TEXT, By.XPATH, By.CSS_SELECTOR</code></p>
-<h4 id="3-出现定位不到元素的问题"><a href="#3-出现定位不到元素的问题" class="headerlink" title="3. 出现定位不到元素的问题"></a>3. 出现定位不到元素的问题</h4><p>你以为掌握了以上这些定位方法就没有问题了吗，当时看完教程的我也是这么想的，不就是爬取知网作者知网节嘛，当我把一切都准备好，也打开了准备爬取的页面，准备开心的开始爬的时候呢，却报错了…找不到该元素，我明明在chrome里可以看到的啊，我定位的方法也没有错啊，怎么会定位失败呢？<br>原来现在很多页面除了页面源代码之外还有很多框架源代码，而我想要爬取的内容就存在于这些框架源代码中，那这些框架源代码都在哪呢？<br><img src="/2019/12/17/cnki-spider/6.png" alt="6.png"><br>看到这些<code>iframe</code>标签了嘛，没错它们都在这里面。<br>frame标签有frameset、frame、iframe三种，frameset跟其他普通标签没有区别，不会影响到正常的定位，而frame与iframe对selenium定位而言是一样的，selenium有一组方法对frame进行操作。<br>所以我们如果想要这里面的内容就需要切换frame，之后才能定位到这些框架里的元素，那么怎么进行切换呢？<br>我们用到的函数是<code>switch_to.frame()</code>可以传入id、name、index以及selenium的WebElement对象。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.switch_to.frame(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 1.用frame的index来定位，第一个是0</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("frame1")  # 2.用id来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("myframe")  # 3.用name来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))  # 4.用WebElement对象来定位</span></span><br></pre></td></tr></table></figure><br>但是我们看到知网这个作者知网节界面不只一个框架，但这些框架都是同级的，所以我们爬完一个框架之后需要切回主文档以再切入下一个框架。<br><code>driver.switch_to.default_content()</code><br>那如果碰到一个框架里面又嵌套着框架怎么办呢？比如：<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame1"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame2"</span> / &gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><br>我们先从主文档一层一层的切到frame2<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame1"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame2"</span>)</span><br></pre></td></tr></table></figure><br>现在我们从frame2怎么切换到frame1呢？<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.parent_frame()  <span class="hljs-comment"># 如果当前已是主文档，则无效果</span></span><br></pre></td></tr></table></figure><br>有了这个方法，相当于后退作用，我们就可以随意的在frame之间切换了。</p>
-<h3 id="三、其他常用函数补充"><a href="#三、其他常用函数补充" class="headerlink" title="三、其他常用函数补充"></a>三、其他常用函数补充</h3><h4 id="切换标签页"><a href="#切换标签页" class="headerlink" title="切换标签页:"></a>切换标签页:</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window = self.browser.window_handles <span class="hljs-comment"># 获得当前窗口句柄集合（列表类型）</span></span><br><span class="line">browser.switch_to.window(window[<span class="hljs-number">1</span>]) <span class="hljs-comment">#切换到第二个标签</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="控制浏览器前进、后退、刷新"><a href="#控制浏览器前进、后退、刷新" class="headerlink" title="控制浏览器前进、后退、刷新"></a>控制浏览器前进、后退、刷新</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">browser.forward()</span><br><span class="line">browser.back()</span><br><span class="line">browser.refresh()</span><br></pre></td></tr></table></figure></p>
-<h4 id="关闭浏览器"><a href="#关闭浏览器" class="headerlink" title="关闭浏览器"></a>关闭浏览器</h4><p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.quit()</span><br></pre></td></tr></table></figure></p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>如果你想获取完整的爬取知网作者知网节的代码:<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/spider_cnki</span><br></pre></td></tr></table></figure></p>
+<h6 id="通过class定位"><a href="#通过class定位" class="headerlink" title="通过class定位"></a>通过class定位</h6><p>比如在百度搜索框输入要搜索的内容：<br><code>browser.find_element_by_css_selector(".s_ipt").send_keys('hello world')</code></p>
+<h6 id="通过id定位"><a href="#通过id定位" class="headerlink" title="通过id定位"></a>通过id定位</h6><p>例子：<code>browser.find_element_by_css_selector("#kw").send_keys('hello world')</code></p>
+<h6 id="通过标签名定位-（很少用）"><a href="#通过标签名定位-（很少用）" class="headerlink" title="通过标签名定位 （很少用）"></a>通过标签名定位 （很少用）</h6><p>例子：<code>browser.find_element_by_css_selector("input")</code></p>
+<h6 id="通过标签属性定位"><a href="#通过标签属性定位" class="headerlink" title="通过标签属性定位"></a>通过标签属性定位</h6><p>例子：<br><code>browser.find_element_by_css_selector('[autocomplete="off"]').send_keys('helloworld')</code><br><strong>属性值</strong>的引号可加可不加。</p>
+<h6 id="通过标签父子关系定位"><a href="#通过标签父子关系定位" class="headerlink" title="通过标签父子关系定位"></a>通过标签父子关系定位</h6><p><code>find_element_by_css_selector("parent&gt;child")</code><br>例子：<code>browser.find_element_by_css_selector("span&gt;input").send_keys("IR 实验室")</code></p>
+<h6 id="组合定位"><a href="#组合定位" class="headerlink" title="组合定位"></a>组合定位</h6><p>例子：<code>browser.find_element_by_css_selector("span&gt;input#kw").send_keys("IR 实验室")</code><br>同样的，可以将属性值、id、class、父子关系等结合起来组合定位，这样可以提高定位的准确性。</p>
+<h5 id="8-通过By定位"><a href="#8-通过By定位" class="headerlink" title="(8) 通过By定位"></a>(8) 通过By定位</h5><p>By定位元素是统一调用<code>find_element()</code>的方法。<code>find_element()</code>方法只用于定位元素，它有两个参数，第一个是定位的类型，由By提供；第二个参数是定位的具体方式。<br>使用By之前需要先导入By类：</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By</span><br></pre></td></tr></tbody></table></figure>
+<p>实例：<code>browser.find_element(By.ID,'kw').send_keys("IR 实验室")</code><br>定位的类型包括：<br><code>By.ID, By.NAME, By.CLASS_NAME, By.TAG_NAME, By.LINK_TEXT, By.PARTIAL_LINK_TEXT, By.XPATH, By.CSS_SELECTOR</code></p>
+<h4 id="3-出现定位不到元素的问题"><a href="#3-出现定位不到元素的问题" class="headerlink" title="3. 出现定位不到元素的问题"></a>3. 出现定位不到元素的问题</h4><p>你以为掌握了以上这些定位方法就没有问题了吗，当时看完教程的我也是这么想的，不就是爬取知网作者知网节嘛，当我把一切都准备好，也打开了准备爬取的页面，准备开心的开始爬的时候呢，却报错了…找不到该元素，我明明在chrome里可以看到的啊，我定位的方法也没有错啊，怎么会定位失败呢？<br>原来现在很多页面除了页面源代码之外还有很多框架源代码，而我想要爬取的内容就存在于这些框架源代码中，那这些框架源代码都在哪呢？<br><img src="/2019/12/17/cnki-spider/6.png" alt="6.png"><br>看到这些<code>iframe</code>标签了嘛，没错它们都在这里面。<br>frame标签有frameset、frame、iframe三种，frameset跟其他普通标签没有区别，不会影响到正常的定位，而frame与iframe对selenium定位而言是一样的，selenium有一组方法对frame进行操作。<br>所以我们如果想要这里面的内容就需要切换frame，之后才能定位到这些框架里的元素，那么怎么进行切换呢？<br>我们用到的函数是<code>switch_to.frame()</code>可以传入id、name、index以及selenium的WebElement对象。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver.switch_to.frame(<span class="hljs-number">0</span>)  <span class="hljs-comment"># 1.用frame的index来定位，第一个是0</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("frame1")  # 2.用id来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame("myframe")  # 3.用name来定位</span></span><br><span class="line"><span class="hljs-comment"># driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))  # 4.用WebElement对象来定位</span></span><br></pre></td></tr></tbody></table></figure>
+<p>但是我们看到知网这个作者知网节界面不只一个框架，但这些框架都是同级的，所以我们爬完一个框架之后需要切回主文档以再切入下一个框架。<br><code>driver.switch_to.default_content()</code><br>那如果碰到一个框架里面又嵌套着框架怎么办呢？比如：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame1"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame2"</span> / &gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>我们先从主文档一层一层的切到frame2</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame1"</span>)</span><br><span class="line">driver.switch_to.frame(<span class="hljs-string">"frame2"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>现在我们从frame2怎么切换到frame1呢？</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switch_to.parent_frame()  <span class="hljs-comment"># 如果当前已是主文档，则无效果</span></span><br></pre></td></tr></tbody></table></figure>
+<p>有了这个方法，相当于后退作用，我们就可以随意的在frame之间切换了。</p>
+<h3 id="三、其他常用函数补充"><a href="#三、其他常用函数补充" class="headerlink" title="三、其他常用函数补充"></a>三、其他常用函数补充</h3><h4 id="切换标签页"><a href="#切换标签页" class="headerlink" title="切换标签页:"></a>切换标签页:</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window = self.browser.window_handles <span class="hljs-comment"># 获得当前窗口句柄集合（列表类型）</span></span><br><span class="line">browser.switch_to.window(window[<span class="hljs-number">1</span>]) <span class="hljs-comment">#切换到第二个标签</span></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="控制浏览器前进、后退、刷新"><a href="#控制浏览器前进、后退、刷新" class="headerlink" title="控制浏览器前进、后退、刷新"></a>控制浏览器前进、后退、刷新</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">browser.forward()</span><br><span class="line">browser.back()</span><br><span class="line">browser.refresh()</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="关闭浏览器"><a href="#关闭浏览器" class="headerlink" title="关闭浏览器"></a>关闭浏览器</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">browser.quit()</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>如果你想获取完整的爬取知网作者知网节的代码:</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/aestheticisma/spider_cnki</span><br></pre></td></tr></tbody></table></figure>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
     
     </div>
     
@@ -303,8 +357,6 @@
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -313,7 +365,7 @@
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -322,7 +374,7 @@
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -341,7 +393,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -477,7 +529,9 @@
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -507,7 +561,9 @@
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>

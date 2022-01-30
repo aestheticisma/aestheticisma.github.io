@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>DeBERTa 论文解读 - 生如逆旅 一苇以航</title>
+<title>DeBERTa 论文解读 - Fan&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -19,16 +19,18 @@
     <meta name="description" content="《Deberta: decoding-Enhanced Bert with Disentangled Attention》，该论文来自 ICLR2021，作者团队为微软，主要介绍了其提出的一个新的预训练语言模型：DeBERTa，该模型从注意力解耦（disentangled attention）和预训练阶段的解码增强两方面对BERT类预训练模型进行了优化，并在SuperGLUE上首次超越人类基准。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DeBERTa 论文解读">
-<meta property="og:url" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;11&#x2F;24&#x2F;deberta&#x2F;index.html">
-<meta property="og:site_name" content="生如逆旅 一苇以航">
+<meta property="og:url" content="https://aestheticisma.github.io/2021/11/24/deberta/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
 <meta property="og:description" content="《Deberta: decoding-Enhanced Bert with Disentangled Attention》，该论文来自 ICLR2021，作者团队为微软，主要介绍了其提出的一个新的预训练语言模型：DeBERTa，该模型从注意力解耦（disentangled attention）和预训练阶段的解码增强两方面对BERT类预训练模型进行了优化，并在SuperGLUE上首次超越人类基准。">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;11&#x2F;24&#x2F;deberta&#x2F;bert_input.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;11&#x2F;24&#x2F;deberta&#x2F;decoder_layer.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;11&#x2F;24&#x2F;deberta&#x2F;SiFT_results.png">
-<meta property="og:updated_time" content="2021-11-24T10:21:28.122Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/11/24/deberta/bert_input.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/11/24/deberta/decoder_layer.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2021/11/24/deberta/SiFT_results.png">
+<meta property="article:published_time" content="2021-11-24T10:21:44.000Z">
+<meta property="article:modified_time" content="2021-11-24T10:21:28.122Z">
+<meta property="article:author" content="流岚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;fansblog.me&#x2F;2021&#x2F;11&#x2F;24&#x2F;deberta&#x2F;bert_input.png">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2021/11/24/deberta/bert_input.png">
 
 
 
@@ -47,9 +49,11 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
 
+
 <link rel="stylesheet" href="/css/style.css">
 
-<script defer src="/js/all.js"></script>
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 
     
@@ -66,8 +70,7 @@
     
 
 
-<link rel="alternate" href="/atom.xml" title="生如逆旅 一苇以航" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     
 <nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
@@ -119,63 +122,63 @@
                     
                     
                     
-                    <a class="navbar-item" href="#一、Introduction">&nbsp;&nbsp;<b>一、Introduction</b></a>
+                    <a class="navbar-item" href="#一、Introduction">1&nbsp;&nbsp;<b>一、Introduction</b></a>
                     
                     
                     
-                    <a class="navbar-item" href="#1-解耦的注意力机制">&nbsp;&nbsp;1. 解耦的注意力机制</a>
+                    <a class="navbar-item" href="#1-解耦的注意力机制">1.1&nbsp;&nbsp;1. 解耦的注意力机制</a>
                     
                     
                     
-                    <a class="navbar-item" href="#2-Enhanced-Mask-Decoder">&nbsp;&nbsp;2. Enhanced Mask Decoder</a>
+                    <a class="navbar-item" href="#2-Enhanced-Mask-Decoder">1.2&nbsp;&nbsp;2. Enhanced Mask Decoder</a>
                     
                     
                     
-                    <a class="navbar-item" href="#3-SiFT">&nbsp;&nbsp;3. SiFT</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#二、Background">&nbsp;&nbsp;<b>二、Background</b></a>
+                    <a class="navbar-item" href="#3-SiFT">1.3&nbsp;&nbsp;3. SiFT</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#三、Model-Architecture">&nbsp;&nbsp;<b>三、Model Architecture</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#1-Disentangled-Attention">&nbsp;&nbsp;1. Disentangled Attention</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#2-Enhanced-Mask-Decoder-EMD">&nbsp;&nbsp;2. Enhanced Mask Decoder(EMD)</a>
+                    <a class="navbar-item" href="#二、Background">2&nbsp;&nbsp;<b>二、Background</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#四、Scale-Invariant-Fine-tuning">&nbsp;&nbsp;<b>四、Scale Invariant Fine-tuning</b></a>
+                    <a class="navbar-item" href="#三、Model-Architecture">3&nbsp;&nbsp;<b>三、Model Architecture</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-Disentangled-Attention">3.1&nbsp;&nbsp;1. Disentangled Attention</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-Enhanced-Mask-Decoder-EMD">3.2&nbsp;&nbsp;2. Enhanced Mask Decoder(EMD)</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#五、实验结果">&nbsp;&nbsp;<b>五、实验结果</b></a>
+                    <a class="navbar-item" href="#四、Scale-Invariant-Fine-tuning">4&nbsp;&nbsp;<b>四、Scale Invariant Fine-tuning</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#六、参考文献">&nbsp;&nbsp;<b>六、参考文献</b></a>
+                    <a class="navbar-item" href="#五、实验结果">5&nbsp;&nbsp;<b>五、实验结果</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#六、参考文献">6&nbsp;&nbsp;<b>六、参考文献</b></a>
                     
                 </div>
             </div>
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                 
                 <i class="fab fa-github"></i>
                 
@@ -196,7 +199,9 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2021-11-24T10:21:44.000Z" itemprop="datePublished">11月 24 2021</time>
+            
+                <time datetime="2021-11-24T10:21:44.000Z" itemprop="datePublished">11月 24 2021</time>
+            
         </span>
         
         <span class="column is-narrow article-category">
@@ -214,10 +219,10 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <p style="text-indent:2em">
-《Deberta: decoding-Enhanced Bert with Disentangled Attention》，该论文来自 ICLR2021，作者团队为微软，主要介绍了其提出的一个新的预训练语言模型：DeBERTa，该模型从注意力解耦（disentangled attention）和预训练阶段的解码增强两方面对BERT类预训练模型进行了优化，并在SuperGLUE上首次超越人类基准。</p><a id="more"></a>
+        <html><head></head><body><p style="text-indent:2em">
+《Deberta: decoding-Enhanced Bert with Disentangled Attention》，该论文来自 ICLR2021，作者团队为微软，主要介绍了其提出的一个新的预训练语言模型：DeBERTa，该模型从注意力解耦（disentangled attention）和预训练阶段的解码增强两方面对BERT类预训练模型进行了优化，并在SuperGLUE上首次超越人类基准。</p><span id="more"></span>
 
-<p><a href="https://openreview.net/pdf?id=XPZIaotutsD" target="_blank" rel="noopener">论文地址</a>、<a href="https://github.com/microsoft/DeBERTa" target="_blank" rel="noopener">代码地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://openreview.net/pdf?id=XPZIaotutsD">论文地址</a>、<a target="_blank" rel="noopener" href="https://github.com/microsoft/DeBERTa">代码地址</a></p>
 <h3 id="一、Introduction"><a href="#一、Introduction" class="headerlink" title="一、Introduction"></a>一、Introduction</h3><p style="text-indent:2em">
 这篇文章的创新点主要在三个部分：1.使用了解耦的注意力机制；2.对预训练阶段的MLM任务的Decoder层进行了改进；3.训练技巧（虚拟对抗训练）</p>
 
@@ -237,7 +242,7 @@
 感觉这算是一个微调的训练技巧吧，作者针对虚拟对抗训练（virtual adversarial training）进行了小部分的调整，新方法称为 Scale-invariant-Fine-Tuning（SiFT）。在针对将预训练模型用于下游任务的Fine-tune阶段加入 SiFT 可以增强模型的泛化性。
 </p>
 
-<h3 id="二、Background"><a href="#二、Background" class="headerlink" title="二、Background"></a>二、Background</h3><p>说实话背景这一块内容并不多，也没有什么值得介绍的，一共就两个，第一个就是目前各大预训练语言模型所使用的 Transformer 模型结构，另一个就是 MLM。关于 Transformer，可以看我的<a href="https://aestheticisma.github.io/2021/10/11/transformer/" target="_blank" rel="noopener">上一篇文章</a>，下面简单用语言和数学公式描述下 MLM：</p>
+<h3 id="二、Background"><a href="#二、Background" class="headerlink" title="二、Background"></a>二、Background</h3><p>说实话背景这一块内容并不多，也没有什么值得介绍的，一共就两个，第一个就是目前各大预训练语言模型所使用的 Transformer 模型结构，另一个就是 MLM。关于 Transformer，可以看我的<a href="https://aestheticisma.github.io/2021/10/11/transformer/">上一篇文章</a>，下面简单用语言和数学公式描述下 MLM：</p>
 <p style="text-indent:2em">
 对于给定一个序列 $ \textit{X} = \lbrace x_i \rbrace $，我们通过随机 mask 掉其 15% 的 tokens，将 $\textit{X}$ 变为 $\tilde{X}$，训练一个模型，模型参数集合为 $\theta$，我们让模型基于 $\tilde{X}$ 来预测被 mask 掉的 $\tilde{x}$，数学描述为：$$ \mathop{max}\limits_{\theta}logp_{\theta}(\textit{X} | \tilde{X}) = \mathop{max}\limits_{\theta}\sum\limits_{i\in\mathcal{C}}logp_{\theta}(\tilde{x_i} = x_i | \tilde{X}) \tag{1}$$
 $\mathcal{C}$代表序列中被 mask 掉的 token 的索引，当然这里就不具体展开具体 mask 的规则了。
@@ -291,9 +296,9 @@ $$ H_o = softmax(\frac{\tilde{A}}{\sqrt{3d}})V_c $$
 说实话，第三个分量不用 $\delta(i,j)$ 而是 $\delta(j,i)$ 我没有想明白为什么，论文中关于它的解释只有一句话：This is because for a given position
 i, position-to-content computes the attention weight of the key content at j with respect to the
 query position at i, thus the relative distance is $\delta(j,i)$. $\delta(i,j)$ 的计算公式如下：
-$$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
-                    2k-1 & \text{for $i-j\geq k$} \\
-                    i-j+k & \text{others.} \end{cases}$$
+$$ \delta(i,j) = \begin{cases} 0 &amp; \text{for $i-j\leq-k$} \\
+                    2k-1 &amp; \text{for $i-j\geq k$} \\
+                    i-j+k &amp; \text{others.} \end{cases}$$
 </p>
 
 <p style="text-indent:2em">
@@ -317,7 +322,7 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
 但到这里我还是很疑惑的，那作为预训练模型的那一些 Transformer encoder layer 有多少层呢？加上这个 EMD，不会造成参数量的增长吗？这些问题在论文开源的代码中我找到了答案。
 </p>
 
-<p><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">emd_context_layer</span><span class="hljs-params">(self, encoder_layers, z_states, attention_mask, encoder, target_ids, input_ids, input_mask, relative_pos=None)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">if</span> attention_mask.dim()&lt;=<span class="hljs-number">2</span>:</span><br><span class="line">        extended_attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>).unsqueeze(<span class="hljs-number">2</span>)</span><br><span class="line">        att_mask = extended_attention_mask.byte()</span><br><span class="line">        attention_mask = att_mask*att_mask.squeeze(<span class="hljs-number">-2</span>).unsqueeze(<span class="hljs-number">-1</span>)</span><br><span class="line">    <span class="hljs-keyword">elif</span> attention_mask.dim()==<span class="hljs-number">3</span>:</span><br><span class="line">        attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>)</span><br><span class="line">    target_mask = target_ids&gt;<span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-comment"># 取 deberta 的倒数第二层的隐层输出向量</span></span><br><span class="line">    hidden_states = encoder_layers[<span class="hljs-number">-2</span>]</span><br><span class="line">    <span class="hljs-comment"># 从这里开始 EMD 的计算</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.position_biased_input: </span><br><span class="line">        <span class="hljs-comment"># EMD 的 transformer encoder layer 有两个 \</span></span><br><span class="line">        <span class="hljs-comment"># 但都是用的 deberta 的最后一层的 encoder layer，因此论文中说参数共享</span></span><br><span class="line">        layers = [encoder.layer[<span class="hljs-number">-1</span>] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)]</span><br><span class="line">        <span class="hljs-comment"># `z_status`最开始传入进来的是绝对位置信息，现在加上上一层的输出</span></span><br><span class="line">        z_states +=  hidden_states</span><br><span class="line">        query_states = z_states</span><br><span class="line">        query_mask = attention_mask</span><br><span class="line">        outputs = []</span><br><span class="line">        rel_embeddings = encoder.get_rel_embedding()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 注意只有 EMD 的第一层 layer 才传入了绝对位置信息 \</span></span><br><span class="line">        <span class="hljs-comment"># 第二层的 layer 传入的是上一层的输出</span></span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> layers:</span><br><span class="line">            <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> pass relative pos ids</span></span><br><span class="line">            output = layer(hidden_states, query_mask, return_att=<span class="hljs-literal">False</span>, query_states = query_states, relative_pos=relative_pos, rel_embeddings = rel_embeddings)</span><br><span class="line">            query_states = output</span><br><span class="line">            outputs.append(query_states)</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        outputs = [encoder_layers[<span class="hljs-number">-1</span>]]</span><br><span class="line">    </span><br><span class="line">    _mask_index = (target_ids&gt;<span class="hljs-number">0</span>).view(<span class="hljs-number">-1</span>).nonzero().view(<span class="hljs-number">-1</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten_states</span><span class="hljs-params">(q_states)</span>:</span></span><br><span class="line">        q_states = q_states.view((<span class="hljs-number">-1</span>, q_states.size(<span class="hljs-number">-1</span>)))</span><br><span class="line">        q_states = q_states.index_select(<span class="hljs-number">0</span>, _mask_index)</span><br><span class="line">        <span class="hljs-keyword">return</span> q_states</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> [flatten_states(q) <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> outputs]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">emd_context_layer</span>(<span class="hljs-params">self, encoder_layers, z_states, attention_mask, encoder, target_ids, input_ids, input_mask, relative_pos=<span class="hljs-literal">None</span></span>):</span></span><br><span class="line">    <span class="hljs-keyword">if</span> attention_mask.dim()&lt;=<span class="hljs-number">2</span>:</span><br><span class="line">        extended_attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>).unsqueeze(<span class="hljs-number">2</span>)</span><br><span class="line">        att_mask = extended_attention_mask.byte()</span><br><span class="line">        attention_mask = att_mask*att_mask.squeeze(-<span class="hljs-number">2</span>).unsqueeze(-<span class="hljs-number">1</span>)</span><br><span class="line">    <span class="hljs-keyword">elif</span> attention_mask.dim()==<span class="hljs-number">3</span>:</span><br><span class="line">        attention_mask = attention_mask.unsqueeze(<span class="hljs-number">1</span>)</span><br><span class="line">    target_mask = target_ids&gt;<span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-comment"># 取 deberta 的倒数第二层的隐层输出向量</span></span><br><span class="line">    hidden_states = encoder_layers[-<span class="hljs-number">2</span>]</span><br><span class="line">    <span class="hljs-comment"># 从这里开始 EMD 的计算</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.position_biased_input: </span><br><span class="line">        <span class="hljs-comment"># EMD 的 transformer encoder layer 有两个 \</span></span><br><span class="line">        <span class="hljs-comment"># 但都是用的 deberta 的最后一层的 encoder layer，因此论文中说参数共享</span></span><br><span class="line">        layers = [encoder.layer[-<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>)]</span><br><span class="line">        <span class="hljs-comment"># `z_status`最开始传入进来的是绝对位置信息，现在加上上一层的输出</span></span><br><span class="line">        z_states +=  hidden_states</span><br><span class="line">        query_states = z_states</span><br><span class="line">        query_mask = attention_mask</span><br><span class="line">        outputs = []</span><br><span class="line">        rel_embeddings = encoder.get_rel_embedding()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 注意只有 EMD 的第一层 layer 才传入了绝对位置信息 \</span></span><br><span class="line">        <span class="hljs-comment"># 第二层的 layer 传入的是上一层的输出</span></span><br><span class="line">        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> layers:</span><br><span class="line">            <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> pass relative pos ids</span></span><br><span class="line">            output = layer(hidden_states, query_mask, return_att=<span class="hljs-literal">False</span>, query_states = query_states, relative_pos=relative_pos, rel_embeddings = rel_embeddings)</span><br><span class="line">            query_states = output</span><br><span class="line">            outputs.append(query_states)</span><br><span class="line">    <span class="hljs-keyword">else</span>:</span><br><span class="line">        outputs = [encoder_layers[-<span class="hljs-number">1</span>]]</span><br><span class="line">    </span><br><span class="line">    _mask_index = (target_ids&gt;<span class="hljs-number">0</span>).view(-<span class="hljs-number">1</span>).nonzero().view(-<span class="hljs-number">1</span>)</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten_states</span>(<span class="hljs-params">q_states</span>):</span></span><br><span class="line">        q_states = q_states.view((-<span class="hljs-number">1</span>, q_states.size(-<span class="hljs-number">1</span>)))</span><br><span class="line">        q_states = q_states.index_select(<span class="hljs-number">0</span>, _mask_index)</span><br><span class="line">        <span class="hljs-keyword">return</span> q_states</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> [flatten_states(q) <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> outputs]</span><br></pre></td></tr></tbody></table></figure>
 <p style="text-indent:2em">
 根据源码，我们可以大致推断出，对标一个具有 12 层 Transformer encoder layer 的 BERT，DeBERTa 的 Transformer encoder layer 有 11 层，但有额外的 1 层 用于 EMD，并且复用这 1 层一次，相当于循环两次该层，最后整个 DeBERTa 的参数量其实还是 12 层，参数规模与 BERT 一致，不得不说确实巧妙。其他关于 EMD 的输入 I 的问题均在代码中以中文注释标注出来了。
 </p>
@@ -335,7 +340,7 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
 
 <p><img src="/2021/11/24/deberta/SiFT_results.png" alt="SiFT_results"><br>可以看到，在 DeBERTa1.5B 上加入 SiFT 后，性能有了进一步的提升。</p>
 <h3 id="五、实验结果"><a href="#五、实验结果" class="headerlink" title="五、实验结果"></a>五、实验结果</h3><p>这部分的消融实验做的挺充分的，累了，就不贴图了，大伙自己去原文看吧…</p>
-<h3 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h3><p>[1] Shaw P, Uszkoreit J, Vaswani A. Self-Attention with Relative Position Representations[C]//Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers). 2018: 464-468.<br>[2] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[C]//Advances in neural information processing systems. 2017: 5998-6008.<br>[3] <a href="https://zhuanlan.zhihu.com/p/395086745" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/395086745</a></p>
+<h3 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h3><p>[1] Shaw P, Uszkoreit J, Vaswani A. Self-Attention with Relative Position Representations[C]//Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers). 2018: 464-468.<br>[2] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[C]//Advances in neural information processing systems. 2017: 5998-6008.<br>[3] <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/395086745">https://zhuanlan.zhihu.com/p/395086745</a></p>
 <style>
     img {
         width: 55%;
@@ -345,13 +350,15 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
         text-align: center;
     }
 </style>
-
+</body></html>
     
     </div>
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2022/01/30/tarjan/">图论(1)：使用tarjan算法解决寻找无向图中的割点与桥</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
@@ -366,8 +373,6 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
 
 
 
-
-
     </div>
 </section>
     <footer class="footer">
@@ -376,7 +381,7 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
             <div class="column is-narrow has-text-centered">
                 &copy; 2019-2022 流岚&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
             </div>
             <div class="column is-hidden-mobile"></div>
 
@@ -385,7 +390,7 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/aestheticisma" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
                     
                     GitHub
                     
@@ -404,7 +409,7 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -540,7 +545,9 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
     
 
 
+
 <script src="/js/script.js"></script>
+
 
     
     <div class="searchbox ins-search">
@@ -570,7 +577,9 @@ $$ \delta(i,j) = \begin{cases} 0 & \text{for $i-j\leq-k$} \\
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
 </script>
+
 <script src="/js/insight.js"></script>
+
     
 </body>
 </html>
