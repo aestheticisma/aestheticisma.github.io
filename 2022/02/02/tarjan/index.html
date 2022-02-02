@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>图论(1)：使用tarjan算法解决寻找无向图连通图中的割点与桥 - Fan&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="Tarjan算法是图论中常用的算法之一，本篇作为图论的第一篇，首先从无向图着手，记录如何使用tarjan算法解决寻找无向连通图中的割点与桥的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论(1)：使用tarjan算法解决寻找无向图连通图中的割点与桥">
+<meta property="og:url" content="https://aestheticisma.github.io/2022/02/02/tarjan/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
+<meta property="og:description" content="Tarjan算法是图论中常用的算法之一，本篇作为图论的第一篇，首先从无向图着手，记录如何使用tarjan算法解决寻找无向连通图中的割点与桥的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-02T06:38:22.000Z">
+<meta property="article:modified_time" content="2022-02-02T06:40:00.082Z">
+<meta property="article:author" content="流岚">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon-32x32.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-割点与桥">&nbsp;&nbsp;<b>1 割点与桥</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-1-定义">&nbsp;&nbsp;1.1 定义</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-2-割点与桥的关系">&nbsp;&nbsp;1.2 割点与桥的关系</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#2-暴力解法">&nbsp;&nbsp;<b>2 暴力解法</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#3-Tarjan算法原理">&nbsp;&nbsp;<b>3 Tarjan算法原理</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-1-具体实现">&nbsp;&nbsp;3.1 具体实现</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-2-寻找割点">&nbsp;&nbsp;3.2 寻找割点</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-3-寻找桥">&nbsp;&nbsp;3.3 寻找桥</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#4-Leetcode题目实例">&nbsp;&nbsp;<b>4 Leetcode题目实例</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-1-1192-查找集群内的「关键连接」">&nbsp;&nbsp;4.1 1192 查找集群内的「关键连接」</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-2-1568-使陆地分离的最少天数">&nbsp;&nbsp;4.2 1568 使陆地分离的最少天数</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            图论(1)：使用tarjan算法解决寻找无向图连通图中的割点与桥
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2022-02-02T06:38:22.000Z" itemprop="datePublished">2月 2 2022</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            12 分钟 读完 (约 1837 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p style="text-indent:2em">
+Tarjan算法是图论中常用的算法之一，本篇作为图论的第一篇，首先从无向图着手，记录如何使用tarjan算法解决寻找无向连通图中的割点与桥的问题。<span id="more"></span>
+</p>
+
+<h3 id="1-割点与桥"><a href="#1-割点与桥" class="headerlink" title="1 割点与桥"></a>1 割点与桥</h3><blockquote>
+<p>割点与桥存在于无向图中。</p>
+</blockquote>
+<h4 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h4><ul>
+<li><strong>割点</strong>：无向连通图中，去掉一个顶点及和它相邻的所有边，图中的连通分量数增加，则该顶点称为割点。</li>
+<li><strong>桥</strong>：无向连通图中，去掉一条边，图中的连通分量数增加，则这条边，称为桥或者割边。</li>
+</ul>
+<h4 id="1-2-割点与桥的关系"><a href="#1-2-割点与桥的关系" class="headerlink" title="1.2 割点与桥的关系"></a>1.2 割点与桥的关系</h4><ul>
+<li>有割点不一定有桥</li>
+<li>桥一定是割点依附的边</li>
+</ul>
+<h3 id="2-暴力解法"><a href="#2-暴力解法" class="headerlink" title="2 暴力解法"></a>2 暴力解法</h3><p style="text-indent:2em">
+关于如何解决寻找无向图中的割点与桥的问题，我们可以从割点与桥的定义出发，从图中每次去掉一个顶点和它相邻的所有边，然后进行DFS遍历，如果连通分量增加了，那么去掉的顶点就是割点（桥同理）。但这样我们需要对图上的每个顶点（边）进行一次上述操作，显然时间复杂度过于高了，那有没有只进行一次DFS遍历的解决方案呢？这就要引出本文的主题-Tarjan算法了。
+</p>
+
+<h3 id="3-Tarjan算法原理"><a href="#3-Tarjan算法原理" class="headerlink" title="3 Tarjan算法原理"></a>3 Tarjan算法原理</h3><p style="text-indent:2em">
+我们首先假设在DFS中从顶点U访问到了顶点V，即V是U的孩子节点，在顶点U访问之前访问过的节点就是U的祖先节点。显然，如果顶点U的全部孩子节点都可以不通过父亲节点U访问到U的祖先节点，那么就说明当我们去掉顶点U时，无向图的连通性没有发生改变，因此U就不是割点；相反的，如果U至少存在一个孩子节点只能通过U才能访问到U的祖先节点，那么U为割点。
+</p>
+
+<h4 id="3-1-具体实现"><a href="#3-1-具体实现" class="headerlink" title="3.1 具体实现"></a>3.1 具体实现</h4><p style="text-indent:2em">
+除了要借助DFS外，我们还需要定义两个数组，dfn[n]和low[n], 前者代表深度优先遍历的顶点顺序（时间戳），后者代表当前顶点不通过其父亲节点可以访问到的祖先节点的最小时间戳。
+</p>
+
+<p style="text-indent:2em">
+当我们从顶点U深度优先遍历到顶点V时（V不是U的父亲节点）：
+</p>
+
+<ul>
+<li>如果V没有被访问过，则说明V是U的孩子节点，继续对V进行DFS。注意返回到U时，需要更改U的low值，即 low[U] = min(low[U], low[V])。</li>
+<li>如果V已经被访问过，则说明V是U的祖先节点，即我们找到了可以不通过U的父亲节点而访问到其祖先节点的路径，更新low[U] = min(low[U], dfn[V])</li>
+</ul>
+<h4 id="3-2-寻找割点"><a href="#3-2-寻找割点" class="headerlink" title="3.2 寻找割点"></a>3.2 寻找割点</h4><p style="text-indent:2em">
+判断割点集有一个特殊顶点需要额外进行判断，即根节点，因为通过tarjan算法我们需要借助祖先节点，但是根节点并没有祖先节点，那我们如何对根节点是否为割点进行判断呢？其实也不难看出，如果我们从根节点进行DFS遍历，如果一次DFS就能遍历完整个无向图上的所有节点，那根节点就不是割点，反之，则根节点是割点。
+</p>
+<p style="text-indent:2em">
+对于除root节点外的其他节点，我们就可以通过tarjan算法进行判断了，当U节点至少存在一个孩子节点V，使得 low[V] &gt;= dfn[U] 时，U即为一个割点。
+</p>
+
+<ul>
+<li>代码实现：<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// time = 1;</span></span><br><span class="line"><span class="hljs-comment">// vector&lt;vector&lt;int&gt;&gt; graph(n);</span></span><br><span class="line"><span class="hljs-comment">// int dfn[n], low[n];</span></span><br><span class="line"><span class="hljs-comment">// vector&lt;int&gt; points;</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> parent, <span class="hljs-keyword">int</span> root)</span> </span>{</span><br><span class="line">    <span class="hljs-comment">// 第一次遍历到当前 x 节点</span></span><br><span class="line">    dfn[x] = low[x] = time++;</span><br><span class="line">    <span class="hljs-comment">// children用于记录 x 下有几个连通图</span></span><br><span class="line">    <span class="hljs-keyword">int</span> children = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp; y : graph[x]) {</span><br><span class="line">    	<span class="hljs-comment">// y 为父亲节点，跳过</span></span><br><span class="line">        <span class="hljs-keyword">if</span> (y == parent) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        <span class="hljs-comment">// y 未访问过</span></span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dfn[y] == <span class="hljs-number">0</span>) {</span><br><span class="line">            ++children;</span><br><span class="line">            <span class="hljs-built_in">tarjan</span>(y, x, root);</span><br><span class="line">            low[x] = <span class="hljs-built_in">min</span>(low[x], low[y]);</span><br><span class="line">            <span class="hljs-comment">// 注意判断条件为大于等于</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (x != root &amp;&amp; low[y] &gt;= dfn[x]) points.<span class="hljs-built_in">push_back</span>(x);</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-comment">// y 是 x 的祖先节点</span></span><br><span class="line">        <span class="hljs-keyword">else</span> low[x] = <span class="hljs-built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-comment">// x 是根节点，且 x 无法通过一次DFS遍历访问完所有节点</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (x == root &amp;&amp; children &gt; <span class="hljs-number">1</span>) points.<span class="hljs-built_in">push_back</span>(root);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="3-3-寻找桥"><a href="#3-3-寻找桥" class="headerlink" title="3.3 寻找桥"></a>3.3 寻找桥</h4><p style="text-indent:2em">
+桥的判断条件与割点类似，只不过不需要单独像割点一样去判断根节点，因为判断桥是判断的是图中的边啦！但判断条件改为 low[V] &gt; dfn[U]。
+</p>
+
+<ul>
+<li>代码实现：<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// time = 1;</span></span><br><span class="line"><span class="hljs-comment">// vector&lt;vector&lt;int&gt;&gt; graph(n);</span></span><br><span class="line"><span class="hljs-comment">// int dfn[n], low[n];</span></span><br><span class="line"><span class="hljs-comment">// vector&lt;int&gt; ans;</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> parent)</span> </span>{</span><br><span class="line">    dfn[x] = low[x] = time++;</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;y : graph[x]) {</span><br><span class="line">        <span class="hljs-keyword">if</span> (y == parent) <span class="hljs-keyword">continue</span>;</span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dfn[y] == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-built_in">tarjan</span>(y, x);</span><br><span class="line">            low[x] = <span class="hljs-built_in">min</span>(low[x], low[y]);</span><br><span class="line">            <span class="hljs-comment">// 注意判断条件</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (low[y] &gt; dfn[x]) ans.<span class="hljs-built_in">push_back</span>({x, y});</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">else</span> low[x] = <span class="hljs-built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="4-Leetcode题目实例"><a href="#4-Leetcode题目实例" class="headerlink" title="4 Leetcode题目实例"></a>4 Leetcode题目实例</h3><h4 id="4-1-1192-查找集群内的「关键连接」"><a href="#4-1-1192-查找集群内的「关键连接」" class="headerlink" title="4.1 1192 查找集群内的「关键连接」"></a>4.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/critical-connections-in-a-network/">1192 查找集群内的「关键连接」</a></h4><p style="text-indent:2em">
+题目给定的输入是一个连通的无向图，输出即为无向连通图的所有桥。对于这道题，我们完全可以套用tarjan算法的模板，找出图中所有的桥即可。
+</p>
+
+<ul>
+<li>代码实现：<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; ans;</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; dfn;</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; low;</span><br><span class="line">    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;</span><br><span class="line">    <span class="hljs-keyword">int</span> time = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">criticalConnections</span>(<span class="hljs-keyword">int</span> n, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; connections) {</span><br><span class="line">        graph.<span class="hljs-built_in">resize</span>(n);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp; e: connections) {</span><br><span class="line">            graph[e[<span class="hljs-number">0</span>]].<span class="hljs-built_in">push_back</span>(e[<span class="hljs-number">1</span>]);</span><br><span class="line">            graph[e[<span class="hljs-number">1</span>]].<span class="hljs-built_in">push_back</span>(e[<span class="hljs-number">0</span>]);</span><br><span class="line">        }</span><br><span class="line">        dfn.<span class="hljs-built_in">resize</span>(n, <span class="hljs-number">0</span>);</span><br><span class="line">        low.<span class="hljs-built_in">resize</span>(n, <span class="hljs-number">0</span>);</span><br><span class="line">        <span class="hljs-built_in">tarjan</span>(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>);</span><br><span class="line">        <span class="hljs-keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> parent)</span> </span>{</span><br><span class="line">        dfn[x] = low[x] = time++;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;y : graph[x]) {</span><br><span class="line">            <span class="hljs-keyword">if</span> (y == parent) <span class="hljs-keyword">continue</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dfn[y] == <span class="hljs-number">0</span>) {</span><br><span class="line">                <span class="hljs-built_in">tarjan</span>(y, x);</span><br><span class="line">                low[x] = <span class="hljs-built_in">min</span>(low[x], low[y]);</span><br><span class="line">                <span class="hljs-keyword">if</span> (low[y] &gt; dfn[x]) ans.<span class="hljs-built_in">push_back</span>({x, y});</span><br><span class="line">            }</span><br><span class="line">            <span class="hljs-keyword">else</span> low[x] = <span class="hljs-built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="4-2-1568-使陆地分离的最少天数"><a href="#4-2-1568-使陆地分离的最少天数" class="headerlink" title="4.2 1568 使陆地分离的最少天数"></a>4.2 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-days-to-disconnect-island/">1568 使陆地分离的最少天数</a></h4><p style="text-indent:2em">
+这道题相对于前一道上升了些许难度，但实质也可以看作一道寻找割点的题目，这里我们用到了并查集和tarjan算法。
+</p>
+
+<figure class="highlight cpp hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnionFind</span> {</span></span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; parent;</span><br><span class="line">    <span class="hljs-keyword">int</span> n_size;</span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-built_in">UnionFind</span>(<span class="hljs-keyword">int</span> _n): <span class="hljs-built_in">n_size</span>(_n) {</span><br><span class="line">        parent.<span class="hljs-built_in">resize</span>(_n+<span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= _n; ++i) parent[i] = i;</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> x == parent[x] ? parent[x] : parent[x] = <span class="hljs-built_in">find</span>(parent[x]);</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> v)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">find</span>(u) == <span class="hljs-built_in">find</span>(v)) <span class="hljs-keyword">return</span>;</span><br><span class="line">        parent[<span class="hljs-built_in">find</span>(u)] = <span class="hljs-built_in">find</span>(v);</span><br><span class="line">        --n_size;</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_nsize</span><span class="hljs-params">()</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> n_size;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span></span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; directions = {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>};</span><br><span class="line">    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; dfn;</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; low;</span><br><span class="line">    <span class="hljs-keyword">int</span> time = <span class="hljs-number">1</span>;</span><br><span class="line">    vector&lt;<span class="hljs-keyword">int</span>&gt; points;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minDays</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">int</span> m = grid.<span class="hljs-built_in">size</span>(), n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; relabel;</span><br><span class="line">        <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) {</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) {</span><br><span class="line">                <span class="hljs-keyword">if</span> (grid[i][j]) {</span><br><span class="line">                    relabel[i*n+j] = index++;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">int</span> cnt = relabel.<span class="hljs-built_in">size</span>();</span><br><span class="line">        <span class="hljs-keyword">if</span> (cnt == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cnt == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">else</span> {</span><br><span class="line">            UnionFind uf = <span class="hljs-built_in">UnionFind</span>(cnt);</span><br><span class="line">            graph.<span class="hljs-built_in">resize</span>(cnt);</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) {</span><br><span class="line">                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) {</span><br><span class="line">                    <span class="hljs-keyword">if</span> (grid[i][j] == <span class="hljs-number">1</span>) {</span><br><span class="line">                        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; ++k) {</span><br><span class="line">                            <span class="hljs-keyword">int</span> ni = i + directions[k], nj = j + directions[k+<span class="hljs-number">1</span>];</span><br><span class="line">                            <span class="hljs-keyword">if</span> (ni &gt;= <span class="hljs-number">0</span> &amp;&amp; ni &lt; m &amp;&amp; nj &gt;= <span class="hljs-number">0</span> &amp;&amp; nj &lt; n &amp;&amp; grid[ni][nj] == <span class="hljs-number">1</span>) {</span><br><span class="line">                                graph[relabel[i*n+j]].<span class="hljs-built_in">push_back</span>(relabel[ni*n+nj]);</span><br><span class="line">                                uf.<span class="hljs-built_in">merge</span>(relabel[i*n+j], relabel[ni*n+nj]);</span><br><span class="line">                            }</span><br><span class="line">                        }</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            <span class="hljs-keyword">int</span> n_size = uf.<span class="hljs-built_in">get_nsize</span>();</span><br><span class="line">            <span class="hljs-keyword">if</span> (n_size &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">            dfn.<span class="hljs-built_in">resize</span>(cnt, <span class="hljs-number">0</span>), low.<span class="hljs-built_in">resize</span>(cnt, <span class="hljs-number">0</span>);</span><br><span class="line">            <span class="hljs-built_in">tarjan</span>(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>);</span><br><span class="line">            <span class="hljs-keyword">if</span> (points.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tarjan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> parent, <span class="hljs-keyword">int</span> root)</span> </span>{</span><br><span class="line">        dfn[x] = low[x] = time++;</span><br><span class="line">        <span class="hljs-keyword">int</span> children = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp; y : graph[x]) {</span><br><span class="line">            <span class="hljs-keyword">if</span> (y == parent) <span class="hljs-keyword">continue</span>;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dfn[y] == <span class="hljs-number">0</span>) {</span><br><span class="line">                ++children;</span><br><span class="line">                <span class="hljs-built_in">tarjan</span>(y, x, root);</span><br><span class="line">                low[x] = <span class="hljs-built_in">min</span>(low[x], low[y]);</span><br><span class="line">                <span class="hljs-keyword">if</span> (x != root &amp;&amp; low[y] &gt;= dfn[x]) points.<span class="hljs-built_in">push_back</span>(x);</span><br><span class="line">            }</span><br><span class="line">            <span class="hljs-keyword">else</span> low[x] = <span class="hljs-built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">if</span> (x == root &amp;&amp; children &gt; <span class="hljs-number">1</span>) points.<span class="hljs-built_in">push_back</span>(root);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Algorithm/">#Algorithm</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2021/11/24/deberta/">DeBERTa 论文解读</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2022 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
