@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>使用ssh连接 [Docker] Ubuntu容器 - Fan&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="最近换了新电脑，开始对新电脑进行了一些基础的配置。由于一些学习上的需求，我需要基于Linux环境写一些c++代码。但是常见的虚拟机软件都需要收费，因此我只能将目光转移到了Docker上。这篇博客主要记录了如何使用docker拉取ubuntu镜像并使用ssh连接容器进行简单的开发工作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用ssh连接 [Docker] Ubuntu容器">
+<meta property="og:url" content="https://aestheticisma.github.io/2022/05/03/docker-ubuntu/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
+<meta property="og:description" content="最近换了新电脑，开始对新电脑进行了一些基础的配置。由于一些学习上的需求，我需要基于Linux环境写一些c++代码。但是常见的虚拟机软件都需要收费，因此我只能将目光转移到了Docker上。这篇博客主要记录了如何使用docker拉取ubuntu镜像并使用ssh连接容器进行简单的开发工作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-03T13:17:44.000Z">
+<meta property="article:modified_time" content="2022-05-04T04:43:04.227Z">
+<meta property="article:author" content="流岚">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon_new.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#0x00-在-Mac-上安装-Docker">&nbsp;&nbsp;<b>0x00. 在 Mac 上安装 Docker</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#0x01-拉取-Ubuntu-镜像">&nbsp;&nbsp;<b>0x01. 拉取 Ubuntu 镜像</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#0x02-运行容器并安装sshd">&nbsp;&nbsp;<b>0x02. 运行容器并安装sshd</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#0x03-Commit-至新镜像">&nbsp;&nbsp;<b>0x03. Commit 至新镜像</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#0x04-Run-新镜像">&nbsp;&nbsp;<b>0x04. Run 新镜像</b></a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            使用ssh连接 [Docker] Ubuntu容器
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2022-05-03T13:17:44.000Z" itemprop="datePublished">5月 3 2022</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Developer/">Developer</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 读完 (约 924 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>最近换了新电脑，开始对新电脑进行了一些基础的配置。由于一些学习上的需求，我需要基于Linux环境写一些c++代码。但是常见的虚拟机软件都需要收费，因此我只能将目光转移到了Docker上。这篇博客主要记录了如何使用docker拉取ubuntu镜像并使用ssh连接容器进行简单的开发工作。<span id="more"></span></p>
+<h3 id="0x00-在-Mac-上安装-Docker"><a href="#0x00-在-Mac-上安装-Docker" class="headerlink" title="0x00. 在 Mac 上安装 Docker"></a>0x00. 在 Mac 上安装 Docker</h3><p>在这里我主要使用Homebrew进行对Docker的安装。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 需要一个Docker daemon开启docker服务，因此这个是必备的</span></span><br><span class="line">brew install docker --cask</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 又安装一个formulae主要是用于便于在terminal中操作</span></span><br><span class="line">brew install docker</span><br></pre></td></tr></tbody></table></figure>
+
+<p>安装完成后启动台中应该会多了一个Docker的应用程序，点击它以启动Docker服务，正常的话会在菜单栏显示一个docker的图标。<br>在terminal中测试</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br></pre></td></tr></tbody></table></figure>
+<p>如果正常打印输出，则Docker环境安装完成。</p>
+<h3 id="0x01-拉取-Ubuntu-镜像"><a href="#0x01-拉取-Ubuntu-镜像" class="headerlink" title="0x01. 拉取 Ubuntu 镜像"></a>0x01. 拉取 Ubuntu 镜像</h3><p>一些简单命令：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 查看本地所有镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="hljs-comment"># 根据name搜索docker hub中的指定镜像</span></span><br><span class="line">docker search ubuntu</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 列出正在运行中的容器信息</span></span><br><span class="line">docker container ls</span><br><span class="line"><span class="hljs-comment"># 列出所有容器信息</span></span><br><span class="line">docker container ls -a</span><br></pre></td></tr></tbody></table></figure>
+
+<p>由于是简单的测试，我们对ubuntu系统的版本并无严格要求，因此直接拉取标签为latest的ubuntu镜像即可。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 现在可以列一下当前机器上的镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="hljs-comment"># 可以看到我们刚刚pull下来的ubuntu:latest</span></span><br><span class="line"><span class="hljs-comment"># ubuntu       latest    f3d495355b4e   3 days ago    69.2MB</span></span><br><span class="line"><span class="hljs-comment"># 可以看到，它仅有69.2MB，因为镜像中只包含了linux必备的最小内核信息。</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="0x02-运行容器并安装sshd"><a href="#0x02-运行容器并安装sshd" class="headerlink" title="0x02. 运行容器并安装sshd"></a>0x02. 运行容器并安装sshd</h3><p>通过运行下列命令，我们可以得到一个实例化的容器。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -<span class="hljs-built_in">exec</span> ubuntu /bin/bash</span><br><span class="line"><span class="hljs-comment"># 执行成功我们可以看到提示符变成了下面这样。</span></span><br><span class="line">root@9a67c88704a0:/<span class="hljs-comment">#</span></span><br></pre></td></tr></tbody></table></figure>
+<p>接下来便是常规操作了：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 备选：可以先修改一下root密码</span></span><br><span class="line">passwd</span><br><span class="line"><span class="hljs-comment"># 我不太喜欢直接用root, 可以先新建一个sudo用户来操作。</span></span><br><span class="line">useradd -d /home/fan -m -s /bin/bash -g sudo fan</span><br><span class="line">passwd fan</span><br><span class="line"><span class="hljs-comment"># 最开始并没有sudo命令，我们安装sudo</span></span><br><span class="line">apt install sudo</span><br><span class="line">apt install vim</span><br><span class="line"><span class="hljs-comment"># 安装opensshd</span></span><br><span class="line">apt install openssh-server</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们可以简单配置一下sshd，使其开启公钥访问。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 编辑sshd配置文件，开启公钥访问</span></span><br><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 主要编辑以下几项(取消其注释)：</span></span><br><span class="line"><span class="hljs-comment"># PermitRootLogin yes</span></span><br><span class="line"><span class="hljs-comment"># PubkeyAuthentication yes</span></span><br><span class="line"><span class="hljs-comment"># 之后只需要在用户目录下的.ssh目录下的authorized_key填入所用机器的公钥即可</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 另外，需要检查一下在/run目录下有没有sshd这个目录节点，如果没有则新建</span></span><br><span class="line">mkdir /run/sshd</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="0x03-Commit-至新镜像"><a href="#0x03-Commit-至新镜像" class="headerlink" title="0x03. Commit 至新镜像"></a>0x03. Commit 至新镜像</h3><p>由以上两步我们基本上完成了对ubuntu的简单定制（即openssh的配置），至此我们可以提交一版用于后续的使用。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m <span class="hljs-string">"some description."</span> container_ID yourImageName:TAG</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="0x04-Run-新镜像"><a href="#0x04-Run-新镜像" class="headerlink" title="0x04. Run 新镜像"></a>0x04. Run 新镜像</h3><p>接着上一步，我们对新提交的镜像进行运行得到一个新的容器。</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 10022:22 --name ubuntu_test yourImageName:TAG /usr/sbin/sshd -D </span><br></pre></td></tr></tbody></table></figure>
+
+<p>上述命令我们将容器在后台执行，并映射了本机的10022端口至容器内部的22端口，并将容器运行开始通过<code>/usr/sbin/sshd -D </code>命令开启sshd服务。</p>
+<p>接下来，我们在本地机器上就可以通过ssh进行连接了</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 10022 fan@localhost</span><br></pre></td></tr></tbody></table></figure>
+
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Docker/">#Docker</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2022/03/02/longest-Valid-Parentheses/">Leetcode 32. 最长有效括号</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2022 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
